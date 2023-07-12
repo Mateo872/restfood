@@ -18,6 +18,42 @@ body {
 }
 
 header {
+    /* padding: 1rem; */
+}
+
+.contenedor_publicidad {
+    width: 100%;
+    padding: 0.8rem;
+    background: var(--color-terciario);
+    position: relative;
+    overflow: hidden;
+}
+
+.contenedor_publicidad h6 {
+    font-size: 0.5rem;
+    color: #fff;
+}
+
+
+.slider {
+    width: 70%;
+    animation: deslizar 4.5s linear infinite;
+    white-space: nowrap;
+}
+
+
+@keyframes deslizar {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+
+    }
+}
+
+header nav {
     padding: 1rem;
 }
 
@@ -106,8 +142,64 @@ header nav a:hover::after {
 
 @media (min-width:767px) {
     header {
-        padding: 2rem;
         background: var(--color-terciario);
+    }
+
+    .contenedor_publicidad h6 {
+        font-size: 0.6rem;
+    }
+
+    .slider {
+        width: 60%;
+        animation: deslizar 9s linear infinite;
+    }
+
+    header nav {
+        padding: 2rem;
+    }
+
+    header nav .menu_capa {
+        width: 100%;
+        height: 1rem;
+        position: static;
+        background-color: transparent;
+        visibility: visible;
+    }
+
+    header nav .menu_capa ul {
+        width: 100%;
+        background-color: transparent;
+        position: static;
+        padding: 0;
+        gap: 0rem;
+        transform: translateX(0);
+        margin-bottom: 0;
+    }
+
+    header nav .menu_link {
+        font-size: 0.8rem;
+        font-weight: 400;
+    }
+
+    header nav a::after {
+        height: 1.2px;
+    }
+
+    header nav li {
+        list-style: none;
+    }
+
+}
+
+@media (min-width:988px) {
+
+
+    .slider {
+        animation: deslizar 11s linear infinite;
+    }
+
+    header nav {
+        padding: 2rem;
     }
 
     header nav .menu_capa {

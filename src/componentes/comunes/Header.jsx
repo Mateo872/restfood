@@ -23,6 +23,11 @@ const Header = () => {
 
   return (
     <header>
+      <div className="contenedor_publicidad">
+        <h6 className="mb-0 text-center d-flex align-items-center gap-4 justify-content-center">
+          <span className="slider">ENVÍOS GRATIS</span>
+        </h6>
+      </div>
       <nav className="d-flex align-items-center justify-content-between w-100">
         <a href="#" className="nav_marca">
           REST<span>FOOD</span>
