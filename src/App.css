@@ -1,5 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;700&family=Reenie+Beanie&display=swap');
+
+:root {
+    --color-primario: #C7A17A;
+    --color-secundario: #fff;
+    --color-terciario: #1e1e1e;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    /* font-family: 'Reenie Beanie', cursive; */
+}
+
+header {
+    padding: 1rem;
+}
+
+header nav .nav_marca {
+    text-decoration: none;
+    font-weight: bold;
+    color: #fff;
+}
+
+header nav .nav_marca span {
+    color: var(--color-primario);
+}
+
+header nav svg {
+    font-size: 1.4rem;
+}
+
+header nav .menu_capa {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    visibility: hidden;
+}
+
+header nav .menu_capa-visible {
+    visibility: visible;
+}
+
+header nav .menu_capa ul {
+    height: 100%;
+    width: 65%;
+    background: var(--color-primario);
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 2rem 0;
+    gap: 2rem;
+    transform: translateX(100%);
+    transition: .3s;
+}
+
+header nav .menu_capa .ul-visible {
+    transform: translateX(0%);
+}
+
+header nav .menu_capa ul li {
+    list-style: none;
+}
+
+header nav .menu_capa ul .menu_link {
+    text-decoration: none;
+    color: var(--color-secundario);
+    font-weight: bold;
+    padding-bottom: 0.4rem;
+}
+
+header nav .menu_capa ul a::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #fff;
+    transition: 0.3s;
+}
+
+header nav .menu_capa ul a:hover::after {
+    width: 100%;
+    transition: 0.3s;
+}
+
+header nav .menu_capa .contenedor_usuario {
+    font-size: 0.7rem;
 }
