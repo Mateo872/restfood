@@ -51,4 +51,16 @@
         border-radius: 2rem;
         padding: 2rem;
     }
+    .iconoAgregar{
+        display: none;
+    }
+    .iconoSeleccionar{
+        display: none;
+    }
+    .btnAgregar{
+        display: inline-block;
+    }
+    .btnSeleccionar{
+        display: inline-block;
+    }
 }

@@ -26,7 +26,7 @@ const Administrador = () => {
         <article className="d-flex justify-content-between">
           <h2>Productos</h2>
           <div>
-            <Button variant="success" className="btnAgregar">Agregar</Button>
+            <Button variant="success" className="btnAgregar me-1">Agregar</Button>
             <Button variant="warning" className="btnSeleccionar">Seleccionar</Button>
             <BsFillPlusSquareFill className="iconoAgregar me-2"></BsFillPlusSquareFill>
             <BsCheckSquareFill className="iconoSeleccionar"></BsCheckSquareFill>
