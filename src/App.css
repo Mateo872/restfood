@@ -394,77 +394,80 @@ footer button:hover {
     }
 
 }
+
 /* quienes somos banaer index */
 
-.contenedor-quienes-somos{
-margin-top: -50px; 
-margin-bottom: -50px;
-background-color: #fff;
+.contenedor-quienes-somos {
+    margin-top: -50px;
+    margin-bottom: -50px;
+    background-color: #fff;
 }
-.quienes-somos-title{
-    font-family: 'Reenie Beanie', cursive;   
+
+.quienes-somos-title {
+    font-family: 'Reenie Beanie', cursive;
     font-weight: 300;
     font-size: 5rem;
     margin-top: 2rem;
 }
-.quienes-somos-text{
-    font-family: 'Poppins', sans-serif; 
+
+.quienes-somos-text {
+    font-family: 'Poppins', sans-serif;
     font-size: 1rem;
     text-align: center;
+}
 
-    .contenedor_platos {
-        height: 41.05rem;
-    }
+.contenedor_platos {
+    height: 41.05rem;
+}
 
-    .contenedor_platos article {
-        padding-top: 12rem;
-    }
+.contenedor_platos article {
+    padding-top: 12rem;
+}
 
-    .contenedor_platos article h1 {
-        width: 30%;
-        font-size: 2rem;
-        line-height: 3rem;
-    }
+.contenedor_platos article h1 {
+    width: 30%;
+    font-size: 2rem;
+    line-height: 3rem;
+}
 
-    .contenedor_platos article h3 {
-        width: 25%;
-        font-size: 1rem;
-        margin-bottom: 1.5rem;
-    }
+.contenedor_platos article h3 {
+    width: 25%;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
 
-    .contenedor_input {
-        width: 24.5rem;
-        padding: .3rem;
-    }
+.contenedor_input {
+    width: 24.5rem;
+    padding: .3rem;
+}
 
-    .icono_buscador {
-        width: 2.3rem;
-        height: 2.3rem;
-    }
+.icono_buscador {
+    width: 2.3rem;
+    height: 2.3rem;
+}
 
-    .contenedor_input input {
-        width: 93%;
-    }
+.contenedor_input input {
+    width: 93%;
+}
 
-    .categorias {
-        font-size: 0.8rem;
-        gap: 1.8rem;
-    }
+.categorias {
+    font-size: 0.8rem;
+    gap: 1.8rem;
+}
 
-    footer {
-        padding: 2rem 0;
-    }
+footer {
+    padding: 2rem 0;
+}
 
-    footer form {
-        width: 80%;
-    }
+footer form {
+    width: 80%;
+}
 
-    footer h3 {
-        font-size: 1.1rem;
-    }
+footer h3 {
+    font-size: 1.1rem;
+}
 
-    footer p {
-        width: 80%;
-        margin-left: 0;
-    }
+footer p {
+    width: 80%;
+    margin-left: 0;
 }
