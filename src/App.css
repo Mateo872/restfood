@@ -14,7 +14,6 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    /* font-family: 'Reenie Beanie', cursive; */
 }
 
 header {
@@ -148,7 +147,7 @@ header nav .menu_link:hover::after {
     transition: 0.3s;
 }
 
-.contenedor_platos {
+main .contenedor_platos {
     width: 100%;
     height: 20rem;
     background-image: url("./complementos/imagenes/imagenHero.png");
@@ -156,11 +155,11 @@ header nav .menu_link:hover::after {
     background-position: 50% 50%;
 }
 
-.contenedor_platos article {
+main .contenedor_platos article {
     padding-top: 6rem;
 }
 
-.contenedor_platos article h1 {
+main .contenedor_platos article h1 {
     width: 70%;
     margin: 0 auto;
     font-size: 1rem;
@@ -168,7 +167,7 @@ header nav .menu_link:hover::after {
     line-height: 1.5rem;
 }
 
-.contenedor_platos article h3 {
+main .contenedor_platos article h3 {
     width: 65%;
     margin: .8rem auto;
     font-size: .6rem;
@@ -178,23 +177,23 @@ header nav .menu_link:hover::after {
     font-weight: 300;
 }
 
-.contenedor_input {
+main .contenedor_input {
     width: 13rem;
     background-color: var(--color-secundario);
     border-radius: 2rem;
     position: relative;
 }
 
-.contenedor_input input {
+main article .contenedor_input input {
     width: 88.5%;
-    padding: .6rem;
+    padding: .3rem;
     border: 0;
     outline: none;
     font-size: 0.7rem;
     background: transparent;
 }
 
-.icono_buscador {
+main .icono_buscador {
     width: 1.7rem;
     height: 1.7rem;
     background-color: var(--color-primario);
@@ -206,7 +205,7 @@ header nav .menu_link:hover::after {
     margin-top: 0.03rem;
 }
 
-.categorias {
+main .categorias {
     margin-top: 0.4rem;
     font-size: 0.5rem;
     color: var(--color-secundario);
@@ -307,34 +306,34 @@ footer button:hover {
         list-style: none;
     }
 
-    .contenedor_platos {
+    main .contenedor_platos {
         height: 32rem;
     }
 
-    .contenedor_platos article {
+    main .contenedor_platos article {
         padding-top: 10rem;
     }
 
-    .contenedor_platos article h1 {
+    main .contenedor_platos article h1 {
         width: 40%;
         font-size: 1.5rem;
         line-height: 2rem;
     }
 
-    .contenedor_platos article h3 {
+    main .contenedor_platos article h3 {
         width: 35%;
         font-size: .8rem;
     }
 
-    .contenedor_input {
+    main .contenedor_input {
         width: 19rem;
     }
 
-    .contenedor_input input {
+    main article .contenedor_input input {
         width: 91%;
     }
 
-    .categorias {
+    main .categorias {
         font-size: 0.7rem;
     }
 
@@ -428,41 +427,42 @@ HEAD .contenedor-quienes-somos {
     text-align: center;
 }
 
-.contenedor_platos {
+main .contenedor_platos {
     height: 41.05rem;
 }
 
-.contenedor_platos article {
+main .contenedor_platos article {
     padding-top: 12rem;
 }
 
-.contenedor_platos article h1 {
+main .contenedor_platos article h1 {
     width: 30%;
     font-size: 2rem;
     line-height: 3rem;
 }
 
-.contenedor_platos article h3 {
+main .contenedor_platos article h3 {
     width: 25%;
     font-size: 1rem;
     margin-bottom: 1.5rem;
 }
 
-.contenedor_input {
+main article .contenedor_input {
     width: 24.5rem;
     padding: .3rem;
 }
 
-.icono_buscador {
+main article .icono_buscador {
     width: 2.3rem;
     height: 2.3rem;
 }
 
-.contenedor_input input {
-    width: 93%;
+main article .contenedor_input input {
+    width: 91%;
+    padding: .6rem;
 }
 
-.categorias {
+main article .categorias {
     font-size: 0.8rem;
     gap: 1.8rem;
 }
