@@ -19,6 +19,10 @@ body {
 
 header {
     background-color: transparent;
+}
+
+header nav {
+    margin-top: 1rem;
     position: fixed;
     top: 0;
     left: 0;
@@ -210,6 +214,54 @@ header nav .menu_link:hover::after {
     font-weight: bold;
 }
 
+footer {
+    padding: 1rem 0;
+    background-color: var(--color-terciario);
+}
+
+footer form {
+    width: 80%;
+    margin: 0 auto;
+}
+
+footer .form-control {
+    font-size: 0.8rem;
+}
+
+footer h3 {
+    font-size: 1rem;
+    color: var(--color-primario);
+}
+
+footer ul a {
+    text-decoration: none;
+    font-size: .8rem;
+    color: var(--color-secundario);
+}
+
+footer p {
+    width: 80%;
+    margin: .8rem auto;
+    font-size: .8rem;
+    color: var(--color-secundario);
+}
+
+footer button {
+    margin-top: 0.8rem;
+    font-size: .8rem;
+    padding: .7rem;
+    background-color: var(--color-primario);
+    color: var(--color-secundario);
+    border-radius: .3rem;
+    border: 2px solid var(--color-primario);
+}
+
+footer button:hover {
+    background-color: transparent;
+    color: var(--color-primario);
+    transition: .3s;
+}
+
 @media (min-width:767px) {
     .contenedor_publicidad h6 {
         font-size: 0.6rem;
@@ -286,10 +338,21 @@ header nav .menu_link:hover::after {
         font-size: 0.7rem;
     }
 
+    footer p {
+        width: 100%;
+    }
+
+    footer form {
+        width: 95%;
+        margin-left: 0;
+    }
+
+    footer .form-control {
+        font-size: 0.8rem;
+    }
 }
 
 @media (min-width:988px) {
-
 
     .slider {
         animation: deslizar 11s linear infinite;
@@ -388,4 +451,20 @@ background-color: #fff;
         gap: 1.8rem;
     }
 
+    footer {
+        padding: 2rem 0;
+    }
+
+    footer form {
+        width: 80%;
+    }
+
+    footer h3 {
+        font-size: 1.1rem;
+    }
+
+    footer p {
+        width: 80%;
+        margin-left: 0;
+    }
 }

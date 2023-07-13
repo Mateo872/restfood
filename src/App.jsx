@@ -22,6 +22,7 @@ function App() {
 import QuienesSomos from "./componentes/comunes/QuienesSomos";
 
 import BuscadorPlatos from "../BuscadorPlatos";
+import Footer from "./componentes/comunes/Footer";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <BuscadorPlatos />
     <QuienesSomos />
       </main>
+      <Footer />
     </>
   );
 
