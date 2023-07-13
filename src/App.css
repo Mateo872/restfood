@@ -400,11 +400,16 @@ footer button:hover {
 margin-top: -50px; 
 margin-bottom: -50px;
 background-color: #fff;
+position: relative;
+  z-index: 2;
+}
+.img-quienes-somos{
+    object-fit: cover;
 }
 .quienes-somos-title{
     font-family: 'Reenie Beanie', cursive;   
     font-weight: 300;
-    font-size: 5rem;
+    font-size: 4rem;
     margin-top: 2rem;
 }
 .quienes-somos-text{
@@ -486,4 +491,13 @@ background-color: #fff;
   .body-tarjeta{
     margin-top: 3rem;
     color: var(--color-secundario);
+  }
+  /* Menu  */
+  .menu-contenedor{
+    width: 100%;
+    background-image: url(/src/assets/img-menu-background.png);
+    background-size: cover;
+    background-position: 50% 50%;
+    position: relative;
+    z-index: 1;
   }
