@@ -393,6 +393,25 @@ footer button:hover {
         list-style: none;
     }
 
+}
+/* quienes somos banaer index */
+
+.contenedor-quienes-somos{
+margin-top: -50px; 
+margin-bottom: -50px;
+background-color: #fff;
+}
+.quienes-somos-title{
+    font-family: 'Reenie Beanie', cursive;   
+    font-weight: 300;
+    font-size: 5rem;
+    margin-top: 2rem;
+}
+.quienes-somos-text{
+    font-family: 'Poppins', sans-serif; 
+    font-size: 1rem;
+    text-align: center;
+
     .contenedor_platos {
         height: 41.05rem;
     }
