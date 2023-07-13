@@ -186,7 +186,7 @@ main .contenedor_input {
 
 main article .contenedor_input input {
     width: 88.5%;
-    padding: .3rem;
+    padding: .6rem;
     border: 0;
     outline: none;
     font-size: 0.7rem;
@@ -292,46 +292,6 @@ HEAD .contenedor-quienes-somos {
     font-family: 'Poppins', sans-serif;
     font-size: 1rem;
     text-align: center;
-}
-
-main .contenedor_platos {
-    height: 41.05rem;
-}
-
-main .contenedor_platos article {
-    padding-top: 12rem;
-}
-
-main .contenedor_platos article h1 {
-    width: 30%;
-    font-size: 2rem;
-    line-height: 3rem;
-}
-
-main .contenedor_platos article h3 {
-    width: 25%;
-    font-size: 1rem;
-    margin-bottom: 1.5rem;
-}
-
-main article .contenedor_input {
-    width: 24.5rem;
-    padding: .3rem;
-}
-
-main article .icono_buscador {
-    width: 2.3rem;
-    height: 2.3rem;
-}
-
-main article .contenedor_input input {
-    width: 91%;
-    padding: .6rem;
-}
-
-main article .categorias {
-    font-size: 0.8rem;
-    gap: 1.8rem;
 }
 
 .contenedor_carrito {
@@ -547,6 +507,7 @@ footer h3 {
 
     main article .contenedor_input input {
         width: 91%;
+        padding: 0.6rem;
     }
 
     main .categorias {
@@ -652,6 +613,47 @@ footer h3 {
 
     header nav li {
         list-style: none;
+    }
+
+
+    main .contenedor_platos {
+        height: 41.05rem;
+    }
+
+    main .contenedor_platos article {
+        padding-top: 12rem;
+    }
+
+    main .contenedor_platos article h1 {
+        width: 30%;
+        font-size: 2rem;
+        line-height: 3rem;
+    }
+
+    main .contenedor_platos article h3 {
+        width: 25%;
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    main article .contenedor_input {
+        width: 24.5rem;
+        padding: .3rem;
+    }
+
+    main article .icono_buscador {
+        width: 2.3rem;
+        height: 2.3rem;
+    }
+
+    main article .contenedor_input input {
+        width: 91%;
+        padding: .6rem;
+    }
+
+    main article .categorias {
+        font-size: 0.8rem;
+        gap: 1.8rem;
     }
 
     .contenedor_producto-carrito .contenedor_imagen {
