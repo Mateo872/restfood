@@ -483,6 +483,7 @@ position: relative;
     z-index: 1;
   }
   .card-body{
+    max-width: 16rem;
     font-family: 'Poppins', sans-serif; 
     background-color: var(--color-primario);
     border-top-left-radius: 2rem;
@@ -507,4 +508,5 @@ position: relative;
   }
   .container-menu-card{
     margin-top: 12rem;
+    
   }

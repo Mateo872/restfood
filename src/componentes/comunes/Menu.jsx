@@ -18,13 +18,16 @@ const Menu = () => {
                     </Form>
                 </div>
                 <hr className="text-white " />
-                <section className="row justify-content-between  container-menu-card">
-                    <TarjetaProducto />
-                    <TarjetaProducto />
-                    <TarjetaProducto />
-                    <TarjetaProducto />
-                    <TarjetaProducto />
-                    <TarjetaProducto />
+                <section className="container-menu-card">
+                    <div className="row  justify-content-center gap-5 ">
+                        <TarjetaProducto />
+                        <TarjetaProducto />
+                        <TarjetaProducto />
+                        <TarjetaProducto />
+                        <TarjetaProducto />
+                        <TarjetaProducto />
+                        <TarjetaProducto />
+                    </div>
                 </section>
             </Container>
         </section>

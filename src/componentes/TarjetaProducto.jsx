@@ -2,12 +2,10 @@ import React from "react";
 import { Card } from "react-bootstrap";
 import hamburguesa from "../assets/img-hamb-card.png";
 import { BsPlusCircleFill } from "react-icons/bs";
+
 const TarjetaProducto = () => {
     return (
-        <Card
-            className="card-body my-3 cards col-lg-3 col-md-4 m-1"
-            style={{ maxWidth: "16rem" }}
-        >
+        <Card className="card-body my-3 ">
             <Card.Img variant="top" src={hamburguesa} className="img-tarjeta-producto" />
             <Card.Body className="body-tarjeta">
                 <Card.Title className="fs-3">Hamburguesas</Card.Title>
