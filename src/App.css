@@ -505,3 +505,6 @@ position: relative;
   .menu-contenedor-body{
    color: var(--color-secundario);
   }
+  .container-menu-card{
+    margin-top: 12rem;
+  }

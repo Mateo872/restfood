@@ -1,7 +1,7 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+import { Container, Form } from "react-bootstrap";
 import TarjetaProducto from "../TarjetaProducto";
-import { BsCartPlusFill } from "react-icons/bs";
+import { BsHandIndexThumbFill } from "react-icons/bs";
 
 const Menu = () => {
     return (
@@ -9,12 +9,23 @@ const Menu = () => {
             <Container className="menu-contenedor-body">
                 <h1 className="text-white text-center">Menu</h1>
                 <div className="d-flex justify-content-between">
-                    <p>Busca tus productos</p>
-                    <div>
-                        <input type="text" className="" />
-                    </div>
+                    <p className="fs-3">Busca tus productos</p>
+                    <Form className="d-flex">
+                        <Form.Group className="">
+                            <Form.Control type="text" placeholder="Buscar" />
+                        </Form.Group>
+                        <BsHandIndexThumbFill size={28} className="ms-3" />
+                    </Form>
                 </div>
-                <TarjetaProducto />
+                <hr className="text-white " />
+                <section className="row justify-content-between  container-menu-card">
+                    <TarjetaProducto />
+                    <TarjetaProducto />
+                    <TarjetaProducto />
+                    <TarjetaProducto />
+                    <TarjetaProducto />
+                    <TarjetaProducto />
+                </section>
             </Container>
         </section>
     );
