@@ -45,6 +45,19 @@
         width: 70%;
         border-radius: 50%;
     }
+
+    .contenedorProductos{
+        height: 30rem;
+        overflow: auto;
+    }
+
+    .contenedorProductos::-webkit-scrollbar{
+        width: 7px;
+    }
+    .contenedorProductos::-webkit-scrollbar-thumb{
+        background:#FFC107;
+        border-radius: 1rem;
+    }
 }
 @media all and (min-width: 768px){
     .contenedorAdministracion{
@@ -63,4 +76,18 @@
     .btnSeleccionar{
         display: inline-block;
     }
+}
+@media all and (min-width: 1024px){
+    .contenedorAdministracion{
+        border-radius: 5rem;
+        padding: 5rem;
+    }
+    .contenedorProductos{
+        height: 50rem;
+        justify-content: center;
+    }
+    .cardPproducto{
+        width: 30rem;
+    }
+
 }
