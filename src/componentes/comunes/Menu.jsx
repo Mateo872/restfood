@@ -1,10 +1,21 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import background from "../../assets/img-menu-background.png";
+import TarjetaProducto from "../TarjetaProducto";
+import { BsCartPlusFill } from "react-icons/bs";
+
 const Menu = () => {
     return (
         <section className="menu-contenedor">
-            <img src={background} alt="fondo" className="w-100" />
+            <Container className="menu-contenedor-body">
+                <h1 className="text-white text-center">Menu</h1>
+                <div className="d-flex justify-content-between">
+                    <p>Busca tus productos</p>
+                    <div>
+                        <input type="text" className="" />
+                    </div>
+                </div>
+                <TarjetaProducto />
+            </Container>
         </section>
     );
 };

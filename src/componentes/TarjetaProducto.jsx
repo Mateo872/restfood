@@ -1,8 +1,7 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 import hamburguesa from "../assets/img-hamb-card.png";
-
-import { BsCartPlusFill } from "react-icons/bs";
+import { BsPlusCircleFill } from "react-icons/bs";
 const TarjetaProducto = () => {
     return (
         <Card className="card-body" style={{ width: "18rem" }}>
@@ -15,7 +14,7 @@ const TarjetaProducto = () => {
                 <div className="d-flex mt-5 justify-content-between">
                     <Card.Text className="fs-5 my-5"> $ 1500</Card.Text>
                     <a>
-                        <BsCartPlusFill fontSize={40} className="mt-5" />
+                        <BsPlusCircleFill fontSize={40} className="mt-5" />
                     </a>
                 </div>
             </Card.Body>

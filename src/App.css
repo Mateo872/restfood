@@ -499,5 +499,9 @@ position: relative;
     background-size: cover;
     background-position: 50% 50%;
     position: relative;
-    z-index: 1;
+    z-index: -1;
+    padding-top:9rem ;
+  }
+  .menu-contenedor-body{
+   color: var(--color-secundario);
   }
