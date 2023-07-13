@@ -8,7 +8,11 @@ const QuienesSomos = () => {
             <div className="container contenedor-quienes-somos p-0">
                 <article className="row d-flex flex-sm-row-reverse my-4 ">
                     <aside className="d-flex col-12 col-md-6 mb-3 mb-lg-0">
-                        <img className="d-block w-100" src={salon} alt="First slide" />
+                        <img
+                            className="d-block w-100 img-quienes-somos"
+                            src={salon}
+                            alt="First slide"
+                        />
                     </aside>
                     <aside className="col-12 col-md-6 text-center">
                         <h3 className="quienes-somos-title ">¿Quienes somos? </h3>
@@ -22,8 +26,12 @@ const QuienesSomos = () => {
                     </aside>
                 </article>
                 <article className="row my-0 my-lg-5">
-                    <aside className="d-flex col-12 col-md-6 mb-3 mb-lg-0">
-                        <img className="d-block w-100" src={comida} alt="First slide" />
+                    <aside className="d-flex col-12 col-md-6  mb-lg-0">
+                        <img
+                            className="d-block w-100 img-quienes-somos"
+                            src={comida}
+                            alt="First slide"
+                        />
                     </aside>
                     <aside className="col-12 col-md-6 text-center">
                         <h3 className="quienes-somos-title">¿Que hacemos? </h3>

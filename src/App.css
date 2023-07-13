@@ -398,13 +398,18 @@ footer button:hover {
 
 .contenedor-quienes-somos{
 margin-top: -50px; 
-margin-bottom: -50px;
+margin-bottom: -60px;
 background-color: #fff;
+position: relative;
+  z-index: 2;
+}
+.img-quienes-somos{
+    object-fit: cover;
 }
 .quienes-somos-title{
     font-family: 'Reenie Beanie', cursive;   
     font-weight: 300;
-    font-size: 5rem;
+    font-size: 4rem;
     margin-top: 2rem;
 }
 .quienes-somos-text{
@@ -468,3 +473,41 @@ background-color: #fff;
         margin-left: 0;
     }
 }
+/* TarjetaProductos  */
+.img-tarjeta-producto {
+    width: 12rem;
+    position: absolute;
+    top: -8rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+  }
+  .card-body{
+    max-width: 16rem;
+    font-family: 'Poppins', sans-serif; 
+    background-color: var(--color-primario);
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+
+  }
+  .body-tarjeta{
+    margin-top: 3rem;
+    color: var(--color-secundario);
+  }
+  /* Menu  */
+  .menu-contenedor{
+    width: 100%;
+    background-image: url(/src/assets/img-menu-background.png);
+    background-size: cover;
+    background-position: 50% 50%;
+    position: relative;
+    z-index: -1;
+    padding-top:9rem ;
+  }
+  .menu-contenedor-body{
+   color: var(--color-secundario);
+  }
+  .container-menu-card{
+    margin-top: 12rem;
+    
+  }
