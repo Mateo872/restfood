@@ -18,20 +18,25 @@ body {
 }
 
 header {
-    /* padding: 1rem; */
+    background-color: transparent;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 99;
 }
 
 .contenedor_publicidad {
     width: 100%;
-    padding: 0.8rem;
-    background: var(--color-terciario);
+    padding: 0.3rem;
+    background: #000;
     position: relative;
     overflow: hidden;
 }
 
 .contenedor_publicidad h6 {
-    font-size: 0.5rem;
-    color: #fff;
+    font-size: 0.45rem;
+    color: var(--color-secundario);
 }
 
 
@@ -60,7 +65,7 @@ header nav {
 header nav .nav_marca {
     text-decoration: none;
     font-weight: bold;
-    color: #fff;
+    color: var(--color-secundario);
 }
 
 header nav .nav_marca span {
@@ -69,7 +74,7 @@ header nav .nav_marca span {
 
 header nav svg {
     font-size: 1.4rem;
-    /* color: var(--color-secundario); */
+    color: var(--color-secundario);
 }
 
 header nav .menu_capa {
@@ -107,7 +112,7 @@ header nav .menu_capa ul {
 
 .icono_cerrar svg {
     font-size: 2rem;
-    color: #fff;
+    color: var(--color-secundario);
 }
 
 header nav .menu_capa .ul-visible {
@@ -125,26 +130,87 @@ header nav .menu_link {
     padding-bottom: 0.4rem;
 }
 
-header nav a::after {
+header nav .menu_link::after {
     content: "";
     display: block;
     width: 0;
     height: 2px;
-    background: #fff;
+    background: var(--color-secundario);
     transition: 0.3s;
 }
 
-header nav a:hover::after {
+header nav .menu_link:hover::after {
     width: 100%;
     transition: 0.3s;
 }
 
+.contenedor_platos {
+    width: 100%;
+    height: 20rem;
+    background-image: url("./complementos/imagenes/imagenHero.png");
+    background-size: cover;
+    background-position: 50% 50%;
+}
+
+.contenedor_platos article {
+    padding-top: 6rem;
+}
+
+.contenedor_platos article h1 {
+    width: 70%;
+    margin: 0 auto;
+    font-size: 1rem;
+    color: var(--color-secundario);
+    line-height: 1.5rem;
+}
+
+.contenedor_platos article h3 {
+    width: 65%;
+    margin: .8rem auto;
+    font-size: .6rem;
+    opacity: .7;
+    color: var(--color-secundario);
+    line-height: 1.1rem;
+    font-weight: 300;
+}
+
+.contenedor_input {
+    width: 13rem;
+    background-color: var(--color-secundario);
+    border-radius: 2rem;
+    position: relative;
+}
+
+.contenedor_input input {
+    width: 88.5%;
+    padding: .6rem;
+    border: 0;
+    outline: none;
+    font-size: 0.7rem;
+    background: transparent;
+}
+
+.icono_buscador {
+    width: 1.7rem;
+    height: 1.7rem;
+    background-color: var(--color-primario);
+    border-radius: 100%;
+    font-size: 0.7rem;
+    color: var(--color-secundario);
+    position: absolute;
+    right: .2rem;
+    margin-top: 0.03rem;
+}
+
+.categorias {
+    margin-top: 0.4rem;
+    font-size: 0.5rem;
+    color: var(--color-secundario);
+    gap: .8rem;
+    font-weight: bold;
+}
 
 @media (min-width:767px) {
-    header {
-        background: var(--color-terciario);
-    }
-
     .contenedor_publicidad h6 {
         font-size: 0.6rem;
     }
@@ -187,6 +253,37 @@ header nav a:hover::after {
 
     header nav li {
         list-style: none;
+    }
+
+    .contenedor_platos {
+        height: 32rem;
+    }
+
+    .contenedor_platos article {
+        padding-top: 10rem;
+    }
+
+    .contenedor_platos article h1 {
+        width: 40%;
+        font-size: 1.5rem;
+        line-height: 2rem;
+    }
+
+    .contenedor_platos article h3 {
+        width: 35%;
+        font-size: .8rem;
+    }
+
+    .contenedor_input {
+        width: 19rem;
+    }
+
+    .contenedor_input input {
+        width: 91%;
+    }
+
+    .categorias {
+        font-size: 0.7rem;
     }
 
 }
@@ -233,4 +330,42 @@ header nav a:hover::after {
         list-style: none;
     }
 
+    .contenedor_platos {
+        height: 41.05rem;
+    }
+
+    .contenedor_platos article {
+        padding-top: 12rem;
+    }
+
+    .contenedor_platos article h1 {
+        width: 30%;
+        font-size: 2rem;
+        line-height: 3rem;
+    }
+
+    .contenedor_platos article h3 {
+        width: 25%;
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .contenedor_input {
+        width: 24.5rem;
+        padding: .3rem;
+    }
+
+    .icono_buscador {
+        width: 2.3rem;
+        height: 2.3rem;
+    }
+
+    .contenedor_input input {
+        width: 93%;
+    }
+
+    .categorias {
+        font-size: 0.8rem;
+        gap: 1.8rem;
+    }
 }
