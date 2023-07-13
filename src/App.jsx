@@ -7,19 +7,21 @@ import QuienesSomos from "./componentes/comunes/QuienesSomos";
 import BuscadorPlatos from "../BuscadorPlatos";
 import Footer from "./componentes/comunes/Footer";
 import Menu from "./componentes/comunes/Menu";
+import ContenedorCarrito from "./componentes/ContenedorCarrito";
 
 function App() {
-    return (
-        <>
-            <Header />
-            <main>
-                <BuscadorPlatos />
-                <QuienesSomos />
-                <Menu />
-            </main>
-            <Footer />
-        </>
-    );
+  return (
+    <>
+      <Header />
+      <main>
+        {/* <BuscadorPlatos /> */}
+        {/* <QuienesSomos /> */}
+        {/* <Menu /> */}
+        <ContenedorCarrito />
+      </main>
+      <Footer />
+    </>
+  );
 }
 
 export default App;
