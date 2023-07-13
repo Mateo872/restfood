@@ -478,8 +478,12 @@ background-color: #fff;
     z-index: 1;
   }
   .card-body{
+    font-family: 'Poppins', sans-serif; 
     background-color: var(--color-primario);
     border-top-left-radius: 2rem;
     border-top-right-radius: 2rem;
-   
+  }
+  .body-tarjeta{
+    margin-top: 3rem;
+    color: var(--color-secundario);
   }
