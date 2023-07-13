@@ -4,59 +4,41 @@ import salon from "../../assets/salon-quienes-somos.png";
 
 const QuienesSomos = () => {
     return (
-        <section className="container my-4">
-            <h1 className="display-1 text-center">Nuestra Historia</h1>
-            <hr />
-
-            <article className="row d-flex flex-sm-row-reverse my-4">
-                <aside className="d-flex col-12 col-md-6 mb-3 mb-lg-0">
-                    <img className="d-block w-100" src={salon} alt="First slide" />
-                </aside>
-                <aside className="col-12 col-md-6">
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas,
-                        quis quibusdam? Odit natus voluptatem exercitationem magni
-                        accusamus? Reprehenderit maxime, et quibusdam magni earum facilis
-                        deserunt enim molestias aliquid voluptate facere aperiam officiis
-                        assumenda sint excepturi. Veritatis, ad placeat saepe culpa natus
-                        eveniet officia, dicta explicabo voluptate ea praesentium? Aliquam
-                        deserunt consequatur dolor architecto et nostrum quasi quibusdam
-                        corporis esse atque. Corrupti laudantium est quasi error ab
-                        voluptatum, quibusdam, tempore consequatur, sed eaque dignissimos
-                        aperiam non repudiandae unde ad! Sapiente corrupti quis, error,
-                        mollitia dolorem ea dolor, impedit eos possimus architecto laborum
-                        eum doloremque accusantium aliquam facere inventore saepe delectus
-                        cum!
-                    </p>
-                </aside>
-            </article>
-            <article className="row my-0 my-lg-5">
-                <aside className="d-flex col-12 col-md-6 mb-3 mb-lg-0">
-                    {/* <img
-                        src={comida}
-                        alt="historia"
-                        width="100%"
-                        style="border-radius: 25px; object-fit: cover"
-                    /> */}
-                </aside>
-                <aside className="col-12 col-md-6">
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas,
-                        quis quibusdam? Odit natus voluptatem exercitationem magni
-                        accusamus? Reprehenderit maxime, et quibusdam magni earum facilis
-                        deserunt enim molestias aliquid voluptate facere aperiam officiis
-                        assumenda sint excepturi. Veritatis, ad placeat saepe culpa natus
-                        eveniet officia, dicta explicabo voluptate ea praesentium? Aliquam
-                        deserunt consequatur dolor architecto et nostrum quasi quibusdam
-                        corporis esse atque. Corrupti laudantium est quasi error ab
-                        voluptatum, quibusdam, tempore consequatur, sed eaque dignissimos
-                        aperiam non repudiandae unde ad! Sapiente corrupti quis, error,
-                        mollitia dolorem ea dolor, impedit eos possimus architecto laborum
-                        eum doloremque accusantium aliquam facere inventore saepe delectus
-                        cum!
-                    </p>
-                </aside>
-            </article>
+        <section className="container-fluid">
+            <div className="container contenedor-quienes-somos">
+                <article className="row d-flex flex-sm-row-reverse my-4">
+                    <aside className="d-flex col-12 col-md-6 mb-3 mb-lg-0">
+                        <img className="d-block w-100" src={salon} alt="First slide" />
+                    </aside>
+                    <aside className="col-12 col-md-6 text-center">
+                        <h3 className="quienes-somos-title ">¿Quienes somos? </h3>
+                        <p className="quienes-somos-text">
+                            En RestFood, somos apasionados por la gastronomía y nos
+                            enorgullece ofrecer una experiencia culinaria excepcional a
+                            nuestros clientes. Fundado con el objetivo de deleitar los
+                            paladares más exigentes, nuestro restaurante se ha convertido
+                            en un destino gastronómico reconocido en Argentina.
+                        </p>
+                    </aside>
+                </article>
+                <article className="row my-0 my-lg-5">
+                    <aside className="d-flex col-12 col-md-6 mb-3 mb-lg-0">
+                        <img className="d-block w-100" src={comida} alt="First slide" />
+                    </aside>
+                    <aside className="col-12 col-md-6 text-center">
+                        <h3 className="quienes-somos-title">¿Que hacemos? </h3>
+                        <p className="quienes-somos-text">
+                            En RestFood, nos dedicamos a ofrecer una experiencia
+                            gastronómica única y memorable. Nuestra cocina se caracteriza
+                            por su autenticidad y la cuidadosa selección de ingredientes
+                            de calidad. Nos enorgullece fusionar sabores tradicionales con
+                            técnicas innovadoras, creando platos que deleitan tanto a los
+                            amantes de la cocina clásica como a los paladares más
+                            aventureros.
+                        </p>
+                    </aside>
+                </article>
+            </div>
         </section>
     );
 };
