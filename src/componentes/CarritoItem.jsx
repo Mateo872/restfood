@@ -8,7 +8,7 @@ const CarritoItem = () => {
         className="contenedor_imagen"
         style={{ backgroundImage: `url(${hambur})` }}
       ></div>
-      <div className="carrito_caracteristicas d-flex flex-column">
+      <div className="carrito_caracteristicas carac_titulo d-flex flex-column">
         <h6 className="title">Título</h6>
         <h6 className="subtitle mb-0">Hamburguesa</h6>
       </div>
