@@ -8,17 +8,16 @@ import BuscadorPlatos from "../BuscadorPlatos";
 import Footer from "./componentes/comunes/Footer";
 
 function App() {
-  return (
-    <>
-      <Header />
-      <main>
-        <BuscadorPlatos />
-    <QuienesSomos />
-      </main>
-      <Footer />
-    </>
-  );
-
+    return (
+        <>
+            <Header />
+            <main>
+                <BuscadorPlatos />
+                <QuienesSomos />
+            </main>
+            <Footer />
+        </>
+    );
 }
 
 export default App;
