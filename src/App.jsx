@@ -6,6 +6,7 @@ import QuienesSomos from "./componentes/comunes/QuienesSomos";
 
 import BuscadorPlatos from "../BuscadorPlatos";
 import Footer from "./componentes/comunes/Footer";
+import TarjetaProducto from "./componentes/TarjetaProducto";
 
 function App() {
     return (
@@ -14,6 +15,7 @@ function App() {
             <main>
                 <BuscadorPlatos />
                 <QuienesSomos />
+                <TarjetaProducto />
             </main>
             <Footer />
         </>

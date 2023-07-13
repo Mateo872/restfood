@@ -468,3 +468,18 @@ background-color: #fff;
         margin-left: 0;
     }
 }
+/* TarjetaProductos  */
+.img-tarjeta-producto {
+    width: 12rem;
+    position: absolute;
+    top: -8rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+  }
+  .card-body{
+    background-color: var(--color-primario);
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+   
+  }
