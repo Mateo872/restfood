@@ -5,6 +5,7 @@ import QuienesSomos from "./componentes/comunes/QuienesSomos";
 import BuscadorPlatos from "../BuscadorPlatos";
 import Footer from "./componentes/comunes/Footer";
 import Menu from "./componentes/comunes/Menu";
+import Administrador from "./pages/Administrador"
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
         <QuienesSomos />
         <Menu />
       </main>
-      <Footer />
+    <Footer />
     </>
   );
 }
