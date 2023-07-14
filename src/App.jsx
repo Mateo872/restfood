@@ -6,6 +6,7 @@ import BuscadorPlatos from "../BuscadorPlatos";
 import Footer from "./componentes/comunes/Footer";
 import Menu from "./componentes/comunes/Menu";
 import Administrador from "./pages/Administrador"
+import InicioSesion from "./componentes/InicioSesion";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <BuscadorPlatos />
         <QuienesSomos />
         <Menu />
+        {/* <InicioSesion></InicioSesion> */}
       </main>
     <Footer />
     </>
