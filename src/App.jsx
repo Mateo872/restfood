@@ -10,14 +10,13 @@ import Administrador from "./pages/Administrador"
 function App() {
   return (
     <>
-      {/*<Header />
+      <Header />
       <main>
         <BuscadorPlatos />
         <QuienesSomos />
         <Menu />
       </main>
-    <Footer />*/}
-    <Administrador></Administrador>
+    <Footer />
     </>
   );
 }
