@@ -521,12 +521,7 @@ position: relative;
     left: 93%;
     transform: translate(-50%, -50%);
  }
- .breadCumbul{
-    display: inline;
- }
- .breadCumbA{
-    
- }
+ 
   .btn_DP{
     background-color: white;
     color: var(--color-primario);
