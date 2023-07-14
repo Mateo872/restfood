@@ -16,6 +16,10 @@ body {
     font-family: 'Poppins', sans-serif;
     /* font-family: 'Reenie Beanie', cursive; */
 }
+.mainDetalle{
+   min-height: 100vh;
+    
+}
 
 header {
     background-color: transparent;
@@ -510,4 +514,62 @@ position: relative;
   .container-menu-card{
     margin-top: 12rem;
     
+  }
+ .iconFav{
+    position: absolute;
+    top: 17%;
+    left: 93%;
+    transform: translate(-50%, -50%);
+ }
+ .breadCumbul{
+    display: inline;
+ }
+ .breadCumbA{
+    
+ }
+  .btn_DP{
+    background-color: white;
+    color: var(--color-primario);
+    border: 2px solid var(--color-primario);
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    min-width: 150px;
+    padding: 10px 22px;
+    font-weight: bold
+  }
+  .btn_DP:hover {
+    background-color: var(--color-primario); 
+    color: white;
+}
+  .btn_AgrCarritoDP{
+    background-color: var(--color-primario);
+    color: var(--color-secundario);
+    font-size: 18px;
+    border-radius: 5px;
+    text-align: center;
+    padding: 18px 102px;
+    border: none;
+    font-weight:500;
+    
+  }
+
+  .input_CantidadDP{
+    background-color: var(--color-secundario);
+    border: 2px solid var(--color-primario);
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    padding: 10px 22px ;
+
+  }
+  .btn_CalcularDP{
+    background-color: var(--color-terciario);
+    color: var(--color-secundario);
+    font-size: 16px;
+    text-align: center;
+    border-radius: 5px;
+    border: none;
+    padding: 10px 22px;
+
   }
