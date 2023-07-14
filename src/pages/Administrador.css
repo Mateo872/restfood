@@ -1,12 +1,6 @@
-.fondo {
-  background-image: url(../assets/mujerComiendo.jpg);
-  background-size: cover;
-  background-position: center;
-}
-
 @media all and (min-width: 320px) {
   .fondo {
-    background-image: url(../assets/mujerComiendo.jpg);
+    background-image: url(../complementos/imagenes/mujerComiendo.jpg);
     background-size: cover;
     background-position: center;
   }

@@ -1,7 +1,7 @@
 import React from "react";
-import Button from "react-bootstrap/Button";
+import Button from 'react-bootstrap/Button';
 import Card from "react-bootstrap/Card";
-import hamburguesa from "../assets/hamburguesaDoble.png";
+import hamburguesa from "../complementos/imagenes/hamburguesaDoble.png";
 
 const ItemProducto = () => {
   return (

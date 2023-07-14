@@ -1,5 +1,5 @@
 import React from "react";
-import toretto from "../assets/toretto.jpeg";
+import toretto from "../complementos/imagenes/toretto.jpeg";
 import { BsPauseCircleFill } from "react-icons/bs";
 import "../pages/Administrador.css";
 
