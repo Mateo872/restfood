@@ -14,6 +14,7 @@
     .contenedorAdministracion{
         border-radius: 1rem;
         padding: 1rem;
+        margin-bottom: 3rem;
     }
     ol{
         display: inline-block;
@@ -58,6 +59,23 @@
         background:#FFC107;
         border-radius: 1rem;
     }
+    figure{
+        width: 3rem;
+    }
+    figure img{
+        width: 100%;
+        border-radius: 50%;
+    }
+    #tdImg{
+        display: flex;
+        justify-content: center;
+    }
+    .iconoPausar{
+        font-size: 2.5rem;
+    }
+    .tdBtn{
+        border: none;
+    }
 }
 @media all and (min-width: 768px){
     .contenedorAdministracion{
@@ -76,11 +94,15 @@
     .btnSeleccionar{
         display: inline-block;
     }
+    .tabla{
+        width: 100%;
+    }
 }
 @media all and (min-width: 1024px){
     .contenedorAdministracion{
         border-radius: 5rem;
         padding: 5rem;
+        margin-bottom: 4rem;
     }
     .contenedorProductos{
         height: 50rem;
