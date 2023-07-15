@@ -1,6 +1,10 @@
+import { useState } from "react";
 import CarritoItem from "./CarritoItem";
+import ModalPago from "./ModalPago";
 
 const ContenedorCarrito = () => {
+  const [mostrarModal, setMostrarModal] = useState(false);
+
   return (
     <section className="contenedor_carrito">
       <article>
@@ -18,6 +22,9 @@ const ContenedorCarrito = () => {
             </h5>
             <button className="boton_comprar">Comprar</button>
           </div>
+        </div>
+        <div className="modal_overlay d-flex justify-content-center align-items-center vh-100 w-100">
+          <ModalPago />
         </div>
       </article>
     </section>
