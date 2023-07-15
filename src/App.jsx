@@ -5,6 +5,7 @@ import QuienesSomos from "./componentes/comunes/QuienesSomos";
 import BuscadorPlatos from "./componentes/BuscadorPlatos";
 import Footer from "./componentes/comunes/Footer";
 import Menu from "./componentes/comunes/Menu";
+import CrearEditarProducto from "./componentes/CrearEditarProducto";
 
 
 function App() {
@@ -12,9 +13,10 @@ function App() {
     <>
       <Header />
       <main>
-        <BuscadorPlatos />
+       { /*<BuscadorPlatos />
         <QuienesSomos />
-        <Menu />
+  <Menu />*/}
+  <CrearEditarProducto></CrearEditarProducto>
       </main>
       
       <Footer />

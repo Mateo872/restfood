@@ -9,9 +9,12 @@ const CrearEditarProducto = () => {
     reset,
   } = useForm();
 
+  const onSubmit = (data) => {
+    console.log(data);
+  };
   return (
     <section className="contenedor_EditarCrear">
-      <Form onSubmit={handleSubmit} className="formCrearEditar pb-5">
+      <Form onSubmit={handleSubmit(onSubmit)} className="formCrearEditar pb-5">
         <Form.Group className="mb-3 text-center" controlId="input_imgPro">
           <input
             type="text"
@@ -21,8 +24,11 @@ const CrearEditarProducto = () => {
               required: "La imagen es obligatoria",
             })}
           />
+          <Form.Text className="text-danger">
+            {errors.imagen?.message}
+          </Form.Text>
         </Form.Group>
-        <Form.Text className="text-danger">{errors.imagen?.message}</Form.Text>
+
         <Form.Group className="mb-3 text-center" controlId="input_NombrePro">
           <input
             type="text"
@@ -36,14 +42,15 @@ const CrearEditarProducto = () => {
               },
               maxLength: {
                 value: 100,
-                message: "La cantidad minima de caracteres es de 2 digitos",
+                message: "La cantidad maxima  de caracteres es de 100 digitos",
               },
             })}
           />
+          <Form.Text className="text-danger">
+            {errors.nombreProducto?.message}
+          </Form.Text>
         </Form.Group>
-        <Form.Text className="text-danger">
-          {errors.nombreProducto?.message}
-        </Form.Text>
+
         <Form.Group className="mb-3 text-center" controlId="input_PrecioPro">
           <input
             type="number"
@@ -61,8 +68,11 @@ const CrearEditarProducto = () => {
               },
             })}
           />
+          <Form.Text className="text-danger">
+            {errors.precio?.message}
+          </Form.Text>
         </Form.Group>
-        <Form.Text className="text-danger">{errors.precio?.message}</Form.Text>
+
         <Form.Group
           className="mb-3 text-center"
           controlId="DescripcionProducto"
@@ -85,25 +95,29 @@ const CrearEditarProducto = () => {
               },
             })}
           ></textarea>
+          <Form.Text className="text-danger">
+            {errors.descripcionProducto?.message}
+          </Form.Text>
         </Form.Group>
+
         <Form.Group className="mb-3 text-center">
           <select
             name="selecCategoria"
             id="selec_Categoria"
             className="input_CrearEditarpd"
             {...register("categoria", {
-              required: "La imagen es obligatoria",
+              required: "La Categoría es obligatoria",
             })}
           >
             <option value="">Cateoría del producto</option>
             <option value="salado">Salado</option>
             <option value="Dulce">Dulce</option>
             <option value="Bebidas">Bebidas</option>
-          </select>
+          </select>{" "}
+          <Form.Text className="text-danger">
+            {errors.categoria?.message}
+          </Form.Text>
         </Form.Group>
-        <Form.Text className="text-danger">
-          {errors.categoria?.message}
-        </Form.Text>
 
         <Form.Group className="mb-3 text-center" controlId="input_Stock">
           <input
@@ -122,8 +136,9 @@ const CrearEditarProducto = () => {
               },
             })}
           />
+          <Form.Text className="text-danger">{errors.stock?.message}</Form.Text>
         </Form.Group>
-        <Form.Text className="text-danger">{errors.precio?.message}</Form.Text>
+
         <div className="text-center">
           <button type="submit" className="btn_AgrProducto">
             Agregar Producto
