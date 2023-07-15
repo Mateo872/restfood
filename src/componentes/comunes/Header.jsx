@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BiMenu } from "react-icons/bi";
 import { BsX } from "react-icons/bs";
 // import { useLocation } from "react-router-dom";
@@ -7,6 +7,18 @@ const Header = () => {
   const menuCapaRef = useRef(null);
   const menuRef = useRef(null);
   // const location = useLocation();
+  const [scroll, setScroll] = useState(false);
+
+  const manejarScroll = () => {
+    if (window.scrollY >= 1) {
+      setScroll(true);
+    } else {
+      setScroll(false);
+    }
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", manejarScroll);
+  }, []);
 
   const menuVisible = () => {
     menuCapaRef.current.classList.add("menu_capa-visible");
@@ -31,14 +43,26 @@ const Header = () => {
         </h6>
       </div>
       <nav
-        className="d-flex align-items-center justify-content-between w-100"
+        className={`d-flex align-items-center justify-content-between w-100 ${
+          scroll ? "mt-0" : "margen"
+        }`}
         // style={{
         //   backgroundColor:
-        //     location.pathname === "/" ? "transparent" : "#C7A17A",
+        //     location.pathname === "/" && !scroll ? "transparent" : "#C7A17A",
         // }}
+        style={{
+          backgroundColor: scroll ? "#C7A17A" : "transparent",
+        }}
       >
         <a href="#" className="nav_marca">
-          REST<span>FOOD</span>
+          REST
+          <span
+            style={{
+              color: scroll ? "#1e1e1e" : "#C7A17A",
+            }}
+          >
+            FOOD
+          </span>
         </a>
         <div
           className="menu_capa"
