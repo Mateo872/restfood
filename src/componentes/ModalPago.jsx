@@ -13,8 +13,39 @@ const ModalPago = ({ setMostrarModal }) => {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm();
+
+  const validarVencimiento = (valor) => {
+    const [mes, anio] = valor.split("/");
+    const mesVencimiento = parseInt(mes, 10);
+    const anioVencimiento = parseInt(anio, 10);
+
+    const fechaActual = new Date();
+    const anioActual = fechaActual.getFullYear();
+    const mesActual = fechaActual.getMonth() + 1;
+
+    if (
+      anioVencimiento < anioActual ||
+      (anioVencimiento === anioActual && mesVencimiento < mesActual)
+    ) {
+      return "La fecha de vencimiento debe ser mayor al mes y año actuales";
+    }
+
+    return true;
+  };
+
+  const spinner = () => {
+    setMostrarSpinner(true);
+    setTimeout(() => {
+      setMostrarSpinner(false);
+    }, 1000);
+  };
+
+  const cerrarModal = () => {
+    setTimeout(() => {
+      setMostrarModal(false);
+    }, 2000);
+  };
 
   const onSubmit = (data, e) => {
     const boton = e.nativeEvent.submitter.name;
@@ -30,19 +61,6 @@ const ModalPago = ({ setMostrarModal }) => {
       spinner();
       cerrarModal();
     }
-  };
-
-  const spinner = () => {
-    setMostrarSpinner(true);
-    setTimeout(() => {
-      setMostrarSpinner(false);
-    }, 1000);
-  };
-
-  const cerrarModal = () => {
-    setTimeout(() => {
-      setMostrarModal(false);
-    }, 2000);
   };
 
   return (
@@ -149,8 +167,8 @@ const ModalPago = ({ setMostrarModal }) => {
                   className="form-control"
                   id="email"
                   placeholder="usuario@gmail.com"
-                  minlength="5"
-                  maxlength="100"
+                  minLength="5"
+                  maxLength="100"
                   required
                   {...register("email", {
                     required: "El email es obligatorio",
@@ -160,12 +178,20 @@ const ModalPago = ({ setMostrarModal }) => {
                       message:
                         "Por favor, introduce una dirección de correo electrónico válida",
                     },
-                    minlength: 5,
-                    maxlength: 100,
+                    minLength: 5,
+                    maxLength: 100,
                   })}
                 />
-                <div classNamfe="text-danger">{errors.email?.message}</div>
-                <div className="paso_circulo d-flex justify-content-center align-items-center">
+                <div className="text-danger">{errors.email?.message}</div>
+                <div
+                  className={`paso_circulo ${
+                    errors.email ? "d-flex" : "d-none"
+                  } justify-content-center align-items-center`}
+                  style={{
+                    backgroundColor: "#DC3545",
+                    color: "#8c010e",
+                  }}
+                >
                   <BsCheck className="check" />
                 </div>
               </div>
@@ -178,8 +204,8 @@ const ModalPago = ({ setMostrarModal }) => {
                   className="form-control"
                   id="tarjeta"
                   placeholder="1234 1234 1234 1234"
-                  minlength="19"
-                  maxlength="19"
+                  minLength="19"
+                  maxLength="19"
                   required
                   {...register("tarjeta", {
                     required: "La tarjeta es obligatoria",
@@ -188,12 +214,20 @@ const ModalPago = ({ setMostrarModal }) => {
                       message:
                         "Por favor, introduce un número de tarjeta válido",
                     },
-                    minlength: 19,
-                    maxlength: 19,
+                    minLength: 19,
+                    maxLength: 19,
                   })}
                 />
                 <div className="text-danger">{errors.tarjeta?.message}</div>
-                <div className="paso_circulo d-flex justify-content-center align-items-center">
+                <div
+                  className={`paso_circulo ${
+                    errors.tarjeta ? "d-flex" : "d-none"
+                  } justify-content-center align-items-center`}
+                  style={{
+                    backgroundColor: "#DC3545",
+                    color: "#8c010e",
+                  }}
+                >
                   <BsCheck className="check" />
                 </div>
               </div>
@@ -207,8 +241,8 @@ const ModalPago = ({ setMostrarModal }) => {
                     className="form-control"
                     id="vencimiento"
                     placeholder="12/2026"
-                    minlength="7"
-                    maxlength="7"
+                    minLength="7"
+                    maxLength="7"
                     required
                     {...register("vencimiento", {
                       required: "La fecha de vencimiento es obligatoria",
@@ -217,14 +251,23 @@ const ModalPago = ({ setMostrarModal }) => {
                         message:
                           "Por favor, introduce una fecha de vencimiento válida (MM/AAAA)",
                       },
-                      minlength: 7,
-                      maxlength: 7,
+                      minLength: 7,
+                      maxLength: 7,
+                      validate: validarVencimiento,
                     })}
                   />
                   <div className="text-danger">
                     {errors.vencimiento?.message}
                   </div>
-                  <div className="paso_circulo d-flex justify-content-center align-items-center">
+                  <div
+                    className={`paso_circulo ${
+                      errors.vencimiento ? "d-flex" : "d-none"
+                    } justify-content-center align-items-center`}
+                    style={{
+                      backgroundColor: "#DC3545",
+                      color: "#8c010e",
+                    }}
+                  >
                     <BsCheck className="check" />
                   </div>
                 </div>
@@ -238,8 +281,8 @@ const ModalPago = ({ setMostrarModal }) => {
                     className="form-control"
                     id="codigoSeguridad"
                     placeholder="444"
-                    minlength="3"
-                    maxlength="3"
+                    minLength="3"
+                    maxLength="3"
                     required
                     {...register("seguridad", {
                       required: "El código de seguridad es obligatorio",
@@ -248,12 +291,20 @@ const ModalPago = ({ setMostrarModal }) => {
                         message:
                           "Por favor, introduce un código de seguridad válido (3 dígitos)",
                       },
-                      minlength: 3,
-                      maxlength: 3,
+                      minLength: 3,
+                      maxLength: 3,
                     })}
                   />
                   <div className="text-danger">{errors.seguridad?.message}</div>
-                  <div className="paso_circulo d-flex justify-content-center align-items-center">
+                  <div
+                    className={`paso_circulo ${
+                      errors.seguridad ? "d-flex" : "d-none"
+                    } justify-content-center align-items-center`}
+                    style={{
+                      backgroundColor: "#DC3545",
+                      color: "#8c010e",
+                    }}
+                  >
                     <BsCheck className="check" />
                   </div>
                 </div>
@@ -268,8 +319,8 @@ const ModalPago = ({ setMostrarModal }) => {
                   className="form-control"
                   id="dniTarjeta"
                   placeholder="44021006"
-                  minlength="7"
-                  maxlength="8"
+                  minLength="7"
+                  maxLength="8"
                   required
                   {...register("dni", {
                     required: "El DNI es obligatorio",
@@ -278,12 +329,20 @@ const ModalPago = ({ setMostrarModal }) => {
                       message:
                         "Por favor, introduce un número de DNI válido (7 u 8 dígitos)",
                     },
-                    minlength: 7,
-                    maxlength: 8,
+                    minLength: 7,
+                    maxLength: 8,
                   })}
                 />
                 <div className="text-danger">{errors.dni?.message}</div>
-                <div className="paso_circulo d-flex justify-content-center align-items-center">
+                <div
+                  className={`paso_circulo ${
+                    errors.dni ? "d-flex" : "d-none"
+                  } justify-content-center align-items-center`}
+                  style={{
+                    backgroundColor: "#DC3545",
+                    color: "#8c010e",
+                  }}
+                >
                   <BsCheck className="check" />
                 </div>
               </div>
@@ -293,43 +352,52 @@ const ModalPago = ({ setMostrarModal }) => {
             </button>
           </form>
           <form
+            onSubmit={handleSubmit(onSubmit)}
             className={`${
               mostrarDire && !mostrarConfirmarPago ? "d-block" : "d-none"
             }`}
           >
             <div className="form-group">
-              <label htmlFor="direccion">Calle y número</label>
+              <label htmlFor="domicilio">Calle y número</label>
               <div className="position-relative">
                 <input
                   type="text"
                   className="form-control"
-                  id="direccion"
+                  id="domicilio"
                   placeholder="San Juan 295"
-                  minlength="2"
-                  maxlength="100"
+                  minLength="2"
+                  maxLength="100"
                   required
-                  {...register("domicilio", {
-                    required: "El domicilio es obligatorio",
-                    pattern: {
-                      value: /^[a-zA-Z\s\d]+$/,
-                      message: "Por favor, introduce una dirección válida",
-                    },
-                    minlength: 2,
-                    maxlength: 100,
-                  })}
+                  // {...register("domicilio", {
+                  //   required: "El domicilio es obligatorio",
+                  //   pattern: {
+                  //     value: /^[a-zA-Z\s\d]+$/,
+                  //     message: "Por favor, introduce una dirección válida",
+                  //   },
+                  //   minLength: 2,
+                  //   maxLength: 100,
+                  // })}
                 />
                 <div className="text-danger">{errors.domicilio?.message}</div>
-                <div className="paso_circulo d-flex justify-content-center align-items-center">
+                <div
+                  className={`paso_circulo ${
+                    errors.domicilio ? "d-flex" : "d-none"
+                  } justify-content-center align-items-center`}
+                  style={{
+                    backgroundColor: "#DC3545",
+                    color: "#8c010e",
+                  }}
+                >
                   <BsCheck className="check" />
                 </div>
               </div>
             </div>
-
             <button type="submit" name="boton_confirmarPago">
               CONTINUAR
             </button>
           </form>
           <form
+            onSubmit={handleSubmit(onSubmit)}
             className={`${
               mostrarConfirmarPago ? "d-block" : "d-none"
             } form_pago`}
