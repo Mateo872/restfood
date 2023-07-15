@@ -787,10 +787,26 @@ footer h3 {
 }
 
 .input_CrearEditarpd{
-    width: 50%;
+    width: 45rem;
+    height: 4rem;
     padding: 15px;
     border-radius: 10px;
     border: none;
     
     
+}
+textarea{
+    resize: none;
+}
+.btn_AgrProducto{
+    background-color: var(--color-primario);
+    color: var(--color-secundario);
+    font-size: 18px;
+    border-radius: 10px;
+    text-align: center;
+    width: 45rem;
+    height: 4rem;
+    border: none;
+    font-weight: 500;
+
 }
