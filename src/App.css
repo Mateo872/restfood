@@ -481,6 +481,20 @@ footer h3 {
     font-size: 0.6rem;
 }
 
+.modal_pago {
+    transition: .3s;
+    animation: modal_aparecer .3s ease;
+}
+
+@keyframes modal_aparecer {
+    0% {
+        transform: scale(.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
 
 .modal_pago h4,
 .modal_pago h3 {
@@ -594,6 +608,42 @@ form h6 {
 
 form h6 {
     opacity: 1;
+}
+
+.swal2-popup {
+    background-color: var(--color-terciario);
+    color: var(--color-secundario);
+}
+
+.swal2-popup div:where(.swal2-icon).swal2-warning {
+    border-color: var(--color-primario);
+    color: var(--color-primario);
+}
+
+.swal2-popup .swal2-actions .swal2-cancel {
+    background-color: transparent;
+    border: 2px solid var(--color-primario);
+    color: var(--color-primario);
+    outline: none;
+}
+
+.swal2-popup .swal2-actions .swal2-confirm {
+    color: var(--color-secundario);
+    background-color: var(--color-primario);
+    border: 2px solid var(--color-primario);
+    outline: none;
+}
+
+.swal2-popup .swal2-actions .swal2-confirm:hover {
+    transition: .3s;
+    color: var(--color-primario);
+    background-color: transparent;
+}
+
+.swal2-popup .swal2-actions .swal2-cancel:hover {
+    transition: .3s;
+    color: var(--color-secundario);
+    background-color: var(--color-primario);
 }
 
 @media (min-width:767px) {
@@ -975,16 +1025,18 @@ form h6 {
     position: relative;
     z-index: -1;
     padding-top: 9rem;
-    
+
 }
 
 .menu-contenedor-body {
     color: var(--color-secundario);
 }
-.menu-titulo{
+
+.menu-titulo {
     font-size: 5rem;
     font-family: 'Reenie Beanie', cursive;
 }
+
 .container-menu-card {
     margin-top: 12rem;
 
@@ -1046,7 +1098,8 @@ form h6 {
     padding: 10px 22px;
 
 }
-.contenedor_EditarCrear{
+
+.contenedor_EditarCrear {
     min-height: 100vh;
     width: 100%;
     background-image: url(/src/complementos/imagenes/Rectangle\ 4.png);
@@ -1057,7 +1110,7 @@ form h6 {
     padding-top: 9rem;
 }
 
-.formCrearEditar{
+.formCrearEditar {
     width: 450px;
     margin: auto;
     padding: 10px 20px;
@@ -1066,20 +1119,22 @@ form h6 {
     border-radius: 8px;
 }
 
-.input_CrearEditarpd{
+.input_CrearEditarpd {
     width: 100%;
     padding: 15px;
     box-sizing: border-box;
     font-size: 17px;
     border-radius: 10px;
     border: none;
-    
-    
+
+
 }
-textarea{
+
+textarea {
     resize: none;
 }
-.btn_AgrProducto{
+
+.btn_AgrProducto {
     background-color: var(--color-primario);
     color: var(--color-secundario);
     font-size: 18px;
@@ -1093,11 +1148,12 @@ textarea{
 
 }
 
-@media (max-width:480px){
-    .formCrearEditar{
+@media (max-width:480px) {
+    .formCrearEditar {
         width: 100%;
     }
-    .btn_AgrProducto{
+
+    .btn_AgrProducto {
         width: 100%;
     }
 }

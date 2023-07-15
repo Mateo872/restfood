@@ -19,21 +19,20 @@ const ModalPago = ({ setMostrarModal }) => {
   const cerrarModal = () => {
     setTimeout(() => {
       setMostrarModal(false);
-    }, 4000);
+    }, 2000);
   };
 
   return (
     <div className="modal_pago position-relative">
       <div className="modal_cierre position-absolute">
         <BsXLg
+          className={`${pago ? "d-none" : "d-block"}`}
           onClick={() =>
             Swal.fire({
               title: "¿Estás seguro?",
               text: "Perderás el proceso de compra",
               icon: "warning",
               showCancelButton: true,
-              confirmButtonColor: "#C7A17A",
-              cancelButtonColor: "#d33",
               confirmButtonText: "Si, salir",
               cancelButtonText: "Cancelar",
             }).then((result) => {
