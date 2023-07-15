@@ -6,21 +6,23 @@ import BuscadorPlatos from "./componentes/BuscadorPlatos";
 import Footer from "./componentes/comunes/Footer";
 import Menu from "./componentes/comunes/Menu";
 import ContenedorCarrito from "./componentes/ContenedorCarrito";
+import ModalPago from "./componentes/ModalPago";
 
 function App() {
-  return (
-    <>
-      <Header />
-      <main>
-        <BuscadorPlatos />
-        <QuienesSomos />
-        <Menu />
-        {/* <ContenedorCarrito /> */}
-      </main>
+    return (
+        <>
+            <Header />
+            <main>
+                <BuscadorPlatos />
+                <QuienesSomos />
+                <Menu />
+                <ModalPago />
+                {/* <ContenedorCarrito /> */}
+            </main>
 
-      <Footer />
-    </>
-  );
+            <Footer />
+        </>
+    );
 }
 
 export default App;
