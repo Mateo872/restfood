@@ -21,10 +21,6 @@ body {
 
 }
 
-header {
-    background-color: transparent;
-}
-
 header nav {
     margin-top: 1rem;
     position: fixed;
@@ -32,6 +28,7 @@ header nav {
     left: 0;
     right: 0;
     z-index: 99;
+    background-color: var(--color-primario);
 }
 
 .contenedor_publicidad {
@@ -67,7 +64,7 @@ header nav {
 }
 
 header nav {
-    padding: 1rem;
+    padding: .7rem;
 }
 
 header nav .nav_marca {
@@ -77,7 +74,7 @@ header nav .nav_marca {
 }
 
 header nav .nav_marca span {
-    color: var(--color-primario);
+    color: var(--color-terciario);
 }
 
 header nav svg {
@@ -157,6 +154,7 @@ main .contenedor_platos {
     height: 20rem;
     background-image: url("./complementos/imagenes/imagenHero.png");
     background-size: cover;
+    background-attachment: fixed;
     background-position: 50% 50%;
 }
 
@@ -657,7 +655,7 @@ form h6 {
     }
 
     header nav {
-        padding: 2rem;
+        padding: 1rem;
     }
 
     header nav .menu_capa {
@@ -696,7 +694,7 @@ form h6 {
     }
 
     main .contenedor_platos article {
-        padding-top: 10rem;
+        padding-top: 12rem;
     }
 
     main .contenedor_platos article h1 {
@@ -868,10 +866,6 @@ form h6 {
 
     .slider {
         animation: deslizar 11s linear infinite;
-    }
-
-    header nav {
-        padding: 2rem;
     }
 
     header nav .menu_capa {

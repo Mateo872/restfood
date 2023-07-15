@@ -1,10 +1,12 @@
 import { useRef } from "react";
 import { BiMenu } from "react-icons/bi";
 import { BsX } from "react-icons/bs";
+// import { useLocation } from "react-router-dom";
 
 const Header = () => {
   const menuCapaRef = useRef(null);
   const menuRef = useRef(null);
+  // const location = useLocation();
 
   const menuVisible = () => {
     menuCapaRef.current.classList.add("menu_capa-visible");
@@ -28,7 +30,13 @@ const Header = () => {
           <span className="slider">ENVÍOS GRATIS</span>
         </h6>
       </div>
-      <nav className="d-flex align-items-center justify-content-between w-100">
+      <nav
+        className="d-flex align-items-center justify-content-between w-100"
+        // style={{
+        //   backgroundColor:
+        //     location.pathname === "/" ? "transparent" : "#C7A17A",
+        // }}
+      >
         <a href="#" className="nav_marca">
           REST<span>FOOD</span>
         </a>
