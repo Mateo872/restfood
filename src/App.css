@@ -1046,3 +1046,58 @@ form h6 {
     padding: 10px 22px;
 
 }
+.contenedor_EditarCrear{
+    min-height: 100vh;
+    width: 100%;
+    background-image: url(/src/complementos/imagenes/Rectangle\ 4.png);
+    background-size: cover;
+    background-position: 50% 50%;
+    position: relative;
+    z-index: -1;
+    padding-top: 9rem;
+}
+
+.formCrearEditar{
+    width: 450px;
+    margin: auto;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    margin-top: 20px;
+    border-radius: 8px;
+}
+
+.input_CrearEditarpd{
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 17px;
+    border-radius: 10px;
+    border: none;
+    
+    
+}
+textarea{
+    resize: none;
+}
+.btn_AgrProducto{
+    background-color: var(--color-primario);
+    color: var(--color-secundario);
+    font-size: 18px;
+    border-radius: 10px;
+    text-align: center;
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+    border: none;
+    font-weight: 500;
+
+}
+
+@media (max-width:480px){
+    .formCrearEditar{
+        width: 100%;
+    }
+    .btn_AgrProducto{
+        width: 100%;
+    }
+}

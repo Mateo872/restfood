@@ -7,17 +7,19 @@ import Footer from "./componentes/comunes/Footer";
 import Menu from "./componentes/comunes/Menu";
 import Administrador from "./pages/Administrador";
 import ContenedorCarrito from "./componentes/ContenedorCarrito";
+import CrearEditarProducto from "./componentes/CrearEditarProducto";
 
 function App() {
   return (
     <>
       <Header />
-      <main>
+      {/*<main>
         <BuscadorPlatos />
         <QuienesSomos />
         <Menu />
-        {/* <ContenedorCarrito /> */}
-      </main>
+        
+      </main>*/}
+      <CrearEditarProducto></CrearEditarProducto>
       <Footer />
     </>
   );
