@@ -786,10 +786,20 @@ footer h3 {
     padding-top: 9rem;
 }
 
+.formCrearEditar{
+    width: 450px;
+    margin: auto;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    margin-top: 20px;
+    border-radius: 8px;
+}
+
 .input_CrearEditarpd{
-    width: 45rem;
-    height: 4rem;
+    width: 100%;
     padding: 15px;
+    box-sizing: border-box;
+    font-size: 17px;
     border-radius: 10px;
     border: none;
     
@@ -804,9 +814,19 @@ textarea{
     font-size: 18px;
     border-radius: 10px;
     text-align: center;
-    width: 45rem;
-    height: 4rem;
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
     border: none;
     font-weight: 500;
 
+}
+
+@media (max-width:480px){
+    .formCrearEditar{
+        width: 100%;
+    }
+    .btn_AgrProducto{
+        width: 100%;
+    }
 }
