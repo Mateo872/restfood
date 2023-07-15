@@ -7,7 +7,7 @@ const Menu = () => {
     return (
         <section className="menu-contenedor">
             <Container className="menu-contenedor-body">
-                <h1 className="text-white text-center">Menu</h1>
+                <h2 className="text-white text-center menu-titulo mb-5">Menu</h2>
                 <div className="d-flex justify-content-between">
                     <p className="fs-3">Busca tus productos</p>
                     <Form className="d-flex">
