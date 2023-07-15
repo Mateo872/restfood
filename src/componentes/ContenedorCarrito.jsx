@@ -1,6 +1,11 @@
+import { useState } from "react";
 import CarritoItem from "./CarritoItem";
+import ModalPago from "./ModalPago";
+import Swal from "sweetalert2";
 
 const ContenedorCarrito = () => {
+  const [mostrarModal, setMostrarModal] = useState(false);
+
   return (
     <section className="contenedor_carrito">
       <article>
@@ -16,9 +21,44 @@ const ContenedorCarrito = () => {
             <h5 className="mb-0">
               Total: $<span>6000</span>
             </h5>
-            <button className="boton_comprar">Comprar</button>
+            <button
+              className="boton_comprar"
+              onClick={() => setMostrarModal(!mostrarModal)}
+            >
+              Comprar
+            </button>
           </div>
         </div>
+        {mostrarModal ? (
+          <div
+            className="modal_overlay d-flex justify-content-center align-items-center vh-100 w-100"
+            onClick={(e) => {
+              if (e.target.classList.contains("modal_overlay")) {
+                Swal.fire({
+                  title: "¿Estás seguro?",
+                  text: "Perderás el proceso de compra",
+                  icon: "warning",
+                  showCancelButton: true,
+                  confirmButtonColor: "#C7A17A",
+                  cancelButtonColor: "#d33",
+                  confirmButtonText: "Si, salir",
+                  cancelButtonText: "Cancelar",
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    setMostrarModal(false);
+                  }
+                });
+              }
+            }}
+          >
+            <ModalPago
+              mostrarModal={mostrarModal}
+              setMostrarModal={setMostrarModal}
+            />
+          </div>
+        ) : (
+          <></>
+        )}
       </article>
     </section>
   );

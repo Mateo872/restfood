@@ -413,7 +413,6 @@ footer h3 {
     background-color: var(--color-primario);
     border-top-left-radius: 2rem;
     border-top-right-radius: 2rem;
-
 }
 
 .body-tarjeta {
@@ -441,6 +440,161 @@ footer h3 {
 
 }
 
+
+.modal_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+}
+
+.modal_pago {
+    width: 18rem;
+    height: auto;
+    padding-bottom: 1rem;
+    border-radius: .4rem;
+    background-color: var(--color-terciario);
+}
+
+.modal_pasos {
+    margin-top: 1rem;
+    color: var(--color-secundario);
+}
+
+.modal_pasos .chevron {
+    font-size: 0.6rem;
+}
+
+.modal_pasos .check {
+    color: #7B827E;
+}
+
+.paso_circulo {
+    height: .8rem;
+    width: .8rem;
+    background-color: #ddd;
+    border-radius: 100%;
+}
+
+.modal_paso {
+    font-size: 0.6rem;
+}
+
+
+.modal_pago h4,
+.modal_pago h3 {
+    color: var(--color-secundario);
+}
+
+.modal_pago h3 {
+    margin-top: 1rem;
+    font-size: 1rem;
+}
+
+.modal_pago h4 {
+    width: 65%;
+    margin: 0 auto;
+    font-size: .6rem;
+    opacity: .7;
+    font-weight: 200;
+}
+
+.modal_pago form {
+    width: 80%;
+    margin: 0 auto;
+    color: #fff;
+    font-size: 0.6rem;
+}
+
+.modal_pago form div {
+    margin-top: .5rem;
+}
+
+.modal_pago form input {
+    font-size: 0.6rem;
+    padding: 0.5rem 1.5rem 0.5rem 0.5rem;
+    position: relative;
+}
+
+.modal_pago form .paso_circulo {
+    position: absolute;
+    top: .1rem;
+    right: .4rem;
+}
+
+.modal_pago form label {
+    font-size: 0.5rem;
+}
+
+.modal_pago form div p {
+    margin-top: 0.2rem;
+    font-size: 0.4rem;
+    opacity: .7;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.modal_pago form .form_doble {
+    width: 45%;
+}
+
+.modal_pago form button {
+    margin-top: 1rem;
+    width: 100%;
+    padding: 0.5rem;
+    font-weight: bold;
+    font-size: 0.6rem;
+    color: var(--color-secundario);
+    background-color: var(--color-primario);
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 0.375rem;
+}
+
+.modal_pago form button:hover {
+    transition: .3s;
+    color: var(--color-primario);
+    background-color: transparent;
+    border-color: var(--color-primario);
+}
+
+.contenedor_mochila svg {
+    font-size: 3rem;
+}
+
+.modal_pago .form_pago {
+    width: 70%;
+}
+
+form .check_mochila {
+    position: absolute;
+    font-size: 1.3rem;
+    top: 80%;
+    transform: translateY(-80%);
+}
+
+form h5,
+form h6 {
+    font-size: 0.6rem;
+    opacity: .7;
+}
+
+.modal_cierre {
+    top: .5rem;
+    right: .8rem;
+    color: #fff;
+    font-size: 0.7rem;
+}
+
+.form_pago .texto_retrasos {
+    font-weight: 200;
+}
+
+form h6 {
+    opacity: 1;
+}
 
 @media (min-width:767px) {
     .contenedor_publicidad h6 {
@@ -565,6 +719,87 @@ footer h3 {
         padding: 0.8rem;
     }
 
+    .modal_pago {
+        width: 34rem;
+    }
+
+    .modal_cierre {
+        font-size: 1rem;
+    }
+
+    .modal_pasos .chevron {
+        font-size: 0.7rem;
+    }
+
+    .paso_circulo {
+        height: 1rem;
+        width: 1rem;
+    }
+
+    .modal_paso {
+        font-size: 0.7rem;
+    }
+
+    .modal_pago h3 {
+        font-size: 1.3rem;
+    }
+
+    .modal_pago h4 {
+        width: 45%;
+        font-size: .8rem;
+    }
+
+    .modal_pago form {
+        width: 80%;
+    }
+
+
+    .modal_pago form input {
+        font-size: 0.8rem;
+        padding-right: 1.7rem;
+    }
+
+    .modal_pago form label {
+        font-size: 0.8rem;
+    }
+
+    .modal_pago form div p {
+        margin-top: 0.2rem;
+        font-size: 0.6rem;
+    }
+
+    .modal_pago form button {
+        font-size: 0.8rem;
+    }
+
+    .modal_pago .form_pago {
+        width: 60%;
+    }
+
+    .contenedor_mochila svg {
+        margin-top: .8rem;
+        font-size: 6rem;
+    }
+
+    form .check_mochila {
+        font-size: 3rem;
+        top: 74%;
+    }
+
+    form h5,
+    form h6 {
+        font-size: 1rem;
+        opacity: .7;
+    }
+
+    form h6 {
+        opacity: 1;
+    }
+
+    .form_pago .texto_retrasos {
+        width: 100%;
+    }
+
     footer p {
         width: 100%;
     }
@@ -680,6 +915,50 @@ footer h3 {
         transition: .3s;
     }
 
+    .contenedor_botones button {
+        font-size: 1rem;
+        padding: 1.02rem;
+    }
+
+    .contenedor_botones h5 {
+        font-size: 1rem;
+        width: 14rem;
+        padding: 1rem;
+    }
+
+    .modal_pago {
+        padding: 2rem 0;
+    }
+
+    .modal_cierre {
+        cursor: pointer;
+    }
+
+    .modal_pasos {
+        margin-top: 0;
+    }
+
+    .modal_pago form {
+        width: 70%;
+    }
+
+    .modal_pago form input {
+        padding: .8rem;
+        padding-right: 2.2rem;
+    }
+
+    .modal_pago form .paso_circulo {
+        top: .4rem;
+        right: .8rem;
+    }
+
+    .modal_pago form button {
+        padding: .8rem;
+    }
+
+    .modal_pago form div p {
+        font-size: 0.5rem;
+    }
 }
 
 .body-tarjeta {
@@ -696,12 +975,16 @@ footer h3 {
     position: relative;
     z-index: -1;
     padding-top: 9rem;
+    
 }
 
 .menu-contenedor-body {
     color: var(--color-secundario);
 }
-
+.menu-titulo{
+    font-size: 5rem;
+    font-family: 'Reenie Beanie', cursive;
+}
 .container-menu-card {
     margin-top: 12rem;
 
@@ -762,71 +1045,4 @@ footer h3 {
     border: none;
     padding: 10px 22px;
 
-}
-
-.contenedor_botones button {
-    font-size: 1rem;
-    padding: 1.02rem;
-}
-
-.contenedor_botones h5 {
-    font-size: 1rem;
-    width: 14rem;
-    padding: 1rem;
-}
-
-.contenedor_EditarCrear{
-    min-height: 100vh;
-    width: 100%;
-    background-image: url(/src/complementos/imagenes/Rectangle\ 4.png);
-    background-size: cover;
-    background-position: 50% 50%;
-    position: relative;
-    z-index: -1;
-    padding-top: 9rem;
-}
-
-.formCrearEditar{
-    width: 450px;
-    margin: auto;
-    padding: 10px 20px;
-    box-sizing: border-box;
-    margin-top: 20px;
-    border-radius: 8px;
-}
-
-.input_CrearEditarpd{
-    width: 100%;
-    padding: 15px;
-    box-sizing: border-box;
-    font-size: 17px;
-    border-radius: 10px;
-    border: none;
-    
-    
-}
-textarea{
-    resize: none;
-}
-.btn_AgrProducto{
-    background-color: var(--color-primario);
-    color: var(--color-secundario);
-    font-size: 18px;
-    border-radius: 10px;
-    text-align: center;
-    width: 100%;
-    padding: 15px;
-    box-sizing: border-box;
-    border: none;
-    font-weight: 500;
-
-}
-
-@media (max-width:480px){
-    .formCrearEditar{
-        width: 100%;
-    }
-    .btn_AgrProducto{
-        width: 100%;
-    }
 }
