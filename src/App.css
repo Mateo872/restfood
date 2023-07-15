@@ -582,6 +582,13 @@ form h6 {
     opacity: .7;
 }
 
+.modal_cierre {
+    top: .5rem;
+    right: .8rem;
+    color: #fff;
+    font-size: 0.7rem;
+}
+
 .form_pago .texto_retrasos {
     font-weight: 200;
 }
@@ -717,6 +724,9 @@ form h6 {
         width: 34rem;
     }
 
+    .modal_cierre {
+        font-size: 1rem;
+    }
 
     .modal_pasos .chevron {
         font-size: 0.7rem;
@@ -919,6 +929,10 @@ form h6 {
 
     .modal_pago {
         padding: 2rem 0;
+    }
+
+    .modal_cierre {
+        cursor: pointer;
     }
 
     .modal_pasos {

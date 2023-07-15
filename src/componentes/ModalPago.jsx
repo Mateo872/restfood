@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { BsCheck, BsChevronRight, BsHandbag } from "react-icons/bs";
+import { BsCheck, BsChevronRight, BsHandbag, BsXLg } from "react-icons/bs";
 import ClipLoader from "react-spinners/ClipLoader";
+import Swal from "sweetalert2";
 
-const ModalPago = () => {
+const ModalPago = ({ setMostrarModal }) => {
   const [mostrarDire, setMostrarDire] = useState(false);
   const [mostrarConfirmarPago, setMostrarConfirmarPago] = useState(false);
   const [pago, setPago] = useState(false);
@@ -15,8 +16,34 @@ const ModalPago = () => {
     }, 1000);
   };
 
+  const cerrarModal = () => {
+    setTimeout(() => {
+      setMostrarModal(false);
+    }, 4000);
+  };
+
   return (
-    <div className="modal_pago">
+    <div className="modal_pago position-relative">
+      <div className="modal_cierre position-absolute">
+        <BsXLg
+          onClick={() =>
+            Swal.fire({
+              title: "¿Estás seguro?",
+              text: "Perderás el proceso de compra",
+              icon: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#C7A17A",
+              cancelButtonColor: "#d33",
+              confirmButtonText: "Si, salir",
+              cancelButtonText: "Cancelar",
+            }).then((result) => {
+              if (result.isConfirmed) {
+                setMostrarModal(false);
+              }
+            })
+          }
+        />
+      </div>
       {!mostrarSpinner ? (
         <div>
           <div className="modal_pasos d-flex justify-content-center align-items-center gap-1">
@@ -243,12 +270,12 @@ const ModalPago = () => {
               Actualmente estamos experimentando retrasos en los envíos.
             </h5>
             <button
-              className={`${pago ? "mt-4" : "mt-3"}`}
+              className={`${pago ? "d-none" : "d-block"}`}
               onClick={() => {
-                setPago(!pago), spinner();
+                setPago(!pago), spinner(), cerrarModal();
               }}
             >
-              {pago ? "LISTO" : "CONFIRMAR COMPRA"}
+              CONFIRMAR COMPRA
             </button>
           </form>
         </div>
