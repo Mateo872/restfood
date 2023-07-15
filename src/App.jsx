@@ -13,10 +13,10 @@ function App() {
     <>
       <Header />
       <main>
-        {/* <BuscadorPlatos /> */}
-        {/* <QuienesSomos /> */}
-        {/* <Menu /> */}
-        <ContenedorCarrito />
+        <BuscadorPlatos />
+        <QuienesSomos />
+        <Menu />
+        {/* <ContenedorCarrito /> */}
       </main>
       <Footer />
     </>
