@@ -279,7 +279,8 @@ HEAD .contenedor-quienes-somos {
     margin-bottom: -60px;
     background-color: #fff;
     position: relative;
-    z-index: 2;
+    /* z-index: 1; */
+    padding: 0%;
 }
 
 .img-quienes-somos {
@@ -404,7 +405,7 @@ footer h3 {
     top: -8rem;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 1;
+    /* z-index: 1; */
 }
 
 .card-body {
@@ -427,7 +428,7 @@ footer h3 {
     background-size: cover;
     background-position: 50% 50%;
     position: relative;
-    z-index: -1;
+    /* z-index: -1; */
     padding-top: 9rem;
 }
 
@@ -1017,19 +1018,24 @@ form h6 {
 }
 
 /* Menu  */
+.menuConteiner{
+    height: 1rem;
+    background-color:rgb(0, 0, 0);
+   z-index: -1;
+}
 .menu-contenedor {
     width: 100%;
     background-image: url(/src/complementos/imagenes/img-menu-background.png);
     background-size: cover;
     background-position: 50% 50%;
     position: relative;
-    z-index: -1;
-    padding-top: 9rem;
-
+    padding-top: 5rem;
+    
 }
 
 .menu-contenedor-body {
     color: var(--color-secundario);
+    
 }
 
 .menu-titulo {
@@ -1039,8 +1045,8 @@ form h6 {
 
 .container-menu-card {
     margin-top: 12rem;
-
 }
+
 
 .iconFav {
     position: absolute;
