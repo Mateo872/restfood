@@ -2,12 +2,35 @@ import { useState } from "react";
 import { BsCheck, BsChevronRight, BsHandbag, BsXLg } from "react-icons/bs";
 import ClipLoader from "react-spinners/ClipLoader";
 import Swal from "sweetalert2";
+import { useForm } from "react-hook-form";
 
 const ModalPago = ({ setMostrarModal }) => {
   const [mostrarDire, setMostrarDire] = useState(false);
   const [mostrarConfirmarPago, setMostrarConfirmarPago] = useState(false);
   const [pago, setPago] = useState(false);
   const [mostrarSpinner, setMostrarSpinner] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
+
+  const onSubmit = (data, e) => {
+    const boton = e.nativeEvent.submitter.name;
+
+    if (boton === "boton_dire") {
+      spinner();
+      setMostrarDire(!mostrarDire);
+    } else if (boton === "boton_confirmarPago") {
+      spinner();
+      setMostrarConfirmarPago(!mostrarConfirmarPago);
+    } else if (boton === "boton_pago") {
+      setPago(!pago);
+      spinner();
+      cerrarModal();
+    }
+  };
 
   const spinner = () => {
     setMostrarSpinner(true);
@@ -113,6 +136,7 @@ const ModalPago = ({ setMostrarModal }) => {
               : "Verifique su dirección."}
           </h4>
           <form
+            onSubmit={handleSubmit(onSubmit)}
             className={`${
               mostrarDire || mostrarConfirmarPago ? "d-none" : "d-block"
             }`}
@@ -125,8 +149,22 @@ const ModalPago = ({ setMostrarModal }) => {
                   className="form-control"
                   id="email"
                   placeholder="usuario@gmail.com"
+                  minlength="5"
+                  maxlength="100"
                   required
+                  {...register("email", {
+                    required: "El email es obligatorio",
+                    pattern: {
+                      value:
+                        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+                      message:
+                        "Por favor, introduce una dirección de correo electrónico válida",
+                    },
+                    minlength: 5,
+                    maxlength: 100,
+                  })}
                 />
+                <div classNamfe="text-danger">{errors.email?.message}</div>
                 <div className="paso_circulo d-flex justify-content-center align-items-center">
                   <BsCheck className="check" />
                 </div>
@@ -140,8 +178,21 @@ const ModalPago = ({ setMostrarModal }) => {
                   className="form-control"
                   id="tarjeta"
                   placeholder="1234 1234 1234 1234"
+                  minlength="19"
+                  maxlength="19"
                   required
+                  {...register("tarjeta", {
+                    required: "La tarjeta es obligatoria",
+                    pattern: {
+                      value: /^(\d{4} ){3}\d{4}$|^(\d{4}-){3}\d{4}$|^\d{16}$/,
+                      message:
+                        "Por favor, introduce un número de tarjeta válido",
+                    },
+                    minlength: 19,
+                    maxlength: 19,
+                  })}
                 />
+                <div className="text-danger">{errors.tarjeta?.message}</div>
                 <div className="paso_circulo d-flex justify-content-center align-items-center">
                   <BsCheck className="check" />
                 </div>
@@ -156,8 +207,23 @@ const ModalPago = ({ setMostrarModal }) => {
                     className="form-control"
                     id="vencimiento"
                     placeholder="12/2026"
+                    minlength="7"
+                    maxlength="7"
                     required
+                    {...register("vencimiento", {
+                      required: "La fecha de vencimiento es obligatoria",
+                      pattern: {
+                        value: /^(0[1-9]|1[0-2])\/(20\d{2}|2[1-9]\d{1})$/,
+                        message:
+                          "Por favor, introduce una fecha de vencimiento válida (MM/AAAA)",
+                      },
+                      minlength: 7,
+                      maxlength: 7,
+                    })}
                   />
+                  <div className="text-danger">
+                    {errors.vencimiento?.message}
+                  </div>
                   <div className="paso_circulo d-flex justify-content-center align-items-center">
                     <BsCheck className="check" />
                   </div>
@@ -172,8 +238,21 @@ const ModalPago = ({ setMostrarModal }) => {
                     className="form-control"
                     id="codigoSeguridad"
                     placeholder="444"
+                    minlength="3"
+                    maxlength="3"
                     required
+                    {...register("seguridad", {
+                      required: "El código de seguridad es obligatorio",
+                      pattern: {
+                        value: /^\d{3}$/,
+                        message:
+                          "Por favor, introduce un código de seguridad válido (3 dígitos)",
+                      },
+                      minlength: 3,
+                      maxlength: 3,
+                    })}
                   />
+                  <div className="text-danger">{errors.seguridad?.message}</div>
                   <div className="paso_circulo d-flex justify-content-center align-items-center">
                     <BsCheck className="check" />
                   </div>
@@ -189,18 +268,27 @@ const ModalPago = ({ setMostrarModal }) => {
                   className="form-control"
                   id="dniTarjeta"
                   placeholder="44021006"
+                  minlength="7"
+                  maxlength="8"
                   required
+                  {...register("dni", {
+                    required: "El DNI es obligatorio",
+                    pattern: {
+                      value: /^[0-9]{7,8}$/,
+                      message:
+                        "Por favor, introduce un número de DNI válido (7 u 8 dígitos)",
+                    },
+                    minlength: 7,
+                    maxlength: 8,
+                  })}
                 />
+                <div className="text-danger">{errors.dni?.message}</div>
                 <div className="paso_circulo d-flex justify-content-center align-items-center">
                   <BsCheck className="check" />
                 </div>
               </div>
             </div>
-            <button
-              onClick={() => {
-                spinner(), setMostrarDire(!mostrarDire);
-              }}
-            >
+            <button type="submit" name="boton_dire">
               CONTINUAR
             </button>
           </form>
@@ -217,19 +305,27 @@ const ModalPago = ({ setMostrarModal }) => {
                   className="form-control"
                   id="direccion"
                   placeholder="San Juan 295"
+                  minlength="2"
+                  maxlength="100"
                   required
+                  {...register("domicilio", {
+                    required: "El domicilio es obligatorio",
+                    pattern: {
+                      value: /^[a-zA-Z\s\d]+$/,
+                      message: "Por favor, introduce una dirección válida",
+                    },
+                    minlength: 2,
+                    maxlength: 100,
+                  })}
                 />
+                <div className="text-danger">{errors.domicilio?.message}</div>
                 <div className="paso_circulo d-flex justify-content-center align-items-center">
                   <BsCheck className="check" />
                 </div>
               </div>
             </div>
 
-            <button
-              onClick={() => {
-                spinner(), setMostrarConfirmarPago(!mostrarConfirmarPago);
-              }}
-            >
+            <button type="submit" name="boton_confirmarPago">
               CONTINUAR
             </button>
           </form>
@@ -269,10 +365,9 @@ const ModalPago = ({ setMostrarModal }) => {
               Actualmente estamos experimentando retrasos en los envíos.
             </h5>
             <button
+              type="submit"
+              name="boton_pago"
               className={`${pago ? "d-none" : "d-block"}`}
-              onClick={() => {
-                setPago(!pago), spinner(), cerrarModal();
-              }}
             >
               CONFIRMAR COMPRA
             </button>
