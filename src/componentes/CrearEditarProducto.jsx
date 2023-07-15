@@ -1,20 +1,52 @@
-
-
+import Form from "react-bootstrap/Form";
 const CrearEditarProducto = () => {
-    return (
-        <section className="contenedor_EditarCrear">
-            <Form>
-      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="name@example.com" />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-        <Form.Label>Example textarea</Form.Label>
-        <Form.Control as="textarea" rows={3} />
-      </Form.Group>
-    </Form>
-        </section>
-    );
+  return (
+    <section className="contenedor_EditarCrear">
+      <Form>
+        <Form.Group className="mb-3 text-center" controlId="input_NombrePro">
+          <input
+            type="text"
+            placeholder="Nombre del Producto"
+            className="input_CrearEditarpd"
+          />
+        </Form.Group>
+        <Form.Group className="mb-3 text-center" controlId="input_PrecioPro">
+          <input
+            type="number"
+            placeholder="Precio del producto"
+            className="input_CrearEditarpd"
+          />
+        </Form.Group>
+        <Form.Group
+          className="mb-3 text-center"
+          controlId="DescripcionProducto"
+        >
+          <textarea
+            name="descripcion"
+            id="descripcionProducto"
+            rows="3"
+            className="input_CrearEditarpd"
+          ></textarea>
+        </Form.Group>
+        <Form.Group className="mb-3 text-center">
+          <select name="selecCategoria" id="selec_Categoria">
+            <option value="salado">Salado</option>
+            <option value="Dulce">Dulce</option>
+            <option value="Bebidas">Bebidas</option>
+          </select>
+        </Form.Group>
+
+        <Form.Group className="mb-3 text-center" controlId="input_Stock">
+          <input
+            type="number"
+            placeholder="Stock del producto"
+            className="input_CrearEditarpd"
+          />
+        </Form.Group>
+      </Form>
+      
+    </section>
+  );
 };
 
 export default CrearEditarProducto;

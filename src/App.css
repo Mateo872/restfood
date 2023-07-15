@@ -785,3 +785,12 @@ footer h3 {
     z-index: -1;
     padding-top: 9rem;
 }
+
+.input_CrearEditarpd{
+    width: 50%;
+    padding: 15px;
+    border-radius: 10px;
+    border: none;
+    
+    
+}
