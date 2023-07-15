@@ -39,8 +39,6 @@ const ContenedorCarrito = () => {
                   text: "Perderás el proceso de compra",
                   icon: "warning",
                   showCancelButton: true,
-                  confirmButtonColor: "#C7A17A",
-                  cancelButtonColor: "#d33",
                   confirmButtonText: "Si, salir",
                   cancelButtonText: "Cancelar",
                 }).then((result) => {
