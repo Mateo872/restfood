@@ -656,7 +656,7 @@ form h6 {
     z-index: 9;
     background-color: var(--color-secundario);
     border-radius: 0 0 1rem 1rem;
-    animation: aparecer .5s ease-in-out;
+    animation: aparecer .2s ease-in-out;
 }
 
 .contenedor_platos .contenedor_radio {
@@ -666,6 +666,7 @@ form h6 {
 @keyframes aparecer {
     0% {
         height: 0;
+        opacity: 0;
     }
 
     100% {
