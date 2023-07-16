@@ -23,10 +23,11 @@ const BuscadorPlatos = () => {
             type="text"
             placeholder="Sushi, lomito, tacos"
             onChange={(e) => setInput(e.target.value)}
+            className={`${input.length !== 0 && "w-100"}`}
           />
           <div
             className={`icono_buscador ${
-              input.length !== 0 ? "d-none" : "d-flex"
+              input.length > 0 ? "d-none" : "d-flex"
             } align-items-center justify-content-center`}
           >
             <BsSearch />
