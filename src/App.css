@@ -652,10 +652,14 @@ form h6 {
     height: 12rem;
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
-    top: 2rem;
+    top: 1.4rem;
     z-index: 9;
     background-color: var(--color-secundario);
-    border-radius: 0 0 .8rem .8rem;
+    border-radius: 0 0 .4rem .4rem;
+}
+
+.contenedor_platos .contenedor_radio {
+    border-radius: .2rem;
 }
 
 .contenedor_buscador {
@@ -1063,9 +1067,14 @@ form h6 {
 
     .contenedor_slider {
         height: 14rem;
+        top: 2rem;
         left: 0;
         padding-bottom: 1.2rem;
         scroll-padding-top: 0;
+    }
+
+    .contenedor_platos .contenedor_radio {
+        border-radius: 1rem 1rem 0 0;
     }
 
     .contenedor_slider::-webkit-scrollbar {
@@ -1079,7 +1088,7 @@ form h6 {
     }
 
     .contenedor_buscador {
-        padding: .8rem;
+        padding: .4rem .8rem .8rem;
     }
 
     .contenedor_buscador .plato_imagen {

@@ -1,7 +1,9 @@
 import { BsSearch } from "react-icons/bs";
 import ContenedorPlato from "./ContenedorPlato";
+import { useState } from "react";
 
 const BuscadorPlatos = () => {
+  const [input, setInput] = useState([]);
   return (
     <section className="contenedor_platos">
       <article className="d-flex flex-column align-items-center justify-content-center">
@@ -12,12 +14,24 @@ const BuscadorPlatos = () => {
           Descubre una experiencia culinaria única con nuestra herramienta de
           búsqueda
         </h3>
-        <div className="contenedor_input d-flex align-items-center">
-          <input type="text" placeholder="Sushi, lomito, tacos" />
-          <div className="icono_buscador d-flex align-items-center justify-content-center">
+        <div
+          className={`contenedor_input d-flex align-items-center ${
+            input.length !== 0 && "contenedor_radio"
+          }`}
+        >
+          <input
+            type="text"
+            placeholder="Sushi, lomito, tacos"
+            onChange={(e) => setInput(e.target.value)}
+          />
+          <div
+            className={`icono_buscador ${
+              input.length !== 0 ? "d-none" : "d-flex"
+            } align-items-center justify-content-center`}
+          >
             <BsSearch />
           </div>
-          <ContenedorPlato />
+          {input.length !== 0 && <ContenedorPlato />}
         </div>
         <div className="categorias d-flex">
           <p className="mb-0">Hamburguesa</p>
