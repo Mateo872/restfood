@@ -12,18 +12,19 @@ import InicioSesion from "./componentes/InicioSesion";
 
 function App() {
   return (
-      <>
-          <Header />
-          <main>
-              <BuscadorPlatos />
-              <QuienesSomos />
-              <Menu />
-              <ModalPago />
-              {/* <ContenedorCarrito /> */}
-              {/* <InicioSesion></InicioSesion> */}
-          </main>
+    <>
+      <Header />
+      <main>
+        <BuscadorPlatos />
+        <QuienesSomos />
+        <Menu />
+        {/* <ModalPago /> */}
+        {/* <ContenedorCarrito /> */}
+        {/* <InicioSesion></InicioSesion> */}
+      </main>
 
-          <Footer />
-      </>
-  );}
-  export default App
+      <Footer />
+    </>
+  );
+}
+export default App;

@@ -1,4 +1,5 @@
 import { BsSearch } from "react-icons/bs";
+import ContenedorPlato from "./ContenedorPlato";
 
 const BuscadorPlatos = () => {
   return (
@@ -16,6 +17,7 @@ const BuscadorPlatos = () => {
           <div className="icono_buscador d-flex align-items-center justify-content-center">
             <BsSearch />
           </div>
+          <ContenedorPlato />
         </div>
         <div className="categorias d-flex">
           <p className="mb-0">Hamburguesa</p>
