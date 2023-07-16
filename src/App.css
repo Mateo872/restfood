@@ -1064,6 +1064,18 @@ form h6 {
     .contenedor_slider {
         height: 14rem;
         left: 0;
+        padding-bottom: 1.2rem;
+        scroll-padding-top: 0;
+    }
+
+    .contenedor_slider::-webkit-scrollbar {
+        width: 7px;
+        border-radius: .2rem;
+    }
+
+    .contenedor_slider::-webkit-scrollbar-thumb {
+        background: #C7A17A;
+        border-radius: 2rem;
     }
 
     .contenedor_buscador {
