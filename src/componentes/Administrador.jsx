@@ -1,11 +1,10 @@
 import React from "react";
-import "./Administrador.css";
 import { Button } from "react-bootstrap";
 import { BsFillPlusSquareFill, BsCheckSquareFill } from "react-icons/bs";
-import ItemProducto from "../componentes/ItemProducto";
+import ItemProducto from "./ItemProducto";
 import Table from "react-bootstrap/Table";
-import ItemUsuario from "../componentes/ItemUsuario";
-import ItemPedidos from "../componentes/ItemPedidos";
+import ItemUsuario from "./ItemUsuario";
+import ItemPedidos from "./ItemPedidos";
 
 const Administrador = () => {
   return (
