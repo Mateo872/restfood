@@ -8,22 +8,22 @@ import Menu from "./componentes/comunes/Menu";
 import CrearEditarProducto from "./componentes/CrearEditarProducto";
 import ContenedorCarrito from "./componentes/ContenedorCarrito";
 import ModalPago from "./componentes/ModalPago";
+import InicioSesion from "./componentes/InicioSesion";
 
 function App() {
-    return (
-        <>
-            <Header />
-            <main>
-                <BuscadorPlatos />
-                <QuienesSomos />
-                <Menu />
-                <ModalPago />
-                {/* <ContenedorCarrito /> */}
-            </main>
+  return (
+      <>
+          <Header />
+          <main>
+              <BuscadorPlatos />
+              <QuienesSomos />
+              <Menu />
+              <ModalPago />
+              {/* <ContenedorCarrito /> */}
+              {/* <InicioSesion></InicioSesion> */}
+          </main>
 
-            <Footer />
-        </>
-    );
-}
-
-export default App;
+          <Footer />
+      </>
+  );}
+  export default App
