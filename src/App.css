@@ -280,7 +280,7 @@ HEAD .contenedor-quienes-somos {
     position: relative;
     /* z-index: 1; */
     padding: 0%;
-    
+
 }
 
 .img-quienes-somos {
@@ -647,6 +647,51 @@ form h6 {
     background-color: var(--color-primario);
 }
 
+.contenedor_slider {
+    width: 100%;
+    height: 12rem;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    top: 1.4rem;
+    z-index: 9;
+    background-color: var(--color-secundario);
+    border-radius: 0 0 .4rem .4rem;
+}
+
+.contenedor_platos .contenedor_radio {
+    border-radius: .2rem;
+}
+
+.contenedor_buscador {
+    background-color: var(--color-secundario);
+    padding: .6rem;
+    scroll-snap-align: start;
+    scroll-padding: 2rem;
+}
+
+.contenedor_buscador .plato_imagen {
+    width: 2rem;
+    height: 2rem;
+}
+
+.contenedor_buscador .plato_imagen img {
+    border-radius: .4rem;
+}
+
+.contenedor_buscador h6 {
+    width: 6rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: bold;
+    font-size: 0.6rem;
+}
+
+.contenedor_buscador h5 {
+    font-size: 0.8rem;
+    font-weight: 300;
+}
+
 @media (min-width:767px) {
     .contenedor_publicidad h6 {
         font-size: 0.6rem;
@@ -836,6 +881,15 @@ form h6 {
         font-size: 6rem;
     }
 
+    .contenedor_buscador h6 {
+        width: 6.5rem;
+    }
+
+    .contenedor_buscador .plato_imagen {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+
     form .check_mochila {
         font-size: 3rem;
         top: 74%;
@@ -1010,6 +1064,43 @@ form h6 {
     .modal_pago form div p {
         font-size: 0.5rem;
     }
+
+    .contenedor_slider {
+        height: 14rem;
+        top: 2rem;
+        left: 0;
+        padding-bottom: 1.2rem;
+        scroll-padding-top: 0;
+    }
+
+    .contenedor_platos .contenedor_radio {
+        border-radius: 1rem 1rem 0 0;
+    }
+
+    .contenedor_slider::-webkit-scrollbar {
+        width: 7px;
+        border-radius: .2rem;
+    }
+
+    .contenedor_slider::-webkit-scrollbar-thumb {
+        background: #C7A17A;
+        border-radius: 2rem;
+    }
+
+    .contenedor_buscador {
+        padding: .4rem .8rem .8rem;
+    }
+
+    .contenedor_buscador .plato_imagen {
+        width: 2.8rem;
+        height: 2.8rem;
+    }
+
+    .contenedor_buscador h6 {
+        width: 8.5rem;
+        font-size: 0.8rem;
+    }
+
 }
 
 .body-tarjeta {
@@ -1018,11 +1109,12 @@ form h6 {
 }
 
 /* Menu  */
-.menuConteiner{
+.menuConteiner {
     height: 1rem;
-    background-color:rgb(0, 0, 0);
-   z-index: -1;
+    background-color: rgb(0, 0, 0);
+    z-index: -1;
 }
+
 .menu-contenedor {
     width: 100%;
     background-image: url(/src/complementos/imagenes/img-menu-background.png);
@@ -1030,12 +1122,12 @@ form h6 {
     background-position: 50% 50%;
     position: relative;
     padding-top: 5rem;
-    
+
 }
 
 .menu-contenedor-body {
     color: var(--color-secundario);
-    
+
 }
 
 .menu-titulo {
