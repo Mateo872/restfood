@@ -5,12 +5,88 @@
         "entradas": [
           {
             "id": 1,
-            "nombre": "",
-            "imagen": "",
-            "precio": "",
-            "descripcion": "",
-            "stock": ""
+            "nombre": "Mini sándwiches de cuadril con mayonesa de chimichurri y pisco sour",
+            "imagen": "https://www.cucinare.tv/wp-content/uploads/2023/07/Sanguchitos-de-cuadril-Salezzi-596x384.jpg",
+            "precio": "700",
+            "descripcion": "Sanguchitos perfectos para compartir con amigos. Hechos con mini ciabattas, tienen mayonesa, fetas de queso y panceta, chimichurri, rucula, tomates cherrys.",
+            "stock": "1"
+          },
+          {
+            "id": 2,
+            "nombre": "Revuelto Gramajo",
+            "imagen": "https://www.cucinare.tv/wp-content/uploads/2023/03/Gramajo-Cucco-596x384.jpg",
+            "precio": "900",
+            "descripcion": "Una versión diferente de un clásico de la gastronomía porteña.Papas, pimientos rojos, verdes, queso sardo, jamón cocido y arvejas.",
+            "stock": "1"
+          },
+          {
+            "id": 3,
+            "nombre": "Croquetas de arroz",
+            "imagen": "https://www.cucinare.tv/wp-content/uploads/2020/02/Dise%C3%B1o-sin-t%C3%ADtulo-88-596x384.png",
+            "precio": "500",
+            "descripcion": "Tienen arroz amarillo, harina, queso parmesano, huevos de campos y son fritas.",
+            "stock": "1"
+          },
+          {
+            "id": 4,
+            "nombre": "Croquetas de hongos de Il Giardino Romagnoli",
+            "imagen": "https://www.cucinare.tv/wp-content/uploads/2022/08/Diseno-sin-titulo-2022-08-25T131312.420-596x384.png",
+            "precio": "1000",
+            "descripcion": "Una entrada diferente, hongos y setas, ajó y nuez moscada.",
+            "stock": "1"
+          },
+          {
+            "id": 5,
+            "nombre": "Papas full de Blossom",
+            "imagen": "https://www.cucinare.tv/wp-content/uploads/2022/08/Diseno-sin-titulo-2022-08-29T153147.114-596x384.png",
+            "precio": "1000",
+            "descripcion": "Papas medianas, peladas y cortadas en bastones, queso cheddar, ramas de cebolla de verdeo, panceta picada y un huevo a la plancha.",
+            "stock": "1"
+          },
+          {
+            "id": 6,
+            "nombre": "Arancini de 4 quesos",
+            "imagen": "https://www.cucinare.tv/wp-content/uploads/2020/04/Dise%C3%B1o-sin-t%C3%ADtulo-2020-04-06T225922.988-596x384.png",
+            "precio": "800",
+            "descripcion": "¡Un clásico italiano! Las tradicionales croquetas de arroz, parmesano, cebolla, limon, queso azul, queso brie, muzzarella y arroz carnaroli",
+            "stock": "1"
+          },
+          {
+            "id": 7,
+            "nombre": "Empanadas de jamón y queso",
+            "imagen": "https://www.cucinare.tv/wp-content/uploads/2020/01/Empanadas-de-jamon-y-queso-596x384.jpg",
+            "precio": "900",
+            "descripcion": "Riquisimas empanadas de queso, jamon y huevo. Una entrada simple y rica.",
+            "stock": "1"
+          },
+          {
+            "id": 8,
+            "nombre": "Carpaccio de lomo",
+            "imagen": "https://www.cucinare.tv/wp-content/uploads/2019/12/Dise%C3%B1o-sin-t%C3%ADtulo-7-4-596x384.png",
+            "precio": "7000",
+            "descripcion": "Lomo, aceite de oliva, jugo de limon y queso parmesano.",
+            "stock": "1"
+          },
+          {
+            "id": 9,
+            "nombre": "Souffle de queso",
+            "imagen": "https://www.cucinare.tv/wp-content/uploads/2020/06/Souffle-de-queso-596x384.jpg",
+            "precio": "1200",
+            "descripcion": "Souffle de esos bien inflados y cremosos.",
+            "stock": "1"
+          },
+          {
+            "id": 10,
+            "nombre": "Bastones de pan y queso",
+            "imagen": "https://www.cucinare.tv/wp-content/uploads/2020/03/Bastones-de-pan-y-queso-596x384.jpg",
+            "precio": "980",
+            "descripcion": "Pan de molde y queso derretido por todos lados.",
+            "stock": "1"
           }
+          
+          
+         
+         
         ],
         "bebidas": {
           "id": 1,
