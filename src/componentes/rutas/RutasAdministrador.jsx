@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Administrador from "../Administrador";
 import CrearEditarProducto from "../CrearEditarProducto";
+import ContenedorCarrito from "../ContenedorCarrito";
 
 const RutasAdministrador = () => {
     return (
@@ -8,6 +9,7 @@ const RutasAdministrador = () => {
             <Routes>
                 <Route exact path="/" element={<Administrador />}></Route>
                 <Route exact path="/crear" element={<CrearEditarProducto />}></Route>
+                <Route exact path="/carrito" element={<ContenedorCarrito />}></Route>
             </Routes>
         </>
     );
