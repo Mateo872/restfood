@@ -1,6 +1,6 @@
 import React from "react";
 import toretto from "../complementos/imagenes/toretto.jpeg";
-import { BsPauseCircleFill } from "react-icons/bs";
+import { BsPauseCircleFill, BsFillPlayCircleFill } from "react-icons/bs";
 
 const ItemUsuario = () => {
   return (
@@ -14,7 +14,8 @@ const ItemUsuario = () => {
       <td>Rolling</td>
       <td>Administrador</td>
       <td className="bg-transparent text-danger tdBtn">
-        <BsPauseCircleFill className="iconoPausar"></BsPauseCircleFill>
+        <BsPauseCircleFill className="iconoPausar me-2"></BsPauseCircleFill>
+        <BsFillPlayCircleFill className="iconoPausar text-warning b-none"></BsFillPlayCircleFill>
       </td>
     </tr>
   );

@@ -20,14 +20,88 @@
           "descripcion": "",
           "stock": ""
         },
-        "postres": {
-          "id": 1,
-          "nombre": "",
-          "imagen": "",
-          "precio": "",
-          "descripcion": "",
-          "stock": ""
-        },
+        "postres": [
+          {
+            "id": 1,
+            "nombre": "Tarta de Chocolate",
+            "imagen": "https://img.freepik.com/foto-gratis/alimento-chocolate-fondo-marron-panaderia_1203-6371.jpg?w=996&t=st=1689606565~exp=1689607165~hmac=890322f1e46ccd26186eb9c3fd7b181e85c2a28de30e2a79157c2a461d4531ae",
+            "precio": "$6.99",
+            "descripcion": "Una deliciosa tarta de chocolate con una base crujiente y un relleno suave y cremoso. Se sirve con una bola de helado de vainilla y salsa de chocolate caliente.",
+            "stock": "15"
+          },
+          {
+            "id": 2,
+            "nombre": "Cheesecake de Fresa",
+            "imagen": "https://img.freepik.com/fotos-premium/pastel-tres-leches-crema-batida-frambuesas-frescas-encima-pastel-america-latina-copiar-espacio_114420-2260.jpg?w=740",
+            "precio": "$7.99",
+            "descripcion": "Un cheesecake clásico con un toque de frescura de fresas. La base de galleta se combina con un suave relleno de queso crema y se remata con una capa de fresas frescas y salsa de frutos rojos.",
+            "stock": "12"
+          },
+          {
+            "id": 3,
+            "nombre": "Helado de Vainilla con Topping",
+            "imagen": "https://img.freepik.com/foto-gratis/cupcake-nata-delicioso_23-2147988565.jpg?w=740&t=st=1689608488~exp=1689609088~hmac=f344f9978d4270e5a2b8f53eac69bd3dae69b89ad7b6f30c3450394e2ac5a4b0",
+            "precio": "$4.99",
+            "descripcion": "Una generosa porción de helado de vainilla cremoso, coronado con una variedad de toppings a elección, como salsa de caramelo, nueces picadas, chips de chocolate y crema batida.",
+            "stock": "30"
+          },
+          {
+            "id": 4,
+            "nombre": "Crumble de Manzana",
+            "imagen": "https://img.freepik.com/foto-gratis/disparo-alto-angulo-tazon-avena-cereales-nueces-rodajas-manzana-sobre-mesa-madera_181624-45253.jpg?w=996&t=st=1689608547~exp=1689609147~hmac=baaa7e9f2bc900814558ce661e27cd8a02cae072c3fba759fc1a21720182cfc4",
+            "precio": "$8.99",
+            "descripcion": "Un crumble caliente de manzana con una capa crujiente de migas de avena y canela. Se sirve con una bola de helado de vainilla para crear el contraste perfecto entre lo crujiente y lo suave.",
+            "stock": "10"
+          },
+          {
+            "id": 5,
+            "nombre": "Crema Catalana",
+            "imagen": "https://img.freepik.com/fotos-premium/creme-brulee-postre-tradicional-frances-crema-vainilla-azucar-caramelizado-encima_266870-9678.jpg?w=740",
+            "precio": "$5.99",
+            "descripcion": "Un postre tradicional español similar a la crema brûlée. Una suave crema de vainilla con una capa de caramelo quemado en la parte superior. ¡El contraste de sabores y texturas lo convierte en un deleite irresistible!",
+            "stock": "20"
+          },
+          {
+            "id": 6,
+            "nombre": "Tiramisú",
+            "imagen": "https://img.freepik.com/fotos-premium/concepto-postre-sabroso-pastel-tiramisu-cerca_185193-77854.jpg?w=996",
+            "precio": "$7.99",
+            "descripcion": "Una clásica y deliciosa combinación de bizcochos de soletilla empapados en café, capas de crema de mascarpone y un toque de cacao en polvo espolvoreado. ¡Un postre italiano que nunca pasa de moda!",
+            "stock": "18"
+          },
+          {
+            "id": 7,
+            "nombre": "Pastel de Zanahoria",
+            "imagen": "https://www.freepik.es/foto-gratis/pastel-zanahoria-pascua-glaseado-sobre-fondo-azul_7721232.htm#query=Pastel%20de%20Zanahoria&position=5&from_view=search&track=ais",
+            "precio": "$6.99",
+            "descripcion": "Un pastel húmedo y esponjoso hecho con zanahorias ralladas, nueces y especias. Está cubierto con un glaseado de queso crema y decorado con zanahorias de azúcar. ¡Un clásico reconfortante!",
+            "stock": "14"
+          },
+          {
+            "id": 8,
+            "nombre": "Mousse de Chocolate",
+            "imagen": "https://img.freepik.com/foto-gratis/close-up-deliciosa-mousse-chocolate_23-2148405885.jpg?w=740&t=st=1689608992~exp=1689609592~hmac=1eb6a7bb949040adc006a399d06821da3a2335abd0c2bceb894fae7ddc9c4b5a",
+            "precio": "$6.99",
+            "descripcion": "Un mousse de chocolate sedoso y aireado, elaborado con chocolate negro de alta calidad. Se sirve en una copa decorada con virutas de chocolate y una hoja de menta fresca.",
+            "stock": "25"
+          },
+          {
+            "id": 9,
+            "nombre": "Crepes de Nutella y Plátano",
+            "imagen": "https://img.freepik.com/foto-gratis/crepes-chocolate_23-2148148771.jpg?w=740&t=st=1689609144~exp=1689609744~hmac=70ce81a588763ff70082dd56b3623583ae6e00add9b39d98a1ebb00a8ed0a71a",
+            "precio": "$8.99",
+            "descripcion": "Deliciosas crepes rellenas de Nutella y rodajas de plátano fresco. Se sirven dobladas y espolvoreadas con azúcar glas. ¡Un postre indulgente y lleno de sabor!",
+            "stock": "10"
+          },
+          {
+            "id": 10,
+            "nombre": "Frutas Frescas con Helado",
+            "imagen": "https://img.freepik.com/foto-gratis/primeros-helados-frutas_23-2148507951.jpg?w=826&t=st=1689609342~exp=1689609942~hmac=34c31d71fba433a2bb255a896f81621db21e0536b0f86394f72e31f76b6f0e92",
+            "precio": "$7.99",
+            "descripcion": "Una selección de frutas frescas de temporada, como fresas, kiwis, piñas y uvas, servidas con una bola de helado de su elección y decoradas con hojas de menta. Una opción refrescante y saludable.",
+            "stock": "30"
+          }
+        ],
         "bebidasAlcoholicas": {
           "id": 1,
           "nombre": "",

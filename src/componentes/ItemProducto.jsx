@@ -8,10 +8,10 @@ const ItemProducto = () => {
     <Card className="cardPproducto text-center">
       <Card.Img variant="top" className="cardImg" src={hamburguesa} />
       <Card.Title>Hamburguesa doble</Card.Title>
-      <Button variant="outline-success" className="m-1">
+      <Button variant="outline" className="btnEditarProducto m-1">
         Editar
       </Button>
-      <Button variant="success" className="m-1">
+      <Button className="btnEliminarProducto m-1">
         Eliminar
       </Button>
     </Card>
