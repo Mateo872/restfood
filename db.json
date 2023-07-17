@@ -1,20 +1,61 @@
 {
-  "posts": [
+  "platos": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "categorias": {
+        "entradas": [
+          {
+            "id": 1,
+            "nombre": "",
+            "imagen": "",
+            "precio": "",
+            "descripcion": "",
+            "stock": ""
+          }
+        ],
+        "bebidas": {
+          "id": 1,
+          "nombre": "",
+          "imagen": "",
+          "precio": "",
+          "descripcion": "",
+          "stock": ""
+        },
+        "postres": {
+          "id": 1,
+          "nombre": "",
+          "imagen": "",
+          "precio": "",
+          "descripcion": "",
+          "stock": ""
+        },
+        "bebidasAlcoholicas": {
+          "id": 1,
+          "nombre": "",
+          "imagen": "",
+          "precio": "",
+          "descripcion": "",
+          "stock": ""
+        },
+        "comidasVeganas": {
+          "id": 1,
+          "nombre": "",
+          "imagen": "",
+          "precio": "",
+          "descripcion": "",
+          "stock": ""
+        }
+      }
     }
   ],
-  "comments": [
+  "usuarios": [
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "nombre": "",
+      "email": "",
+      "imagen": "",
+      "contraseña": "",
+      "estado": "",
+      "rol": "",
+      "pedido": ""
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
-  
+  ]
 }
