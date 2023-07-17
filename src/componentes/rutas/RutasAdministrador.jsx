@@ -1,5 +1,13 @@
+import { Route, Routes } from "react-router-dom";
+
 const RutasAdministrador = () => {
-  return <div></div>;
+    return (
+        <>
+            <Routes>
+                <Route exact path="/" element></Route>
+            </Routes>
+        </>
+    );
 };
 
 export default RutasAdministrador;
