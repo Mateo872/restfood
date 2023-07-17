@@ -36,14 +36,88 @@
           "descripcion": "",
           "stock": ""
         },
-        "comidasVeganas": {
-          "id": 1,
-          "nombre": "",
-          "imagen": "",
-          "precio": "",
-          "descripcion": "",
-          "stock": ""
-        }
+        "comidasVeganas": [
+          {
+            "id": 1,
+            "nombre": "Delicia Vegana",
+            "imagen": "https://pixabay.com/photos/falafel-deep-fried-ball-patty-89098/",
+            "precio": "$12.99",
+            "descripcion": "Un sabroso plato de falafel casero, servido sobre una cama de espinacas frescas, acompañado de hummus, salsa de tahini y pan de pita integral. ¡Una opción vegana saludable y deliciosa!",
+            "stock": "30"
+          },
+          {
+            "id": 2,
+            "nombre": "Bowl Verde",
+            "imagen": "https://www.foodiesfeed.com/wp-content/uploads/2023/05/hawaiian-poke-bowl.jpg",
+            "precio": "$11.99",
+            "descripcion": "Un tazón abundante de arroz integral, mezclado con vegetales salteados, frijoles negros, aguacate en rodajas y aderezo de cilantro-lima. Este bowl vegano te dejará satisfecho y lleno de energía.",
+            "stock": "20"
+          },
+          {
+            "id": 3,
+            "nombre": "Bocadillos de Tofu a la Barbacoa",
+            "imagen": "https://pixabay.com/photos/tofu-plum-vegan-game-dish-1786318/",
+            "precio": "$8.99",
+            "descripcion": "Tofu marinado en una salsa barbacoa casera, asado a la parrilla y servido en un panecillo integral. Se acompaña de rodajas de pepinillos encurtidos, cebolla morada y una guarnición de patatas fritas caseras. Un plato vegano reconfortante y delicioso.",
+            "stock": "6"
+          },
+          {
+            "id": 4,
+            "nombre": "Hamburguesa vegana",
+            "imagen": "https://www.foodiesfeed.com/wp-content/uploads/2023/03/juicy-vegan-burger-with-sweet-and-sour-sauce.jpg",
+            "precio": "$13.99",
+            "descripcion": "Una hamburguesa jugosa y sabrosa hecha a base de lentejas, champiñones y cebolla caramelizada. Se sirve en un panecillo integral, acompañada de rodajas de tomate, lechuga fresca y una salsa especial vegana. ¡Una opción deliciosa para los amantes de las hamburguesas!",
+            "stock": "80"
+          },
+          {
+            "id": 5,
+            "nombre": "Ensalada de Quinoa",
+            "imagen": "https://www.foodiesfeed.com/wp-content/uploads/2023/04/quinoa-avocado-salad.jpg",
+            "precio": "$10.99",
+            "descripcion": "Una ensalada refrescante y nutritiva que combina quinoa cocida, pepino en cubitos, tomates cherry, cebolla roja, perejil fresco y un aderezo de limón y aceite de oliva. Esta ensalada vegana es perfecta como plato principal o como acompañante ligero.",
+            "stock": "30"
+          },
+          {
+            "id": 6,
+            "nombre": "Tacos de Tofu",
+            "imagen": "https://www.foodiesfeed.com/wp-content/uploads/2020/09/tacos-with-pulled-pork-fresh-vegetables-and-cream.jpg",
+            "precio": "$9.99",
+            "descripcion": "ortillas de maíz suaves rellenas de tofu marinado y salteado con pimientos, cebolla y especias. Se sirven con guacamole casero, salsa picante y una generosa porción de frijoles negros. ¡Una opción sabrosa y satisfactoria!",
+            "stock": "35"
+          },
+          {
+            "id": 7,
+            "nombre": "Curry de Garbanzos",
+            "imagen": "https://www.foodiesfeed.com/wp-content/uploads/2023/05/chickpea-coconut-curry.jpg",
+            "precio": "$14.99",
+            "descripcion": "Un delicioso curry vegano que combina garbanzos suaves y cremosos con una mezcla de especias exóticas, leche de coco y tomates frescos. Se sirve con arroz basmati y pan naan recién horneado.",
+            "stock": "22"
+          },
+          {
+            "id": 8,
+            "nombre": "Pasta Primavera",
+            "imagen": "https://images.unsplash.com/photo-1598866594230-a7c12756260f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&",
+            "precio": "$12.99",
+            "descripcion": "Espaguetis al dente con una selección de vegetales de temporada salteados, como espárragos, zanahorias, calabacines y champiñones. Todo ello mezclado con una salsa de tomate fresca y hierbas aromáticas. Un plato vegano clásico que nunca defrauda.",
+            "stock": "24"
+          },
+          {
+            "id": 9,
+            "nombre": "Sushi Vegano",
+            "imagen": "https://images.unsplash.com/photo-1602554172650-043a2de54271?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto",
+            "precio": "$15.99",
+            "descripcion": "Una selección de rollos de sushi vegano, incluyendo opciones como rollos de aguacate, pepino, zanahoria y mango. Se sirven con salsa de soja baja en sodio y jengibre encurtido. Un festín de sabores y texturas para los amantes del sushi.",
+            "stock": "32"
+          },
+          {
+            "id": 10,
+            "nombre": "Berenjenas Rellenas",
+            "imagen": "https://images.unsplash.com/photo-1621852003739-b54d49ff3431?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto",
+            "precio": "$13.99",
+            "descripcion": "Berenjenas asadas y rellenas con una mezcla de quinoa, tomate, cebolla, especias y hierbas frescas. Se gratinan al horno con queso vegano y se sirven con una salsa de tomate casera. Una opción satisfactoria y llena de sabor.",
+            "stock": "35"
+          }
+        ]
       }
     }
   ],
