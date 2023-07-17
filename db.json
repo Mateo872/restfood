@@ -5,12 +5,24 @@
         "entradas": [
           {
             "id": 1,
+            "nombre": "Mini sándwiches de cuadril con mayonesa de chimichurri y pisco sour",
+            "imagen": "https://www.cucinare.tv/wp-content/uploads/2023/07/Sanguchitos-de-cuadril-Salezzi-596x384.jpg",
+            "precio": "700",
+            "descripcion": "Sanguchitos perfectos para compartir con amigos. Hechos con mini ciabattas, tienen mayonesa, fetas de queso y panceta, chimichurri, rucula, tomates cherrys.",
+            "stock": "1"
+          },
+          {
+            "id": 1,
             "nombre": "",
             "imagen": "",
             "precio": "",
             "descripcion": "",
             "stock": ""
           }
+          
+          
+         
+         
         ],
         "bebidas": {
           "id": 1,
