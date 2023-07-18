@@ -23,10 +23,10 @@ const Administrador = () => {
                     <div className="d-flex justify-content-between mb-5">
                         <h2>Productos</h2>
                         <div>
-                            <Button variant="success" className="btnAgregar me-1">
+                            <Button className="btnAgregar me-1">
                                 Agregar
                             </Button>
-                            <Button variant="warning" className="btnSeleccionar">
+                            <Button variant="outline-success" className="btnSeleccionar">
                                 Seleccionar
                             </Button>
                             <BsFillPlusSquareFill className="iconoAgregar me-2"></BsFillPlusSquareFill>
