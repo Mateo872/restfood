@@ -12,25 +12,35 @@ import RutasProtegidas from "./componentes/rutas/RutasProtegidas";
 import RutasAdministrador from "./componentes/rutas/RutasAdministrador";
 
 function App() {
-    return (
-        <BrowserRouter>
-            <Header />
-            <Routes>
-                <Route exact path="/" element={<Inicio />}></Route>
-                <Route exact path="/inicio" element={<InicioSesion />}></Route>
-                <Route exact path="/detalle/:id" element={<DetalleProducto />}></Route>
-                <Route
-                    exact
-                    path="/administrador/*"
-                    element={
-                        <RutasProtegidas>
-                            <RutasAdministrador></RutasAdministrador>
-                        </RutasProtegidas>
-                    }
-                ></Route>
-            </Routes>
-            <Footer />
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route exact path="/" element={<Inicio />}></Route>
+        <Route exact path="/usuario/iniciar" element={<InicioSesion />}></Route>
+        <Route
+          exact
+          path="/usuario/registrar"
+          element={<InicioSesion />}
+        ></Route>
+        <Route
+          exact
+          path="producto/detalle/:id"
+          element={<DetalleProducto />}
+        ></Route>
+        <Route
+          exact
+          path="/administrador/*"
+          element={
+            <RutasProtegidas>
+              <RutasAdministrador></RutasAdministrador>
+            </RutasProtegidas>
+          }
+        ></Route>
+        <Route path="*" element={<h1 className="mt-5">Error 404</h1>} />
+      </Routes>
+      <Footer />
+    </BrowserRouter>
+  );
 }
 export default App;
