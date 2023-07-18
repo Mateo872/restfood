@@ -37,7 +37,11 @@ const Header = () => {
 
   return (
     <header>
-      <div className="contenedor_publicidad">
+      <div
+        className={`contenedor_publicidad ${
+          location.pathname === "/" ? "d-block" : "d-none"
+        }`}
+      >
         <h6 className="mb-0 text-center d-flex align-items-center gap-4 justify-content-center">
           <span className="slider">ENVÍOS GRATIS</span>
         </h6>
@@ -45,20 +49,23 @@ const Header = () => {
       <nav
         className={`d-flex align-items-center justify-content-between w-100 ${
           scroll ? "mt-0" : "margen"
-        }`}
-        // style={{
-        //   backgroundColor:
-        //     location.pathname === "/" && !scroll ? "transparent" : "#C7A17A",
-        // }}
+        } ${location.pathname !== "/" && "mt-0"}`}
         style={{
-          backgroundColor: scroll ? "#C7A17A" : "transparent",
+          backgroundColor: scroll
+            ? "#C7A17A"
+            : location.pathname !== "/"
+            ? "#C7A17A"
+            : "transparent",
         }}
       >
         <a href="#" className="nav_marca">
           REST
           <span
             style={{
-              color: scroll ? "#1e1e1e" : "#C7A17A",
+              color:
+                scroll || (!scroll && location.pathname !== "/")
+                  ? "#1e1e1e"
+                  : "#C7A17A",
             }}
           >
             FOOD
