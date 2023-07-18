@@ -28,14 +28,89 @@
           "descripcion": "",
           "stock": ""
         },
-        "bebidasAlcoholicas": {
+        "bebidasAlcoholicas": [
+        {
           "id": 1,
-          "nombre": "",
-          "imagen": "",
-          "precio": "",
-          "descripcion": "",
-          "stock": ""
+          "nombre": "Margarita",
+          "imagen": "https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg",
+          "precio": "$5,50",
+          "descripcion": "La margarita es un cóctel compuesto por tequila, triple seco y jugo de lima o limón. A menudo se sirve con sal en el borde de la copa. La bebida se sirve sacudiendo el hielo (con hielo), mezclado con hielo (margarita frozen), o sin hielo (hacia arriba).",
+          "stock": "50"
         },
+        {
+          "id": 2,
+          "nombre": "Campari ",
+          "imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Bottle_of_Campari_%28United_States%29.jpg/200px-Bottle_of_Campari_%28United_States%29.jpg",
+          "precio": "$15,50",
+          "descripcion": "Campari es una bebida alcohólica de grado medio, tonificante y refrescante, calificable como aperitivo, de característico color rojo y sabor amargo. La marca es propiedad del Grupo Campari. En España y parte del mundo de habla española se le conoce con el nombre de bíter. Los bíteres son elaboraciones que se usan para aromatizar los cócteles, siendo el amargo de Angostura uno de los más conocidos y que se compra ya preparado.",
+          "stock": "22"
+        },
+        {
+          "id": 3,
+          "nombre": "Fernet",
+          "imagen": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Ferneses.jpg",
+          "precio": "$18,50",
+          "descripcion": "El fernet es una bebida alcohólica de la familia de los amaros italianos elaborada a partir de la maceración de varios tipos de hierbas (mirra, ruibarbo, manzanilla, cardamomo, orégano y azafrán, entre otras) en alcohol obtenido de la fermentación de la vid. Dependiendo del productor, la maceración es posteriormente filtrada y reposada en toneles de roble durante un período variable. Posee un color oscuro, un aroma intenso y su graduación alcohólica está comprendida entre 39 y 45 grados, según la marca.",
+          "stock": "35"
+        },
+        {
+          "id": 4,
+          "nombre": "Vino de coleccion",
+          "imagen": "https://cdn.pixabay.com/photo/2017/06/26/12/49/red-wine-2443699_640.jpg",
+          "precio": "$250",
+          "descripcion": "Nuestro vino tinto es una selección excepcional que deleitará tus sentidos. Con su profundo color rojo rubí y su complejidad de sabores, este vino es una elección perfecta para acompañar tus platos en este menú especial.Este vino tinto tiene un cuerpo medio a pleno, con una textura sedosa y aterciopelada. Su suavidad en boca lo hace muy agradable de beber y disfrutar a lo largo de la comida.",
+          "stock": "10"
+        },
+        {
+          "id": 5,
+          "nombre": "Champagne",
+          "imagen": "https://cdn.pixabay.com/photo/2016/07/06/09/47/champagne-1500249_640.jpg",
+          "precio": "$200",
+          "descripcion": "El champán o champaña (en francés, champagne) es un tipo de vino espumoso elaborado conforme al método champenoise en la región de Champaña, en el noreste de Francia. Está protegido dentro de la Unión Europea como una denominación de origen protegida. El champán es un vino blanco o rosado espumoso elaborado con una mezcla (coupage o ensamblaje) entre las uvas chardonnay, meunier, pinot noir, pinot gris, pinot blanc, arbanne y petit meslier.",
+          "stock": "54"
+        },
+        {
+          "id": 6,
+          "nombre": "Cerveza Pinta",
+          "imagen": "https://cdn.pixabay.com/photo/2017/03/22/18/37/beer-2166004_640.jpg",
+          "precio": "$120",
+          "descripcion": "Sumérgete en el rico sabor de nuestra cerveza pinta. Esta cerveza artesanal de estilo inglés te deleitará con su color dorado brillante y su espuma cremosa. Cada sorbo te transportará a un viaje lleno de notas aromáticas y sabores equilibrados.Nuestra cerveza pinta se presenta con un cautivador color dorado, reflejando la calidad de sus ingredientes cuidadosamente seleccionados. Coronada por una generosa capa de espuma blanca, que persiste durante toda la degustación.",
+          "stock": "23"
+        },
+        {
+          "id": 7,
+          "nombre": "Cerveza Honey",
+          "imagen": "https://cdn.pixabay.com/photo/2017/05/11/21/50/beer-2305432_640.jpg",
+          "precio": "$120",
+          "descripcion": "Sumérgete en el dulce y dorado néctar de nuestra cerveza Honey. Esta cerveza artesanal combina la suavidad de la miel con la frescura de una cerveza dorada, creando una experiencia única y deliciosa. Cada sorbo te transportará a un mundo de sabores equilibrados y refrescantes.",
+          "stock": "42"
+        },
+        {
+          "id": 8,
+          "nombre": "Cerveza Lager",
+          "imagen": "https://cdn.pixabay.com/photo/2017/06/20/22/43/beer-2425247_640.jpg",
+          "precio": "$110",
+          "descripcion": "Disfruta de la refrescante y ligera experiencia de nuestra cerveza Lager. Con su color dorado brillante y su sabor suave y equilibrado, esta cerveza es perfecta para saciar la sed en cualquier momento. Cada sorbo te deleitará con su frescura y su carácter limpio, convirtiéndola en la compañera ideal para cualquier ocasión.",
+          "stock": "21"
+        },
+        {
+          "id": 9,
+          "nombre": "Vodka",
+          "imagen": "https://media.istockphoto.com/id/909199856/es/foto/vodka-en-vasos-de-chupito-sobre-fondo-de-madera-r%C3%BAstico.jpg?b=1&s=170667a&w=0&k=20&c=E4TqoFQ-256Of_V6uNq2WPMnBoEa_h23PzJqGrUvbJk=",
+          "precio": "$200",
+          "descripcion": "El vodka es un destilado transparente y neutro que se ha convertido en una bebida icónica en todo el mundo. Nuestro vodka captura la esencia de la pureza y la claridad. Con su sabor suave y su carácter versátil, es la elección perfecta para aquellos que buscan una experiencia refinada.",
+          "stock": "8"
+        },
+        {
+          "id": 10,
+          "nombre": "Gin Tonic",
+          "imagen": "https://cdn.pixabay.com/photo/2019/09/23/20/55/gin-and-tonic-4499713_640.jpg",
+          "precio": "$200",
+          "descripcion": "El Gin Tonic es un clásico cóctel que combina la elegancia del gin con la frescura y efervescencia de la tónica. Nuestro Gin Tonic es una experiencia sensorial única que te transportará a un mundo de sabores vibrantes y equilibrados.",
+          "stock": "10"
+        }
+        
+        ],
         "comidasVeganas": [
           {
             "id": 1,
