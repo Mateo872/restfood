@@ -10,6 +10,7 @@ import InicioSesion from "./componentes/InicioSesion";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import RutasProtegidas from "./componentes/rutas/RutasProtegidas";
 import RutasAdministrador from "./componentes/rutas/RutasAdministrador";
+import ContenedorCarrito from "./componentes/ContenedorCarrito";
 
 function App() {
   return (
@@ -37,6 +38,15 @@ function App() {
             </RutasProtegidas>
           }
         ></Route>
+        <Route
+          exact
+          path="/usuario/carrito"
+          element={<ContenedorCarrito />}
+        ></Route>
+        <Route
+          path="/restfood/nosotros"
+          element={<h1 className="mt-5">Nosotros</h1>}
+        />
         <Route path="*" element={<h1 className="mt-5">Error 404</h1>} />
       </Routes>
       <Footer />

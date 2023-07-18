@@ -4,15 +4,23 @@ import CrearEditarProducto from "../CrearEditarProducto";
 import ContenedorCarrito from "../ContenedorCarrito";
 
 const RutasAdministrador = () => {
-    return (
-        <>
-            <Routes>
-                <Route exact path="/" element={<Administrador />}></Route>
-                <Route exact path="/crear" element={<CrearEditarProducto />}></Route>
-                <Route exact path="/carrito" element={<ContenedorCarrito />}></Route>
-            </Routes>
-        </>
-    );
+  return (
+    <>
+      <Routes>
+        <Route exact path="/" element={<Administrador />}></Route>
+        <Route
+          exact
+          path="/producto/editar"
+          element={<CrearEditarProducto />}
+        ></Route>
+        <Route
+          exact
+          path="/producto/crear"
+          element={<CrearEditarProducto />}
+        ></Route>
+      </Routes>
+    </>
+  );
 };
 
 export default RutasAdministrador;

@@ -2,8 +2,6 @@ import React from "react";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import { AiTwotoneHourglass } from "react-icons/ai";
 
-
-
 const ItemPedidos = () => {
   return (
     <tr>

@@ -113,7 +113,7 @@ const Header = () => {
               </Link>
             </li>
             <li className="d-md-none">
-              <Link to={"/usuario/iniciar"} className="menu_link">
+              <Link to={"/usuario/registrar"} className="menu_link">
                 Registrarse
               </Link>
             </li>
