@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
     <>
-      <footer className="mt-auto">
+      <footer className="mt-auto" id="footer">
         <div className="container d-flex justify-content-center">
           <div className="row">
             <div className="col-md-4 text-center text-md-start">

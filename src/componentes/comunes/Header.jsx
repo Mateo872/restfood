@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { BiMenu } from "react-icons/bi";
 import { BsX } from "react-icons/bs";
-// import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {
   const menuCapaRef = useRef(null);
   const menuRef = useRef(null);
-  // const location = useLocation();
+  const location = useLocation();
   const [scroll, setScroll] = useState(false);
 
   const manejarScroll = () => {
@@ -58,7 +58,7 @@ const Header = () => {
             : "transparent",
         }}
       >
-        <a href="#" className="nav_marca">
+        <Link to={"/"} className="nav_marca">
           REST
           <span
             style={{
@@ -70,7 +70,7 @@ const Header = () => {
           >
             FOOD
           </span>
-        </a>
+        </Link>
         <div
           className="menu_capa"
           ref={menuCapaRef}
@@ -90,44 +90,47 @@ const Header = () => {
               <BsX />
             </div>
             <li>
-              <a className="menu_link" href="#">
+              <a
+                href="#productos"
+                className={`${location.pathname !== "/" && "d-none"} menu_link`}
+              >
                 Productos
               </a>
             </li>
             <li>
-              <a className="menu_link" href="#">
+              <Link to={"/restfood/nosotros"} className="menu_link">
                 Nosotros
-              </a>
+              </Link>
             </li>
             <li>
-              <a className="menu_link" href="#">
+              <a href="#footer" className="menu_link">
                 Contacto
               </a>
             </li>
             <li className="d-md-none">
-              <a className="menu_link " href="#">
+              <Link to={"/usuario/iniciar"} className="menu_link ">
                 Iniciar
-              </a>
+              </Link>
             </li>
             <li className="d-md-none">
-              <a className="menu_link" href="#">
+              <Link to={"/usuario/iniciar"} className="menu_link">
                 Registrarse
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
         <BiMenu onClick={menuVisible} className="d-md-none" />
         <div className="d-none d-md-flex align-items-center gap-1">
           <li>
-            <a className="menu_link" href="#">
+            <Link to={"/usuario/iniciar"} className="menu_link">
               Iniciar
-            </a>
+            </Link>
           </li>
           <span style={{ color: "#fff" }}>|</span>
           <li>
-            <a className="menu_link" href="#">
+            <Link to={"/usuario/iniciar"} className="menu_link">
               Registrarse
-            </a>
+            </Link>
           </li>
         </div>
       </nav>
