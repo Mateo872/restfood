@@ -10,6 +10,7 @@ import InicioSesion from "./componentes/InicioSesion";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import RutasProtegidas from "./componentes/rutas/RutasProtegidas";
 import RutasAdministrador from "./componentes/rutas/RutasAdministrador";
+import ContenedorCarrito from "./componentes/ContenedorCarrito";
 
 function App() {
   return (
