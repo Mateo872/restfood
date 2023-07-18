@@ -11,9 +11,7 @@ const ItemProducto = () => {
       <Button variant="outline" className="btnEditarProducto m-1">
         Editar
       </Button>
-      <Button className="btnEliminarProducto m-1">
-        Eliminar
-      </Button>
+      <Button className="btnEliminarProducto m-1">Eliminar</Button>
     </Card>
   );
 };

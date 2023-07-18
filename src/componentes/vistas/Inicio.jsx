@@ -4,13 +4,13 @@ import QuienesSomos from "../comunes/QuienesSomos";
 import Menu from "../comunes/Menu";
 
 const Inicio = () => {
-    return (
-        <main>
-            <BuscadorPlatos />
-            <QuienesSomos />
-            <Menu />
-        </main>
-    );
+  return (
+    <main>
+      <BuscadorPlatos />
+      <QuienesSomos />
+      <Menu />
+    </main>
+  );
 };
 
 export default Inicio;

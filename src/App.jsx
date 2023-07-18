@@ -37,6 +37,15 @@ function App() {
             </RutasProtegidas>
           }
         ></Route>
+        <Route
+          exact
+          path="/usuario/carrito"
+          element={<ContenedorCarrito />}
+        ></Route>
+        <Route
+          path="/restfood/nosotros"
+          element={<h1 className="mt-5">Nosotros</h1>}
+        />
         <Route path="*" element={<h1 className="mt-5">Error 404</h1>} />
       </Routes>
       <Footer />
