@@ -14,7 +14,6 @@ const Menu = () => {
 
     const onSubmit = (prod) => {
         console.log(prod);
-        reset();
     };
     return (
         <>
@@ -22,9 +21,14 @@ const Menu = () => {
             <section className="menu-contenedor" id="productos">
                 <Container className="menu-contenedor-body">
                     <h2 className="text-white text-center menu-titulo mb-5">Menu</h2>
-                    <div className="d-flex justify-content-between">
-                        <p className="fs-3">Busca tus productos</p>
-                        <Form className="d-flex" onSubmit={handleSubmit(onSubmit)}>
+                    <div className="d-flex flex-column flex-md-row flex-lg-row justify-content-between">
+                        <p className="fs-3 col col-lg-6 text-center text-lg-start  mb-5 ">
+                            Busca tus productos
+                        </p>
+                        <Form
+                            className="d-flex col col-lg-6 justify-content-lg-end justify-content-center align-self-center"
+                            onSubmit={handleSubmit(onSubmit)}
+                        >
                             <Form.Group className="">
                                 <Form.Control
                                     type="text"
@@ -33,7 +37,7 @@ const Menu = () => {
                                         required:
                                             "Este dato es requerido para poder buscar",
                                         minLength: {
-                                            value: 6,
+                                            value: 2,
                                             message:
                                                 "La busqueda debe tener al menos 2 caracteres",
                                         },
@@ -48,8 +52,8 @@ const Menu = () => {
                                     {errors.producto?.message}
                                 </Form.Text>
                             </Form.Group>
-                            <Button type="submit">
-                                <BsHandIndexThumbFill size={28} className="boton-menu" />
+                            <Button type="submit" className="boton-menu">
+                                <BsHandIndexThumbFill size={28} />
                             </Button>
                         </Form>
                     </div>
