@@ -432,6 +432,17 @@ footer h3 {
 .container-menu-card {
   margin-top: 12rem;
 }
+.boton-menu {
+  position: relative;
+ margin-top: 0;
+  border: none;
+  background: transparent;
+  margin-left: 1rem;
+}
+.boton-menu:hover {
+  background: var(--color-primario);
+  
+}
 
 .modal_overlay {
   position: fixed;
