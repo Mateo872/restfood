@@ -1,27 +1,19 @@
-import { useEffect, useState } from "react";
 import PlatoItem from "./PlatoItem";
-import { obtenerPlatos } from "./ayudas/consultas";
 
-const ContenedorPlato = () => {
-  const [platos, setPlatos] = useState([]);
-  // const []
-
-  useEffect(() => {
-    obtenerPlatos().then((res) => {
-      setPlatos(res[0].categorias);
-    });
-  }, []);
-
+const ContenedorPlato = ({ platosFiltrados }) => {
   return (
-    <div className="contenedor_slider  position-absolute">
+    <div
+      className={`contenedor_slider position-absolute ${
+        platosFiltrados.length > 4 && "altura_buscador"
+      }`}
+      style={{ height: platosFiltrados.length < 4 && "auto" }}
+    >
       <div className="contenedor_buscador d-flex flex-column justify-content-between gap-2">
-        <PlatoItem />
-        <PlatoItem />
-        <PlatoItem />
-        <PlatoItem />
-        <PlatoItem />
-        <PlatoItem />
-        <PlatoItem />
+        {platosFiltrados.length > 0 ? (
+          <PlatoItem platosFiltrados={platosFiltrados} />
+        ) : (
+          <p className="mensaje_plato mb-0">No hay platos disponibles</p>
+        )}
       </div>
     </div>
   );
