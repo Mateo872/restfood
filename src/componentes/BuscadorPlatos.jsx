@@ -7,6 +7,7 @@ const BuscadorPlatos = () => {
   const [input, setInput] = useState("");
   const [platos, setPlatos] = useState([]);
   const [mostrarSlider, setMostrarSlider] = useState(false);
+  const [mostrarSpinner, setMostrarSpinner] = useState(false);
 
   useEffect(() => {
     obtenerPlatos().then((res) => {
@@ -32,7 +33,15 @@ const BuscadorPlatos = () => {
 
   const manejoBuscador = (e) => {
     setInput(e.target.value);
+    spinner();
     setMostrarSlider(true);
+  };
+
+  const spinner = () => {
+    setMostrarSpinner(true);
+    setTimeout(() => {
+      setMostrarSpinner(false);
+    }, 1000);
   };
 
   const platosFiltrados = platos.filter((plato) =>
@@ -71,7 +80,10 @@ const BuscadorPlatos = () => {
             <BsSearch />
           </div>
           {input.length !== 0 && mostrarSlider && (
-            <ContenedorPlato platosFiltrados={platosFiltrados} />
+            <ContenedorPlato
+              platosFiltrados={platosFiltrados}
+              mostrarSpinner={mostrarSpinner}
+            />
           )}
         </div>
       </article>
