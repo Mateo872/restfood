@@ -18,6 +18,7 @@ const BuscadorPlatos = () => {
         ...res[0].categorias.comidasVeganas,
       ];
       setPlatos(todasCategorias);
+      console.log(res[0].categorias);
     });
   }, []);
 
@@ -66,12 +67,6 @@ const BuscadorPlatos = () => {
           {input.length !== 0 && mostrarSlider && (
             <ContenedorPlato platosFiltrados={platosFiltrados} />
           )}
-        </div>
-        <div className="categorias d-flex">
-          <p className="mb-0">Hamburguesa</p>
-          <p className="mb-0">Pollo</p>
-          <p className="mb-0">Hamburguesa</p>
-          <p className="mb-0">Pollo</p>
         </div>
       </article>
     </section>
