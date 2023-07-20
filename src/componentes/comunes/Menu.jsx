@@ -37,17 +37,6 @@ const Menu = () => {
 
     const buscarProductos = (productoBuscado) => {
         console.log(productoBuscado);
-        // if (!producto || !termino) {
-        //     // Si producto o termino no tienen valor, no realizar la búsqueda
-        //     console.log("no hay datos");
-        //     setResultados([]);
-        //     return;
-        // }
-        // const resultadosFiltrados = producto.filter((prod) =>
-        //     prod.nombre.includes(productoBuscado)
-        // );
-        // setResultados(resultadosFiltrados);
-        // console.log(resultados);
     };
 
     return (
