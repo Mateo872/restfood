@@ -1,9 +1,35 @@
 import { BsSearch } from "react-icons/bs";
 import ContenedorPlato from "./ContenedorPlato";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { obtenerPlatos } from "./ayudas/consultas";
 
 const BuscadorPlatos = () => {
-  const [input, setInput] = useState([]);
+  const [input, setInput] = useState("");
+  const [platos, setPlatos] = useState([]);
+  const [mostrarSlider, setMostrarSlider] = useState(false);
+
+  useEffect(() => {
+    obtenerPlatos().then((res) => {
+      const todasCategorias = [
+        ...res[0].categorias.entradas,
+        ...res[0].categorias.bebidas,
+        ...res[0].categorias.postres,
+        ...res[0].categorias.bebidasAlcoholicas,
+        ...res[0].categorias.comidasVeganas,
+      ];
+      setPlatos(todasCategorias);
+    });
+  }, []);
+
+  const manejoBuscador = (e) => {
+    setInput(e.target.value);
+    setMostrarSlider(true);
+  };
+
+  const platosFiltrados = platos.filter((plato) =>
+    plato.nombre.toLowerCase().includes(input.toLowerCase())
+  );
+
   return (
     <section className="contenedor_platos">
       <article className="d-flex flex-column align-items-center justify-content-center">
@@ -16,14 +42,19 @@ const BuscadorPlatos = () => {
         </h3>
         <div
           className={`contenedor_input d-flex align-items-center ${
-            input.length !== 0 && "contenedor_radio"
+            input.length !== 0 && mostrarSlider && "contenedor_radio"
           }`}
         >
           <input
             type="text"
             placeholder="Sushi, lomito, tacos"
-            onChange={(e) => setInput(e.target.value)}
-            className={`${input.length !== 0 && "w-100"}`}
+            onChange={manejoBuscador}
+            value={input}
+            onBlur={() => {
+              setMostrarSlider(false);
+              setInput("");
+            }}
+            className={`${input.length !== 0 && mostrarSlider && "w-100"}`}
           />
           <div
             className={`icono_buscador ${
@@ -32,7 +63,9 @@ const BuscadorPlatos = () => {
           >
             <BsSearch />
           </div>
-          {input.length !== 0 && <ContenedorPlato />}
+          {input.length !== 0 && mostrarSlider && (
+            <ContenedorPlato platosFiltrados={platosFiltrados} />
+          )}
         </div>
         <div className="categorias d-flex">
           <p className="mb-0">Hamburguesa</p>

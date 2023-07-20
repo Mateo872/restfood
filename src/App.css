@@ -432,16 +432,18 @@ footer h3 {
 .container-menu-card {
   margin-top: 12rem;
 }
+
 .boton-menu {
   position: relative;
- margin-top: 0;
+  margin-top: 0;
   border: none;
   background: transparent;
   margin-left: 1rem;
 }
+
 .boton-menu:hover {
   background: var(--color-primario);
-  
+
 }
 
 .modal_overlay {
@@ -651,7 +653,6 @@ form h6 {
 
 .contenedor_slider {
   width: 100%;
-  height: 8rem;
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
   top: 1.4rem;
@@ -659,6 +660,10 @@ form h6 {
   background-color: var(--color-secundario);
   border-radius: 0 0 1rem 1rem;
   animation: aparecer 0.2s ease-in-out;
+}
+
+.altura_buscador {
+  height: 9rem;
 }
 
 .contenedor_platos .contenedor_radio {
@@ -698,12 +703,23 @@ form h6 {
   text-overflow: ellipsis;
   white-space: nowrap;
   font-weight: bold;
-  font-size: 0.6rem;
+  font-size: 0.5rem;
 }
 
 .contenedor_buscador h5 {
-  font-size: 0.8rem;
+  font-size: 0.6rem;
   font-weight: 300;
+}
+
+.mensaje_plato {
+  text-align: center;
+  font-size: 0.8rem;
+  opacity: .7;
+}
+
+.contenedor_buscador a {
+  text-decoration: none;
+  color: var(--color-terciario);
 }
 
 @media (min-width: 767px) {
@@ -894,8 +910,13 @@ form h6 {
     font-size: 6rem;
   }
 
+  .contenedor_buscador h5 {
+    font-size: 0.7rem;
+  }
+
   .contenedor_buscador h6 {
-    width: 6.5rem;
+    width: 9rem;
+    font-size: 0.6rem;
   }
 
   .contenedor_buscador .plato_imagen {
@@ -1077,10 +1098,9 @@ form h6 {
   }
 
   .contenedor_slider {
-    height: 14rem;
+    height: 12rem;
     top: 2rem;
     left: 0;
-    padding-bottom: 1.2rem;
     scroll-padding-top: 0;
   }
 
@@ -1107,8 +1127,12 @@ form h6 {
     height: 2.8rem;
   }
 
+  .contenedor_buscador h5 {
+    font-size: .8rem;
+  }
+
   .contenedor_buscador h6 {
-    width: 8.5rem;
+    width: 10rem;
     font-size: 0.8rem;
   }
 }
@@ -1288,6 +1312,7 @@ textarea {
     background-color: rgb(199, 161, 122);
     border-color: rgb(199, 161, 122);
   }
+
   .btnAgregar:hover {
     border-color: #198754;
     background-color: #198754;
@@ -1356,15 +1381,21 @@ textarea {
     color: rgb(199, 161, 122);
     border-color: rgb(199, 161, 122);
   }
+
   .btnEliminarProducto {
     background-color: rgb(199, 161, 122);
     border-color: rgb(199, 161, 122);
   }
+
   .btnEditarProducto:hover {
-    color: white; /* Color de texto más oscuro para el hover */
-    border-color: #198754; /* Color de borde más oscuro para el hover */
-    background-color: #198754; /* Nuevo color de fondo para el hover */
+    color: white;
+    /* Color de texto más oscuro para el hover */
+    border-color: #198754;
+    /* Color de borde más oscuro para el hover */
+    background-color: #198754;
+    /* Nuevo color de fondo para el hover */
   }
+
   .btnEliminarProducto:hover {
     background-color: red;
     border-color: red;
