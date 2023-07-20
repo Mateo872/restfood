@@ -18,9 +18,17 @@ const BuscadorPlatos = () => {
         ...res[0].categorias.comidasVeganas,
       ];
       setPlatos(todasCategorias);
-      console.log(res[0].categorias);
     });
+
+    document.addEventListener("click", manejoClick);
   }, []);
+
+  const manejoClick = (e) => {
+    if (!e.target.classList.contains("buscador")) {
+      setMostrarSlider(false);
+      setInput("");
+    }
+  };
 
   const manejoBuscador = (e) => {
     setInput(e.target.value);
@@ -42,7 +50,7 @@ const BuscadorPlatos = () => {
           búsqueda
         </h3>
         <div
-          className={`contenedor_input d-flex align-items-center ${
+          className={`contenedor_input d-flex align-items-center buscador ${
             input.length !== 0 && mostrarSlider && "contenedor_radio"
           }`}
         >
@@ -51,14 +59,12 @@ const BuscadorPlatos = () => {
             placeholder="Sushi, lomito, tacos"
             onChange={manejoBuscador}
             value={input}
-            onBlur={() => {
-              setMostrarSlider(false);
-              setInput("");
-            }}
-            className={`${input.length !== 0 && mostrarSlider && "w-100"}`}
+            className={`buscador ${
+              input.length !== 0 && mostrarSlider && "w-100"
+            }`}
           />
           <div
-            className={`icono_buscador ${
+            className={`icono_buscador buscador ${
               input.length > 0 ? "d-none" : "d-flex"
             } align-items-center justify-content-center`}
           >
