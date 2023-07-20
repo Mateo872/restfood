@@ -62,7 +62,11 @@ const Menu = () => {
             />
           </div>
           <hr className="text-white " />
-          <section className="container-menu-card">
+          <section
+            className={`container-menu-card ${
+              platosFiltrados.length === 0 && "mt-0"
+            }`}
+          >
             <div
               className="row gap-5 "
               style={{
@@ -70,13 +74,21 @@ const Menu = () => {
                   platosFiltrados.length < 3 ? "center" : "space-between",
               }}
             >
-              <TarjetaProducto
-                platosFiltrados={platosFiltrados}
-                paginaActual={paginaActual}
-                productosPorPagina={productosPorPagina}
-              />
+              {platosFiltrados.length > 0 ? (
+                <TarjetaProducto
+                  platosFiltrados={platosFiltrados}
+                  paginaActual={paginaActual}
+                  productosPorPagina={productosPorPagina}
+                />
+              ) : (
+                <p className="text-center py-4">No hay platos disponibles</p>
+              )}
             </div>
-            <div className="d-flex justify-content-center align-items-center pb-5">
+            <div
+              className={`${
+                platosFiltrados.length > 0 ? "d-flex" : "d-none"
+              } justify-content-center align-items-center pb-5`}
+            >
               <Paginacion
                 totalPaginas={totalPaginas}
                 paginaActual={paginaActual}
