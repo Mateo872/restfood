@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import TarjetaProducto from "../TarjetaProducto";
 import { BsHandIndexThumbFill } from "react-icons/bs";
 import { useForm } from "react-hook-form";
+import { obtenerPlatos } from "../ayudas/consultas";
 
 const Menu = () => {
+    const [busqueda, setBusqueda] = useState(false);
+    const [producto, setProducto] = useState([]);
+    const [resultados, setResultados] = useState([]);
     const {
         register,
         handleSubmit,
@@ -12,9 +16,33 @@ const Menu = () => {
         reset,
     } = useForm();
 
+    useEffect(() => {
+        obtenerPlatos().then((res) => {
+            setProducto(res);
+            setBusqueda(true);
+        });
+    }, []);
+
     const onSubmit = (prod) => {
-        console.log(prod);
+        // console.log(prod.producto);
+        buscarProductos(prod.producto);
     };
+
+    const buscarProductos = (productoBuscado) => {
+        console.log(productoBuscado);
+        if (!producto || !termino) {
+            // Si producto o termino no tienen valor, no realizar la búsqueda
+            console.log("no hay datos");
+            setResultados([]);
+            return;
+        }
+        // const resultadosFiltrados = producto.filter((prod) =>
+        //     prod.nombre.includes(productoBuscado)
+        // );
+        // setResultados(resultadosFiltrados);
+        // console.log(resultados);
+    };
+
     return (
         <>
             <div className="menuConteiner"></div>
