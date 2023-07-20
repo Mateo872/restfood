@@ -6,9 +6,8 @@ import { useForm } from "react-hook-form";
 import { obtenerPlatos } from "../ayudas/consultas";
 
 const Menu = () => {
-    const [busqueda, setBusqueda] = useState(false);
+    const [busqueda, setBusqueda] = useState([]);
     const [productos, setProductos] = useState([]);
-    const [resultados, setResultados] = useState([]);
     const {
         register,
         handleSubmit,
@@ -31,12 +30,11 @@ const Menu = () => {
     }, []);
 
     const onSubmit = (prod) => {
-        // console.log(prod.producto);
-        buscarProductos(prod.producto);
-    };
-
-    const buscarProductos = (productoBuscado) => {
-        console.log(productoBuscado);
+        const platosFiltrados = productos.filter((producto) =>
+            producto.nombre.toLowerCase().includes(prod.producto.toLowerCase())
+        );
+        setBusqueda(platosFiltrados);
+        reset();
     };
 
     return (
@@ -84,7 +82,7 @@ const Menu = () => {
                     <hr className="text-white " />
                     <section className="container-menu-card">
                         <div className="row  justify-content-center gap-5 ">
-                            <TarjetaProducto productos={productos} />
+                            <TarjetaProducto productos={productos} busqueda={busqueda} />
                         </div>
                     </section>
                 </Container>
