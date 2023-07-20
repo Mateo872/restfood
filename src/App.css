@@ -413,6 +413,41 @@ footer h3 {
   border-radius: 1rem;
 }
 
+.MuiPagination-ul li button,
+.MuiPagination-ul li div {
+  color: #ddd;
+  background-color: var(--color-secundario);
+}
+
+.MuiButtonBase-root.MuiPaginationItem-root.MuiPaginationItem-sizeSmall.MuiPaginationItem-text.MuiPaginationItem-circular.MuiPaginationItem-page.css-1ba2zw7-MuiButtonBase-root-MuiPaginationItem-root:hover {
+  background-color: var(--color-primario);
+  color: var(--color-secundario);
+}
+
+.MuiPagination-root .css-1ba2zw7-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
+  background-color: var(--color-primario);
+  color: var(--color-secundario);
+}
+
+.MuiButtonBase-root.MuiPaginationItem-root.MuiPaginationItem-sizeSmall.MuiPaginationItem-text.MuiPaginationItem-circular.MuiPaginationItem-previousNext.css-1ba2zw7-MuiButtonBase-root-MuiPaginationItem-root {
+  background-color: var(--color-secundario);
+}
+
+.MuiButtonBase-root.MuiPaginationItem-root.MuiPaginationItem-sizeSmall.MuiPaginationItem-text.MuiPaginationItem-circular.MuiPaginationItem-previousNext.css-1ba2zw7-MuiButtonBase-root-MuiPaginationItem-root:hover {
+  background-color: var(--color-primario);
+  color: var(--color-secundario);
+}
+
+.MuiPagination-root .css-1ba2zw7-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected:hover {
+  background-color: var(--color-primario);
+  color: var(--color-secundario);
+}
+
+
+.MuiPagination-root .css-1ba2zw7-MuiButtonBase-root-MuiPaginationItem-root:hover {
+  background-color: var(--color-secundario);
+  color: var(--color-terciario);
+}
 
 
 /* Menu  */
