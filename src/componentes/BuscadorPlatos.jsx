@@ -7,6 +7,7 @@ const BuscadorPlatos = () => {
   const [input, setInput] = useState("");
   const [platos, setPlatos] = useState([]);
   const [mostrarSlider, setMostrarSlider] = useState(false);
+  const [mostrarSpinner, setMostrarSpinner] = useState(false);
 
   useEffect(() => {
     obtenerPlatos().then((res) => {
@@ -18,13 +19,29 @@ const BuscadorPlatos = () => {
         ...res[0].categorias.comidasVeganas,
       ];
       setPlatos(todasCategorias);
-      console.log(res[0].categorias);
     });
+
+    document.addEventListener("click", manejoClick);
   }, []);
+
+  const manejoClick = (e) => {
+    if (!e.target.classList.contains("buscador")) {
+      setMostrarSlider(false);
+      setInput("");
+    }
+  };
 
   const manejoBuscador = (e) => {
     setInput(e.target.value);
+    spinner();
     setMostrarSlider(true);
+  };
+
+  const spinner = () => {
+    setMostrarSpinner(true);
+    setTimeout(() => {
+      setMostrarSpinner(false);
+    }, 1000);
   };
 
   const platosFiltrados = platos.filter((plato) =>
@@ -42,7 +59,7 @@ const BuscadorPlatos = () => {
           búsqueda
         </h3>
         <div
-          className={`contenedor_input d-flex align-items-center ${
+          className={`contenedor_input d-flex align-items-center buscador ${
             input.length !== 0 && mostrarSlider && "contenedor_radio"
           }`}
         >
@@ -51,21 +68,22 @@ const BuscadorPlatos = () => {
             placeholder="Sushi, lomito, tacos"
             onChange={manejoBuscador}
             value={input}
-            onBlur={() => {
-              setMostrarSlider(false);
-              setInput("");
-            }}
-            className={`${input.length !== 0 && mostrarSlider && "w-100"}`}
+            className={`buscador ${
+              input.length !== 0 && mostrarSlider && "w-100"
+            }`}
           />
           <div
-            className={`icono_buscador ${
+            className={`icono_buscador buscador ${
               input.length > 0 ? "d-none" : "d-flex"
             } align-items-center justify-content-center`}
           >
             <BsSearch />
           </div>
           {input.length !== 0 && mostrarSlider && (
-            <ContenedorPlato platosFiltrados={platosFiltrados} />
+            <ContenedorPlato
+              platosFiltrados={platosFiltrados}
+              mostrarSpinner={mostrarSpinner}
+            />
           )}
         </div>
       </article>
