@@ -394,29 +394,26 @@ footer h3 {
 /* TarjetaProductos  */
 .img-tarjeta-producto {
   max-width: 12rem;
-  height: 11rem;
+  height: 12rem;
   position: absolute;
-  top: -7rem;
+  top: -30%;
   left: 50%;
+  transform: translateY(30%);
   transform: translateX(-50%);
   object-fit: cover;
   background-color: #fff;
   border-radius: 50%;
-  
+
 }
 
 .card-body {
+  height: 23rem;
   max-width: 16rem;
-  font-family: "Poppins", sans-serif;
   background-color: var(--color-primario);
-  border-top-left-radius: 2rem;
-  border-top-right-radius: 2rem;
+  border-radius: 1rem;
 }
 
-.body-tarjeta {
-  margin-top: 3rem;
-  color: var(--color-secundario);
-}
+
 
 /* Menu  */
 .menu-contenedor {
@@ -425,16 +422,11 @@ footer h3 {
   background-size: cover;
   background-position: 50% 50%;
   position: relative;
-  /* z-index: -1; */
   padding-top: 9rem;
 }
 
-.menu-contenedor-body {
-  color: var(--color-secundario);
-}
-
 .container-menu-card {
-  margin-top: 12rem;
+  margin-top: 8rem;
 }
 
 .boton-menu {
@@ -670,8 +662,25 @@ form h6 {
   height: 9rem;
 }
 
+.nombre_producto {
+  width: 12rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 1.3rem;
+}
+
 .contenedor_platos .contenedor_radio {
   border-radius: 1rem 1rem 0 0;
+}
+
+.input_menu {
+  width: 80%;
+  margin: 0 auto;
+  padding: 0.3rem;
+  border-radius: .2rem;
+  border: 0;
+  font-size: 0.6rem;
 }
 
 @keyframes aparecer {
@@ -803,8 +812,10 @@ form h6 {
     padding: 0.6rem;
   }
 
-  main .categorias {
-    font-size: 0.7rem;
+  .input_menu {
+    width: 40%;
+    margin: 0;
+    font-size: 0.8rem;
   }
 
   .contenedor_carrito {
@@ -1037,6 +1048,12 @@ form h6 {
     gap: 1.8rem;
   }
 
+
+  .input_menu {
+    width: 30%;
+    padding: .8rem;
+  }
+
   .contenedor_producto-carrito .contenedor_imagen {
     height: 6rem;
     width: 6rem;
@@ -1142,8 +1159,15 @@ form h6 {
 }
 
 .body-tarjeta {
-  margin-top: 3rem;
+  margin-top: 6rem;
+  height: 3rem;
   color: var(--color-secundario);
+}
+
+.body-tarjeta svg:hover {
+  transform: scale(.95);
+  transition: .3s;
+  cursor: pointer;
 }
 
 /* Menu  */
@@ -1163,6 +1187,7 @@ form h6 {
 }
 
 .menu-contenedor-body {
+  width: 80%;
   color: var(--color-secundario);
 }
 
@@ -1171,9 +1196,6 @@ form h6 {
   font-family: "Reenie Beanie", cursive;
 }
 
-.container-menu-card {
-  margin-top: 12rem;
-}
 
 .iconFav {
   position: absolute;
