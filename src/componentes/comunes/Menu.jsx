@@ -4,6 +4,7 @@ import TarjetaProducto from "../TarjetaProducto";
 import { useForm } from "react-hook-form";
 import { obtenerPlatos } from "../ayudas/consultas";
 import Paginacion from "../Paginacion";
+import { BsSliders } from "react-icons/bs";
 
 const Menu = () => {
   const [busqueda, setBusqueda] = useState("");
@@ -49,17 +50,20 @@ const Menu = () => {
       <section className="menu-contenedor" id="productos">
         <Container className="menu-contenedor-body">
           <h2 className="text-white text-center menu-titulo mb-5">Menu</h2>
-          <div className="d-flex flex-column flex-md-row flex-lg-row justify-content-between">
-            <p className="fs-3 text-center text-lg-start mb-2 mb-md-0">
+          <div className="d-flex flex-column flex-md-row flex-lg-row justify-content-between align-items-center">
+            <p className="titulo text-center text-lg-start mb-2 mb-md-0">
               Busca tus productos
             </p>
-            <input
-              type="text"
-              placeholder="Busca tus platos"
-              onChange={manejoBuscador}
-              value={busqueda}
-              className="input_menu"
-            />
+            <div className="contenedor_buscador-filtro d-flex justify-content-end align-items-center gap-2">
+              <input
+                type="text"
+                placeholder="Busca tus platos"
+                onChange={manejoBuscador}
+                value={busqueda}
+                className="input_menu"
+              />
+              <BsSliders />
+            </div>
           </div>
           <hr className="text-white " />
           <section
