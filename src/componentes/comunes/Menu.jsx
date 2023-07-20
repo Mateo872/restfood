@@ -7,7 +7,7 @@ import { obtenerPlatos } from "../ayudas/consultas";
 
 const Menu = () => {
     const [busqueda, setBusqueda] = useState(false);
-    const [producto, setProducto] = useState([]);
+    const [productos, setProductos] = useState([]);
     const [resultados, setResultados] = useState([]);
     const {
         register,
@@ -18,8 +18,15 @@ const Menu = () => {
 
     useEffect(() => {
         obtenerPlatos().then((res) => {
-            setProducto(res);
-            setBusqueda(true);
+            const todasCategorias = [
+                ...res[0].categorias.entradas,
+                ...res[0].categorias.bebidas,
+                ...res[0].categorias.postres,
+                ...res[0].categorias.bebidasAlcoholicas,
+                ...res[0].categorias.comidasVeganas,
+            ];
+
+            setProductos(todasCategorias);
         });
     }, []);
 
@@ -30,12 +37,12 @@ const Menu = () => {
 
     const buscarProductos = (productoBuscado) => {
         console.log(productoBuscado);
-        if (!producto || !termino) {
-            // Si producto o termino no tienen valor, no realizar la búsqueda
-            console.log("no hay datos");
-            setResultados([]);
-            return;
-        }
+        // if (!producto || !termino) {
+        //     // Si producto o termino no tienen valor, no realizar la búsqueda
+        //     console.log("no hay datos");
+        //     setResultados([]);
+        //     return;
+        // }
         // const resultadosFiltrados = producto.filter((prod) =>
         //     prod.nombre.includes(productoBuscado)
         // );
@@ -88,17 +95,7 @@ const Menu = () => {
                     <hr className="text-white " />
                     <section className="container-menu-card">
                         <div className="row  justify-content-center gap-5 ">
-                            <TarjetaProducto />
-                            <TarjetaProducto />
-                            <TarjetaProducto />
-                            <TarjetaProducto />
-                            <TarjetaProducto />
-                            <TarjetaProducto />
-                            <TarjetaProducto />
-                            <TarjetaProducto />
-                            <TarjetaProducto />
-                            <TarjetaProducto />
-                            <TarjetaProducto />
+                            <TarjetaProducto productos={productos} />
                         </div>
                     </section>
                 </Container>

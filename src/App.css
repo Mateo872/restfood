@@ -393,12 +393,16 @@ footer h3 {
 
 /* TarjetaProductos  */
 .img-tarjeta-producto {
-  width: 12rem;
+  max-width: 12rem;
+  height: 11rem;
   position: absolute;
-  top: -8rem;
+  top: -7rem;
   left: 50%;
   transform: translateX(-50%);
-  /* z-index: 1; */
+  object-fit: cover;
+  background-color: #fff;
+  border-radius: 50%;
+  
 }
 
 .card-body {
