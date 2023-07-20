@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import TarjetaProducto from "../TarjetaProducto";
 import { BsHandIndexThumbFill } from "react-icons/bs";
 import { useForm } from "react-hook-form";
+import { obtenerPlatos } from "../ayudas/consultas";
 
 const Menu = () => {
+    const [busqueda, setBusqueda] = useState(false);
+    const [productos, setProductos] = useState([]);
+    const [resultados, setResultados] = useState([]);
     const {
         register,
         handleSubmit,
@@ -12,9 +16,29 @@ const Menu = () => {
         reset,
     } = useForm();
 
+    useEffect(() => {
+        obtenerPlatos().then((res) => {
+            const todasCategorias = [
+                ...res[0].categorias.entradas,
+                ...res[0].categorias.bebidas,
+                ...res[0].categorias.postres,
+                ...res[0].categorias.bebidasAlcoholicas,
+                ...res[0].categorias.comidasVeganas,
+            ];
+
+            setProductos(todasCategorias);
+        });
+    }, []);
+
     const onSubmit = (prod) => {
-        console.log(prod);
+        // console.log(prod.producto);
+        buscarProductos(prod.producto);
     };
+
+    const buscarProductos = (productoBuscado) => {
+        console.log(productoBuscado);
+    };
+
     return (
         <>
             <div className="menuConteiner"></div>
@@ -60,17 +84,7 @@ const Menu = () => {
                     <hr className="text-white " />
                     <section className="container-menu-card">
                         <div className="row  justify-content-center gap-5 ">
-                            <TarjetaProducto />
-                            <TarjetaProducto />
-                            <TarjetaProducto />
-                            <TarjetaProducto />
-                            <TarjetaProducto />
-                            <TarjetaProducto />
-                            <TarjetaProducto />
-                            <TarjetaProducto />
-                            <TarjetaProducto />
-                            <TarjetaProducto />
-                            <TarjetaProducto />
+                            <TarjetaProducto productos={productos} />
                         </div>
                     </section>
                 </Container>
