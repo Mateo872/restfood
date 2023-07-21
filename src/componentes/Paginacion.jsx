@@ -1,7 +1,7 @@
 import { Pagination } from "@mui/material";
 
 const Paginacion = ({ totalPaginas, paginaActual, setPaginaActual }) => {
-  const handlePageChange = (event, value) => {
+  const manejoPagina = (evento, value) => {
     setPaginaActual(value);
   };
 
@@ -9,7 +9,7 @@ const Paginacion = ({ totalPaginas, paginaActual, setPaginaActual }) => {
     <Pagination
       count={totalPaginas}
       page={paginaActual}
-      onChange={handlePageChange}
+      onChange={manejoPagina}
       size="small"
     />
   );

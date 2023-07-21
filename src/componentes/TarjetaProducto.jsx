@@ -1,18 +1,7 @@
 import { Card } from "react-bootstrap";
 import { BsPlusCircleFill } from "react-icons/bs";
 
-const TarjetaProducto = ({
-  platosFiltrados,
-  paginaActual,
-  productosPorPagina,
-}) => {
-  const indiceUltimoProducto = paginaActual * productosPorPagina;
-  const indicePrimerProducto = indiceUltimoProducto - productosPorPagina;
-  const productosPaginaActual = platosFiltrados.slice(
-    indicePrimerProducto,
-    indiceUltimoProducto
-  );
-
+const TarjetaProducto = ({ platosFiltrados, productosPaginaActual }) => {
   return (
     <>
       {platosFiltrados

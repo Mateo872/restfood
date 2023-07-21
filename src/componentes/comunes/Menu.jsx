@@ -44,6 +44,13 @@ const Menu = () => {
 
   const totalPaginas = Math.ceil(platosFiltrados.length / productosPorPagina);
 
+  const indiceUltimoProducto = paginaActual * productosPorPagina;
+  const indicePrimerProducto = indiceUltimoProducto - productosPorPagina;
+  const productosPaginaActual = platosFiltrados.slice(
+    indicePrimerProducto,
+    indiceUltimoProducto
+  );
+
   return (
     <>
       <div className="menuConteiner"></div>
@@ -75,14 +82,15 @@ const Menu = () => {
               className="row gap-5 "
               style={{
                 justifyContent:
-                  platosFiltrados.length < 3 ? "center" : "space-between",
+                  platosFiltrados.length < 3 || productosPaginaActual.length < 3
+                    ? "center"
+                    : "space-between",
               }}
             >
               {platosFiltrados.length > 0 ? (
                 <TarjetaProducto
                   platosFiltrados={platosFiltrados}
-                  paginaActual={paginaActual}
-                  productosPorPagina={productosPorPagina}
+                  productosPaginaActual={productosPaginaActual}
                 />
               ) : (
                 <p className="text-center py-4">No hay platos disponibles</p>
