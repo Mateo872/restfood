@@ -132,7 +132,7 @@ const Header = () => {
           </li>
           <span style={{ color: "#fff" }}>|</span>
           <li>
-            <Link to={"/usuario/iniciar"} className="menu_link">
+            <Link to={"/usuario/registrar"} className="menu_link">
               Registrarse
             </Link>
           </li>
