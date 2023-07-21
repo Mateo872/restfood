@@ -417,13 +417,14 @@
   ],
   "usuarios": [
     {
-      "nombre": "",
-      "email": "",
-      "imagen": "",
-      "contraseña": "",
-      "estado": "",
-      "rol": "",
-      "pedido": ""
+      "nombre": "administrador",
+      "email": "administrador@gmail.com",
+      "imagen": "imagen.png",
+      "contraseña": "A1amdmin",
+      "estado": "true",
+      "rol": "admin",
+      "pedido": "",
+      "id": "1"
     }
   ]
 }

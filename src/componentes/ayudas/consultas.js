@@ -1,8 +1,7 @@
 const URL_PLATO = import.meta.env.VITE_API_PLATOS;
 const URL_USUARIO = import.meta.env.VITE_API_USUARIO;
 
-// Usuarios
-export const inicio = async (usuario) => {
+export const login = async (usuario) => {
     try {
         const respuesta = await fetch(URL_USUARIO, {
             method: "POST",
@@ -25,22 +24,6 @@ export const inicio = async (usuario) => {
             uid: datos.uid,
             // token: datos.token,
         };
-    } catch (error) {
-        console.log(error);
-    }
-};
-
-export const registro = async (usuario) => {
-    try {
-        const respuesta = await fetch(URL_USUARIO, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(usuario),
-        });
-        const nuevoUsuario = await respuesta.json();
-        return nuevoUsuario;
     } catch (error) {
         console.log(error);
     }
