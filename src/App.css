@@ -730,6 +730,45 @@ form h6 {
   font-size: 0.6rem;
 }
 
+.admin_titulo {
+  font-size: 1.2rem;
+}
+
+.boton_admin {
+  padding: .6rem;
+  background-color: var(--color-primario);
+  color: var(--color-secundario);
+  border: none;
+  border-radius: .2rem;
+  font-size: 0.8rem;
+  text-decoration: none;
+  border: 2px solid var(--color-primario);
+  font-weight: bold;
+}
+
+.boton_admin:hover {
+  background-color: transparent;
+  transition: .3s;
+  cursor: pointer;
+  color: var(--color-primario);
+}
+
+.boton_seleccionar {
+  background-color: transparent;
+  color: var(--color-primario);
+  border: 2px solid transparent;
+}
+
+.boton_seleccionar:hover {
+  background-color: var(--color-primario);
+  color: var(--color-secundario);
+  border-color: var(--color-primario);
+}
+
+.icono_seleccionar {
+  font-size: 2.6rem;
+}
+
 @keyframes aparecer {
   0% {
     height: 0;
@@ -1216,6 +1255,12 @@ form h6 {
     scroll-padding-top: 0;
   }
 
+  .boton_admin {
+    padding: 1rem 1.5rem;
+  }
+
+
+
   .contenedor_platos .contenedor_radio {
     border-radius: 1.3rem 1.3rem 0 0;
   }
@@ -1542,38 +1587,10 @@ textarea {
   .contenedorAdministracion {
     border-radius: 1rem;
     padding: 1rem;
-    margin-bottom: 3rem;
   }
 
   ol {
     display: inline-block;
-  }
-
-  .iconoAgregar {
-    font-size: 2.5rem;
-    color: #198754;
-  }
-
-  .iconoSeleccionar {
-    font-size: 2.5rem;
-    color: #ffc107;
-  }
-
-  .btnAgregar {
-    display: none;
-    background-color: rgb(199, 161, 122);
-    border-color: rgb(199, 161, 122);
-  }
-
-  .btnAgregar:hover {
-    border-color: #198754;
-    background-color: #198754;
-  }
-
-  .btnSeleccionar {
-    display: none;
-    color: rgb(199, 161, 122);
-    border: none;
   }
 
   .cardPproducto {
@@ -1660,28 +1677,12 @@ textarea {
     padding: 2rem;
   }
 
-  .iconoAgregar {
-    display: none;
-  }
-
-  .iconoSeleccionar {
-    display: none;
-  }
-
-  .btnAgregar {
-    display: inline-block;
-  }
-
-  .btnSeleccionar {
-    display: inline-block;
-  }
 }
 
 @media all and (min-width: 1024px) {
   .contenedorAdministracion {
     border-radius: 5rem;
-    padding: 5rem;
-    margin-bottom: 4rem;
+    padding: 4rem;
   }
 
   .contenedorProductos {
