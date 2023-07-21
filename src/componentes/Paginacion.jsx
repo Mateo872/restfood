@@ -1,8 +1,8 @@
 import { Pagination } from "@mui/material";
 
 const Paginacion = ({ totalPaginas, paginaActual, setPaginaActual }) => {
-  const manejoPagina = (evento, value) => {
-    setPaginaActual(value);
+  const manejoPagina = (evento, valor) => {
+    setPaginaActual(valor);
   };
 
   return (

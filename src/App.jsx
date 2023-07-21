@@ -11,6 +11,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import RutasProtegidas from "./componentes/rutas/RutasProtegidas";
 import RutasAdministrador from "./componentes/rutas/RutasAdministrador";
 import ContenedorCarrito from "./componentes/ContenedorCarrito";
+import Nosotros from "./componentes/Nosotros";
 
 function App() {
   return (
@@ -43,10 +44,7 @@ function App() {
           path="/usuario/carrito"
           element={<ContenedorCarrito />}
         ></Route>
-        <Route
-          path="/restfood/nosotros"
-          element={<h1 className="mt-5">Nosotros</h1>}
-        />
+        <Route path="/restfood/nosotros" element={<Nosotros />} />
         <Route path="*" element={<h1 className="mt-5">Error 404</h1>} />
       </Routes>
       <Footer />
