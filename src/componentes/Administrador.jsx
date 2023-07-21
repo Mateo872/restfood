@@ -1,13 +1,27 @@
 import React from "react";
-import { Button } from "react-bootstrap";
-import { BsFillPlusSquareFill, BsSquare } from "react-icons/bs";
 import ItemProducto from "./ItemProducto";
-import Table from "react-bootstrap/Table";
 import ItemUsuario from "./ItemUsuario";
 import ItemPedidos from "./ItemPedidos";
 import { Link } from "react-router-dom";
 
 const Administrador = () => {
+  const data = [
+    {
+      id: 1,
+      image: "url_de_la_imagen_1",
+      email: "correo1@example.com",
+      nombre: "Nombre 1",
+      rol: "Administrador",
+    },
+    {
+      id: 2,
+      image: "url_de_la_imagen_2",
+      email: "correo2@example.com",
+      nombre: "Nombre 2",
+      rol: "Usuario",
+    },
+  ];
+
   return (
     <div className="fondo">
       <section className="text-white text-center p-5 mt-5">
@@ -51,33 +65,27 @@ const Administrador = () => {
           </div>
         </article>
         <article className="my-5">
-          <div className="d-flex justify-content-between mb-3">
-            <h2>Usuarios</h2>
-            <div>
-              <Button variant="success" className="btnAgregar me-1">
-                Agregar
-              </Button>
-              <BsFillPlusSquareFill className="iconoAgregar me-2"></BsFillPlusSquareFill>
-            </div>
+          <div className="d-flex justify-content-between align-items-center mb-3">
+            <h2 className="admin_titulo mb-0">Usuarios</h2>
+            <button className="boton_admin">Agregar</button>
           </div>
-          <Table responsive className="tabla">
-            <thead>
-              <tr>
-                <th>Img</th>
-                <th>Email</th>
-                <th>Nombre</th>
-                <th>Rol</th>
-              </tr>
-            </thead>
-            <tbody>
-              <ItemUsuario></ItemUsuario>
-              <ItemUsuario></ItemUsuario>
-            </tbody>
-          </Table>
+          <div className="tabla_contenedor">
+            <table responsive className="tabla">
+              <thead>
+                <tr>
+                  <th>Imágen</th>
+                  <th>Email</th>
+                  <th>Nombre</th>
+                  <th>Rol</th>
+                </tr>
+              </thead>
+              <ItemUsuario data={data} />
+            </table>
+          </div>
         </article>
         <article className="mb-5">
-          <h2 className="mb-3">Pedidos</h2>
-          <Table responsive className="tabla">
+          <h2 className="admin_titulo mb-3">Pedidos</h2>
+          {/* <Table responsive className="tabla">
             <thead>
               <tr>
                 <th>Email de usuario</th>
@@ -90,7 +98,7 @@ const Administrador = () => {
               <ItemPedidos></ItemPedidos>
               <ItemPedidos></ItemPedidos>
             </tbody>
-          </Table>
+          </Table> */}
         </article>
       </section>
     </div>

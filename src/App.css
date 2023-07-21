@@ -898,6 +898,14 @@ form h6 {
     padding: 0.6rem;
   }
 
+  div .cardProducto {
+    margin-bottom: 1.5rem;
+  }
+
+  .cardProducto .boton_producto {
+    font-size: 0.8rem;
+  }
+
   .cardProducto .boton_editar {
     padding: 0.48rem;
   }
@@ -1690,6 +1698,28 @@ textarea {
 
   .tabla {
     width: 100%;
+    background-color: transparent;
+    border-collapse: collapse;
+  }
+
+  .tabla_contenedor {
+    overflow-x: scroll;
+  }
+
+  .tabla tr,
+  .tabla th,
+  .tabla td {
+    border: 2px solid var(--color-secundario);
+    padding: 0 1rem;
+  }
+
+  .imagen_tabla {
+    width: 3rem;
+    height: 3rem;
+    margin: .8rem auto;
+    border-radius: 100%;
+    background-color: #ddd;
+    padding: .8rem 0;
   }
 
 }
@@ -1725,6 +1755,14 @@ textarea {
   .cardProducto {
     width: 20rem;
     padding: 0;
+  }
+
+  .cardProducto .boton_producto {
+    font-size: .9rem;
+  }
+
+  .tabla_contenedor {
+    overflow-x: hidden;
   }
 
   .cardImg {
