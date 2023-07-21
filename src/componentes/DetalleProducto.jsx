@@ -20,17 +20,17 @@ const DetalleProducto = () => {
       <Container className="my-5 mainDetalle">
         <Row>
           <h5 className="text-secondary">{plato.stock}</h5>
-          <div className="iconFav">
-            <GoBookmark className="display-1 text-light"></GoBookmark>
-          </div>
+          
 
-          <Col md={6}>
-            <Card.Img variant="top" src={plato.imagen} />
+          <Col md={6}><div className="iconFav">
+            <GoBookmark className="display-1 text-dark"></GoBookmark>
+          </div>
+            <Card.Img variant="top" src={plato.imagen}  className="img-fluid imagendetalle"/>
           </Col>
           <Col md={6}>
             <article className="mb-5">
               <h2>{plato.nombre}</h2>
-              <h3 className="fw-bold">{plato.precio}</h3>
+              <h3 className="fw-bold">${plato.precio}</h3>
               <hr />
               <p>
               {plato.descripcion}
