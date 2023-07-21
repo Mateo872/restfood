@@ -1688,6 +1688,41 @@ textarea {
     justify-content: center;
   }
 
+  .pausa_contenedor {
+    margin: 0 auto;
+    width: 2rem;
+    height: 2rem;
+    background-color: #C20202;
+    border-radius: 100%;
+  }
+
+  .pausa_contenedor:hover {
+    transform: scale(.95);
+    transition: .3s;
+    cursor: pointer;
+  }
+
+  .pendiente_contenedor {
+    margin: 0 auto;
+    width: 2rem;
+    height: 2rem;
+    background-color: #FF9900;
+    border-radius: 100%;
+  }
+
+  .pendiente_contenedor:hover {
+    transform: scale(.95);
+    transition: .3s;
+    cursor: pointer;
+  }
+
+  .item_tabla {
+    width: 2rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
   .iconoPausar {
     font-size: 2.5rem;
   }

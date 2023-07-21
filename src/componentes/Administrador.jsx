@@ -21,6 +21,20 @@ const Administrador = () => {
       rol: "Usuario",
     },
   ];
+  const dataPedidos = [
+    {
+      id: 1,
+      email: "correo1@example.com",
+      nombre: "Hamburguesa doble",
+      rol: "Pendiente",
+    },
+    {
+      id: 2,
+      email: "correo2@example.com",
+      nombre: "Bocadillos de Tofu a la Barbacoa",
+      rol: "Realizado",
+    },
+  ];
 
   return (
     <div className="fondo">
@@ -67,7 +81,9 @@ const Administrador = () => {
         <article className="my-5">
           <div className="d-flex justify-content-between align-items-center mb-3">
             <h2 className="admin_titulo mb-0">Usuarios</h2>
-            <button className="boton_admin">Agregar</button>
+            <Link to={"/producto/crear"} className="boton_admin">
+              Agregar
+            </Link>
           </div>
           <div className="tabla_contenedor">
             <table responsive className="tabla">
@@ -77,28 +93,28 @@ const Administrador = () => {
                   <th>Email</th>
                   <th>Nombre</th>
                   <th>Rol</th>
+                  <th>Acciones</th>
                 </tr>
               </thead>
               <ItemUsuario data={data} />
             </table>
           </div>
         </article>
-        <article className="mb-5">
+        <article className="my-5">
           <h2 className="admin_titulo mb-3">Pedidos</h2>
-          {/* <Table responsive className="tabla">
-            <thead>
-              <tr>
-                <th>Email de usuario</th>
-                <th>Nombre</th>
-                <th>Estado</th>
-                <th>Fecha</th>
-              </tr>
-            </thead>
-            <tbody>
-              <ItemPedidos></ItemPedidos>
-              <ItemPedidos></ItemPedidos>
-            </tbody>
-          </Table> */}
+          <div className="tabla_contenedor">
+            <table responsive className="tabla">
+              <thead>
+                <tr>
+                  <th>Email de usuario</th>
+                  <th>Nombre</th>
+                  <th>Estado</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <ItemPedidos dataPedidos={dataPedidos} />
+            </table>
+          </div>
         </article>
       </section>
     </div>
