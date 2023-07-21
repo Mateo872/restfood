@@ -1024,8 +1024,8 @@ form h6 {
     order: 0;
   }
 
-  .nombre_nosotros {
-    margin: 0;
+  .nosotros_carac .nombre_nosotros {
+    font-size: 1.8rem;
   }
 
   section .edad_nosotros {
@@ -1330,11 +1330,13 @@ form h6 {
 }
 
 .nombre_nosotros {
+  font-size: 1.4rem;
+  color: var(--color-terciario);
   margin: .6rem 0;
 }
 
 .edad_nosotros {
-  margin: 0.4rem 0 0;
+  margin: 0;
   opacity: .7;
 }
 

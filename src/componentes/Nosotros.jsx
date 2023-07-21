@@ -11,22 +11,27 @@ const Nosotros = () => {
   const nosotros = [
     {
       nombre: "Mateo",
+      github: "https://github.com/mateo872",
       edad: 21,
     },
     {
       nombre: "Mario",
+      github: "https://github.com/Mario-Chavez",
       edad: 25,
     },
     {
       nombre: "Aixa",
+      github: "https://github.com/AixaFilsinger",
       edad: 22,
     },
     {
       nombre: "Tadeo",
+      github: "https://github.com/teoMunoz99",
       edad: 23,
     },
     {
       nombre: "Juan",
+      github: "https://github.com/juantoranzos",
       edad: 22,
     },
   ];
