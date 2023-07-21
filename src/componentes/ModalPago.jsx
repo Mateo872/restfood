@@ -47,7 +47,7 @@ const ModalPago = ({ setMostrarModal }) => {
     }, 2000);
   };
 
-  const onSubmit = (data, e) => {
+  const envio = (data, e) => {
     const boton = e.nativeEvent.submitter.name;
 
     if (boton === "boton_dire") {
@@ -154,7 +154,7 @@ const ModalPago = ({ setMostrarModal }) => {
               : "Verifique su dirección."}
           </h4>
           <form
-            onSubmit={handleSubmit(onSubmit)}
+            onSubmit={handleSubmit(envio)}
             className={`${
               mostrarDire || mostrarConfirmarPago ? "d-none" : "d-block"
             }`}
@@ -352,7 +352,7 @@ const ModalPago = ({ setMostrarModal }) => {
             </button>
           </form>
           <form
-            onSubmit={handleSubmit(onSubmit)}
+            onSubmit={handleSubmit(envio)}
             className={`${
               mostrarDire && !mostrarConfirmarPago ? "d-block" : "d-none"
             }`}
@@ -397,7 +397,7 @@ const ModalPago = ({ setMostrarModal }) => {
             </button>
           </form>
           <form
-            onSubmit={handleSubmit(onSubmit)}
+            onSubmit={handleSubmit(envio)}
             className={`${
               mostrarConfirmarPago ? "d-block" : "d-none"
             } form_pago`}
