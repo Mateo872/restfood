@@ -1,9 +1,9 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Header from "./componentes/comunes/Header";
-import QuienesSomos from "./componentes/QuienesSomos";
+
 import Footer from "./componentes/comunes/Footer";
-import Administrador from "./componentes/Administrador";
+
 import Inicio from "./componentes/Inicio";
 import DetalleProducto from "./componentes/DetalleProducto";
 import InicioSesion from "./componentes/InicioSesion";
