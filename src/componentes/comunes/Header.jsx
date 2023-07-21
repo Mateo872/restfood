@@ -97,7 +97,11 @@ const Header = () => {
                 Productos
               </a>
             </li>
-            <li>
+            <li
+              className={`${
+                location.pathname === "/restfood/nosotros" && "d-none"
+              }`}
+            >
               <Link to={"/restfood/nosotros"} className="menu_link">
                 Nosotros
               </Link>

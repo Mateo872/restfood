@@ -51,6 +51,7 @@ const Nosotros = () => {
         className="contenedor_nosotros"
         style={{ marginTop: tarjeta && "5rem", transition: ".3s" }}
       >
+        <h1 className="text-center mb-5">Nuestro equipo</h1>
         <div
           className="contenedor_tarjeta d-flex justify-content-center"
           onClick={(e) => {
