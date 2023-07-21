@@ -1,10 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ItemProducto from "./ItemProducto";
 import ItemUsuario from "./ItemUsuario";
 import ItemPedidos from "./ItemPedidos";
 import { Link } from "react-router-dom";
+import { obtenerPlatos } from "./ayudas/consultas";
 
 const Administrador = () => {
+  const [platos, setPlatos] = useState([]);
+  useEffect(() => {
+    obtenerPlatos().then((res) => {
+      const todasCategorias = [
+        ...res[0].categorias.entradas,
+        ...res[0].categorias.bebidas,
+        ...res[0].categorias.postres,
+        ...res[0].categorias.bebidasAlcoholicas,
+        ...res[0].categorias.comidasVeganas,
+      ];
+      setPlatos(todasCategorias);
+    });
+  }, []);
+
   const data = [
     {
       id: 1,
@@ -64,18 +79,9 @@ const Administrador = () => {
             </div>
           </div>
           <div className="row row-cols-sm-1 row-cols-md-3 contenedorProductos justify-content-between">
-            <ItemProducto></ItemProducto>
-            <ItemProducto></ItemProducto>
-            <ItemProducto></ItemProducto>
-            <ItemProducto></ItemProducto>
-            <ItemProducto></ItemProducto>
-            <ItemProducto></ItemProducto>
-            <ItemProducto></ItemProducto>
-            <ItemProducto></ItemProducto>
-            <ItemProducto></ItemProducto>
-            <ItemProducto></ItemProducto>
-            <ItemProducto></ItemProducto>
-            <ItemProducto></ItemProducto>
+            {platos?.map((plato) => (
+              <ItemProducto key={plato.nombre} platos={plato} />
+            ))}
           </div>
         </article>
         <article className="my-5">
@@ -86,7 +92,7 @@ const Administrador = () => {
             </Link>
           </div>
           <div className="tabla_contenedor">
-            <table responsive className="tabla">
+            <table className="tabla">
               <thead>
                 <tr>
                   <th className="py-2">Imágen</th>
@@ -103,7 +109,7 @@ const Administrador = () => {
         <article className="my-5">
           <h2 className="admin_titulo mb-3">Pedidos</h2>
           <div className="tabla_contenedor">
-            <table responsive className="tabla">
+            <table className="tabla">
               <thead>
                 <tr>
                   <th className="py-2">Email de usuario</th>

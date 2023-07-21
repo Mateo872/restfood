@@ -1598,6 +1598,7 @@ textarea {
     background-image: url("./complementos/imagenes/mujerComiendo.jpg");
     background-size: cover;
     background-position: center;
+    padding-bottom: 6rem;
   }
 
   .contenedorAdministracion {
@@ -1618,8 +1619,10 @@ textarea {
   }
 
   .cardImg {
-    width: 50%;
-    border-radius: 50%;
+    height: 9rem;
+    width: 9rem;
+    border-radius: 100%;
+    background-size: cover;
   }
 
   .contenedorProductos {
@@ -1809,7 +1812,8 @@ textarea {
   }
 
   .cardImg {
-    width: 55%;
+    height: 10rem;
+    width: 10rem;
   }
 
   .boton_producto {
