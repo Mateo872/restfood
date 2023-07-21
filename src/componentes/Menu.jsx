@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
-import TarjetaProducto from "../TarjetaProducto";
+import TarjetaProducto from "./TarjetaProducto";
 import { useForm } from "react-hook-form";
-import { obtenerPlatos } from "../ayudas/consultas";
-import Paginacion from "../Paginacion";
+import { obtenerPlatos } from "./ayudas/consultas";
+import Paginacion from "./Paginacion";
 import { BsSliders } from "react-icons/bs";
 
 const Menu = () => {
