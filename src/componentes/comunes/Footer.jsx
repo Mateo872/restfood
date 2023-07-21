@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form";
-import emailjs from "emailjs-com";
 import { useState } from "react";
 
 const Footer = () => {
@@ -14,30 +13,6 @@ const Footer = () => {
 
   const envio = (data) => {
     setEnviandoEmail(true);
-    const templateParams = {
-      to_email: data.user_email,
-      message:
-        "¡Gracias por unirte a nuestro boletín informativo! Estaremos en contacto contigo pronto.",
-    };
-
-    emailjs
-      .send(
-        "service_eev306j",
-        "template_vjamhms",
-        templateParams,
-        "O0t--ap_52lrqi7t2"
-      )
-      .then(
-        (response) => {
-          response;
-          setEnviandoEmail(false);
-          reset();
-        },
-        (error) => {
-          setEnviandoEmail(false);
-          console.error("Error al enviar el correo", error);
-        }
-      );
   };
 
   return (
