@@ -26,13 +26,13 @@ const Administrador = () => {
       id: 1,
       email: "correo1@example.com",
       nombre: "Hamburguesa doble",
-      rol: "Pendiente",
+      estado: "Pendiente",
     },
     {
       id: 2,
       email: "correo2@example.com",
       nombre: "Bocadillos de Tofu a la Barbacoa",
-      rol: "Realizado",
+      estado: "Realizado",
     },
   ];
 
@@ -81,7 +81,7 @@ const Administrador = () => {
         <article className="my-5">
           <div className="d-flex justify-content-between align-items-center mb-3">
             <h2 className="admin_titulo mb-0">Usuarios</h2>
-            <Link to={"/producto/crear"} className="boton_admin">
+            <Link to={"/usuario/registrar"} className="boton_admin">
               Agregar
             </Link>
           </div>
@@ -89,11 +89,11 @@ const Administrador = () => {
             <table responsive className="tabla">
               <thead>
                 <tr>
-                  <th>Imágen</th>
-                  <th>Email</th>
-                  <th>Nombre</th>
-                  <th>Rol</th>
-                  <th>Acciones</th>
+                  <th className="py-2">Imágen</th>
+                  <th className="py-2">Email</th>
+                  <th className="py-2">Nombre</th>
+                  <th className="py-2">Rol</th>
+                  <th className="py-2">Acciones</th>
                 </tr>
               </thead>
               <ItemUsuario data={data} />
@@ -106,10 +106,10 @@ const Administrador = () => {
             <table responsive className="tabla">
               <thead>
                 <tr>
-                  <th>Email de usuario</th>
-                  <th>Nombre</th>
-                  <th>Estado</th>
-                  <th>Acciones</th>
+                  <th className="py-2">Email de usuario</th>
+                  <th className="py-2">Nombre</th>
+                  <th className="py-2">Estado</th>
+                  <th className="py-2">Acciones</th>
                 </tr>
               </thead>
               <ItemPedidos dataPedidos={dataPedidos} />
