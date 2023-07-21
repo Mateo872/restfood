@@ -21,9 +21,9 @@ const Administrador = () => {
       </section>
       <section className="text-white bg-dark contenedorAdministracion">
         <article>
-          <div className="d-flex align-items-center justify-content-between mb-3 mb-lg-5">
+          <div className="botones d-flex align-items-center justify-content-between mb-3 mb-lg-5">
             <h2 className="admin_titulo mb-0">Productos</h2>
-            <div className="d-flex align-items-center gap-1">
+            <div className="d-flex align-items-center gap-1 w-100 justify-content-end">
               <a href="#" className="boton_admin boton_seleccionar">
                 Seleccionar
               </a>
@@ -35,7 +35,7 @@ const Administrador = () => {
               </Link>
             </div>
           </div>
-          <div className="row row-cols-sm-1 row-cols-md-3 row-cols-lg-3 contenedorProductos">
+          <div className="row row-cols-sm-1 row-cols-md-3 contenedorProductos justify-content-between">
             <ItemProducto></ItemProducto>
             <ItemProducto></ItemProducto>
             <ItemProducto></ItemProducto>

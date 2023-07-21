@@ -1,17 +1,20 @@
 import React from "react";
-import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import hamburguesa from "../complementos/imagenes/hamburguesaDoble.png";
+import { Link } from "react-router-dom";
 
 const ItemProducto = () => {
   return (
-    <Card className="cardPproducto text-center">
+    <Card className="cardProducto text-center">
       <Card.Img variant="top" className="cardImg" src={hamburguesa} />
-      <Card.Title>Hamburguesa doble</Card.Title>
-      <Button variant="outline" className="btnEditarProducto m-1">
+      <Card.Title className="titulo_producto">Hamburguesa doble</Card.Title>
+      <Link
+        to={`/producto/editar/2`}
+        className="boton_producto boton_editar m-1"
+      >
         Editar
-      </Button>
-      <Button className="btnEliminarProducto m-1">Eliminar</Button>
+      </Link>
+      <button className="boton_producto boton_eliminar m-1">Eliminar</button>
     </Card>
   );
 };

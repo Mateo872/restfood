@@ -898,6 +898,10 @@ form h6 {
     padding: 0.6rem;
   }
 
+  .cardProducto .boton_editar {
+    padding: 0.48rem;
+  }
+
   .contenedor_buscador-filtro {
     width: 40%;
   }
@@ -929,6 +933,10 @@ form h6 {
   .contenedor_producto-carrito .contenedor_imagen {
     height: 4rem;
     width: 4rem;
+  }
+
+  .botones {
+    margin: 0 2rem;
   }
 
   .contenedor_producto-carrito .carrito_caracteristicas {
@@ -1593,16 +1601,16 @@ textarea {
     display: inline-block;
   }
 
-  .cardPproducto {
+  .cardProducto {
     background: transparent;
     color: white;
-    margin: 1rem 0 1rem 0;
+    margin: 1rem 0 0;
     display: flow-root;
     border: none;
   }
 
   .cardImg {
-    width: 70%;
+    width: 50%;
     border-radius: 50%;
   }
 
@@ -1615,9 +1623,47 @@ textarea {
     width: 7px;
   }
 
+  .titulo_producto {
+    margin: .8rem auto;
+    font-size: 1rem;
+    width: 12rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
   .contenedorProductos::-webkit-scrollbar-thumb {
     background: #c7a17a;
     border-radius: 1rem;
+  }
+
+  .boton_producto {
+    padding: 0.6rem;
+    background-color: var(--color-primario);
+    border: 2px solid var(--color-primario);
+    color: var(--color-secundario);
+    border-radius: .2rem;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  .boton_producto:hover {
+    background-color: transparent;
+    color: var(--color-primario);
+    transition: .3s;
+    cursor: pointer;
+  }
+
+  .boton_editar {
+    background-color: transparent;
+    color: var(--color-primario);
+    text-decoration: none;
+    padding: 0.5rem;
+  }
+
+  .boton_editar:hover {
+    background-color: var(--color-primario);
+    color: var(--color-secundario);
   }
 
   figure {
@@ -1646,29 +1692,6 @@ textarea {
     width: 100%;
   }
 
-  .btnEditarProducto {
-    color: rgb(199, 161, 122);
-    border-color: rgb(199, 161, 122);
-  }
-
-  .btnEliminarProducto {
-    background-color: rgb(199, 161, 122);
-    border-color: rgb(199, 161, 122);
-  }
-
-  .btnEditarProducto:hover {
-    color: white;
-    /* Color de texto más oscuro para el hover */
-    border-color: #198754;
-    /* Color de borde más oscuro para el hover */
-    background-color: #198754;
-    /* Nuevo color de fondo para el hover */
-  }
-
-  .btnEliminarProducto:hover {
-    background-color: red;
-    border-color: red;
-  }
 }
 
 @media all and (min-width: 768px) {
@@ -1686,11 +1709,30 @@ textarea {
   }
 
   .contenedorProductos {
-    height: 50rem;
+    height: 40rem;
     justify-content: center;
   }
 
-  .cardPproducto {
-    width: 30rem;
+
+  .botones {
+    margin: 0 4.3rem;
   }
+
+  .admin_titulo {
+    font-size: 1.8rem;
+  }
+
+  .cardProducto {
+    width: 20rem;
+    padding: 0;
+  }
+
+  .cardImg {
+    width: 55%;
+  }
+
+  .boton_producto {
+    width: 30%;
+  }
+
 }
