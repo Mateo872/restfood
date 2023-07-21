@@ -1165,6 +1165,10 @@ form h6 {
     padding: 1.02rem;
   }
 
+  .texto_email {
+    font-size: 0.8rem;
+  }
+
   .contenedor_botones h5 {
     font-size: 1rem;
     width: 14rem;

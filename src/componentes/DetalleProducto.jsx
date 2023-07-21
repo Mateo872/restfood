@@ -1,6 +1,6 @@
 import { Container, Card, Row, Col } from "react-bootstrap";
-import Footer from "../comunes/Footer";
-import hamburguesaDoble from "../../complementos/imagenes/Rectangle 110.png";
+import Footer from "./comunes/Footer";
+import hamburguesaDoble from "../complementos/imagenes/Rectangle 110.png";
 import { GoBookmark } from "react-icons/go";
 import { RiTruckLine } from "react-icons/ri";
 
