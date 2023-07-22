@@ -1,19 +1,27 @@
-import React from "react";
-import { BsFillCheckCircleFill } from "react-icons/bs";
-import { AiTwotoneHourglass } from "react-icons/ai";
+import { BsCheck, BsClockHistory } from "react-icons/bs";
 
-const ItemPedidos = () => {
+const ItemPedidos = ({ dataPedidos }) => {
   return (
-    <tr>
-      <td>usuario@gmail.com</td>
-      <td>Hamburguesa doble</td>
-      <td>Realizado</td>
-      <td>11/07/2023</td>
-      <td className="bg-transparent text-warning tdBtn">
-        <BsFillCheckCircleFill className="iconoPausar me-2"></BsFillCheckCircleFill>
-        <AiTwotoneHourglass className="iconoPausar" />
-      </td>
-    </tr>
+    <tbody>
+      {dataPedidos.map((item) => (
+        <tr key={item.id}>
+          <td className="item_tabla align-middle py-2">{item.email}</td>
+          <td className="item_tabla align-middle py-2">{item.nombre}</td>
+          <td className="align-middle w-50 py-2">{item.estado}</td>
+          <td className="align-middle py-2">
+            {item.estado === "Pendiente" ? (
+              <div className="pendiente_contenedor d-flex justify-content-center align-items-center">
+                <BsClockHistory size={20} />
+              </div>
+            ) : (
+              <div className="check_contenedor d-flex justify-content-center align-items-center">
+                <BsCheck size={20} />
+              </div>
+            )}
+          </td>
+        </tr>
+      ))}
+    </tbody>
   );
 };
 

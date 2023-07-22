@@ -730,6 +730,52 @@ form h6 {
   font-size: 0.6rem;
 }
 
+.admin_titulo {
+  font-size: 1.2rem;
+}
+
+.boton_admin {
+  padding: .6rem;
+  background-color: var(--color-primario);
+  color: var(--color-secundario);
+  border: none;
+  border-radius: .2rem;
+  font-size: 0.8rem;
+  text-decoration: none;
+  border: 2px solid var(--color-primario);
+  font-weight: bold;
+}
+
+.boton_admin:hover {
+  background-color: transparent;
+  transition: .3s;
+  cursor: pointer;
+  color: var(--color-primario);
+}
+
+.boton_seleccionar {
+  padding: 0.85rem;
+  background-color: transparent;
+  color: var(--color-primario);
+  border: 2px solid transparent;
+  font-size: 0.6rem;
+}
+
+.boton_eliminar-todos {
+  padding: 0.85rem;
+  font-size: 0.6rem;
+}
+
+.boton_seleccionar:hover {
+  background-color: var(--color-primario);
+  color: var(--color-secundario);
+  border-color: var(--color-primario);
+}
+
+.icono_seleccionar {
+  font-size: 2.6rem;
+}
+
 @keyframes aparecer {
   0% {
     height: 0;
@@ -859,6 +905,18 @@ form h6 {
     padding: 0.6rem;
   }
 
+  div .card_producto {
+    margin-bottom: 1.5rem;
+  }
+
+  .card_producto .boton_producto {
+    font-size: 0.8rem;
+  }
+
+  .card_producto .boton_editar {
+    padding: 0.48rem;
+  }
+
   .contenedor_buscador-filtro {
     width: 40%;
   }
@@ -890,6 +948,10 @@ form h6 {
   .contenedor_producto-carrito .contenedor_imagen {
     height: 4rem;
     width: 4rem;
+  }
+
+  .botones {
+    margin: 0 2rem;
   }
 
   .contenedor_producto-carrito .carrito_caracteristicas {
@@ -1216,6 +1278,12 @@ form h6 {
     scroll-padding-top: 0;
   }
 
+  .boton_admin {
+    padding: 1rem 1.5rem;
+  }
+
+
+
   .contenedor_platos .contenedor_radio {
     border-radius: 1.3rem 1.3rem 0 0;
   }
@@ -1537,56 +1605,31 @@ textarea {
     background-image: url("./complementos/imagenes/mujerComiendo.jpg");
     background-size: cover;
     background-position: center;
+    padding-bottom: 6rem;
   }
 
   .contenedorAdministracion {
     border-radius: 1rem;
     padding: 1rem;
-    margin-bottom: 3rem;
   }
 
   ol {
     display: inline-block;
   }
 
-  .iconoAgregar {
-    font-size: 2.5rem;
-    color: #198754;
-  }
-
-  .iconoSeleccionar {
-    font-size: 2.5rem;
-    color: #ffc107;
-  }
-
-  .btnAgregar {
-    display: none;
-    background-color: rgb(199, 161, 122);
-    border-color: rgb(199, 161, 122);
-  }
-
-  .btnAgregar:hover {
-    border-color: #198754;
-    background-color: #198754;
-  }
-
-  .btnSeleccionar {
-    display: none;
-    color: rgb(199, 161, 122);
-    border: none;
-  }
-
-  .cardPproducto {
+  .card_producto {
     background: transparent;
     color: white;
-    margin: 1rem 0 1rem 0;
+    margin: 1rem 0 0;
     display: flow-root;
     border: none;
   }
 
   .cardImg {
-    width: 70%;
-    border-radius: 50%;
+    height: 9rem;
+    width: 9rem;
+    border-radius: 100%;
+    background-size: cover;
   }
 
   .contenedorProductos {
@@ -1598,9 +1641,47 @@ textarea {
     width: 7px;
   }
 
+  .titulo_producto {
+    margin: .8rem auto;
+    font-size: 1rem;
+    width: 10rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
   .contenedorProductos::-webkit-scrollbar-thumb {
     background: #c7a17a;
     border-radius: 1rem;
+  }
+
+  .boton_producto {
+    padding: 0.6rem;
+    background-color: var(--color-primario);
+    border: 2px solid var(--color-primario);
+    color: var(--color-secundario);
+    border-radius: .2rem;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  .boton_producto:hover {
+    background-color: transparent;
+    color: var(--color-primario);
+    transition: .3s;
+    cursor: pointer;
+  }
+
+  .boton_editar {
+    background-color: transparent;
+    color: var(--color-primario);
+    text-decoration: none;
+    padding: 0.5rem;
+  }
+
+  .boton_editar:hover {
+    background-color: var(--color-primario);
+    color: var(--color-secundario);
   }
 
   figure {
@@ -1617,6 +1698,49 @@ textarea {
     justify-content: center;
   }
 
+  .pausa_contenedor {
+    margin: 0 auto;
+    width: 2rem;
+    height: 2rem;
+    background-color: #C20202;
+    border-radius: 100%;
+  }
+
+  .pausa_contenedor:hover {
+    transform: scale(.95);
+    transition: .3s;
+    cursor: pointer;
+  }
+
+  .pendiente_contenedor {
+    margin: 0 auto;
+    width: 2rem;
+    height: 2rem;
+    background-color: #FF9900;
+    border-radius: 100%;
+  }
+
+  .pendiente_contenedor:hover {
+    transform: scale(.95);
+    transition: .3s;
+    cursor: pointer;
+  }
+
+  .check_contenedor {
+    margin: 0 auto;
+    width: 2rem;
+    height: 2rem;
+    background-color: #00FF29;
+    border-radius: 100%;
+  }
+
+  .item_tabla {
+    width: 2rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
   .iconoPausar {
     font-size: 2.5rem;
   }
@@ -1627,31 +1751,30 @@ textarea {
 
   .tabla {
     width: 100%;
+    background-color: transparent;
+    border-collapse: collapse;
   }
 
-  .btnEditarProducto {
-    color: rgb(199, 161, 122);
-    border-color: rgb(199, 161, 122);
+  .tabla_contenedor {
+    overflow-x: scroll;
   }
 
-  .btnEliminarProducto {
-    background-color: rgb(199, 161, 122);
-    border-color: rgb(199, 161, 122);
+  .tabla tr,
+  .tabla th,
+  .tabla td {
+    border: 2px solid var(--color-secundario);
+    padding: 0 1rem;
   }
 
-  .btnEditarProducto:hover {
-    color: white;
-    /* Color de texto más oscuro para el hover */
-    border-color: #198754;
-    /* Color de borde más oscuro para el hover */
-    background-color: #198754;
-    /* Nuevo color de fondo para el hover */
+  .imagen_tabla {
+    width: 3rem;
+    height: 3rem;
+    margin: .8rem auto;
+    border-radius: 100%;
+    background-color: #ddd;
+    padding: .8rem 0;
   }
 
-  .btnEliminarProducto:hover {
-    background-color: red;
-    border-color: red;
-  }
 }
 
 @media all and (min-width: 768px) {
@@ -1660,36 +1783,58 @@ textarea {
     padding: 2rem;
   }
 
-  .iconoAgregar {
-    display: none;
-  }
-
-  .iconoSeleccionar {
-    display: none;
-  }
-
-  .btnAgregar {
-    display: inline-block;
-  }
-
-  .btnSeleccionar {
-    display: inline-block;
-  }
 }
 
 @media all and (min-width: 1024px) {
   .contenedorAdministracion {
     border-radius: 5rem;
-    padding: 5rem;
-    margin-bottom: 4rem;
+    padding: 4rem;
   }
 
   .contenedorProductos {
-    height: 50rem;
+    height: 40rem;
     justify-content: center;
   }
 
-  .cardPproducto {
-    width: 30rem;
+
+  .botones {
+    margin: 0 4.3rem;
   }
+
+  .admin_titulo {
+    font-size: 1.8rem;
+  }
+
+  .card_producto {
+    width: 20rem;
+    padding: 0;
+  }
+
+  .boton_seleccionar {
+    padding: 1.15rem;
+    font-size: 0.8rem;
+  }
+
+  .boton_eliminar-todos {
+    padding: 1.15rem;
+    font-size: 0.8rem;
+  }
+
+  .card_producto .boton_producto {
+    font-size: .9rem;
+  }
+
+  .tabla_contenedor {
+    overflow-x: hidden;
+  }
+
+  .cardImg {
+    height: 10rem;
+    width: 10rem;
+  }
+
+  .boton_producto {
+    width: 30%;
+  }
+
 }
