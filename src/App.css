@@ -16,10 +16,6 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
-.mainDetalle {
-  min-height: 100vh;
-}
-
 header nav {
   position: fixed;
   top: 0;
@@ -1498,52 +1494,158 @@ form h6 {
   transform: translate(-1150%, -70%);
 }
 
-.btn_DP {
-  background-color: white;
+.contenedor_detalle {
+  margin-top: 3rem;
+  padding: 1rem 1.5rem 1.4rem;
+}
+
+.contenedor_detalle div a {
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.7rem;
+  color: var(--color-terciario);
+}
+
+.paginacion_detalle-color {
   color: var(--color-primario);
-  border: 2px solid var(--color-primario);
-  border-radius: 5px;
-  font-size: 16px;
-  text-align: center;
-  min-width: 150px;
-  padding: 10px 22px;
+  font-weight: 500;
+  font-size: 0.7rem;
+}
+
+.contenedor_detalle .stock {
+  margin-top: .2rem;
+  font-size: 0.7rem;
+  opacity: .7;
+}
+
+.contenedor_imagen-detalle {
+  width: 17rem;
+  object-fit: cover;
+}
+
+.contenedor_detalle h2 {
+  margin-top: 1rem;
+  font-size: 1.4rem;
   font-weight: bold;
 }
 
-.btn_DP:hover {
-  background-color: var(--color-primario);
-  color: white;
+.contenedor_detalle .titulo_producto-detalle {
+  font-weight: 400;
 }
 
-.btn_AgrCarritoDP {
-  background-color: var(--color-primario);
-  color: var(--color-secundario);
-  font-size: 18px;
-  border-radius: 5px;
-  text-align: center;
-  padding: 18px 102px;
-  border: none;
+.descripcion_detalle {
+  width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.contenedor_detalle hr {
+  border-width: 2px;
+}
+
+.contenedor_detalle h4 {
+  font-size: 1.2rem;
   font-weight: 500;
 }
 
-.input_CantidadDP {
-  background-color: var(--color-secundario);
-  border: 2px solid var(--color-primario);
-  border-radius: 5px;
-  font-size: 16px;
+.contenedor_detalle .contenedor_tamanio {
+  width: 100%;
+  border-radius: .3rem;
+  color: var(--color-primario);
+  background-color: transparent;
+  padding: 1rem;
   text-align: center;
-  padding: 10px 22px;
+  font-weight: 500;
+  border: 2px solid var(--color-primario);
+  margin-bottom: 0;
 }
 
-.btn_CalcularDP {
-  background-color: var(--color-terciario);
+.contenedor_detalle .contenedor_tamanio-activo {
+  width: 100%;
+  border-radius: .3rem;
   color: var(--color-secundario);
-  font-size: 16px;
+  background-color: var(--color-primario);
+  padding: .8rem;
   text-align: center;
-  border-radius: 5px;
-  border: none;
-  padding: 10px 22px;
+  font-weight: 500;
+  border: 2px solid var(--color-primario);
 }
+
+.contenedor_detalle .contenedor_tamanio:hover {
+  color: var(--color-secundario);
+  background-color: var(--color-primario);
+  transition: .3s;
+  cursor: pointer;
+}
+
+.contenedor_detalle .input_cantidad {
+  padding: 0.8rem;
+  color: var(--color-primario);
+  background-color: transparent;
+  border: 2px solid var(--color-primario);
+  border-radius: .3rem;
+  text-align: center;
+  outline: var(--color-primario);
+}
+
+.contenedor_detalle .input_cantidad::placeholder {
+  color: var(--color-primario);
+}
+
+.svg_postal {
+  transform: scaleX(-1);
+}
+
+.contenedor_detalle .input_postal {
+  width: 65%;
+  padding: 0.8rem;
+  color: var(--color-primario);
+  background-color: transparent;
+  border: 2px solid var(--color-primario);
+  border-radius: .3rem;
+  outline: var(--color-primario);
+  font-weight: 500;
+}
+
+.contenedor_detalle .input_postal::placeholder {
+  color: var(--color-primario);
+}
+
+.contenedor_detalle .boton_calcular {
+  width: 35%;
+  padding: 0.8rem;
+  color: var(--color-secundario);
+  background-color: var(--color-terciario);
+  border: 2px solid var(--color-terciario);
+  border-radius: .3rem;
+  font-weight: 500;
+}
+
+.contenedor_detalle .boton_calcular:hover {
+  color: var(--color-terciario);
+  background-color: transparent;
+  transition: .3s;
+  cursor: pointer;
+}
+
+.contenedor_detalle .agregar_carrito {
+  margin-top: 1rem;
+  padding: 0.8rem;
+  color: var(--color-secundario);
+  background-color: var(--color-primario);
+  border: 2px solid var(--color-primario);
+  border-radius: .3rem;
+  font-weight: 500;
+}
+
+.contenedor_detalle .agregar_carrito:hover {
+  color: var(--color-primario);
+  background-color: transparent;
+  transition: .3s;
+  cursor: pointer;
+}
+
 
 .contenedor_EditarCrear {
   min-height: 100vh;
@@ -1648,11 +1750,11 @@ textarea {
 
   .titulo_producto {
     margin: .8rem auto;
-    font-size: 1rem;
     width: 10rem;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+    font-size: 1rem;
   }
 
   .contenedorProductos::-webkit-scrollbar-thumb {
