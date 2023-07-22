@@ -10,6 +10,7 @@ const Administrador = () => {
   const [platos, setPlatos] = useState([]);
   const [seleccion, setSeleccion] = useState(false);
   const [seleccionados, setSeleccionados] = useState([]);
+  
 
   useEffect(() => {
     obtenerPlatos().then((res) => {
@@ -100,6 +101,7 @@ const Administrador = () => {
                 <Link
                   to={"/producto/crear"}
                   className="boton_admin boton_agregar"
+                  
                 >
                   Agregar
                 </Link>

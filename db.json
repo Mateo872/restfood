@@ -449,18 +449,15 @@
       "descripcion": "Berenjenas asadas y rellenas con una mezcla de quinoa, tomate, cebolla, especias y hierbas frescas. Se gratinan al horno con queso vegano y se sirven con una salsa de tomate casera. Una opción satisfactoria y llena de sabor.",
       "stock": "35",
       "categoria": "comidasVeganas"
-    }
-  ],
-  "usuarios": [
+    },
     {
-      "nombre": "administrador",
-      "email": "administrador@gmail.com",
-      "imagen": "imagen.png",
-      "contraseña": "A1amdmin",
-      "estado": "true",
-      "rol": "admin",
-      "pedido": "",
-      "id": "1"
+      "imagen": "https://pics.filmaffinity.com/the_dark_knight-102763119-large.jpg",
+      "nombreProducto": "ikolko",
+      "precio": "12",
+      "descripcionProducto": "jfjfjjf",
+      "categoria": "comidasVeganas",
+      "stock": "1",
+      "id": 51
     }
   ]
 }
