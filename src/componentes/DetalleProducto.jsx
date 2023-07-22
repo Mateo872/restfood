@@ -6,16 +6,15 @@ import { obtenerPlato } from "./ayudas/consultas";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import ClipLoader from "react-spinners/ClipLoader";
-import { useRef } from "react";
 
 const DetalleProducto = () => {
   const { id } = useParams();
   const [plato, setPlato] = useState([]);
-  const [favorito, setFavorito] = useState(false);
   const [postal, setPostal] = useState(false);
   const [mostrarSpinner, setMostrarSpinner] = useState(false);
   const [tamanio, setTamanio] = useState("Chico");
-  const codigoPostal = useRef(null);
+  const [favoritos, setFavoritos] = useState(false);
+  let favPlato = JSON.parse(localStorage.getItem("favPlato")) || [];
   const navegacion = useNavigate();
 
   const {
@@ -37,12 +36,26 @@ const DetalleProducto = () => {
       });
   }, []);
 
+  useEffect(() => {
+    setFavoritos(favPlato.includes(id));
+  }, [id, favPlato]);
+
   const manejoEnvio = (data) => {
     setMostrarSpinner(true);
     setTimeout(() => {
       setPostal(true);
       setMostrarSpinner(false);
     }, 1500);
+  };
+
+  const manejoFav = () => {
+    setFavoritos(!favoritos);
+    if (!favoritos) {
+      favPlato.push(id);
+    } else {
+      favPlato = favPlato.filter((favMovie) => favMovie !== id);
+    }
+    localStorage.setItem("favPlato", JSON.stringify(favPlato));
   };
 
   const manejoTamanio = (e) => {
@@ -65,7 +78,7 @@ const DetalleProducto = () => {
   return (
     <section>
       <article className="contenedor_detalle">
-        {plato && Object.keys(plato).length !== 0 ? (
+        {plato && Object.keys(plato).length !== 0 && (
           <>
             <div className="d-flex gap-1 paginacion">
               <Link to={"/"}>INICIO /</Link>
@@ -86,8 +99,8 @@ const DetalleProducto = () => {
                   backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${plato.imagen})`,
                 }}
               ></div>
-              <div onClick={() => setFavorito(!favorito)}>
-                {favorito ? (
+              <div onClick={manejoFav}>
+                {favoritos ? (
                   <GoBookmarkFill className="bookmark position-absolute" />
                 ) : (
                   <GoBookmark className="bookmark position-absolute" />
@@ -200,8 +213,6 @@ const DetalleProducto = () => {
               </form>
             </div>
           </>
-        ) : (
-          navegacion("/producto-no-encontrado")
         )}
       </article>
     </section>
