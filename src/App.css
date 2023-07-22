@@ -1575,6 +1575,8 @@ form h6 {
   transform: scale(.95);
   transition: .3s;
   cursor: pointer;
+  text-decoration: none;
+  color: var(--color-secundario);
 }
 
 .menuConteiner {
