@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const {
@@ -24,16 +25,20 @@ const Footer = () => {
               <h3>INFORMACIÓN</h3>
               <ul className="list-unstyled">
                 <li className="py-1">
-                  <a href="#">Acerca de nosotros</a>
+                  <Link to={"/restfood/acerca"}>Acerca de nosotros</Link>
                 </li>
                 <li className="py-1">
-                  <a href="#">Información de entrega</a>
+                  <Link to={"/restfood/informacion"}>
+                    Información de entrega
+                  </Link>
                 </li>
                 <li className="py-1">
-                  <a href="#">Políticas de privacidad</a>
+                  <Link to={"/restfood/politicas"}>
+                    Políticas de privacidad
+                  </Link>
                 </li>
                 <li className="py-1">
-                  <a href="#">Términos y condiciones</a>
+                  <Link to={"/restfood/terminos"}>Términos y condiciones</Link>
                 </li>
               </ul>
             </div>
@@ -41,13 +46,13 @@ const Footer = () => {
               <h3>MI CUENTA</h3>
               <ul className="list-unstyled">
                 <li className="py-1">
-                  <a href="#">Historial de pedidos</a>
+                  <Link to={"/restfood/historial"}>Historial de pedidos</Link>
                 </li>
                 <li className="py-1">
-                  <a href="#">Boletín</a>
+                  <Link to={"/restfood/boletin"}>Boletín</Link>
                 </li>
                 <li className="py-1">
-                  <a href="#">Reembolsos</a>
+                  <Link to={"/restfood/reembolso"}>Reembolsos</Link>
                 </li>
               </ul>
             </div>
