@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import { BsFillHeartFill } from "react-icons/bs";
 
 const PlatoItem = ({ platosFiltrados }) => {
+  let favPlato = JSON.parse(localStorage.getItem("favPlato")) || [];
+
   return (
     <>
       {platosFiltrados.map((plato) => (
@@ -9,7 +12,14 @@ const PlatoItem = ({ platosFiltrados }) => {
           className="buscador d-flex justify-content-between align-items-center"
           key={plato.id}
         >
-          <div className="buscador d-flex align-items-center gap-2">
+          <div className="buscador d-flex align-items-center gap-2 position-relative">
+            <div
+              className={`contenedor_favoritos-buscador ${
+                favPlato.find((fav) => fav == plato.id) ? "d-flex" : "d-none"
+              } justify-content-center align-items-center position-absolute`}
+            >
+              <BsFillHeartFill className="svg_favorito" />
+            </div>
             <div className="buscador plato_imagen">
               <img
                 className="buscador w-100 h-100"

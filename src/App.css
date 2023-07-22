@@ -1595,6 +1595,19 @@ form h6 {
   color: var(--color-secundario);
 }
 
+.contenedor_favoritos-buscador {
+  height: 1.3rem;
+  width: 1.3rem;
+  background-color: var(--color-terciario);
+  border-radius: 100%;
+  left: -.5rem;
+  margin-left: 0.2rem;
+}
+
+.contenedor_favoritos-buscador svg {
+  font-size: 0.6rem;
+}
+
 .menuConteiner {
   height: 1rem;
   background-color: rgb(0, 0, 0);
