@@ -24,7 +24,7 @@ const ItemProducto = ({
       <Card.Img
         variant="top"
         className="cardImg"
-        src={platos.imagen}
+        src={platos?.imagen}
         alt={platos.nombre}
       />
       <Card.Title className="titulo_producto">{platos.nombre}</Card.Title>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ItemProducto from "./ItemProducto";
 import ItemUsuario from "./ItemUsuario";
 import ItemPedidos from "./ItemPedidos";
@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { obtenerPlatos } from "./ayudas/consultas";
 
 const Administrador = () => {
+  const [input, setInput] = useState("");
   const [platos, setPlatos] = useState([]);
   const [seleccion, setSeleccion] = useState(false);
   const [seleccionados, setSeleccionados] = useState([]);
@@ -56,6 +57,14 @@ const Administrador = () => {
     },
   ];
 
+  const manejoBuscador = (e) => {
+    setInput(e.target.value);
+  };
+
+  const platosFiltrados = platos.filter((producto) =>
+    producto.nombre.toLowerCase().includes(input.toLowerCase())
+  );
+
   return (
     <div className="fondo">
       <section className="text-white text-center p-5 mt-5">
@@ -69,6 +78,15 @@ const Administrador = () => {
       </section>
       <section className="text-white bg-dark contenedorAdministracion">
         <article>
+          <div className="botones d-flex justify-content-end mb-3">
+            <input
+              type="text"
+              placeholder="Busca tus productos"
+              onChange={manejoBuscador}
+              value={input}
+              className="input_menu"
+            />
+          </div>
           <div className="botones d-flex align-items-center justify-content-between mb-3 mb-lg-5">
             <h2 className="admin_titulo mb-0">Productos</h2>
             <div className="d-flex align-items-center gap-1 w-100 justify-content-end">
@@ -92,9 +110,18 @@ const Administrador = () => {
               )}
             </div>
           </div>
-          <div className="row row-cols-sm-1 row-cols-md-3 contenedorProductos justify-content-between">
-            {platos.length > 0 ? (
-              platos.map((plato) => (
+          <div
+            className="row row-cols-sm-1 row-cols-md-3 contenedorProductos"
+            style={{
+              justifyContent:
+                platosFiltrados.length < 3 && platosFiltrados.length !== 0
+                  ? "center"
+                  : "space-between",
+              height: platosFiltrados.length < 6 && "auto",
+            }}
+          >
+            {platosFiltrados.length > 0 ? (
+              platosFiltrados.map((plato) => (
                 <ItemProducto
                   key={plato.nombre}
                   platos={plato}
@@ -104,7 +131,7 @@ const Administrador = () => {
                 />
               ))
             ) : (
-              <p>No hay productos</p>
+              <p className="botones">No hay productos</p>
             )}
           </div>
         </article>
