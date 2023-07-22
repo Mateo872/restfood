@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import fondo from "../complementos/imagenes/366291.jpg";
+import { useLocation } from "react-router";
 
 const InicioSesion = () => {
   const {
@@ -10,16 +11,16 @@ const InicioSesion = () => {
     formState: { errors },
     reset,
   } = useForm();
+  const ubicacion = useLocation();
   const onSubmit = (usuarioRegistrado) => {};
 
   return (
     <div
       style={{
-        backgroundImage: `url(${fondo})`,
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${fondo})`,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
-        minHeight: "100vh",
       }}
     >
       <Container className="d-flex align-items-center justify-content-center vh-100">
@@ -29,36 +30,34 @@ const InicioSesion = () => {
               className="text-center text-white display-4"
               style={{ fontFamily: "Reenie Beanie, cursive" }}
             >
-              Registro
+              {ubicacion.pathname === "/usuario/iniciar"
+                ? "Inicio"
+                : "Registro"}
             </h1>
             <Form className="form" onSubmit={handleSubmit(onSubmit)}>
               <Form.Group className="form-group pt-3">
-                <Form.Label
-                  className="text-white"
-                  style={{ fontFamily: "Reenie Beanie, cursive" }}
-                >
+                <Form.Label className="text-white" htmlFor="nombre">
                   Nombre de usuario:
                 </Form.Label>
                 <Form.Control
                   type="text"
+                  id="nombre"
                   placeholder="Ingrese un nombre de usuario"
-                  {...register("text", {
+                  {...register("nombre", {
                     required: "El nombre de usuario es obligatorio",
                   })}
                 />
                 <Form.Text className="text-danger">
-                  {errors.text?.message}
+                  {errors.nombre?.message}
                 </Form.Text>
               </Form.Group>
               <Form.Group className="form-group pt-3">
-                <Form.Label
-                  className="text-white"
-                  style={{ fontFamily: "Reenie Beanie, cursive" }}
-                >
+                <Form.Label className="text-white" htmlFor="email">
                   Email:
                 </Form.Label>
                 <Form.Control
                   type="email"
+                  id="email"
                   placeholder="Ingrese un email"
                   {...register("email", {
                     required: "El email es obligatorio",
@@ -67,42 +66,37 @@ const InicioSesion = () => {
                 <Form.Text className="text-danger">
                   {errors.email?.message}
                 </Form.Text>
-                <Form.Group className="form-group pt-3">
-                  <Form.Label
-                    className="text-white"
-                    style={{ fontFamily: "Reenie Beanie, cursive" }}
-                  >
-                    Imagen:
-                  </Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Inserte una imagen"
-                    {...register("text", {
-                      required: "La imagen es obligatoria",
-                    })}
-                  />
-                  <Form.Text className="text-danger">
-                    {errors.text?.message}
-                  </Form.Text>
-                </Form.Group>
               </Form.Group>
-
+              <Form.Group className="form-group pt-3">
+                <Form.Label className="text-white" htmlFor="imagen">
+                  Imagen:
+                </Form.Label>
+                <Form.Control
+                  type="text"
+                  id="imagen"
+                  placeholder="Inserte una imagen"
+                  {...register("imagen", {
+                    required: "La imagen es obligatoria",
+                  })}
+                />
+                <Form.Text className="text-danger">
+                  {errors.imagen?.message}
+                </Form.Text>
+              </Form.Group>
               <Form.Group className="form-group">
-                <Form.Label
-                  className="pt-3 text-white"
-                  style={{ fontFamily: "Reenie Beanie, cursive" }}
-                >
+                <Form.Label className="pt-3 text-white" htmlFor="contraseña">
                   Contraseña:
                 </Form.Label>
                 <Form.Control
-                  type="password"
+                  type="contraseña"
+                  id="contraseña"
                   placeholder="Ingrese su contraseña"
-                  {...register("password", {
+                  {...register("contraseña", {
                     required: "La contraseña es obligatoria",
                   })}
                 />
                 <Form.Text className="text-danger">
-                  {errors.password?.message}
+                  {errors.contraseña?.message}
                 </Form.Text>
               </Form.Group>
 
@@ -112,7 +106,9 @@ const InicioSesion = () => {
                 className="btn btn-primary  mt-3 text-center w-100"
                 style={{ backgroundColor: "#C7A17A", borderColor: "#C7A17A" }}
               >
-                Registrarme
+                {ubicacion.pathname === "/usuario/iniciar"
+                  ? "Iniciar sesión"
+                  : "Registrarme"}
               </Button>
             </Form>
           </Col>
@@ -121,4 +117,5 @@ const InicioSesion = () => {
     </div>
   );
 };
+
 export default InicioSesion;

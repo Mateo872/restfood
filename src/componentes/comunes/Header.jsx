@@ -6,7 +6,7 @@ import { Link, useLocation } from "react-router-dom";
 const Header = () => {
   const menuCapaRef = useRef(null);
   const menuRef = useRef(null);
-  const location = useLocation();
+  const ubicacion = useLocation();
   const [scroll, setScroll] = useState(false);
 
   const manejarScroll = () => {
@@ -39,7 +39,7 @@ const Header = () => {
     <header>
       <div
         className={`contenedor_publicidad ${
-          location.pathname === "/" ? "d-block" : "d-none"
+          ubicacion.pathname === "/" ? "d-block" : "d-none"
         }`}
       >
         <h6 className="mb-0 text-center d-flex align-items-center gap-4 justify-content-center">
@@ -49,11 +49,11 @@ const Header = () => {
       <nav
         className={`d-flex align-items-center justify-content-between w-100 ${
           scroll ? "mt-0" : "margen"
-        } ${location.pathname !== "/" && "mt-0"}`}
+        } ${ubicacion.pathname !== "/" && "mt-0"}`}
         style={{
           backgroundColor: scroll
             ? "#C7A17A"
-            : location.pathname !== "/"
+            : ubicacion.pathname !== "/"
             ? "#C7A17A"
             : "transparent",
         }}
@@ -63,7 +63,7 @@ const Header = () => {
           <span
             style={{
               color:
-                scroll || (!scroll && location.pathname !== "/")
+                scroll || (!scroll && ubicacion.pathname !== "/")
                   ? "#1e1e1e"
                   : "#C7A17A",
             }}
@@ -92,14 +92,16 @@ const Header = () => {
             <li>
               <a
                 href="#productos"
-                className={`${location.pathname !== "/" && "d-none"} menu_link`}
+                className={`${
+                  ubicacion.pathname !== "/" && "d-none"
+                } menu_link`}
               >
                 Productos
               </a>
             </li>
             <li
               className={`${
-                location.pathname === "/restfood/nosotros" && "d-none"
+                ubicacion.pathname === "/restfood/nosotros" && "d-none"
               }`}
             >
               <Link to={"/restfood/nosotros"} className="menu_link">
@@ -112,7 +114,7 @@ const Header = () => {
               </a>
             </li>
             <li className="d-md-none">
-              <Link to={"/usuario/iniciar"} className="menu_link ">
+              <Link to={"/usuario/iniciar"} className="menu_link">
                 Iniciar
               </Link>
             </li>
@@ -126,13 +128,23 @@ const Header = () => {
         <BiMenu onClick={menuVisible} className="d-md-none" />
         <div className="d-none d-md-flex align-items-center gap-1">
           <li>
-            <Link to={"/usuario/iniciar"} className="menu_link">
+            <Link
+              to={"/usuario/iniciar"}
+              className={`${
+                ubicacion.pathname === "/usuario/iniciar" && "d-none"
+              } menu_link`}
+            >
               Iniciar
             </Link>
           </li>
           <span style={{ color: "#fff" }}>|</span>
           <li>
-            <Link to={"/usuario/registrar"} className="menu_link">
+            <Link
+              to={"/usuario/registrar"}
+              className={`${
+                ubicacion.pathname === "/usuario/registrar" && "d-none"
+              } menu_link`}
+            >
               Registrarse
             </Link>
           </li>
