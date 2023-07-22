@@ -824,6 +824,11 @@ form h6 {
   color: var(--color-terciario);
 }
 
+.cerrar_postal {
+  right: 1rem;
+  cursor: pointer;
+}
+
 @media (min-width: 767px) {
   .contenedor_publicidad h6 {
     font-size: 0.6rem;
@@ -942,7 +947,7 @@ form h6 {
   }
 
   article .bookmark {
-    left: 22rem;
+    left: 20.5rem;
     font-size: 3rem;
     right: 0;
   }
@@ -1000,10 +1005,6 @@ form h6 {
 
   div .contenedor_detalle .stock {
     font-size: 1rem;
-  }
-
-  .contenedor_detalle .contenedor_imagen-carac {
-    height: 28rem;
   }
 
   article .contenedor_imagen-detalle {
