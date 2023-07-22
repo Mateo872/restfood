@@ -1,8 +1,10 @@
 import { Card } from "react-bootstrap";
-import { BsPlusCircleFill } from "react-icons/bs";
+import { BsPlusCircleFill, BsFillHeartFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
 const TarjetaProducto = ({ platosFiltrados, productosPaginaActual }) => {
+  let favPlato = JSON.parse(localStorage.getItem("favPlato")) || [];
+
   return (
     <>
       {platosFiltrados
@@ -14,7 +16,10 @@ const TarjetaProducto = ({ platosFiltrados, productosPaginaActual }) => {
                 className="img-tarjeta-producto"
                 style={{ border: "6px solid #c7a17a" }}
               />
-              <Card.Body className="body-tarjeta">
+              <Card.Body className="body-tarjeta position-relative">
+                <div className="contenedor_favoritos d-flex justify-content-center align-items-center position-absolute">
+                  <BsFillHeartFill className="svg_favorito" />
+                </div>
                 <Card.Title className="nombre_producto" title={producto.nombre}>
                   {producto.nombre}
                 </Card.Title>

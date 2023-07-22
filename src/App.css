@@ -799,6 +799,21 @@ form h6 {
   border-radius: 0.4rem;
 }
 
+.contenedor_favoritos {
+  height: 3rem;
+  width: 3rem;
+  background-color: var(--color-secundario);
+  top: -14rem;
+  right: 1rem;
+  border-radius: 100%;
+}
+
+.svg_favorito {
+  margin-top: 0.1rem;
+  font-size: 1.5rem;
+  color: red;
+}
+
 .contenedor_buscador h6 {
   width: 6rem;
   overflow: hidden;
