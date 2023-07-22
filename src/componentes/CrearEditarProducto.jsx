@@ -5,8 +5,6 @@ import { crearPlato, editarPlato, obtenerPlato } from "./ayudas/consultas";
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 const CrearEditarProducto = () => {
-  
-
   const navegacion = useNavigate();
   const { id } = useParams();
 
@@ -22,22 +20,22 @@ const CrearEditarProducto = () => {
     if (id) {
       obtenerPlato(id).then((respuesta) => {
         setValue("imagen", respuesta.imagen);
-        setValue("nombreProducto", respuesta.nombre);
+        setValue("nombre", respuesta.nombre);
         setValue("precio", respuesta.precio);
-        setValue("descripcionProducto", respuesta.descripcion);
+        setValue("descripcion", respuesta.descripcion);
         setValue("stock", respuesta.stock);
         setValue("categoria", respuesta.categoria);
       });
     }
   }, []);
 
-  const onSubmit = (platoNuevo, platoEditado) => {
+  const onSubmit = (platoEditado) => {
     if (id) {
       editarPlato(platoEditado, id).then((respuesta) => {
-        if (respuesta && respuesta.status === 200) {
+        if (respuesta.status === 200) {
           Swal.fire(
-            "Receta Modificada",
-            `El plato ${platoEditado.nombreProducto} fue modificado con exito`,
+            "Producto modificado",
+            `El producto ${platoEditado.nombre} fue modificado con exito`,
             "success"
           );
           navegacion("/administrador");
@@ -50,11 +48,11 @@ const CrearEditarProducto = () => {
         }
       });
     } else {
-      crearPlato(platoNuevo).then((respuesta) => {
+      crearPlato(platoEditado).then((respuesta) => {
         if (respuesta.status === 201) {
           Swal.fire(
-            "Plato Creado",
-            `El plato ${platoNuevo.nombreProducto} fue creado con exito!`,
+            "Producto creado",
+            `El plato ${platoEditado.nombre} fue creado con exito!`,
             "success"
           );
           reset();
@@ -95,7 +93,7 @@ const CrearEditarProducto = () => {
             type="text"
             placeholder="Nombre del Producto"
             className="input_CrearEditarpd"
-            {...register("nombreProducto", {
+            {...register("nombre", {
               required: "El nombre del producto es obligatorio",
               minLength: {
                 value: 2,
@@ -108,7 +106,7 @@ const CrearEditarProducto = () => {
             })}
           />
           <Form.Text className="text-danger">
-            {errors.nombreProducto?.message}
+            {errors.nombre?.message}
           </Form.Text>
         </Form.Group>
 
@@ -134,17 +132,14 @@ const CrearEditarProducto = () => {
           </Form.Text>
         </Form.Group>
 
-        <Form.Group
-          className="mb-3 text-center"
-          controlId="DescripcionProducto"
-        >
+        <Form.Group className="mb-3 text-center" controlId="Descripcion">
           <textarea
             name="descripcion"
-            id="descripcionProducto"
+            id="descripcion"
             rows="3"
             placeholder="Descripción del producto"
             className="input_CrearEditarpd"
-            {...register("descripcionProducto", {
+            {...register("descripcion", {
               required: "La descripción del producto es obligatorio",
               minLength: {
                 value: 2,
@@ -157,7 +152,7 @@ const CrearEditarProducto = () => {
             })}
           ></textarea>
           <Form.Text className="text-danger">
-            {errors.descripcionProducto?.message}
+            {errors.descripcion?.message}
           </Form.Text>
         </Form.Group>
 
