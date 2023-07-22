@@ -950,6 +950,56 @@ form h6 {
     margin: 0 2rem;
   }
 
+  .contenedor_caracteristicas-detalle {
+    width: 40%;
+  }
+
+  .contenedor_detalle .titulo_producto-detalle {
+    margin-top: 0;
+    font-size: 1.1rem;
+  }
+
+  section .contenedor_detalle .contenedor_tamanio,
+  section .contenedor_detalle .input_cantidad,
+  section .contenedor_detalle .input_postal,
+  section .contenedor_detalle .agregar_carrito,
+  section .contenedor_detalle .boton_calcular {
+    padding: 0.6rem;
+    font-size: 0.8rem;
+  }
+
+
+  .contenedor_detalle .titulo_precio-detalle {
+    font-size: 1.1rem;
+  }
+
+  .contenedor_detalle .descripcion_detalle {
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 1rem;
+  }
+
+  .titulo_tamaño {
+    margin-top: 1rem;
+  }
+
+  .contenedor_detalle .paginacion a,
+  .paginacion span {
+    margin-top: 1rem;
+    font-size: 1rem;
+  }
+
+  div .contenedor_detalle .stock {
+    font-size: 1rem;
+  }
+
+  .contenedor_detalle .contenedor_imagen-carac {
+    height: 28rem;
+  }
+
+  article .contenedor_imagen-detalle {
+    width: 100%;
+  }
+
   .contenedor_producto-carrito .carrito_caracteristicas {
     width: 6rem;
     margin-left: 2.8rem;
@@ -1566,7 +1616,7 @@ form h6 {
   border-radius: .3rem;
   color: var(--color-secundario);
   background-color: var(--color-primario);
-  padding: .8rem;
+  padding: 1rem;
   text-align: center;
   font-weight: 500;
   border: 2px solid var(--color-primario);
@@ -1580,7 +1630,8 @@ form h6 {
 }
 
 .contenedor_detalle .input_cantidad {
-  padding: 0.8rem;
+  width: 100%;
+  padding: 1rem;
   color: var(--color-primario);
   background-color: transparent;
   border: 2px solid var(--color-primario);
@@ -1599,7 +1650,7 @@ form h6 {
 
 .contenedor_detalle .input_postal {
   width: 65%;
-  padding: 0.8rem;
+  padding: 1rem;
   color: var(--color-primario);
   background-color: transparent;
   border: 2px solid var(--color-primario);
@@ -1614,7 +1665,7 @@ form h6 {
 
 .contenedor_detalle .boton_calcular {
   width: 35%;
-  padding: 0.8rem;
+  padding: 1rem;
   color: var(--color-secundario);
   background-color: var(--color-terciario);
   border: 2px solid var(--color-terciario);
@@ -1631,7 +1682,7 @@ form h6 {
 
 .contenedor_detalle .agregar_carrito {
   margin-top: 1rem;
-  padding: 0.8rem;
+  padding: 1rem;
   color: var(--color-secundario);
   background-color: var(--color-primario);
   border: 2px solid var(--color-primario);
