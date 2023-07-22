@@ -28,8 +28,8 @@ const DetalleProducto = () => {
           <div className="contenedor_imagen-detalle">
             <img className="w-100 h-100" src={hambur} alt="" />
           </div>
-          <div className="contenedor_caracteristicas-detalle d-flex flex-column">
-            <h2 className="titulo_producto-detalle">HAMBURGUESA DOBLE</h2>
+          <div className="contenedor_caracteristicas-detalle d-flex flex-column ">
+            <h2 className="titulo_producto-detalle mt-0">HAMBURGUESA DOBLE</h2>
             <h2 className="titulo_precio-detalle mt-0">$1000</h2>
             <p className="descripcion_detalle mb-0" title="">
               Una deliciosa creación culinaria compuesta por dos jugosas y

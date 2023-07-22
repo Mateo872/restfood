@@ -1328,7 +1328,59 @@ form h6 {
     padding: 1rem 1.5rem;
   }
 
+  section .contenedor_detalle {
+    padding: 2rem 6rem 3rem;
+  }
 
+  .contenedor_caracteristicas-detalle {
+    width: 35%;
+  }
+
+  .contenedor_detalle .titulo_producto-detalle {
+    font-size: 1.4rem;
+  }
+
+  section .contenedor_detalle .contenedor_tamanio,
+  section .contenedor_detalle .input_cantidad,
+  section .contenedor_detalle .input_postal,
+  section .contenedor_detalle .agregar_carrito,
+  section .contenedor_detalle .boton_calcular {
+    padding: 0.8rem;
+    font-size: 0.8rem;
+  }
+
+
+  section .contenedor_detalle .titulo_precio-detalle {
+    font-size: 1.4rem;
+  }
+
+  .titulo_tamaño {
+    margin-top: 1rem;
+  }
+
+  .contenedor_detalle .paginacion a,
+  .paginacion span {
+    margin-top: 1rem;
+    font-size: 1rem;
+  }
+
+  div .contenedor_detalle .stock {
+    font-size: 1rem;
+  }
+
+  .contenedor_detalle .contenedor_imagen-carac {
+    height: auto;
+  }
+
+  article .contenedor_imagen-detalle {
+    width: 55%;
+  }
+
+  section article .descripcion_detalle {
+    text-overflow: unset;
+    overflow: visible;
+    white-space: pre-wrap;
+  }
 
   .contenedor_platos .contenedor_radio {
     border-radius: 1.3rem 1.3rem 0 0;
@@ -1588,6 +1640,8 @@ form h6 {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: .5rem;
 }
 
 .contenedor_detalle hr {
@@ -1597,6 +1651,10 @@ form h6 {
 .contenedor_detalle h4 {
   font-size: 1.2rem;
   font-weight: 500;
+}
+
+.titulo_tamaño {
+  margin-top: 1rem;
 }
 
 .contenedor_detalle .contenedor_tamanio {
