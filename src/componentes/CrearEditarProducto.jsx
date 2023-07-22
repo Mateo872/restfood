@@ -1,13 +1,15 @@
-import { Container } from "react-bootstrap";
+
 import Form from "react-bootstrap/Form";
 import { useForm } from "react-hook-form";
-import { useLocation, useNavigate, useParams } from "react-router";
+import {  useNavigate, useParams } from "react-router";
 import { crearPlato, editarPlato, obtenerPlato } from "./ayudas/consultas";
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 const CrearEditarProducto = () => {
+  //const isEditing = !!id;
+
  
-  const [titulo, setTitulo] = useState("Crear Producto");
+  
   const navegacion = useNavigate();
   const { id } = useParams();
 
@@ -30,7 +32,7 @@ const CrearEditarProducto = () => {
         setValue("stock", respuesta.stock);
       });
     }
-  }, [id]);
+  }, []);
 
   const onSubmit = (platoNuevo, platoEditado) => {
     if (id) {
@@ -74,7 +76,7 @@ const CrearEditarProducto = () => {
 
 return (
   <section className="contenedor_EditarCrear">
-    <h1 className="display-1 text-center text-light">{titulo}</h1>
+    <h1 className="display-1 text-center text-light">{id ? 'Editar Plato' : 'Crear Plato'}</h1>
     <Form onSubmit={handleSubmit(onSubmit)} className="formCrearEditar pb-5">
       <Form.Group className="mb-3 text-center" controlId="input_imgPro">
         <input
@@ -197,7 +199,7 @@ return (
 
       <div className="text-center">
         <button type="submit" className="btn_AgrProducto">
-          Agregar Producto
+        {id ? 'Editar Plato' : 'Crear Plato'}
         </button>
       </div>
     </Form>

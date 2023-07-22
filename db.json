@@ -11,12 +11,11 @@
     },
     {
       "id": 2,
-      "nombre": "Revuelto Gramajo",
-      "imagen": "https://www.cucinare.tv/wp-content/uploads/2023/03/Gramajo-Cucco-596x384.jpg",
-      "precio": 900,
-      "descripcion": "Una versión diferente de un clásico de la gastronomía porteña.Papas, pimientos rojos, verdes, queso sardo, jamón cocido y arvejas.",
-      "stock": "1",
-      "categoria": "entradas"
+            "nombre": "Revuelto Gramajo",
+            "imagen": "https://www.cucinare.tv/wp-content/uploads/2023/03/Gramajo-Cucco-596x384.jpg",
+            "precio": "900",
+            "descripcion": "Una versión diferente de un clásico de la gastronomía porteña.Papas, pimientos rojos, verdes, queso sardo, jamón cocido y arvejas.",
+            "stock": "1"
     },
     {
       "id": 3,

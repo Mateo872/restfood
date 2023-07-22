@@ -72,7 +72,7 @@ export const editarPlato = async (plato, id) => {
             headers: {
                 "Content-type": "application/json",
             },
-            body: JSON.stringify(plato),
+            body: JSON.stringify(plato)
         });
         return respuesta;
     } catch (error) {
