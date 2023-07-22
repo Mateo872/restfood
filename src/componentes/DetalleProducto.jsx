@@ -3,9 +3,9 @@ import { Link, useParams } from "react-router-dom";
 import { GoBookmark, GoBookmarkFill } from "react-icons/go";
 import { BsTruck } from "react-icons/bs";
 import { obtenerPlato } from "./ayudas/consultas";
-import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import ClipLoader from "react-spinners/ClipLoader";
+import Error404 from "./Error404";
 
 const DetalleProducto = () => {
   const { id } = useParams();
@@ -15,7 +15,6 @@ const DetalleProducto = () => {
   const [tamanio, setTamanio] = useState("Chico");
   const [favoritos, setFavoritos] = useState(false);
   let favPlato = JSON.parse(localStorage.getItem("favPlato")) || [];
-  const navegacion = useNavigate();
 
   const {
     register,
@@ -27,8 +26,11 @@ const DetalleProducto = () => {
     obtenerPlato(id)
       .then((respuesta) => {
         if (respuesta) {
-          setPlato(respuesta);
-        } else {
+          setMostrarSpinner(true);
+          setTimeout(() => {
+            setPlato(respuesta);
+            setMostrarSpinner(false);
+          }, 500);
         }
       })
       .catch((err) => {
@@ -67,9 +69,9 @@ const DetalleProducto = () => {
     let precioInicial = plato.precio;
 
     if (tamanio === "Mediano") {
-      return precioInicial + 200;
+      return Math.ceil(precioInicial * 1.2);
     } else if (tamanio === "Grande") {
-      return precioInicial + 400;
+      return Math.ceil(precioInicial * 1.4);
     }
 
     return precioInicial;
@@ -78,7 +80,14 @@ const DetalleProducto = () => {
   return (
     <section>
       <article className="contenedor_detalle">
-        {plato && Object.keys(plato).length !== 0 && (
+        {mostrarSpinner ? (
+          <div
+            className="d-flex justify-content-center align-items-center"
+            style={{ height: "80vh" }}
+          >
+            <ClipLoader size={45} />
+          </div>
+        ) : plato && Object.keys(plato).length !== 0 ? (
           <>
             <div className="d-flex gap-1 paginacion">
               <Link to={"/"}>INICIO /</Link>
@@ -213,6 +222,8 @@ const DetalleProducto = () => {
               </form>
             </div>
           </>
+        ) : (
+          <Error404 />
         )}
       </article>
     </section>
