@@ -1587,7 +1587,7 @@ form h6 {
   color: var(--color-secundario);
 }
 
-.body-tarjeta svg:hover {
+.body-tarjeta a svg:hover {
   transform: scale(.95);
   transition: .3s;
   cursor: pointer;

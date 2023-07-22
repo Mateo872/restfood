@@ -17,7 +17,13 @@ const TarjetaProducto = ({ platosFiltrados, productosPaginaActual }) => {
                 style={{ border: "6px solid #c7a17a" }}
               />
               <Card.Body className="body-tarjeta position-relative">
-                <div className="contenedor_favoritos d-flex justify-content-center align-items-center position-absolute">
+                <div
+                  className={`contenedor_favoritos ${
+                    favPlato.find((fav) => fav == producto.id)
+                      ? "d-flex"
+                      : "d-none"
+                  } justify-content-center align-items-center position-absolute`}
+                >
                   <BsFillHeartFill className="svg_favorito" />
                 </div>
                 <Card.Title className="nombre_producto" title={producto.nombre}>
