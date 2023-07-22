@@ -69,9 +69,9 @@ const DetalleProducto = () => {
     let precioInicial = plato.precio;
 
     if (tamanio === "Mediano") {
-      return precioInicial + 200;
+      return Math.ceil(precioInicial * 1.2);
     } else if (tamanio === "Grande") {
-      return precioInicial + 400;
+      return Math.ceil(precioInicial * 1.4);
     }
 
     return precioInicial;
