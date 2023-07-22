@@ -928,6 +928,10 @@ form h6 {
     padding: 0.4rem;
   }
 
+  article .paginacion_detalle-color {
+    width: 44%;
+  }
+
   .contenedor_carrito {
     padding: 2rem;
   }
@@ -935,6 +939,12 @@ form h6 {
   .titulo_carrito {
     margin-top: 4rem;
     font-size: 1.2rem;
+  }
+
+  article .bookmark {
+    left: 22rem;
+    font-size: 3rem;
+    right: 0;
   }
 
   .contenedor_producto-carrito {
@@ -998,6 +1008,7 @@ form h6 {
 
   article .contenedor_imagen-detalle {
     width: 100%;
+    height: auto;
   }
 
   .contenedor_producto-carrito .carrito_caracteristicas {
@@ -1324,6 +1335,12 @@ form h6 {
     scroll-padding-top: 0;
   }
 
+  article .bookmark {
+    left: 35.7rem;
+    font-size: 4rem;
+    cursor: pointer;
+  }
+
   .boton_admin {
     padding: 1rem 1.5rem;
   }
@@ -1608,10 +1625,19 @@ form h6 {
   color: var(--color-terciario);
 }
 
+.paginacion_detalle {
+  font-weight: 500;
+  font-size: 0.7rem;
+}
+
 .paginacion_detalle-color {
   color: var(--color-primario);
   font-weight: 500;
   font-size: 0.7rem;
+  width: 30%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .contenedor_detalle .stock {
@@ -1622,7 +1648,16 @@ form h6 {
 
 .contenedor_imagen-detalle {
   width: 17rem;
-  object-fit: cover;
+  height: 20rem;
+  background-size: cover;
+  background-position: center;
+}
+
+.bookmark {
+  top: 1rem;
+  right: 1rem;
+  font-size: 2rem;
+  color: var(--color-secundario);
 }
 
 .contenedor_detalle h2 {
