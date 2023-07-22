@@ -9,6 +9,7 @@ const DetalleProducto = () => {
   const { id } = useParams();
   const [plato, setPlato] = useState([]);
   const [favorito, setFavorito] = useState(false);
+  const [tamanio, setTamanio] = useState("Chico");
   const navegacion = useNavigate();
 
   useEffect(() => {
@@ -23,6 +24,23 @@ const DetalleProducto = () => {
         console.log(err);
       });
   }, []);
+
+  const manejoTamanio = (e) => {
+    const nuevoTamanio = e.target.textContent;
+    setTamanio(nuevoTamanio);
+  };
+
+  const obtenerPrecioConTamanio = () => {
+    let precioInicial = plato.precio;
+
+    if (tamanio === "Mediano") {
+      return precioInicial + 200;
+    } else if (tamanio === "Grande") {
+      return precioInicial + 400;
+    }
+
+    return precioInicial;
+  };
 
   return (
     <section>
@@ -57,17 +75,38 @@ const DetalleProducto = () => {
               </div>
               <div className="contenedor_caracteristicas-detalle d-flex flex-column justify-content-lg-between">
                 <h2 className="titulo_producto-detalle mt-0">{plato.nombre}</h2>
-                <h2 className="titulo_precio-detalle mt-0">${plato.precio}</h2>
+                <h2 className="titulo_precio-detalle mt-0">
+                  ${obtenerPrecioConTamanio()}
+                </h2>
                 <p className="descripcion_detalle mb-0" title="">
                   {plato.descripcion}
                 </p>
                 <h4 className="titulo_tamaño">Tamaño</h4>
                 <div className="d-flex flex-column flex-md-row gap-2 align-items-center">
-                  <p className="contenedor_tamanio contenedor_tamanio-activo">
+                  <p
+                    className={`contenedor_tamanio ${
+                      tamanio === "Chico" ? "contenedor_tamanio-activo" : ""
+                    }`}
+                    onClick={manejoTamanio}
+                  >
                     Chico
                   </p>
-                  <p className="contenedor_tamanio">Mediano</p>
-                  <p className="contenedor_tamanio">Grande</p>
+                  <p
+                    className={`contenedor_tamanio ${
+                      tamanio === "Mediano" ? "contenedor_tamanio-activo" : ""
+                    }`}
+                    onClick={manejoTamanio}
+                  >
+                    Mediano
+                  </p>
+                  <p
+                    className={`contenedor_tamanio ${
+                      tamanio === "Grande" ? "contenedor_tamanio-activo" : ""
+                    }`}
+                    onClick={manejoTamanio}
+                  >
+                    Grande
+                  </p>
                 </div>
                 <hr />
                 <h4>Cantidad</h4>
