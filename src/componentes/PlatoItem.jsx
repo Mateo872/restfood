@@ -7,7 +7,7 @@ const PlatoItem = ({ platosFiltrados }) => {
         <Link
           to={`producto/detalle/${plato.id}`}
           className="buscador d-flex justify-content-between align-items-center"
-          key={plato.nombre}
+          key={plato.id}
         >
           <div className="buscador d-flex align-items-center gap-2">
             <div className="buscador plato_imagen">
