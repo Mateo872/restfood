@@ -70,9 +70,9 @@ const CrearEditarProducto = () => {
 
   return (
     <section className="contenedor_EditarCrear">
-      <h1 className="text-center text-light">
+      <h2 className="text-center text-light">
         {id ? "Editar Plato" : "Crear Plato"}
-      </h1>
+      </h2>
       <Form onSubmit={handleSubmit(onSubmit)} className="formCrearEditar pb-5">
         <Form.Group className="mb-3" controlId="input_imgPro">
           <label className="text-white mb-1">Imagen</label>
