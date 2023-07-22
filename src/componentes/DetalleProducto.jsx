@@ -1,34 +1,39 @@
 import { Container, Card, Row, Col } from "react-bootstrap";
 import Footer from "./comunes/Footer";
-import hamburguesaDoble from "../complementos/imagenes/Rectangle 110.png";
 import { GoBookmark } from "react-icons/go";
 import { RiTruckLine } from "react-icons/ri";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import {obtenerPlato} from "./ayudas/consultas";
 
 const DetalleProducto = () => {
+  const { id } = useParams();
+  const [plato, setPlato] = useState([]);
+
+  useEffect(()=>{
+    obtenerPlato(id).then((respuesta)=>{
+      setPlato(respuesta);
+    });
+  },[])
   return (
     <>
       <Container className="my-5 mainDetalle">
         <Row>
-          <h5 className="text-secondary">Stock-20 </h5>
-          <div className="iconFav">
-            <GoBookmark className="display-1 text-light"></GoBookmark>
-          </div>
+          <h5 className="text-secondary">{plato.stock}</h5>
+          
 
-          <Col md={6}>
-            <Card.Img variant="top" src={hamburguesaDoble} />
+          <Col md={6}><div className="iconFav">
+            <GoBookmark className="display-1 text-dark"></GoBookmark>
+          </div>
+            <Card.Img variant="top" src={plato.imagen}  className="img-fluid imagendetalle"/>
           </Col>
           <Col md={6}>
             <article className="mb-5">
-              <h2>HAMBURGUESA DOBLE</h2>
-              <h3 className="fw-bold">$1000</h3>
+              <h2>{plato.nombre}</h2>
+              <h3 className="fw-bold">${plato.precio}</h3>
               <hr />
               <p>
-                Una deliciosa creación culinaria compuesta por dos jugosas y
-                sabrosas hamburguesas de carne, apiladas una encima de la otra,
-                y separadas por capas de queso fundido. Entre los panes suaves y
-                ligeramente tostados se encuentran también una variedad de
-                aderezos y condimentos, como lechuga crujiente, tomate fresco,
-                cebolla, pepinillos y una irresistible salsa.
+              {plato.descripcion}
               </p>
               <hr />
               <h2>Tamaño</h2>
