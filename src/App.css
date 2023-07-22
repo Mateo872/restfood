@@ -754,9 +754,16 @@ form h6 {
 }
 
 .boton_seleccionar {
+  padding: 0.85rem;
   background-color: transparent;
   color: var(--color-primario);
   border: 2px solid transparent;
+  font-size: 0.6rem;
+}
+
+.boton_eliminar-todos {
+  padding: 0.85rem;
+  font-size: 0.6rem;
 }
 
 .boton_seleccionar:hover {
@@ -898,15 +905,15 @@ form h6 {
     padding: 0.6rem;
   }
 
-  div .cardProducto {
+  div .card_producto {
     margin-bottom: 1.5rem;
   }
 
-  .cardProducto .boton_producto {
+  .card_producto .boton_producto {
     font-size: 0.8rem;
   }
 
-  .cardProducto .boton_editar {
+  .card_producto .boton_editar {
     padding: 0.48rem;
   }
 
@@ -1610,7 +1617,7 @@ textarea {
     display: inline-block;
   }
 
-  .cardProducto {
+  .card_producto {
     background: transparent;
     color: white;
     margin: 1rem 0 0;
@@ -1637,7 +1644,7 @@ textarea {
   .titulo_producto {
     margin: .8rem auto;
     font-size: 1rem;
-    width: 12rem;
+    width: 10rem;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -1798,12 +1805,22 @@ textarea {
     font-size: 1.8rem;
   }
 
-  .cardProducto {
+  .card_producto {
     width: 20rem;
     padding: 0;
   }
 
-  .cardProducto .boton_producto {
+  .boton_seleccionar {
+    padding: 1.15rem;
+    font-size: 0.8rem;
+  }
+
+  .boton_eliminar-todos {
+    padding: 1.15rem;
+    font-size: 0.8rem;
+  }
+
+  .card_producto .boton_producto {
     font-size: .9rem;
   }
 

@@ -7,6 +7,9 @@ import { obtenerPlatos } from "./ayudas/consultas";
 
 const Administrador = () => {
   const [platos, setPlatos] = useState([]);
+  const [seleccion, setSeleccion] = useState(false);
+  const [seleccionados, setSeleccionados] = useState([]);
+  
   useEffect(() => {
     obtenerPlatos().then((res) => {
       const todasCategorias = [
@@ -67,21 +70,40 @@ const Administrador = () => {
           <div className="botones d-flex align-items-center justify-content-between mb-3 mb-lg-5">
             <h2 className="admin_titulo mb-0">Productos</h2>
             <div className="d-flex align-items-center gap-1 w-100 justify-content-end">
-              <a href="#" className="boton_admin boton_seleccionar">
-                Seleccionar
-              </a>
-              <Link
-                to={"/producto/crear"}
-                className="boton_admin boton_agregar"
+              <button
+                className="boton_admin boton_seleccionar"
+                onClick={() => setSeleccion(!seleccion)}
               >
-                Agregar
-              </Link>
+                {seleccion ? "Cancelar" : "Seleccionar"}
+              </button>
+              {!seleccion ? (
+                <Link
+                  to={"/producto/crear"}
+                  className="boton_admin boton_agregar"
+                >
+                  Agregar
+                </Link>
+              ) : (
+                <button className="boton_admin boton_eliminar-todos">
+                  Eliminar
+                </button>
+              )}
             </div>
           </div>
           <div className="row row-cols-sm-1 row-cols-md-3 contenedorProductos justify-content-between">
-            {platos?.map((plato) => (
-              <ItemProducto key={plato.nombre} platos={plato} />
-            ))}
+            {platos.length > 0 ? (
+              platos.map((plato) => (
+                <ItemProducto
+                  key={plato.nombre}
+                  platos={plato}
+                  seleccion={seleccion}
+                  seleccionados={seleccionados}
+                  setSeleccionados={setSeleccionados}
+                />
+              ))
+            ) : (
+              <p>No hay productos</p>
+            )}
           </div>
         </article>
         <article className="my-5">
