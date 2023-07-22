@@ -1,11 +1,12 @@
 import { Card } from "react-bootstrap";
 import { BsPlusCircleFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const TarjetaProducto = ({ platosFiltrados, productosPaginaActual }) => {
   return (
     <>
       {platosFiltrados
-        ? productosPaginaActual.map((producto, index) => (
+        ? productosPaginaActual.map((producto) => (
             <Card key={producto.id} className="card-body my-3 mt-5 mb-5">
               <Card.Img
                 variant="top"
@@ -29,7 +30,9 @@ const TarjetaProducto = ({ platosFiltrados, productosPaginaActual }) => {
                     {" "}
                     $ {producto.precio}
                   </Card.Text>
-                  <BsPlusCircleFill fontSize={40} />
+                  <Link to={`/producto/detalle/${producto.id}`}>
+                    <BsPlusCircleFill fontSize={40} color="#fff" />
+                  </Link>
                 </div>
               </Card.Body>
             </Card>
