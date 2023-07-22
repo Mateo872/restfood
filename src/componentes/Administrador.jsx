@@ -9,7 +9,7 @@ const Administrador = () => {
   const [platos, setPlatos] = useState([]);
   const [seleccion, setSeleccion] = useState(false);
   const [seleccionados, setSeleccionados] = useState([]);
-  
+
   useEffect(() => {
     obtenerPlatos().then((res) => {
       const todasCategorias = [
@@ -44,12 +44,14 @@ const Administrador = () => {
       id: 1,
       email: "correo1@example.com",
       nombre: "Hamburguesa doble",
+      fecha: "11/07/2023",
       estado: "Pendiente",
     },
     {
       id: 2,
       email: "correo2@example.com",
       nombre: "Bocadillos de Tofu a la Barbacoa",
+      fecha: "11/07/2023",
       estado: "Realizado",
     },
   ];
@@ -137,6 +139,7 @@ const Administrador = () => {
                   <th className="py-2">Email de usuario</th>
                   <th className="py-2">Nombre</th>
                   <th className="py-2">Estado</th>
+                  <th className="py-2">Fecha</th>
                   <th className="py-2">Acciones</th>
                 </tr>
               </thead>
