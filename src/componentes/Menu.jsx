@@ -21,15 +21,7 @@ const Menu = () => {
 
   useEffect(() => {
     obtenerPlatos().then((res) => {
-      const todasCategorias = [
-        ...res[0].categorias.entradas,
-        ...res[0].categorias.bebidas,
-        ...res[0].categorias.postres,
-        ...res[0].categorias.bebidasAlcoholicas,
-        ...res[0].categorias.comidasVeganas,
-      ];
-
-      setProductos(todasCategorias);
+      setProductos(res);
     });
   }, []);
 
