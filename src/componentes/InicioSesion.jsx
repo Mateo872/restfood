@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import fondo from "../complementos/imagenes/366291.jpg";
+import { useLocation } from "react-router";
 
 const InicioSesion = () => {
   const {
@@ -10,6 +11,7 @@ const InicioSesion = () => {
     formState: { errors },
     reset,
   } = useForm();
+  const ubicacion = useLocation();
   const onSubmit = (usuarioRegistrado) => {};
 
   return (
@@ -28,7 +30,9 @@ const InicioSesion = () => {
               className="text-center text-white display-4"
               style={{ fontFamily: "Reenie Beanie, cursive" }}
             >
-              Registro
+              {ubicacion.pathname === "/usuario/iniciar"
+                ? "Inicio"
+                : "Registro"}
             </h1>
             <Form className="form" onSubmit={handleSubmit(onSubmit)}>
               <Form.Group className="form-group pt-3">
@@ -102,7 +106,9 @@ const InicioSesion = () => {
                 className="btn btn-primary  mt-3 text-center w-100"
                 style={{ backgroundColor: "#C7A17A", borderColor: "#C7A17A" }}
               >
-                Registrarme
+                {ubicacion.pathname === "/usuario/iniciar"
+                  ? "Iniciar sesión"
+                  : "Registrarme"}
               </Button>
             </Form>
           </Col>
