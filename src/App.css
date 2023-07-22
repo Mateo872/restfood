@@ -1630,6 +1630,11 @@ textarea {
     width: 9rem;
     border-radius: 100%;
     background-size: cover;
+    background-color: #ddd;
+  }
+
+  .botones .input_menu {
+    width: 100%;
   }
 
   .contenedorProductos {
@@ -1783,6 +1788,10 @@ textarea {
     padding: 2rem;
   }
 
+  .botones .input_menu {
+    width: 25%;
+  }
+
 }
 
 @media all and (min-width: 1024px) {
@@ -1826,6 +1835,10 @@ textarea {
 
   .tabla_contenedor {
     overflow-x: hidden;
+  }
+
+  .botones .input_menu {
+    width: 21.2%;
   }
 
   .cardImg {
