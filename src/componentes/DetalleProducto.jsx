@@ -1,84 +1,105 @@
-import { Container, Card, Row, Col } from "react-bootstrap";
-import Footer from "./comunes/Footer";
-import { GoBookmark } from "react-icons/go";
-import { RiTruckLine } from "react-icons/ri";
-import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import {obtenerPlato} from "./ayudas/consultas";
+import { Link, useParams } from "react-router-dom";
+import { GoBookmark, GoBookmarkFill } from "react-icons/go";
+import { BsTruck } from "react-icons/bs";
+import { obtenerPlato } from "./ayudas/consultas";
+import { useNavigate } from "react-router-dom";
 
 const DetalleProducto = () => {
   const { id } = useParams();
   const [plato, setPlato] = useState([]);
+  const [favorito, setFavorito] = useState(false);
+  const navegacion = useNavigate();
 
-  useEffect(()=>{
-    obtenerPlato(id).then((respuesta)=>{
-      setPlato(respuesta);
-    });
-  },[])
+  useEffect(() => {
+    obtenerPlato(id)
+      .then((respuesta) => {
+        if (respuesta) {
+          setPlato(respuesta);
+        } else {
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
-    <>
-      <Container className="my-5 mainDetalle">
-        <Row>
-          <h5 className="text-secondary">{plato.stock}</h5>
-          
-
-          <Col md={6}><div className="iconFav">
-            <GoBookmark className="display-1 text-dark"></GoBookmark>
-          </div>
-            <Card.Img variant="top" src={plato.imagen}  className="img-fluid imagendetalle"/>
-          </Col>
-          <Col md={6}>
-            <article className="mb-5">
-              <h2>{plato.nombre}</h2>
-              <h3 className="fw-bold">${plato.precio}</h3>
-              <hr />
-              <p>
-              {plato.descripcion}
-              </p>
-              <hr />
-              <h2>Tamaño</h2>
-              <div className="row">
-                <aside className="col-sm-4 col-md-3 mb-3">
-                  <button className="btn_DP ">Chico</button>
-                </aside>
-                <aside className="col-sm-4 col-md-3 mb-3">
-                  <button className="btn_DP ">Mediano</button>
-                </aside>
-                <aside className="col-sm-4 col-md-3 mb-3">
-                  {" "}
-                  <button className="btn_DP">Grande</button>
-                </aside>
-              </div>
-
-              <hr />
-              <h2>Cantidad</h2>
-              <input
-                type="text"
-                disabled
-                className="input_CantidadDP text-center"
-                placeholder="0"
-              />
-              <hr />
-              <h2>
-                <RiTruckLine className="fs-1" /> Medios de envíos
-              </h2>
-              <input
-                type="text"
-                placeholder="Tu código postal"
-                className="me-3 input_CantidadDP mb-3"
-              />
-              <button className="btn_CalcularDP">Calcular</button>
-            </article>
-            <div className="text-start">
-              <button type="submit" className="btn_AgrCarritoDP">
-                Agregar al carrito
-              </button>
+    <section>
+      <article className="contenedor_detalle">
+        {plato && Object.keys(plato).length !== 0 ? (
+          <>
+            <div className="d-flex gap-1 paginacion">
+              <Link to={"/"}>INICIO /</Link>
+              <span className="paginacion_detalle">
+                {plato.categoria?.toUpperCase()} /
+              </span>
+              <span className="paginacion_detalle-color">
+                {plato.nombre?.toUpperCase()}
+              </span>
             </div>
-          </Col>
-        </Row>
-      </Container>
-      <Footer></Footer>
-    </>
+            <p className="stock mb-0">
+              Stock - <span>{plato.stock}</span>
+            </p>
+            <div className="contenedor_imagen-carac d-flex flex-column flex-md-row gap-4 position-relative">
+              <div
+                className="contenedor_imagen-detalle"
+                style={{
+                  backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${plato.imagen})`,
+                }}
+              ></div>
+              <div onClick={() => setFavorito(!favorito)}>
+                {favorito ? (
+                  <GoBookmarkFill className="bookmark position-absolute" />
+                ) : (
+                  <GoBookmark className="bookmark position-absolute" />
+                )}
+              </div>
+              <div className="contenedor_caracteristicas-detalle d-flex flex-column justify-content-lg-between">
+                <h2 className="titulo_producto-detalle mt-0">{plato.nombre}</h2>
+                <h2 className="titulo_precio-detalle mt-0">${plato.precio}</h2>
+                <p className="descripcion_detalle mb-0" title="">
+                  {plato.descripcion}
+                </p>
+                <h4 className="titulo_tamaño">Tamaño</h4>
+                <div className="d-flex flex-column flex-md-row gap-2 align-items-center">
+                  <p className="contenedor_tamanio contenedor_tamanio-activo">
+                    Chico
+                  </p>
+                  <p className="contenedor_tamanio">Mediano</p>
+                  <p className="contenedor_tamanio">Grande</p>
+                </div>
+                <hr />
+                <h4>Cantidad</h4>
+                <input
+                  type="number"
+                  className="input_cantidad"
+                  placeholder="0"
+                />
+                <hr />
+                <div className="d-flex align-items-center gap-1 mb-2">
+                  <BsTruck className="svg_postal" size={25} />
+                  <h4 className="mb-0">Medios de envío</h4>
+                </div>
+                <div className="d-flex gap-2 w-100">
+                  <input
+                    type="number"
+                    className="input_postal"
+                    placeholder="Tu código postal"
+                  />
+                  <button className="boton_calcular">Calcular</button>
+                </div>
+                <button className="agregar_carrito w-100">
+                  Agregar al carrito
+                </button>
+              </div>
+            </div>
+          </>
+        ) : (
+          navegacion("/producto-no-encontrado")
+        )}
+      </article>
+    </section>
   );
 };
 
