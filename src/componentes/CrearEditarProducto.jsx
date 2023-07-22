@@ -1,19 +1,80 @@
-import { Container } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import { useForm } from "react-hook-form";
+import { useNavigate, useParams } from "react-router";
+import { crearPlato, editarPlato, obtenerPlato } from "./ayudas/consultas";
+import { useState, useEffect } from "react";
+import Swal from "sweetalert2";
 const CrearEditarProducto = () => {
+  
+
+  const navegacion = useNavigate();
+  const { id } = useParams();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
+    setValue,
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  useEffect(() => {
+    if (id) {
+      obtenerPlato(id).then((respuesta) => {
+        setValue("imagen", respuesta.imagen);
+        setValue("nombreProducto", respuesta.nombre);
+        setValue("precio", respuesta.precio);
+        setValue("descripcionProducto", respuesta.descripcion);
+        setValue("stock", respuesta.stock);
+        setValue("categoria", respuesta.categoria);
+      });
+    }
+  }, []);
+
+  const onSubmit = (platoNuevo, platoEditado) => {
+    if (id) {
+      editarPlato(platoEditado, id).then((respuesta) => {
+        if (respuesta && respuesta.status === 200) {
+          Swal.fire(
+            "Receta Modificada",
+            `El plato ${platoEditado.nombreProducto} fue modificado con exito`,
+            "success"
+          );
+          navegacion("/administrador");
+        } else {
+          Swal.fire(
+            "Error",
+            `Intente realizar esta operacion mas tarde`,
+            "error"
+          );
+        }
+      });
+    } else {
+      crearPlato(platoNuevo).then((respuesta) => {
+        if (respuesta.status === 201) {
+          Swal.fire(
+            "Plato Creado",
+            `El plato ${platoNuevo.nombreProducto} fue creado con exito!`,
+            "success"
+          );
+          reset();
+        } else {
+          Swal.fire(
+            "Error",
+            `Intente realizar esta operacion mas tarde`,
+            "error"
+          );
+        }
+      });
+      reset();
+    }
   };
+
   return (
     <section className="contenedor_EditarCrear">
+      <h1 className="display-1 text-center text-light">
+        {id ? "Editar Plato" : "Crear Plato"}
+      </h1>
       <Form onSubmit={handleSubmit(onSubmit)} className="formCrearEditar pb-5">
         <Form.Group className="mb-3 text-center" controlId="input_imgPro">
           <input
@@ -109,10 +170,12 @@ const CrearEditarProducto = () => {
               required: "La Categoría es obligatoria",
             })}
           >
-            <option value="">Cateoría del producto</option>
-            <option value="salado">Salado</option>
-            <option value="Dulce">Dulce</option>
-            <option value="Bebidas">Bebidas</option>
+            <option value="">Categoría del producto</option>
+            <option value="entradas">Entradas</option>
+            <option value="postres">Postres</option>
+            <option value="bebidasAlcoholicas">Bebidas Alcoholicas</option>
+            <option value="bebidas">Bebidas</option>
+            <option value="comidasVeganas">Comida Vegana</option>
           </select>{" "}
           <Form.Text className="text-danger">
             {errors.categoria?.message}
@@ -141,12 +204,11 @@ const CrearEditarProducto = () => {
 
         <div className="text-center">
           <button type="submit" className="btn_AgrProducto">
-            Agregar Producto
+            {id ? "Editar Plato" : "Crear Plato"}
           </button>
         </div>
       </Form>
     </section>
   );
 };
-
 export default CrearEditarProducto;
