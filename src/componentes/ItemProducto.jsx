@@ -30,7 +30,7 @@ const ItemProducto = ({
       <Card.Title className="titulo_producto">{platos.nombre}</Card.Title>
       <div className={`${seleccion && "d-none"}`}>
         <Link
-          to={`/producto/editar/2`}
+          to={`/administrador/producto/editar/${platos.id}`}
           className="boton_producto boton_editar m-1"
         >
           Editar

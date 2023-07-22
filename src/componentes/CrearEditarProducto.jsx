@@ -1,19 +1,78 @@
-import { Container } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import { useForm } from "react-hook-form";
+import { useNavigate, useParams } from "react-router";
+import { crearPlato, editarPlato, obtenerPlato } from "./ayudas/consultas";
+import { useState, useEffect } from "react";
+import Swal from "sweetalert2";
 const CrearEditarProducto = () => {
+  const navegacion = useNavigate();
+  const { id } = useParams();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
+    setValue,
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  useEffect(() => {
+    if (id) {
+      obtenerPlato(id).then((respuesta) => {
+        setValue("imagen", respuesta.imagen);
+        setValue("nombre", respuesta.nombre);
+        setValue("precio", respuesta.precio);
+        setValue("descripcion", respuesta.descripcion);
+        setValue("stock", respuesta.stock);
+        setValue("categoria", respuesta.categoria);
+      });
+    }
+  }, []);
+
+  const onSubmit = (platoEditado) => {
+    if (id) {
+      editarPlato(platoEditado, id).then((respuesta) => {
+        if (respuesta.status === 200) {
+          Swal.fire(
+            "Producto modificado",
+            `El producto ${platoEditado.nombre} fue modificado con exito`,
+            "success"
+          );
+          navegacion("/administrador");
+        } else {
+          Swal.fire(
+            "Error",
+            `Intente realizar esta operacion mas tarde`,
+            "error"
+          );
+        }
+      });
+    } else {
+      crearPlato(platoEditado).then((respuesta) => {
+        if (respuesta.status === 201) {
+          Swal.fire(
+            "Producto creado",
+            `El plato ${platoEditado.nombre} fue creado con exito!`,
+            "success"
+          );
+          reset();
+        } else {
+          Swal.fire(
+            "Error",
+            `Intente realizar esta operacion mas tarde`,
+            "error"
+          );
+        }
+      });
+      reset();
+    }
   };
+
   return (
     <section className="contenedor_EditarCrear">
+      <h1 className="display-1 text-center text-light">
+        {id ? "Editar Plato" : "Crear Plato"}
+      </h1>
       <Form onSubmit={handleSubmit(onSubmit)} className="formCrearEditar pb-5">
         <Form.Group className="mb-3 text-center" controlId="input_imgPro">
           <input
@@ -34,7 +93,7 @@ const CrearEditarProducto = () => {
             type="text"
             placeholder="Nombre del Producto"
             className="input_CrearEditarpd"
-            {...register("nombreProducto", {
+            {...register("nombre", {
               required: "El nombre del producto es obligatorio",
               minLength: {
                 value: 2,
@@ -47,7 +106,7 @@ const CrearEditarProducto = () => {
             })}
           />
           <Form.Text className="text-danger">
-            {errors.nombreProducto?.message}
+            {errors.nombre?.message}
           </Form.Text>
         </Form.Group>
 
@@ -73,17 +132,14 @@ const CrearEditarProducto = () => {
           </Form.Text>
         </Form.Group>
 
-        <Form.Group
-          className="mb-3 text-center"
-          controlId="DescripcionProducto"
-        >
+        <Form.Group className="mb-3 text-center" controlId="Descripcion">
           <textarea
             name="descripcion"
-            id="descripcionProducto"
+            id="descripcion"
             rows="3"
             placeholder="Descripción del producto"
             className="input_CrearEditarpd"
-            {...register("descripcionProducto", {
+            {...register("descripcion", {
               required: "La descripción del producto es obligatorio",
               minLength: {
                 value: 2,
@@ -96,7 +152,7 @@ const CrearEditarProducto = () => {
             })}
           ></textarea>
           <Form.Text className="text-danger">
-            {errors.descripcionProducto?.message}
+            {errors.descripcion?.message}
           </Form.Text>
         </Form.Group>
 
@@ -109,10 +165,12 @@ const CrearEditarProducto = () => {
               required: "La Categoría es obligatoria",
             })}
           >
-            <option value="">Cateoría del producto</option>
-            <option value="salado">Salado</option>
-            <option value="Dulce">Dulce</option>
-            <option value="Bebidas">Bebidas</option>
+            <option value="">Categoría del producto</option>
+            <option value="entradas">Entradas</option>
+            <option value="postres">Postres</option>
+            <option value="bebidasAlcoholicas">Bebidas Alcoholicas</option>
+            <option value="bebidas">Bebidas</option>
+            <option value="comidasVeganas">Comida Vegana</option>
           </select>{" "}
           <Form.Text className="text-danger">
             {errors.categoria?.message}
@@ -141,12 +199,11 @@ const CrearEditarProducto = () => {
 
         <div className="text-center">
           <button type="submit" className="btn_AgrProducto">
-            Agregar Producto
+            {id ? "Editar Plato" : "Crear Plato"}
           </button>
         </div>
       </Form>
     </section>
   );
 };
-
 export default CrearEditarProducto;
