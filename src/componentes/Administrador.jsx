@@ -108,7 +108,7 @@ const Administrador = () => {
             )}
           </div>
         </article>
-        <article className="my-5">
+        <article className="botones my-5">
           <div className="d-flex justify-content-between align-items-center mb-3">
             <h2 className="admin_titulo mb-0">Usuarios</h2>
             <Link to={"/usuario/registrar"} className="boton_admin">
@@ -130,7 +130,7 @@ const Administrador = () => {
             </table>
           </div>
         </article>
-        <article className="my-5">
+        <article className="botones my-5">
           <h2 className="admin_titulo mb-3">Pedidos</h2>
           <div className="tabla_contenedor">
             <table className="tabla">
