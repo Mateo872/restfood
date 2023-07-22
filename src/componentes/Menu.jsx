@@ -51,7 +51,7 @@ const Menu = () => {
           <h2 className="text-white text-center menu-titulo mb-5">Menu</h2>
           <div className="d-flex flex-column flex-md-row flex-lg-row justify-content-between align-items-center">
             <p className="titulo text-center text-lg-start mb-2 mb-md-0">
-              Busca tus productos
+              Todos los productos
             </p>
             <div className="contenedor_buscador-filtro d-flex justify-content-end align-items-center gap-2">
               <input
