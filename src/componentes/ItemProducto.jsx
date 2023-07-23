@@ -13,12 +13,12 @@ const ItemProducto = ({
   setInput,
 }) => {
   const manejoSeleccion = () => {
-    const existe = seleccionados.find((selec) => selec === platos.nombre);
+    const existe = seleccionados.find((selec) => selec === platos.id);
 
     if (!existe) {
-      setSeleccionados([...seleccionados, platos.nombre]);
+      setSeleccionados([...seleccionados, platos.id]);
     } else {
-      const existe = seleccionados.filter((selec) => selec !== platos.nombre);
+      const existe = seleccionados.filter((selec) => selec !== platos.id);
       setSeleccionados(existe);
     }
   };
@@ -48,7 +48,7 @@ const ItemProducto = ({
           } else {
             Swal.fire(
               "Se produjo un error",
-              `Intente realizar esta operación más tarde.`,
+              "Intente realizar esta operación más tarde.",
               "error"
             );
           }
@@ -90,7 +90,7 @@ const ItemProducto = ({
           onClick={manejoSeleccion}
         >
           {seleccionados.length > 0 &&
-          seleccionados.find((selec) => selec === platos.nombre)
+          seleccionados.find((selec) => selec === platos.id)
             ? "Cancelar"
             : "Seleccionar"}
         </button>

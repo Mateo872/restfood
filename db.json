@@ -440,15 +440,6 @@
       "descripcion": "Una selección de rollos de sushi vegano, incluyendo opciones como rollos de aguacate, pepino, zanahoria y mango. Se sirven con salsa de soja baja en sodio y jengibre encurtido. Un festín de sabores y texturas para los amantes del sushi.",
       "stock": 32,
       "categoria": "comidasVeganas"
-    },
-    {
-      "id": 50,
-      "nombre": "Berenjenas Rellenas",
-      "imagen": "https://images.unsplash.com/photo-1621852003739-b54d49ff3431?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto",
-      "precio": 13.99,
-      "descripcion": "Berenjenas asadas y rellenas con una mezcla de quinoa, tomate, cebolla, especias y hierbas frescas. Se gratinan al horno con queso vegano y se sirven con una salsa de tomate casera. Una opción satisfactoria y llena de sabor.",
-      "stock": 35,
-      "categoria": "comidasVeganas"
     }
   ]
 }

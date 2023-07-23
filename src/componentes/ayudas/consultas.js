@@ -90,3 +90,18 @@ export const borrarPlato = async (id) => {
     console.log(error);
   }
 };
+
+export const borrarPlatos = async (ids) => {
+  try {
+    const respuestas = await Promise.all(
+      ids.map((id) =>
+        fetch(`${URL_PLATO}/${id}`, {
+          method: "DELETE",
+        })
+      )
+    );
+    return respuestas;
+  } catch (error) {
+    console.log(error);
+  }
+};
