@@ -123,27 +123,65 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
                 Contacto
               </a>
             </li>
+            {usuarioLogueado.email ? (
+              <>
+                <li className="d-flex d-md-none flex-column justify-content-end align-items-center gap-1 usuario_log">
+                  <Link
+                    to={"/administrador"}
+                    className="menu_link link_admin p-0"
+                  >
+                    Administrador
+                  </Link>
+                  <Link
+                    to={"/"}
+                    className="d-flex flex-column align-items-center gap-1"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <p
+                      className="mb-0"
+                      style={{
+                        fontSize: "1.2rem",
+                        color: "#fff",
+                      }}
+                    >
+                      {usuarioLogueado.nombre}
+                    </p>
+                    <div
+                      style={{
+                        width: "2.4rem",
+                        height: "2.4rem",
+                        borderRadius: ".3rem",
+                        backgroundImage: `url(${usuarioLogueado.imagen})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                        order: -1,
+                      }}
+                    ></div>
+                  </Link>
+                </li>
+                {/* <Button variant="dark" onClick={salir}>Salir</Button> */}
+              </>
+            ) : (
+              <>
+                <li className="d-md-none">
+                  <Link to={"/usuario/iniciar"} className="menu_link">
+                    Iniciar
+                  </Link>
+                </li>
 
-            <li className="d-md-none">
-              <Link to={"/usuario/iniciar"} className="menu_link">
-                Iniciar
-              </Link>
-            </li>
-
-            <li className="d-md-none">
-              <Link to={"/usuario/registrar"} className="menu_link">
-                Registrarse
-              </Link>
-            </li>
+                <li className="d-md-none">
+                  <Link to={"/usuario/registrar"} className="menu_link">
+                    Registrarse
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
         <BiMenu onClick={menuVisible} className="d-md-none" />
         {usuarioLogueado.email ? (
           <>
-            <li
-              className="d-flex justify-content-end align-items-center gap-1"
-              style={{ width: "15.5rem" }}
-            >
+            <li className="d-none d-md-flex justify-content-end align-items-center gap-1 usuario_log">
               <Link to={"/administrador"} className="menu_link link_admin p-0">
                 Administrador
               </Link>

@@ -445,17 +445,17 @@
   "usuarios": [
     {
       "id": "1",
-      "imagen": "https://i.postimg.cc/3J5rC6zw/Mateo-Bellini.jpg",
-      "nombre": "Macarena Filsinger",
-      "email": "macafil@gmail.com",
-      "password": "macafilaA1",
+      "imagen": "https://i.postimg.cc/t4CKPcKY/logo2-removebg-preview.png",
+      "nombre": "Restfood",
+      "email": "restrolling@gmail.com",
+      "contrasenia": "Restfoodrolling39",
       "rol": "Administrador"
     },
     {
       "nombre": "aixa",
       "email": "aixa.filsinger@gmail.com",
       "imagen": "https://i.postimg.cc/3J5rC6zw/Mateo-Bellini.jpg",
-      "password": "macaHola1",
+      "contrasenia": "macaHola1",
       "id": "Xbyh-ni"
     }
   ]
