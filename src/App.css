@@ -447,6 +447,19 @@ footer h3 {
   color: var(--color-terciario);
 }
 
+.imagen-contenedor-swal {
+  margin: 0 auto;
+  width: 8.3rem;
+  height: 8.3rem;
+  background-color: var(--color-secundario);
+  border-radius: 100%;
+}
+
+.imagen-contenedor-swal img {
+  background-size: cover;
+  background-position: center;
+  border-radius: .3rem;
+}
 
 /* Menu  */
 .menu-contenedor {
@@ -941,6 +954,12 @@ form h6 {
     font-size: 1.4rem;
   }
 
+
+  .usuario_log {
+    width: 25.8rem
+  }
+
+
   .input_menu {
     width: 100%;
     margin: 0;
@@ -1245,6 +1264,10 @@ form h6 {
     width: 25%;
     font-size: 1rem;
     margin-bottom: 1.5rem;
+  }
+
+  .usuario_log {
+    width: 19.2rem
   }
 
   main article .contenedor_input {

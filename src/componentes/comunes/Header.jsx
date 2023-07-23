@@ -1,10 +1,9 @@
-
 import { useEffect, useRef, useState } from "react";
 import { BiMenu } from "react-icons/bi";
 import { BsX } from "react-icons/bs";
 import { Link, useLocation } from "react-router-dom";
-import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
   const menuCapaRef = useRef(null);
@@ -12,13 +11,30 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
   const ubicacion = useLocation();
   const [scroll, setScroll] = useState(false);
   const navegacion = useNavigate();
-  
-  const salir = ()=>{
-    //borrar del sesion storage
-    sessionStorage.removeItem('usuario');
-    setUsuarioLogeado({});
-    navegacion('/');
-  }
+
+  const salir = () => {
+    Swal.fire({
+      html: `
+      <div class="imagen-contenedor-swal">
+        <img class="w-100 h-100" src="${usuarioLogueado.imagen}" alt="${usuarioLogueado.nombre}" />
+      </div>
+      <h2 class="titulo-dialogo mt-3">Hola, ${usuarioLogueado.nombre}</h2>
+      <p class="texto-dialogo mb-0">¿Deseas cerrar sesión?</p>
+    `,
+      showCancelButton: true,
+      showCancelButton: true,
+      confirmButtonColor: "#c7a17a",
+      cancelButtonColor: "#1e1e1e",
+      confirmButtonText: "Salir",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        sessionStorage.removeItem("usuario");
+        setUsuarioLogeado({});
+        navegacion("/");
+      }
+    });
+  };
 
   const manejarScroll = () => {
     if (window.scrollY >= 1) {
@@ -27,6 +43,7 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
       setScroll(false);
     }
   };
+
   useEffect(() => {
     window.addEventListener("scroll", manejarScroll);
   }, []);
@@ -124,52 +141,139 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
                 Contacto
               </a>
             </li>
-
-            {usuarioLogueado.email? (
+            {usuarioLogueado.email ? (
               <>
-                <Link to={"/administrador"} className="menu_link">
-                  Administrador
-                </Link>
-                <Button variant="dark" onClick={salir}>Salir</Button>
+                <li className="d-flex d-md-none flex-column justify-content-end align-items-center gap-1 usuario_log">
+                  <Link
+                    to={"/administrador"}
+                    className="menu_link link_admin p-0"
+                  >
+                    Administrador
+                  </Link>
+                  <div
+                    className="d-flex flex-column align-items-center gap-1"
+                    onClick={salir}
+                    style={{ textDecoration: "none" }}
+                  >
+                    <p
+                      className="mb-0"
+                      style={{
+                        fontSize: "1.2rem",
+                        color: "#fff",
+                      }}
+                    >
+                      {usuarioLogueado.nombre}
+                    </p>
+                    <div
+                      style={{
+                        width: "2.4rem",
+                        height: "2.4rem",
+                        borderRadius: "100%",
+                        backgroundColor: "#fff",
+                        order: -1,
+                      }}
+                    >
+                      <img
+                        className="w-100 h-100"
+                        src={usuarioLogueado.imagen}
+                        alt={usuarioLogueado.nombre}
+                        style={{
+                          objectFit: "cover",
+                          backgroundPosition: "center",
+                          borderRadius: "100%",
+                        }}
+                      />
+                    </div>
+                  </div>
+                </li>
               </>
             ) : (
-              <li className="d-md-none">
-                <Link to={"/usuario/iniciar"} className="menu_link">
-                  Iniciar
-                </Link>
-              </li>
+              <>
+                <li className="d-md-none">
+                  <Link to={"/usuario/iniciar"} className="menu_link">
+                    Iniciar
+                  </Link>
+                </li>
+
+                <li className="d-md-none">
+                  <Link to={"/usuario/registrar"} className="menu_link">
+                    Registrarse
+                  </Link>
+                </li>
+              </>
             )}
-            <li className="d-md-none">
-              <Link to={"/usuario/registrar"} className="menu_link">
-                Registrarse
-              </Link>
-            </li>
           </ul>
         </div>
         <BiMenu onClick={menuVisible} className="d-md-none" />
-        <div className="d-none d-md-flex align-items-center gap-1">
-          <li>
-            <Link
-              to={"/usuario/iniciar"}
-              className={`${
-                ubicacion.pathname === "/usuario/iniciar" && "d-none"
-              } menu_link`}
-            >
-              Iniciar
-            </Link>
-          </li>
-          <span style={{ color: "#fff" }}>|</span>
-          <li>
-            <Link
-              to={"/usuario/registrar"}
-              className={`${
-                ubicacion.pathname === "/usuario/registrar" && "d-none"
-              } menu_link`}
-            >
-              Registrarse
-            </Link>
-          </li>
-        </div>
+        {usuarioLogueado.email ? (
+          <>
+            <li className="d-none d-md-flex justify-content-end align-items-center gap-1 usuario_log">
+              <Link to={"/administrador"} className="menu_link link_admin p-0">
+                Administrador
+              </Link>
+              <div
+                className="d-flex align-items-center gap-1"
+                onClick={salir}
+                style={{ textDecoration: "none", cursor: "pointer" }}
+              >
+                <p
+                  className="mb-0"
+                  style={{
+                    fontSize: "1.2rem",
+                    color: "#fff",
+                  }}
+                >
+                  | {usuarioLogueado.nombre}
+                </p>
+                <div
+                  style={{
+                    width: "2.4rem",
+                    height: "2.4rem",
+                    borderRadius: "100%",
+                    backgroundColor: "#fff",
+                  }}
+                >
+                  <img
+                    className="w-100 h-100"
+                    src={usuarioLogueado.imagen}
+                    alt={usuarioLogueado.nombre}
+                    style={{
+                      objectFit: "cover",
+                      backgroundPosition: "center",
+                    }}
+                  />
+                </div>
+              </div>
+            </li>
+          </>
+        ) : (
+          <div
+            className="d-none d-md-flex
+            } align-items-center gap-1"
+          >
+            <li>
+              <Link
+                to={"/usuario/iniciar"}
+                className={`${
+                  ubicacion.pathname === "/usuario/iniciar" && "d-none"
+                } menu_link`}
+              >
+                Iniciar
+              </Link>
+            </li>
+            <span style={{ color: "#fff" }}>|</span>
+            <li>
+              <Link
+                to={"/usuario/registrar"}
+                className={`${
+                  ubicacion.pathname === "/usuario/registrar" && "d-none"
+                } menu_link`}
+              >
+                Registrarse
+              </Link>
+            </li>
+          </div>
+        )}
       </nav>
     </header>
   );
