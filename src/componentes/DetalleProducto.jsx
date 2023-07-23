@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { GoBookmark, GoBookmarkFill } from "react-icons/go";
 import { BsTruck } from "react-icons/bs";
 import { obtenerPlato } from "./ayudas/consultas";
-import { set, useForm, useWatch } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import ClipLoader from "react-spinners/ClipLoader";
 import Error404 from "./Error404";
 import Swal from "sweetalert2";
@@ -19,7 +19,7 @@ const DetalleProducto = () => {
   const [error, setError] = useState(false);
   const [formEnviado, setFormEnviado] = useState(null);
   const [costoEnvio, setCostoEnvio] = useState(0);
-  const [producto, setProducto] = useState([]);
+  const [productos, setProductos] = useState([]);
   let favPlato = JSON.parse(localStorage.getItem("favPlato")) || [];
 
   const {
@@ -96,29 +96,45 @@ const DetalleProducto = () => {
         setFormEnviado(true);
       }, 1500);
     } else {
-      Swal.fire(
-        "¡Producto agregado!",
-        "El producto se agregó correctamente al carrito",
-        "success"
-      ).then((res) => {
-        if (res.isConfirmed) {
-          data = {
-            nombre: plato.nombre,
-            precio: obtenerPrecioConTamanio(),
-            cantidad: parseInt(data.cantidad),
-            costoEnvio,
-          };
-          setTamanio("Chico");
-          setPostal(false);
-          setCostoEnvio(0);
-          setFormEnviado(false);
-          setProducto(data);
-          console.log(data);
-          reset();
-        }
-      });
+      data = {
+        id: plato.id,
+        nombre: plato.nombre,
+        precio: obtenerPrecioConTamanio(),
+        cantidad: parseInt(data.cantidad),
+        costoEnvio,
+      };
+
+      const existe = productos.find((producto) => producto.id === data.id);
+
+      if (!existe) {
+        Swal.fire(
+          "¡Producto agregado!",
+          "El producto se agregó correctamente al carrito",
+          "success"
+        ).then((res) => {
+          if (res.isConfirmed) {
+            setTamanio("Chico");
+            setPostal(false);
+            setCostoEnvio(0);
+            setFormEnviado(false);
+            setProductos([...productos, data]);
+            reset();
+          }
+        });
+      } else {
+        data = {
+          ...data,
+          cantidad: existe.cantidad + parseInt(data.cantidad),
+        };
+        setProductos(
+          productos.map((producto) =>
+            producto.id === data.id ? { ...data } : producto
+          )
+        );
+      }
     }
   };
+  console.log(productos);
 
   return (
     <section>
