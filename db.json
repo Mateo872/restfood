@@ -450,6 +450,13 @@
       "email": "macafil@gmail.com",
       "password": "macafilaA1",
       "rol": "Administrador"
+    },
+    {
+      "nombre": "aixa",
+      "email": "aixa.filsinger@gmail.com",
+      "imagen": "https://i.postimg.cc/3J5rC6zw/Mateo-Bellini.jpg",
+      "password": "macaHola1",
+      "id": "Xbyh-ni"
     }
   ]
 }
