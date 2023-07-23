@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { GoBookmark, GoBookmarkFill } from "react-icons/go";
 import { BsTruck } from "react-icons/bs";
 import { obtenerPlato } from "./ayudas/consultas";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import ClipLoader from "react-spinners/ClipLoader";
 import Error404 from "./Error404";
 
@@ -12,9 +12,11 @@ const DetalleProducto = () => {
   const [plato, setPlato] = useState(null);
   const [postal, setPostal] = useState(false);
   const [mostrarSpinner, setMostrarSpinner] = useState(false);
+  const [mostrarSpinnerPostal, setMostrarSpinnerPostal] = useState(false);
   const [tamanio, setTamanio] = useState("Chico");
   const [favoritos, setFavoritos] = useState(false);
   const [error, setError] = useState(false);
+  const [formEnviado, setFormEnviado] = useState(false);
   let favPlato = JSON.parse(localStorage.getItem("favPlato")) || [];
 
   const {
@@ -53,11 +55,14 @@ const DetalleProducto = () => {
   }, [id, favPlato]);
 
   const manejoEnvio = (data) => {
-    setMostrarSpinner(true);
-    setTimeout(() => {
-      setPostal(true);
-      setMostrarSpinner(false);
-    }, 1500);
+    if (!formEnviado) {
+      setMostrarSpinnerPostal(true);
+      setTimeout(() => {
+        setPostal(true);
+        setMostrarSpinnerPostal(false);
+      }, 1500);
+    }
+    // }
   };
 
   const manejoFav = () => {
@@ -169,6 +174,10 @@ const DetalleProducto = () => {
                   type="number"
                   className="input_cantidad"
                   placeholder="0"
+                  disabled={mostrarSpinnerPostal && true}
+                  style={{
+                    opacity: mostrarSpinnerPostal && ".2",
+                  }}
                   {...register("cantidad", {
                     required: "La cantidad es obligatoria",
                     pattern: {
@@ -193,6 +202,10 @@ const DetalleProducto = () => {
                       type="text"
                       className="input_postal"
                       placeholder="Tu código postal"
+                      disabled={mostrarSpinnerPostal && true}
+                      style={{
+                        opacity: mostrarSpinnerPostal && ".2",
+                      }}
                       {...register("codigoPostal", {
                         required: "El código postal es obligatorio",
                         pattern: {
@@ -202,12 +215,20 @@ const DetalleProducto = () => {
                         },
                       })}
                     />
-                    {mostrarSpinner ? (
+                    {mostrarSpinnerPostal ? (
                       <div className="d-flex justify-content-center align-items-center ms-2 w-25">
                         <ClipLoader />
                       </div>
                     ) : (
-                      <button className="boton_calcular">Calcular</button>
+                      <button
+                        type="submit"
+                        className="boton_calcular"
+                        onClick={() => {
+                          setFormEnviado(false);
+                        }}
+                      >
+                        Calcular
+                      </button>
                     )}
                   </div>
                 ) : (
@@ -226,7 +247,18 @@ const DetalleProducto = () => {
                 <div className="text-danger w-75">
                   {errors.codigoPostal?.message}
                 </div>
-                <button className="agregar_carrito w-100">
+                <button
+                  className="agregar_carrito w-100"
+                  type="submit"
+                  disabled={mostrarSpinnerPostal && true}
+                  onClick={() => {
+                    setFormEnviado(true);
+                  }}
+                  style={{
+                    opacity: mostrarSpinnerPostal && ".2",
+                    pointerEvents: mostrarSpinnerPostal && "none",
+                  }}
+                >
                   Agregar al carrito
                 </button>
               </form>
