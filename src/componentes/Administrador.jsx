@@ -3,7 +3,8 @@ import ItemProducto from "./ItemProducto";
 import ItemUsuario from "./ItemUsuario";
 import ItemPedidos from "./ItemPedidos";
 import { Link } from "react-router-dom";
-import { obtenerPlatos } from "./ayudas/consultas";
+import { borrarPlatos, obtenerPlatos } from "./ayudas/consultas";
+import Swal from "sweetalert2";
 
 const Administrador = () => {
   const [input, setInput] = useState("");
@@ -16,6 +17,57 @@ const Administrador = () => {
       setPlatos(res);
     });
   }, []);
+
+  const eliminarProductos = () => {
+    if (seleccionados.length > 0) {
+      Swal.fire({
+        title: "¿Estás seguro de eliminar los productos?",
+        text: "Este paso no se puede revertir.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Borrar",
+        cancelButtonText: "Cancelar",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          borrarPlatos(seleccionados)
+            .then((respuestas) => {
+              if (respuestas.every((res) => res.status === 200)) {
+                Swal.fire(
+                  "Productos eliminados con éxito!",
+                  "Los productos fueron eliminados.",
+                  "success"
+                ).then((result) => {
+                  if (result.isConfirmed) {
+                    obtenerPlatos().then((res) => setPlatos(res));
+                    setInput("");
+                  }
+                });
+              } else {
+                Swal.fire(
+                  "Se produjo un error",
+                  "Intente realizar esta operación más tarde.",
+                  "error"
+                );
+              }
+            })
+            .catch((error) => {
+              console.log(error);
+              Swal.fire(
+                "Se produjo un error",
+                "Intente realizar esta operación más tarde.",
+                "error"
+              );
+            });
+        }
+      });
+    } else {
+      Swal.fire(
+        "No hay productos seleccionados",
+        "Seleccione los productos que desea eliminar.",
+        "error"
+      );
+    }
+  };
 
   const data = [
     {
@@ -85,7 +137,10 @@ const Administrador = () => {
             <div className="d-flex align-items-center gap-1 w-100 justify-content-end">
               <button
                 className="boton_admin boton_seleccionar"
-                onClick={() => setSeleccion(!seleccion)}
+                onClick={() => {
+                  setSeleccion(!seleccion);
+                  !seleccion && setSeleccionados([]);
+                }}
               >
                 {seleccion ? "Cancelar" : "Seleccionar"}
               </button>
@@ -97,7 +152,10 @@ const Administrador = () => {
                   Agregar
                 </Link>
               ) : (
-                <button className="boton_admin boton_eliminar-todos">
+                <button
+                  className="boton_admin boton_eliminar-todos"
+                  onClick={eliminarProductos}
+                >
                   Eliminar
                 </button>
               )}
@@ -118,6 +176,8 @@ const Administrador = () => {
                 <ItemProducto
                   key={plato.nombre}
                   platos={plato}
+                  setPlatos={setPlatos}
+                  setInput={setInput}
                   seleccion={seleccion}
                   seleccionados={seleccionados}
                   setSeleccionados={setSeleccionados}

@@ -14,13 +14,14 @@ export const login = async (usuario) => {
 
     return {
       status: respuesta.status,
-      password: datos.pasword,
+      contrasenia: datos.contrasenia,
       usuario: datos.nombre,
       email: datos.email,
       imagen: datos.imagen,
       estado: datos.estado,
       rol: datos.rol,
       pedido: datos.pedido,
+      carrito: datos.carrito,
       uid: datos.uid,
       // token: datos.token,
     };
@@ -29,7 +30,6 @@ export const login = async (usuario) => {
   }
 };
 
-// Productos
 export const obtenerPlatos = async () => {
   try {
     const respuesta = await fetch(URL_PLATO);
@@ -80,16 +80,27 @@ export const editarPlato = async (plato, id) => {
   }
 };
 
-export const borrarPlato = async (plato, id) => {
+export const borrarPlato = async (id) => {
   try {
     const respuesta = await fetch(`${URL_PLATO}/${id}`, {
       method: "DELETE",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(plato),
     });
     return respuesta;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const borrarPlatos = async (ids) => {
+  try {
+    const respuestas = await Promise.all(
+      ids.map((id) =>
+        fetch(`${URL_PLATO}/${id}`, {
+          method: "DELETE",
+        })
+      )
+    );
+    return respuestas;
   } catch (error) {
     console.log(error);
   }
