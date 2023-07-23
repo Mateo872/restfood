@@ -118,6 +118,8 @@ const Administrador = () => {
                 <ItemProducto
                   key={plato.nombre}
                   platos={plato}
+                  setPlatos={setPlatos}
+                  setInput={setInput}
                   seleccion={seleccion}
                   seleccionados={seleccionados}
                   setSeleccionados={setSeleccionados}

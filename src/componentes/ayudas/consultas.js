@@ -80,14 +80,10 @@ export const editarPlato = async (plato, id) => {
   }
 };
 
-export const borrarPlato = async (plato, id) => {
+export const borrarPlato = async (id) => {
   try {
     const respuesta = await fetch(`${URL_PLATO}/${id}`, {
       method: "DELETE",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(plato),
     });
     return respuesta;
   } catch (error) {
