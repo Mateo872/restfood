@@ -12,7 +12,9 @@ const InicioSesion = () => {
     reset,
   } = useForm();
   const ubicacion = useLocation();
-  const onSubmit = (usuarioRegistrado) => {};
+  const onSubmit = (usuarioRegistrado) => {
+    console.log(usuarioRegistrado)
+  };
 
   return (
     <div
@@ -61,6 +63,10 @@ const InicioSesion = () => {
                   placeholder="Ingrese un email"
                   {...register("email", {
                     required: "El email es obligatorio",
+                    pattern:{
+                      value: /^(([^<>()\[\]\\.,;:\s@”]+(\.[^<>()\[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]+\.)+[a-zA-Z]{2,}))$/,
+                      message: 'El Email debe contener "@" y terminar en: ".com"'
+                    }
                   })}
                 />
                 <Form.Text className="text-danger">
@@ -88,11 +94,15 @@ const InicioSesion = () => {
                   Contraseña:
                 </Form.Label>
                 <Form.Control
-                  type="contraseña"
+                  type="password"
                   id="contraseña"
                   placeholder="Ingrese su contraseña"
                   {...register("contraseña", {
                     required: "La contraseña es obligatoria",
+                    pattern:{
+                      value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/,
+                      message: 'La contraseña debe tener minimo 8 caracteres, al menos una mayúscula una minúscula y un número'
+                    }
                   })}
                 />
                 <Form.Text className="text-danger">

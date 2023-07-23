@@ -9,6 +9,8 @@ const Header = () => {
   const ubicacion = useLocation();
   const [scroll, setScroll] = useState(false);
 
+  
+
   const manejarScroll = () => {
     if (window.scrollY >= 1) {
       setScroll(true);

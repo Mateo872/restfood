@@ -1,5 +1,19 @@
 const URL_PLATO = import.meta.env.VITE_API_PLATOS;
 const URL_USUARIO = import.meta.env.VITE_API_USUARIO;
+export const iniciarSesion = async (usuario)=>{
+  console.log(usuario);
+  try {
+
+    const respuesta = await fetch(URL_USUARIO);
+    const listaUsuarios = await respuesta.json();
+    console.log(listaUsuarios);
+    
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+
+}
 
 export const login = async (usuario) => {
   try {
