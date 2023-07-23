@@ -3,6 +3,7 @@ import { BiMenu } from "react-icons/bi";
 import { BsX } from "react-icons/bs";
 import { Link, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
   const menuCapaRef = useRef(null);
@@ -12,9 +13,27 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
   const navegacion = useNavigate();
 
   const salir = () => {
-    sessionStorage.removeItem("usuario");
-    setUsuarioLogeado({});
-    navegacion("/");
+    Swal.fire({
+      html: `
+      <div class="imagen-contenedor-swal">
+        <img src="${usuarioLogueado.imagen}" alt="Imagen de perfil" />
+      </div>
+      <h2 class="titulo-dialogo mt-3">Hola, ${usuarioLogueado.nombre}</h2>
+      <p class="texto-dialogo mb-0">¿Deseas cerrar sesión?</p>
+    `,
+      showCancelButton: true,
+      showCancelButton: true,
+      confirmButtonColor: "#c7a17a",
+      cancelButtonColor: "#1e1e1e",
+      confirmButtonText: "Salir",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        sessionStorage.removeItem("usuario");
+        setUsuarioLogeado({});
+        navegacion("/");
+      }
+    });
   };
 
   const manejarScroll = () => {
@@ -131,9 +150,9 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
                   >
                     Administrador
                   </Link>
-                  <Link
-                    to={"/"}
+                  <div
                     className="d-flex flex-column align-items-center gap-1"
+                    onClick={salir}
                     style={{ textDecoration: "none" }}
                   >
                     <p
@@ -164,9 +183,8 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
                         }}
                       />
                     </div>
-                  </Link>
+                  </div>
                 </li>
-                {/* <Button variant="dark" onClick={salir}>Salir</Button> */}
               </>
             ) : (
               <>
@@ -192,10 +210,10 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
               <Link to={"/administrador"} className="menu_link link_admin p-0">
                 Administrador
               </Link>
-              <Link
-                to={"/"}
+              <div
                 className="d-flex align-items-center gap-1"
-                style={{ textDecoration: "none" }}
+                onClick={salir}
+                style={{ textDecoration: "none", cursor: "pointer" }}
               >
                 <p
                   className="mb-0"
@@ -224,9 +242,8 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
                     }}
                   />
                 </div>
-              </Link>
+              </div>
             </li>
-            {/* <Button variant="dark" onClick={salir}>Salir</Button> */}
           </>
         ) : (
           <div

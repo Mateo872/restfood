@@ -447,6 +447,13 @@ footer h3 {
   color: var(--color-terciario);
 }
 
+.imagen-contenedor-swal {
+  margin: 0 auto;
+  width: 8.3rem;
+  height: 8.3rem;
+  background-color: var(--color-secundario);
+  border-radius: 100%;
+}
 
 /* Menu  */
 .menu-contenedor {

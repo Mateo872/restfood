@@ -28,7 +28,7 @@ const InicioSesion = ({ setUsuarioLogeado }) => {
 
           Swal.fire(
             "Bienvenido",
-            "Serás redirigido a la sección de administrador",
+            "Has iniciado sesión correctamente como administrador",
             "success"
           ).then((res) => {
             if (res.isConfirmed) {
