@@ -9,11 +9,12 @@ import Error404 from "./Error404";
 
 const DetalleProducto = () => {
   const { id } = useParams();
-  const [plato, setPlato] = useState([]);
+  const [plato, setPlato] = useState(null);
   const [postal, setPostal] = useState(false);
   const [mostrarSpinner, setMostrarSpinner] = useState(false);
   const [tamanio, setTamanio] = useState("Chico");
   const [favoritos, setFavoritos] = useState(false);
+  const [error, setError] = useState(false);
   let favPlato = JSON.parse(localStorage.getItem("favPlato")) || [];
 
   const {
@@ -25,16 +26,25 @@ const DetalleProducto = () => {
   useEffect(() => {
     obtenerPlato(id)
       .then((respuesta) => {
-        if (respuesta) {
+        if (Object.keys(respuesta).length !== 0) {
           setMostrarSpinner(true);
           setTimeout(() => {
             setPlato(respuesta);
             setMostrarSpinner(false);
           }, 500);
+        } else {
+          setMostrarSpinner(false);
+          setTimeout(() => {
+            setError(true);
+          }, 500);
         }
       })
       .catch((err) => {
         console.log(err);
+        setMostrarSpinner(false);
+        setTimeout(() => {
+          setError(true);
+        }, 500);
       });
   }, []);
 
@@ -222,8 +232,15 @@ const DetalleProducto = () => {
               </form>
             </div>
           </>
-        ) : (
+        ) : error ? (
           <Error404 />
+        ) : (
+          <div
+            className="d-flex justify-content-center align-items-center"
+            style={{ height: "80vh" }}
+          >
+            <ClipLoader size={45} />
+          </div>
         )}
       </article>
     </section>
