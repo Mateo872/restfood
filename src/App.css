@@ -455,6 +455,12 @@ footer h3 {
   border-radius: 100%;
 }
 
+.imagen-contenedor-swal img {
+  background-size: cover;
+  background-position: center;
+  border-radius: .3rem;
+}
+
 /* Menu  */
 .menu-contenedor {
   width: 100%;

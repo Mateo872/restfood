@@ -16,7 +16,7 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
     Swal.fire({
       html: `
       <div class="imagen-contenedor-swal">
-        <img src="${usuarioLogueado.imagen}" alt="Imagen de perfil" />
+        <img class="w-100 h-100" src="${usuarioLogueado.imagen}" alt="${usuarioLogueado.nombre}" />
       </div>
       <h2 class="titulo-dialogo mt-3">Hola, ${usuarioLogueado.nombre}</h2>
       <p class="texto-dialogo mb-0">¿Deseas cerrar sesión?</p>
@@ -180,6 +180,7 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
                         style={{
                           objectFit: "cover",
                           backgroundPosition: "center",
+                          borderRadius: "100%",
                         }}
                       />
                     </div>
