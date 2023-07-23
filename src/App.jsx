@@ -35,7 +35,6 @@ function App() {
           element={<DetalleProducto />}
         ></Route>
         <Route
-          exact
           path="/administrador/*"
           element={
             <RutasProtegidas>
