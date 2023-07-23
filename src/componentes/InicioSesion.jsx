@@ -28,10 +28,13 @@ const InicioSesion = ({ setUsuarioLogeado }) => {
 
           Swal.fire(
             "Bienvenido",
-            "En Restfood podés comprar online.",
+            "Serás redirigido a la sección de administrador",
             "success"
-          );
-          navegacion("/administrador");
+          ).then((res) => {
+            if (res.isConfirmed) {
+              navegacion("/administrador");
+            }
+          });
         } else {
           Swal.fire("Error", "Email o contraseña incorrecta", "error");
         }

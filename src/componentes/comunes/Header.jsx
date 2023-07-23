@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { BiMenu } from "react-icons/bi";
 import { BsX } from "react-icons/bs";
 import { Link, useLocation } from "react-router-dom";
-import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
@@ -150,13 +149,21 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
                       style={{
                         width: "2.4rem",
                         height: "2.4rem",
-                        borderRadius: ".3rem",
-                        backgroundImage: `url(${usuarioLogueado.imagen})`,
-                        backgroundSize: "cover",
-                        backgroundPosition: "center",
+                        borderRadius: "100%",
+                        backgroundColor: "#fff",
                         order: -1,
                       }}
-                    ></div>
+                    >
+                      <img
+                        className="w-100 h-100"
+                        src={usuarioLogueado.imagen}
+                        alt={usuarioLogueado.nombre}
+                        style={{
+                          objectFit: "cover",
+                          backgroundPosition: "center",
+                        }}
+                      />
+                    </div>
                   </Link>
                 </li>
                 {/* <Button variant="dark" onClick={salir}>Salir</Button> */}
@@ -200,16 +207,23 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
                   | {usuarioLogueado.nombre}
                 </p>
                 <div
-                  className="contenedor_imagen-usuario"
                   style={{
                     width: "2.4rem",
                     height: "2.4rem",
-                    borderRadius: ".3rem",
-                    backgroundImage: `url(${usuarioLogueado.imagen})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
+                    borderRadius: "100%",
+                    backgroundColor: "#fff",
                   }}
-                ></div>
+                >
+                  <img
+                    className="w-100 h-100"
+                    src={usuarioLogueado.imagen}
+                    alt={usuarioLogueado.nombre}
+                    style={{
+                      objectFit: "cover",
+                      backgroundPosition: "center",
+                    }}
+                  />
+                </div>
               </Link>
             </li>
             {/* <Button variant="dark" onClick={salir}>Salir</Button> */}
