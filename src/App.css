@@ -704,7 +704,7 @@ form h6 {
 }
 
 .pacman_contenedor .pacman {
-  margin-top: 5rem;
+  margin-top: 3rem;
 }
 
 .pacman_texto {
@@ -1991,6 +1991,26 @@ textarea {
     transform: scale(.95);
     transition: .3s;
     cursor: pointer;
+  }
+
+  .lds-hourglass:after {
+    content: " ";
+    display: block;
+    border-radius: 50%;
+    border: 4rem solid var(--color-primario);
+    border-color: var(--color-primario) transparent var(--color-primario) transparent;
+    animation: lds-hourglass 1.2s infinite;
+  }
+
+  @keyframes lds-hourglass {
+    0% {
+      transform: rotate(0);
+      animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
   }
 
   .suspender {
