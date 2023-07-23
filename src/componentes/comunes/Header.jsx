@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from "react";
 import { BiMenu } from "react-icons/bi";
 import { BsX } from "react-icons/bs";
@@ -12,13 +11,12 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
   const ubicacion = useLocation();
   const [scroll, setScroll] = useState(false);
   const navegacion = useNavigate();
-  
-  const salir = ()=>{
-    //borrar del sesion storage
-    sessionStorage.removeItem('usuario');
+
+  const salir = () => {
+    sessionStorage.removeItem("usuario");
     setUsuarioLogeado({});
-    navegacion('/');
-  }
+    navegacion("/");
+  };
 
   const manejarScroll = () => {
     if (window.scrollY >= 1) {
@@ -27,6 +25,7 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
       setScroll(false);
     }
   };
+
   useEffect(() => {
     window.addEventListener("scroll", manejarScroll);
   }, []);
@@ -125,20 +124,12 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
               </a>
             </li>
 
-            {usuarioLogueado.email? (
-              <>
-                <Link to={"/administrador"} className="menu_link">
-                  Administrador
-                </Link>
-                <Button variant="dark" onClick={salir}>Salir</Button>
-              </>
-            ) : (
-              <li className="d-md-none">
-                <Link to={"/usuario/iniciar"} className="menu_link">
-                  Iniciar
-                </Link>
-              </li>
-            )}
+            <li className="d-md-none">
+              <Link to={"/usuario/iniciar"} className="menu_link">
+                Iniciar
+              </Link>
+            </li>
+
             <li className="d-md-none">
               <Link to={"/usuario/registrar"} className="menu_link">
                 Registrarse
@@ -147,29 +138,72 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
           </ul>
         </div>
         <BiMenu onClick={menuVisible} className="d-md-none" />
-        <div className="d-none d-md-flex align-items-center gap-1">
-          <li>
-            <Link
-              to={"/usuario/iniciar"}
-              className={`${
-                ubicacion.pathname === "/usuario/iniciar" && "d-none"
-              } menu_link`}
+        {usuarioLogueado.email ? (
+          <>
+            <li
+              className="d-flex justify-content-end align-items-center gap-1"
+              style={{ width: "15.5rem" }}
             >
-              Iniciar
-            </Link>
-          </li>
-          <span style={{ color: "#fff" }}>|</span>
-          <li>
-            <Link
-              to={"/usuario/registrar"}
-              className={`${
-                ubicacion.pathname === "/usuario/registrar" && "d-none"
-              } menu_link`}
-            >
-              Registrarse
-            </Link>
-          </li>
-        </div>
+              <Link to={"/administrador"} className="menu_link link_admin p-0">
+                Administrador
+              </Link>
+              <Link
+                to={"/"}
+                className="d-flex align-items-center gap-1"
+                style={{ textDecoration: "none" }}
+              >
+                <p
+                  className="mb-0"
+                  style={{
+                    fontSize: "1.2rem",
+                    color: "#fff",
+                  }}
+                >
+                  | {usuarioLogueado.nombre}
+                </p>
+                <div
+                  className="contenedor_imagen-usuario"
+                  style={{
+                    width: "2.4rem",
+                    height: "2.4rem",
+                    borderRadius: ".3rem",
+                    backgroundImage: `url(${usuarioLogueado.imagen})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                ></div>
+              </Link>
+            </li>
+            {/* <Button variant="dark" onClick={salir}>Salir</Button> */}
+          </>
+        ) : (
+          <div
+            className="d-none d-md-flex
+            } align-items-center gap-1"
+          >
+            <li>
+              <Link
+                to={"/usuario/iniciar"}
+                className={`${
+                  ubicacion.pathname === "/usuario/iniciar" && "d-none"
+                } menu_link`}
+              >
+                Iniciar
+              </Link>
+            </li>
+            <span style={{ color: "#fff" }}>|</span>
+            <li>
+              <Link
+                to={"/usuario/registrar"}
+                className={`${
+                  ubicacion.pathname === "/usuario/registrar" && "d-none"
+                } menu_link`}
+              >
+                Registrarse
+              </Link>
+            </li>
+          </div>
+        )}
       </nav>
     </header>
   );
