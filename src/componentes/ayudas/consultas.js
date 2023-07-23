@@ -14,13 +14,14 @@ export const login = async (usuario) => {
 
     return {
       status: respuesta.status,
-      password: datos.pasword,
+      contrasenia: datos.contrasenia,
       usuario: datos.nombre,
       email: datos.email,
       imagen: datos.imagen,
       estado: datos.estado,
       rol: datos.rol,
       pedido: datos.pedido,
+      carrito: datos.carrito,
       uid: datos.uid,
       // token: datos.token,
     };
@@ -29,7 +30,6 @@ export const login = async (usuario) => {
   }
 };
 
-// Productos
 export const obtenerPlatos = async () => {
   try {
     const respuesta = await fetch(URL_PLATO);

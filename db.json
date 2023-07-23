@@ -458,6 +458,15 @@
       "categoria": "comidasVeganas",
       "stock": 1,
       "id": 51
+    },
+    {
+      "imagen": "https://www.cucinare.tv/wp-content/uploads/2023/03/Gramajo-Cucco-596x384.jpg",
+      "nombre": "Hola",
+      "precio": "300",
+      "descripcion": "dasdasdsadsadsdadadasdsdad",
+      "categoria": "bebidas",
+      "stock": "222",
+      "id": 52
     }
   ]
 }

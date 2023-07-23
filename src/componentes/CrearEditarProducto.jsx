@@ -2,7 +2,7 @@ import Form from "react-bootstrap/Form";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router";
 import { crearPlato, editarPlato, obtenerPlato } from "./ayudas/consultas";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Swal from "sweetalert2";
 const CrearEditarProducto = () => {
   const navegacion = useNavigate();
@@ -35,14 +35,17 @@ const CrearEditarProducto = () => {
         if (respuesta.status === 200) {
           Swal.fire(
             "Producto modificado",
-            `El producto ${platoEditado.nombre} fue modificado con exito`,
+            `El producto ${platoEditado.nombre} fue modificado con éxito.`,
             "success"
-          );
-          navegacion("/administrador");
+          ).then((res) => {
+            if (res.isConfirmed) {
+              navegacion("/administrador");
+            }
+          });
         } else {
           Swal.fire(
             "Error",
-            `Intente realizar esta operacion mas tarde`,
+            `Intente realizar esta operación más tarde.`,
             "error"
           );
         }
@@ -52,14 +55,14 @@ const CrearEditarProducto = () => {
         if (respuesta.status === 201) {
           Swal.fire(
             "Producto creado",
-            `El plato ${platoEditado.nombre} fue creado con exito!`,
+            `El plato ${platoEditado.nombre} fue creado con éxito!`,
             "success"
           );
           reset();
         } else {
           Swal.fire(
             "Error",
-            `Intente realizar esta operacion mas tarde`,
+            `Intente realizar esta operación más tarde.`,
             "error"
           );
         }
