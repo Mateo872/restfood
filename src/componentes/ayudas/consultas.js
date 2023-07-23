@@ -7,6 +7,21 @@ export const iniciarSesion = async (usuario)=>{
     const respuesta = await fetch(URL_USUARIO);
     const listaUsuarios = await respuesta.json();
     console.log(listaUsuarios);
+    const usuarioBuscado = listaUsuarios.find((itemUsuario)=> itemUsuario.email === usuario.email);
+    if(usuarioBuscado){
+      console.log("Email encontrado");
+      
+      if(usuarioBuscado.password === usuario.password){
+        console.log("Encontramos al usuario!!!")
+        return usuarioBuscado;
+      }else{
+        console.log("contraseña incorrecta");
+        return null;
+      }
+    }else{
+      console.log("email incorrecto");
+      return null;
+    }
     
   } catch (error) {
     console.log(error);

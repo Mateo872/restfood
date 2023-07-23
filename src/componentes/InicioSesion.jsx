@@ -3,8 +3,9 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import fondo from "../complementos/imagenes/366291.jpg";
 import { useLocation } from "react-router";
+import { iniciarSesion } from "./ayudas/consultas";
 
-const InicioSesion = () => {
+const InicioSesion = ({setUsuarioLogeado}) => {
   const {
     register,
     handleSubmit,
@@ -13,7 +14,13 @@ const InicioSesion = () => {
   } = useForm();
   const ubicacion = useLocation();
   const onSubmit = (usuarioRegistrado) => {
-    console.log(usuarioRegistrado)
+    //console.log(usuarioRegistrado)
+    iniciarSesion(usuarioRegistrado).then((respuesta)=>{
+      if(respuesta){
+        localStorage.setItem('usuario', JSON.stringify(respuesta));
+        setUsuarioLogeado(respuesta);
+      }
+    })
   };
 
   return (
@@ -97,7 +104,7 @@ const InicioSesion = () => {
                   type="password"
                   id="contraseña"
                   placeholder="Ingrese su contraseña"
-                  {...register("contraseña", {
+                  {...register("password", {
                     required: "La contraseña es obligatoria",
                     pattern:{
                       value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/,

@@ -441,5 +441,15 @@
       "stock": 32,
       "categoria": "comidasVeganas"
     }
+  ],
+  "usuarios":[
+    {
+      "id":"1",
+      "imagen":"https://i.postimg.cc/3J5rC6zw/Mateo-Bellini.jpg",
+      "nombre":"Macarena Filsinger",
+      "email":"macafil@gmail.com",
+      "password":"macafilaA1",
+      "rol":"Administrador"
+    }
   ]
 }
