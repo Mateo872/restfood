@@ -6,21 +6,27 @@ import { obtenerPlato } from "./ayudas/consultas";
 import { useForm } from "react-hook-form";
 import ClipLoader from "react-spinners/ClipLoader";
 import Error404 from "./Error404";
+import Swal from "sweetalert2";
 
 const DetalleProducto = () => {
   const { id } = useParams();
   const [plato, setPlato] = useState(null);
   const [postal, setPostal] = useState(false);
   const [mostrarSpinner, setMostrarSpinner] = useState(false);
+  const [mostrarSpinnerPostal, setMostrarSpinnerPostal] = useState(false);
   const [tamanio, setTamanio] = useState("Chico");
   const [favoritos, setFavoritos] = useState(false);
   const [error, setError] = useState(false);
+  const [formEnviado, setFormEnviado] = useState(null);
+  const [costoEnvio, setCostoEnvio] = useState(0);
+  const [productos, setProductos] = useState([]);
   let favPlato = JSON.parse(localStorage.getItem("favPlato")) || [];
 
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   useEffect(() => {
@@ -52,14 +58,6 @@ const DetalleProducto = () => {
     setFavoritos(favPlato.includes(id));
   }, [id, favPlato]);
 
-  const manejoEnvio = (data) => {
-    setMostrarSpinner(true);
-    setTimeout(() => {
-      setPostal(true);
-      setMostrarSpinner(false);
-    }, 1500);
-  };
-
   const manejoFav = () => {
     setFavoritos(!favoritos);
     if (!favoritos) {
@@ -86,6 +84,57 @@ const DetalleProducto = () => {
 
     return precioInicial;
   };
+
+  const manejoEnvio = (data) => {
+    if (!formEnviado && !mostrarSpinnerPostal) {
+      setMostrarSpinnerPostal(true);
+      setTimeout(() => {
+        const costoEnvio = Math.floor(Math.random() * 401) + 100;
+        setCostoEnvio(costoEnvio);
+        setPostal(true);
+        setMostrarSpinnerPostal(false);
+        setFormEnviado(true);
+      }, 1500);
+    } else {
+      data = {
+        id: plato.id,
+        nombre: plato.nombre,
+        precio: obtenerPrecioConTamanio(),
+        cantidad: parseInt(data.cantidad),
+        costoEnvio,
+      };
+
+      const existe = productos.find((producto) => producto.id === data.id);
+
+      if (!existe) {
+        Swal.fire(
+          "¡Producto agregado!",
+          "El producto se agregó correctamente al carrito",
+          "success"
+        ).then((res) => {
+          if (res.isConfirmed) {
+            setTamanio("Chico");
+            setPostal(false);
+            setCostoEnvio(0);
+            setFormEnviado(false);
+            setProductos([...productos, data]);
+            reset();
+          }
+        });
+      } else {
+        data = {
+          ...data,
+          cantidad: existe.cantidad + parseInt(data.cantidad),
+        };
+        setProductos(
+          productos.map((producto) =>
+            producto.id === data.id ? { ...data } : producto
+          )
+        );
+      }
+    }
+  };
+  console.log(productos);
 
   return (
     <section>
@@ -169,6 +218,10 @@ const DetalleProducto = () => {
                   type="number"
                   className="input_cantidad"
                   placeholder="0"
+                  disabled={mostrarSpinnerPostal}
+                  style={{
+                    opacity: mostrarSpinnerPostal && ".2",
+                  }}
                   {...register("cantidad", {
                     required: "La cantidad es obligatoria",
                     pattern: {
@@ -193,6 +246,10 @@ const DetalleProducto = () => {
                       type="text"
                       className="input_postal"
                       placeholder="Tu código postal"
+                      disabled={mostrarSpinnerPostal && true}
+                      style={{
+                        opacity: mostrarSpinnerPostal && ".2",
+                      }}
                       {...register("codigoPostal", {
                         required: "El código postal es obligatorio",
                         pattern: {
@@ -202,7 +259,7 @@ const DetalleProducto = () => {
                         },
                       })}
                     />
-                    {mostrarSpinner ? (
+                    {mostrarSpinnerPostal ? (
                       <div className="d-flex justify-content-center align-items-center ms-2 w-25">
                         <ClipLoader />
                       </div>
@@ -212,21 +269,25 @@ const DetalleProducto = () => {
                   </div>
                 ) : (
                   <div className="bg-success w-100 py-2 text-center text-light position-relative">
-                    Tu envío es de $300
-                    <span
-                      className="cerrar_postal position-absolute"
-                      onClick={() => {
-                        setPostal(false);
-                      }}
-                    >
-                      X
-                    </span>
+                    Tu envío es de ${costoEnvio}
                   </div>
                 )}
                 <div className="text-danger w-75">
                   {errors.codigoPostal?.message}
                 </div>
-                <button className="agregar_carrito w-100">
+                <button
+                  className="agregar_carrito w-100"
+                  type="submit"
+                  disabled={!formEnviado}
+                  onClick={() => {
+                    setFormEnviado(true);
+                  }}
+                  style={{
+                    opacity: !formEnviado || mostrarSpinnerPostal ? ".2" : "1",
+                    pointerEvents:
+                      !formEnviado || mostrarSpinnerPostal ? "none" : "auto",
+                  }}
+                >
                   Agregar al carrito
                 </button>
               </form>
