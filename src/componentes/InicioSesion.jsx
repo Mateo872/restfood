@@ -41,7 +41,7 @@ const InicioSesion = ({ setUsuarioLogeado }) => {
         login(usuarioRegistrado).then((respuesta) => {
           if (respuesta.status === 201) {
             Swal.fire(
-              "Producto creado",
+              "Usuario creado",
               `El usuario ${usuarioRegistrado.nombre} fue creado con éxito!`,
               "success"
             );
