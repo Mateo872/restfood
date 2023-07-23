@@ -72,14 +72,14 @@ const Administrador = () => {
   const data = [
     {
       id: 1,
-      image: "url_de_la_imagen_1",
+      imagen: "https://i.postimg.cc/3J5rC6zw/Mateo-Bellini.jpg",
       email: "correo1@example.com",
       nombre: "Nombre 1",
       rol: "Administrador",
     },
     {
       id: 2,
-      image: "url_de_la_imagen_2",
+      imagen: "url_de_la_imagen_2",
       email: "correo2@example.com",
       nombre: "Nombre 2",
       rol: "Usuario",
