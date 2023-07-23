@@ -154,13 +154,13 @@
       "categoria": "bebidas"
     },
     {
-      "id": 18,
-      "nombre": "Coca-cola Zero",
       "imagen": "https://images.pexels.com/photos/3603/healthy-breakfast-orange-juice-health.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "nombre": "Coca-cola Zero",
       "precio": 400,
       "descripcion": "latitas de cocacola zero",
+      "categoria": "bebidas",
       "stock": 500,
-      "categoria": "bebidas"
+      "id": 18
     },
     {
       "id": 19,
@@ -442,14 +442,14 @@
       "categoria": "comidasVeganas"
     }
   ],
-  "usuarios":[
+  "usuarios": [
     {
-      "id":"1",
-      "imagen":"https://i.postimg.cc/3J5rC6zw/Mateo-Bellini.jpg",
-      "nombre":"Macarena Filsinger",
-      "email":"macafil@gmail.com",
-      "password":"macafilaA1",
-      "rol":"Administrador"
+      "id": "1",
+      "imagen": "https://i.postimg.cc/3J5rC6zw/Mateo-Bellini.jpg",
+      "nombre": "Macarena Filsinger",
+      "email": "macafil@gmail.com",
+      "password": "macafilaA1",
+      "rol": "Administrador"
     }
   ]
 }

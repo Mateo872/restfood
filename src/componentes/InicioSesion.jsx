@@ -4,8 +4,11 @@ import { useForm } from "react-hook-form";
 import fondo from "../complementos/imagenes/366291.jpg";
 import { useLocation } from "react-router";
 import { iniciarSesion } from "./ayudas/consultas";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const InicioSesion = ({setUsuarioLogeado}) => {
+  const navegacion = useNavigate();
   const {
     register,
     handleSubmit,
@@ -17,8 +20,14 @@ const InicioSesion = ({setUsuarioLogeado}) => {
     //console.log(usuarioRegistrado)
     iniciarSesion(usuarioRegistrado).then((respuesta)=>{
       if(respuesta){
-        localStorage.setItem('usuario', JSON.stringify(respuesta));
+        sessionStorage.setItem('usuario', JSON.stringify(respuesta));
         setUsuarioLogeado(respuesta);
+
+        Swal.fire('Bienvenido','En ResstFOOD podes comprar online y el envió es GRATIS' ,'success');
+        navegacion('/administrador');
+        
+      }else{
+        Swal.fire('Error', 'Email o contraseña incorrecta', 'error')
       }
     })
   };
