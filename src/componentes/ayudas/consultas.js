@@ -22,6 +22,7 @@ export const login = async (usuario) => {
       rol: datos.rol,
       pedido: datos.pedido,
       carrito: datos.carrito,
+      productosFavoritos: datos.productosFavoritos,
       uid: datos.uid,
       // token: datos.token,
     };
