@@ -1,13 +1,24 @@
+
 import { useEffect, useRef, useState } from "react";
 import { BiMenu } from "react-icons/bi";
 import { BsX } from "react-icons/bs";
 import { Link, useLocation } from "react-router-dom";
+import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
   const menuCapaRef = useRef(null);
   const menuRef = useRef(null);
   const ubicacion = useLocation();
   const [scroll, setScroll] = useState(false);
+  const navegacion = useNavigate();
+  
+  const salir = ()=>{
+    //borrar del sesion storage
+    sessionStorage.removeItem('usuario');
+    setUsuarioLogeado({});
+    navegacion('/');
+  }
 
   const manejarScroll = () => {
     if (window.scrollY >= 1) {
@@ -113,11 +124,21 @@ const Header = () => {
                 Contacto
               </a>
             </li>
-            <li className="d-md-none">
-              <Link to={"/usuario/iniciar"} className="menu_link">
-                Iniciar
-              </Link>
-            </li>
+
+            {usuarioLogueado.email? (
+              <>
+                <Link to={"/administrador"} className="menu_link">
+                  Administrador
+                </Link>
+                <Button variant="dark" onClick={salir}>Salir</Button>
+              </>
+            ) : (
+              <li className="d-md-none">
+                <Link to={"/usuario/iniciar"} className="menu_link">
+                  Iniciar
+                </Link>
+              </li>
+            )}
             <li className="d-md-none">
               <Link to={"/usuario/registrar"} className="menu_link">
                 Registrarse
