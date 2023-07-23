@@ -7,7 +7,10 @@ const Error404 = () => {
   return (
     <section className="pacman_contenedor d-flex align-items-center justify-content-center text-center">
       <article>
-        <div className="pacman d-flex justify-content-center">
+        <div
+          className="pacman d-flex justify-content-center"
+          style={{ marginTop: !id && "5rem" }}
+        >
           {!id ? (
             <PacmanLoader
               color="#1e1e1e"

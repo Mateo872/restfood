@@ -1997,8 +1997,8 @@ textarea {
     content: " ";
     display: block;
     border-radius: 50%;
-    border: 4rem solid var(--color-primario);
-    border-color: var(--color-primario) transparent var(--color-primario) transparent;
+    border: 4rem solid var(--color-terciario);
+    border-color: var(--color-terciario) transparent var(--color-terciario) transparent;
     animation: lds-hourglass 1.2s infinite;
   }
 
