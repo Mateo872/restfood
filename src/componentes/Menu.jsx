@@ -5,11 +5,13 @@ import { useForm } from "react-hook-form";
 import { obtenerPlatos } from "./ayudas/consultas";
 import Paginacion from "./Paginacion";
 import { BsSliders } from "react-icons/bs";
+import ContenedorFiltros from "./ContenedorFiltros";
 
 const Menu = () => {
   const [busqueda, setBusqueda] = useState("");
   const [productos, setProductos] = useState([]);
   const [paginaActual, setPaginaActual] = useState(1);
+  const [mostrarFiltro, setMostrarFiltro] = useState(null);
   const productosPorPagina = 6;
 
   const {
@@ -53,15 +55,15 @@ const Menu = () => {
             <p className="titulo text-center text-lg-start mb-2 mb-md-0">
               Todos los productos
             </p>
-            <div className="contenedor_buscador-filtro d-flex justify-content-end align-items-center gap-2">
+            <div className="contenedor_buscador-filtro d-flex justify-content-between justify-content-md-end align-items-center gap-2">
               <input
                 type="text"
                 placeholder="Busca tus platos"
                 onChange={manejoBuscador}
                 value={busqueda}
-                className="input_menu"
+                className="input_menu w-100"
               />
-              <BsSliders />
+              <BsSliders onClick={() => setMostrarFiltro(!mostrarFiltro)} />
             </div>
           </div>
           <hr className="text-white " />
@@ -99,6 +101,7 @@ const Menu = () => {
                 setPaginaActual={setPaginaActual}
               />
             </div>
+            <ContenedorFiltros />
           </section>
         </Container>
       </section>

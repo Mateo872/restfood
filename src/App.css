@@ -861,6 +861,94 @@ form h6 {
   opacity: .7;
 }
 
+.contenedor_buscador-filtro {
+  width: 100%;
+}
+
+.filtro_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+  visibility: hidden;
+}
+
+.filtro_overlay .contenedor_filtro {
+  width: 100vw;
+  margin-top: 1.5rem;
+  background-color: var(--color-terciario);
+  border-radius: 0.75rem 0.75rem 0 0;
+  transform: translateY(110%);
+  transition: .3s;
+}
+
+.filtro_overlay .contenedor_filtro .filtro_accion {
+  padding: 1rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.filtro_overlay .contenedor_filtro .filtro_accion h4 {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.filtro_overlay .contenedor_filtro .filtro_accion p {
+  font-size: .8rem;
+  color: var(--color-primario);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.filtro_overlay .contenedor_filtro .filtros {
+  margin-top: 1.25rem;
+  padding: 0 1rem 1rem;
+}
+
+.filtro_overlay .contenedor_filtro .filtro h5 {
+  font-size: .7rem;
+  font-weight: bold;
+  margin-bottom: .3rem;
+}
+
+.filtro_overlay .contenedor_filtro .filtro .filtro_input {
+  margin-top: .5rem;
+  gap: 2px;
+}
+
+.filtro_overlay .contenedor_filtro .filtro .filtro_input .input label {
+  font-size: .7rem;
+}
+
+.filtro_overlay .contenedor_filtro .botones_filtro {
+  padding: 0 1rem 1rem;
+}
+
+.filtro_overlay .contenedor_filtro .botones_filtro button {
+  padding: .5rem;
+  border: 2px solid transparent;
+  border-radius: .3rem;
+  font-size: .8rem;
+  font-weight: bold;
+}
+
+.filtro_overlay .contenedor_filtro .botones_filtro .button_secondary {
+  background-color: rgba(64, 87, 109, .07)
+}
+
+.filtro_overlay .contenedor_filtro .botones_filtro .button_primary {
+  background-color: var(--color-primario);
+  color: var(--color-terciario);
+}
+
+.filtro_overlay .contenedor_filtro .botones_filtro .button_primary:hover {
+  border: 2px solid var(--color-primario);
+  background-color: var(--color-terciario);
+  color: var(--color-primario);
+  transition: .3s;
+  cursor: pointer;
+}
+
 .contenedor_buscador a {
   text-decoration: none;
   color: var(--color-terciario);
@@ -951,6 +1039,59 @@ form h6 {
   .carrito_item svg {
     margin-top: -.1rem;
     font-size: 1rem;
+  }
+
+  .filtro_overlay .contenedor_filtro {
+    margin-top: 0;
+    width: 280px;
+    height: 100vh;
+    transform: translateX(-100%);
+    transition: .3s;
+    border-radius: 2px;
+    overflow-y: scroll;
+    position: relative;
+  }
+
+  .filtro_overlay .contenedor_filtro .filtro_accion {
+    margin-top: 77px;
+  }
+
+  .filtro_overlay .contenedor_filtro .filtro h5 {
+    font-size: 13px;
+  }
+
+  .filtro_overlay .contenedor_filtro .filtro {
+    margin-bottom: 15px;
+  }
+
+  .filtro_overlay .contenedor_filtro .filtro:last-child {
+    margin-bottom: 0px;
+  }
+
+  .filtro_overlay .contenedor_filtro .filtros {
+    padding: 0 1rem 0;
+  }
+
+  .filtro_overlay .contenedor_filtro .filtro .filtro_input {
+    gap: 10px;
+  }
+
+  .filtro_overlay .contenedor_filtro .filtro .filtro_input .input input {
+    cursor: pointer;
+  }
+
+  .filtro_overlay .contenedor_filtro .filtro .filtro_input .input label {
+    font-size: 13px;
+    cursor: pointer;
+  }
+
+  .filtro_overlay .contenedor_filtro .botones_filtro {
+    margin-top: 0;
+    position: sticky;
+    bottom: 0;
+    right: 0;
+    background-color: var(--color_tertiary);
+    padding: 15px;
   }
 
   div .card_producto {
@@ -1872,17 +2013,17 @@ form h6 {
 .formCrearEditar {
   width: 450px;
   margin: auto;
-  padding: 10px 20px;
+  padding: 10px 1.25rem;
   box-sizing: border-box;
-  margin-top: 20px;
-  border-radius: 8px;
+  margin-top: 1.25rem;
+  border-radius: .5rem;
 }
 
 .input_CrearEditarpd {
   width: 100%;
   padding: 15px;
   box-sizing: border-box;
-  font-size: 17px;
+  font-size: 1rem;
   border-radius: 10px;
   border: none;
 }
