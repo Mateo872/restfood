@@ -456,19 +456,31 @@
       "email": "aixa.filsinger@gmail.com",
       "imagen": "https://i.postimg.cc/3J5rC6zw/Mateo-Bellini.jpg",
       "contrasenia": "macaHola1",
+      "rol": "usuario",
+      "carrito": [],
+      "pedidos": [],
+      "favoritos": [],
       "id": "Xbyh-ni"
     },
     {
       "imagen": "https://i.postimg.cc/3J5rC6zw/Mateo-Bellini.jpg",
       "nombre": "maca",
       "email": "macafil99@gmail.com",
-      "rol": {
-        "nombre": "usuarios",
-        "carrito": [],
-        "pedidos": [],
-        "favoritos": []
-      },
+      "rol": "usuario",
+      "carrito": [],
+      "pedidos": [],
+      "favoritos": [],
       "id": "kueCowV"
+    },
+    {
+      "imagen": "https://i.postimg.cc/3J5rC6zw/Mateo-Bellini.jpg",
+      "nombre": "Mateo",
+      "email": "bellinimateo872@gmail.com",
+      "rol": "usuario",
+      "carrito": [],
+      "pedidos": [],
+      "favoritos": [],
+      "id": "ljFFAng"
     }
   ]
 }
