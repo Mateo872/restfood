@@ -191,7 +191,7 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
                   <li className="d-flex d-md-none flex-column justify-content-end align-items-center gap-1 usuario_log">
                     <Link
                       to={"/usuario/carrito"}
-                      className="menu_link link_admin p-0 position-relative"
+                      className="menu_link link_admin p-0 position-relative order-1"
                     >
                       <BsHandbag />
                       <div className="contenedor_badge d-flex justify-content-center align-items-center position-absolute">
