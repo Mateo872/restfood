@@ -134,7 +134,6 @@ const DetalleProducto = () => {
       }
     }
   };
-  console.log(productos);
 
   return (
     <section>
