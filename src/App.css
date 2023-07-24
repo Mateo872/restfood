@@ -274,17 +274,16 @@ footer button:hover {
 }
 
 HEAD .contenedor-quienes-somos {
-  margin-top: -50px;
-  margin-bottom: -50px;
+  margin-top: -3rem;
+  margin-bottom: -3rem;
   background-color: #fff;
 }
 
 .contenedor-quienes-somos {
-  margin-top: -50px;
-  margin-bottom: -60px;
+  margin-top: -3rem;
+  margin-bottom: -3.75rem;
   background-color: #fff;
   position: relative;
-  /* z-index: 1; */
   padding: 0%;
 }
 
@@ -869,9 +868,7 @@ form h6 {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1;
   background-color: rgba(0, 0, 0, 0.5);
-  visibility: hidden;
 }
 
 .filtro_overlay .contenedor_filtro {
@@ -881,6 +878,10 @@ form h6 {
   border-radius: 0.75rem 0.75rem 0 0;
   transform: translateY(110%);
   transition: .3s;
+}
+
+.filtro_overlay .contenedor_filtro-activo {
+  transform: translateY(0%);
 }
 
 .filtro_overlay .contenedor_filtro .filtro_accion {
@@ -920,10 +921,6 @@ form h6 {
   font-size: .7rem;
 }
 
-.filtro_overlay .contenedor_filtro .botones_filtro {
-  padding: 0 1rem 1rem;
-}
-
 .filtro_overlay .contenedor_filtro .botones_filtro button {
   padding: .5rem;
   border: 2px solid transparent;
@@ -932,16 +929,27 @@ form h6 {
   font-weight: bold;
 }
 
-.filtro_overlay .contenedor_filtro .botones_filtro .button_secondary {
-  background-color: rgba(64, 87, 109, .07)
+.filtro_overlay .contenedor_filtro .botones_filtro {
+  padding: 0 1rem 1rem;
 }
 
-.filtro_overlay .contenedor_filtro .botones_filtro .button_primary {
+.filtro_overlay .contenedor_filtro .botones_filtro .boton_secundario {
+  background-color: transparent;
+  border-color: var(--color-primario);
+  color: var(--color-primario);
+}
+
+.filtro_overlay .contenedor_filtro .botones_filtro .boton_secundario:hover {
   background-color: var(--color-primario);
-  color: var(--color-terciario);
+  color: var(--color-secundario);
 }
 
-.filtro_overlay .contenedor_filtro .botones_filtro .button_primary:hover {
+.filtro_overlay .contenedor_filtro .botones_filtro .boton_primario {
+  background-color: var(--color-primario);
+  color: var(--color-secundario);
+}
+
+.filtro_overlay .contenedor_filtro .botones_filtro .boton_primario:hover {
   border: 2px solid var(--color-primario);
   background-color: var(--color-terciario);
   color: var(--color-primario);
@@ -1042,38 +1050,29 @@ form h6 {
   }
 
   .filtro_overlay .contenedor_filtro {
-    margin-top: 0;
-    width: 280px;
+    width: 17.5rem;
     height: 100vh;
     transform: translateX(-100%);
-    transition: .3s;
-    border-radius: 2px;
-    overflow-y: scroll;
-    position: relative;
+  }
+
+  .filtro_overlay .contenedor_filtro-activo {
+    transform: translateX(0%);
   }
 
   .filtro_overlay .contenedor_filtro .filtro_accion {
-    margin-top: 77px;
+    margin-top: 4.6rem;
   }
 
   .filtro_overlay .contenedor_filtro .filtro h5 {
-    font-size: 13px;
+    font-size: 1.2rem;
   }
 
   .filtro_overlay .contenedor_filtro .filtro {
-    margin-bottom: 15px;
-  }
-
-  .filtro_overlay .contenedor_filtro .filtro:last-child {
-    margin-bottom: 0px;
-  }
-
-  .filtro_overlay .contenedor_filtro .filtros {
-    padding: 0 1rem 0;
+    margin: 1.3rem 0;
   }
 
   .filtro_overlay .contenedor_filtro .filtro .filtro_input {
-    gap: 10px;
+    gap: .8rem;
   }
 
   .filtro_overlay .contenedor_filtro .filtro .filtro_input .input input {
@@ -1081,17 +1080,16 @@ form h6 {
   }
 
   .filtro_overlay .contenedor_filtro .filtro .filtro_input .input label {
-    font-size: 13px;
+    font-size: 1rem;
     cursor: pointer;
   }
 
   .filtro_overlay .contenedor_filtro .botones_filtro {
-    margin-top: 0;
-    position: sticky;
+    width: 100%;
+    position: fixed;
     bottom: 0;
     right: 0;
-    background-color: var(--color_tertiary);
-    padding: 15px;
+    padding: .9rem;
   }
 
   div .card_producto {
@@ -1446,6 +1444,71 @@ form h6 {
 
   .contenedor_buscador-filtro {
     width: 30%;
+  }
+
+  .filtro_overlay .contenedor_filtro {
+    width: 17.5rem;
+    height: 100vh;
+    transform: translateX(-100%);
+    padding-bottom: 0;
+    overflow-y: scroll;
+  }
+
+  .filtro_overlay .contenedor_filtro .filtros {
+    height: 100%;
+  }
+
+  .filtro_overlay .contenedor_filtro::-webkit-scrollbar {
+    width: 7px;
+    border-radius: 0.2rem;
+  }
+
+  .filtro_overlay .contenedor_filtro::-webkit-scrollbar-thumb {
+    background: var(--color-secundario);
+    border-radius: .2rem;
+  }
+
+  .filtro_overlay .contenedor_filtro-activo {
+    transform: translateX(0%);
+  }
+
+  .filtro_overlay .contenedor_filtro .filtro_accion {
+    margin-top: 4.3rem;
+    position: sticky;
+    top: 4.3rem;
+    background-color: var(--color-terciario);
+  }
+
+  .filtro_overlay .contenedor_filtro .filtro h5 {
+    font-size: .9rem;
+  }
+
+  .filtro_overlay .contenedor_filtro .filtro {
+    margin: .8rem 0;
+  }
+
+  .filtro_overlay .contenedor_filtro .filtro:first-child {
+    margin-top: -.8rem;
+  }
+
+  .filtro_overlay .contenedor_filtro .filtro .filtro_input {
+    margin-top: 0;
+    gap: .6rem;
+  }
+
+  .ultimo {
+    margin-bottom: -1rem;
+  }
+
+  .filtro_overlay .contenedor_filtro .filtro .filtro_input .input label {
+    font-size: .8rem;
+  }
+
+  .filtro_overlay .contenedor_filtro .botones_filtro {
+    width: 100%;
+    padding: .8rem 0;
+    position: sticky;
+    background-color: var(--color-terciario);
   }
 
   .input_menu {
@@ -2011,9 +2074,9 @@ form h6 {
 }
 
 .formCrearEditar {
-  width: 450px;
+  width: 43rem;
   margin: auto;
-  padding: 10px 1.25rem;
+  padding: .6rem 1.25rem;
   box-sizing: border-box;
   margin-top: 1.25rem;
   border-radius: .5rem;
@@ -2021,10 +2084,10 @@ form h6 {
 
 .input_CrearEditarpd {
   width: 100%;
-  padding: 15px;
+  padding: .9rem;
   box-sizing: border-box;
   font-size: 1rem;
-  border-radius: 10px;
+  border-radius: .6rem;
   border: none;
 }
 
@@ -2035,11 +2098,11 @@ textarea {
 .btn_AgrProducto {
   background-color: var(--color-primario);
   color: var(--color-secundario);
-  font-size: 18px;
-  border-radius: 10px;
+  font-size: 1.2rem;
+  border-radius: .6rem;
   text-align: center;
   width: 100%;
-  padding: 15px;
+  padding: .9rem;
   box-sizing: border-box;
   border: none;
   font-weight: 500;

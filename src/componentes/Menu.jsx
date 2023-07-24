@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import TarjetaProducto from "./TarjetaProducto";
-import { useForm } from "react-hook-form";
 import { obtenerPlatos } from "./ayudas/consultas";
 import Paginacion from "./Paginacion";
 import { BsSliders } from "react-icons/bs";
@@ -14,17 +13,20 @@ const Menu = () => {
   const [mostrarFiltro, setMostrarFiltro] = useState(null);
   const productosPorPagina = 6;
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm();
-
   useEffect(() => {
     obtenerPlatos().then((res) => {
       setProductos(res);
     });
+  }, []);
+
+  const manejarScroll = () => {
+    if (window.scrollY <= 500) {
+      setMostrarFiltro(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", manejarScroll);
   }, []);
 
   const manejoBuscador = (e) => {
@@ -101,7 +103,10 @@ const Menu = () => {
                 setPaginaActual={setPaginaActual}
               />
             </div>
-            <ContenedorFiltros />
+            <ContenedorFiltros
+              mostrarFiltro={mostrarFiltro}
+              setMostrarFiltro={setMostrarFiltro}
+            />
           </section>
         </Container>
       </section>

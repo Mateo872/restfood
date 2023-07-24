@@ -1,15 +1,31 @@
-const ContenedorFiltros = () => {
+const ContenedorFiltros = ({ mostrarFiltro, setMostrarFiltro }) => {
   return (
-    <div className="filtro_overlay vw-100 vh-100 d-flex align-items-end">
-      <div className="contenedor_filtro">
+    <div
+      className="filtro_overlay vw-100 vh-100 d-flex align-items-end"
+      style={{ visibility: mostrarFiltro ? "visible" : "hidden" }}
+      onClick={(e) =>
+        e.target.className.includes("filtro_overlay") &&
+        setMostrarFiltro(!mostrarFiltro)
+      }
+    >
+      <div
+        className={`contenedor_filtro ${
+          mostrarFiltro && "contenedor_filtro-activo"
+        }`}
+      >
         <div className="filtro_accion d-flex justify-content-between align-items-center">
           <h4 className="mb-0">Filtros</h4>
-          <p className="filtro_aceptar mb-0">Listo</p>
+          <p
+            className="filtro_aceptar mb-0"
+            onClick={() => setMostrarFiltro(!mostrarFiltro)}
+          >
+            Listo
+          </p>
         </div>
         <div className="filtros">
           <div className="filtro">
             <div className="filtro_input d-flex flex-column">
-              <h5 className="mb-0">Categorías</h5>
+              <h5 className="mt-md-2 mb-0">Categorías</h5>
               <div className="input d-flex align-items-center gap-1 filtros_categorias">
                 <input type="checkbox" name="entradas" id="entradas" />
                 <label htmlFor="entradas">Entradas</label>
@@ -37,10 +53,6 @@ const ContenedorFiltros = () => {
                   id="comidasVeganas"
                 />
                 <label htmlFor="comidasVeganas">Comidas veganas</label>
-              </div>
-              <div className="input d-flex align-items-center gap-1 filtros_categorias">
-                <input type="checkbox" name="favoritos" id="favoritos" />
-                <label htmlFor="favoritos">Favoritos</label>
               </div>
               <div className="input d-flex align-items-center gap-1 filtros_categorias">
                 <input type="checkbox" name="stock" id="stock" />
@@ -81,11 +93,22 @@ const ContenedorFiltros = () => {
                 <input type="checkbox" name="bajo" id="bajo" />
                 <label htmlFor="bajo">Menor precio</label>
               </div>
-              <div className="d-flex align-items-center gap-1 filtro_ordenar">
-                <div className="input">
-                  <input type="checkbox" name="alto" id="alto" />
-                  <label htmlFor="alto">Mayor precio</label>
-                </div>
+              <div className="input d-flex align-items-center gap-1 filtro_ordenar">
+                <input type="checkbox" name="alto" id="alto" />
+                <label htmlFor="alto">Mayor precio</label>
+              </div>
+            </div>
+          </div>
+          <div className="filtro">
+            <div className="filtro_input d-flex flex-column">
+              <h5 className="mb-0">Favoritos</h5>
+              <div className="input d-flex align-items-center gap-1 filtro_favoritos">
+                <input type="checkbox" name="favoritos" id="favoritos" />
+                <label htmlFor="favoritos">Sí</label>
+              </div>
+              <div className="input d-flex align-items-center gap-1 filtro_descuento">
+                <input type="checkbox" name="noDescuento" id="noDescuento" />
+                <label htmlFor="noDescuento">No</label>
               </div>
             </div>
           </div>
@@ -96,16 +119,16 @@ const ContenedorFiltros = () => {
                 <input type="checkbox" name="descuento" id="descuento" />
                 <label htmlFor="descuento">Sí</label>
               </div>
-              <div className="input d-flex align-items-center gap-1 filtro_descuento">
+              <div className="input d-flex align-items-center gap-1 filtro_descuento ultimo">
                 <input type="checkbox" name="noDescuento" id="noDescuento" />
                 <label htmlFor="noDescuento">No</label>
               </div>
             </div>
           </div>
-        </div>
-        <div className="botones_filtro d-flex gap-2">
-          <button className="button_secondary w-100">Borrar todo</button>
-          <button className="button_primary w-100">Aplicar</button>
+          <div className="botones_filtro d-flex gap-2">
+            <button className="boton_secundario w-100">Borrar todo</button>
+            <button className="boton_primario w-100">Aplicar</button>
+          </div>
         </div>
       </div>
     </div>
