@@ -24,7 +24,7 @@ const InicioSesion = ({ setUsuarioLogeado }) => {
           setUsuarioLogeado(respuesta);
           if (respuesta.rol === "administrador") {
             Swal.fire(
-              "Bienvenido",
+              `Bienvenido, ${respuesta.nombre}`,
               "Has iniciado sesión correctamente como administrador",
               "success"
             ).then((res) => {
@@ -111,7 +111,7 @@ const InicioSesion = ({ setUsuarioLogeado }) => {
                 },
               })}
             />
-            <Form.Text className="text-danger">
+            <Form.Text className="text-danger fw-bold">
               {errors.nombre?.message}
             </Form.Text>
           </Form.Group>
@@ -132,7 +132,9 @@ const InicioSesion = ({ setUsuarioLogeado }) => {
               },
             })}
           />
-          <Form.Text className="text-danger">{errors.email?.message}</Form.Text>
+          <Form.Text className="text-danger fw-bold">
+            {errors.email?.message}
+          </Form.Text>
         </Form.Group>
         {ubicacion.pathname === "/usuario/registrar" && (
           <Form.Group className="mb-3">
@@ -145,7 +147,7 @@ const InicioSesion = ({ setUsuarioLogeado }) => {
                 required: "La imagen es obligatoria",
               })}
             />
-            <Form.Text className="text-danger">
+            <Form.Text className="text-danger fw-bold">
               {errors.imagen?.message}
             </Form.Text>
           </Form.Group>
@@ -166,7 +168,7 @@ const InicioSesion = ({ setUsuarioLogeado }) => {
               },
             })}
           />
-          <Form.Text className="text-danger">
+          <Form.Text className="text-danger fw-bold">
             {errors.contrasenia?.message}
           </Form.Text>
         </Form.Group>
