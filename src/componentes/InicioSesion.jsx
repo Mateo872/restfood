@@ -11,6 +11,7 @@ const InicioSesion = ({ setUsuarioLogeado }) => {
   const navegacion = useNavigate();
   const location = useLocation();
   const rutaActual = location.pathname;
+  
 
   const {
     register,
@@ -25,8 +26,8 @@ const InicioSesion = ({ setUsuarioLogeado }) => {
         if (respuesta) {
           sessionStorage.setItem("usuario", JSON.stringify(respuesta));
           setUsuarioLogeado(respuesta);
-
-          Swal.fire(
+          if(respuesta.rol === "Administrador"){
+            Swal.fire(
             "Bienvenido",
             "Has iniciado sesión correctamente como administrador",
             "success"
@@ -35,17 +36,42 @@ const InicioSesion = ({ setUsuarioLogeado }) => {
               navegacion("/administrador");
             }
           });
+          }else{
+            Swal.fire(
+              "Bienvenido",
+              "Has iniciado sesión correctamente",
+              "success"
+            ).then((res) => {
+              if (res.isConfirmed) {
+                navegacion("/");
+              }
+            });
+          }
+
+          
         } else {
           Swal.fire("Error", "Email o contraseña incorrecta", "error");
         }
       });
     } else {
       if (rutaActual === "/usuario/registrar") {
-        login(usuarioRegistrado).then((respuesta) => {
+        const nuevoUsuario = {
+          imagen:usuarioRegistrado.imagen,
+          nombre: usuarioRegistrado.nombre,
+          email:usuarioRegistrado.email,
+          contrasena: usuarioRegistrado.contrasena,
+          rol: {
+            nombre: "usuarios",
+            carrito: [],
+            pedidos: [],
+            favoritos: []
+          }
+        };
+        login(nuevoUsuario).then((respuesta) => {
           if (respuesta.status === 201) {
             Swal.fire(
               "Usuario creado",
-              `El usuario ${usuarioRegistrado.nombre} fue creado con éxito!`,
+              `El usuario ${nuevoUsuario.nombre} fue creado con éxito!`,
               "success"
             );
             navegacion("/usuario/iniciar");
