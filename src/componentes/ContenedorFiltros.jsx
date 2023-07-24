@@ -10,6 +10,9 @@ const ContenedorFiltros = ({
 }) => {
   const [ordenarActivo, setOrdenarActivo] = useState(null);
   const [precio, setPrecio] = useState(null);
+  const [favoritos, setFavoritos] = useState(null);
+  const [descuento, setDescuento] = useState(null);
+
   const manejoCheckbox = (e) => {
     const { name, checked } = e.target;
     if (checked) {
@@ -72,6 +75,40 @@ const ContenedorFiltros = ({
       setFiltros({
         ...filtros,
         stock: filtros.stock.filter((stock) => stock !== name),
+      });
+    }
+  };
+
+  const manejarFavoritos = (e) => {
+    const { name } = e.target;
+    if (favoritos === name) {
+      setFavoritos(null);
+      setFiltros({
+        ...filtros,
+        favoritos: [],
+      });
+    } else {
+      setFavoritos(name);
+      setFiltros({
+        ...filtros,
+        favoritos: [name],
+      });
+    }
+  };
+
+  const manejarDescuento = (e) => {
+    const { name } = e.target;
+    if (descuento === name) {
+      setDescuento(null);
+      setFiltros({
+        ...filtros,
+        descuento: [],
+      });
+    } else {
+      setDescuento(name);
+      setFiltros({
+        ...filtros,
+        descuento: [name],
       });
     }
   };
@@ -237,11 +274,23 @@ const ContenedorFiltros = ({
             <div className="filtro_input d-flex flex-column">
               <h5 className="mb-0">Favoritos</h5>
               <div className="input d-flex align-items-center gap-1">
-                <input type="checkbox" name="favoritos" id="favoritos" />
+                <input
+                  type="checkbox"
+                  name="favoritos"
+                  id="favoritos"
+                  checked={favoritos === "favoritos"}
+                  onChange={manejarFavoritos}
+                />
                 <label htmlFor="favoritos">Sí</label>
               </div>
               <div className="input d-flex align-items-center gap-1">
-                <input type="checkbox" name="noDescuento" id="noFavoritos" />
+                <input
+                  type="checkbox"
+                  name="noFavoritos"
+                  id="noFavoritos"
+                  checked={favoritos === "noFavoritos"}
+                  onChange={manejarFavoritos}
+                />
                 <label htmlFor="noFavoritos">No</label>
               </div>
             </div>
@@ -250,11 +299,23 @@ const ContenedorFiltros = ({
             <div className="filtro_input d-flex flex-column">
               <h5 className="mb-0">Descuento</h5>
               <div className="input d-flex align-items-center gap-1">
-                <input type="checkbox" name="descuento" id="descuento" />
+                <input
+                  type="checkbox"
+                  name="descuento"
+                  id="descuento"
+                  checked={descuento === "descuento"}
+                  onChange={manejarDescuento}
+                />
                 <label htmlFor="descuento">Sí</label>
               </div>
               <div className="input d-flex align-items-center gap-1 ultimo">
-                <input type="checkbox" name="noDescuento" id="noDescuento" />
+                <input
+                  type="checkbox"
+                  name="noDescuento"
+                  id="noDescuento"
+                  checked={descuento === "noDescuento"}
+                  onChange={manejarDescuento}
+                />
                 <label htmlFor="noDescuento">No</label>
               </div>
             </div>

@@ -18,10 +18,11 @@ const Menu = () => {
     precio: [],
     ordenar: [],
     stock: [],
-    favoritos: null,
-    descuento: null,
+    favoritos: [],
+    descuento: [],
   });
   const productosPorPagina = 6;
+  let favPlato = JSON.parse(localStorage.getItem("favPlato")) || [];
 
   useEffect(() => {
     obtenerPlatos().then((res) => {
@@ -106,9 +107,25 @@ const Menu = () => {
       );
     }
 
-    if (filtros.descuento !== null) {
+    if (filtros.favoritos.includes("favoritos")) {
+      productosFiltrados = productosFiltrados.filter((producto) =>
+        favPlato.find((fav) => fav == producto.id)
+      );
+    } else if (filtros.favoritos.includes("noFavoritos")) {
       productosFiltrados = productosFiltrados.filter(
-        (producto) => producto.tieneDescuento === filtros.descuento
+        (producto) => !favPlato.find((fav) => fav == producto.id)
+      );
+    }
+
+    if (filtros.descuento.includes("descuento")) {
+      productosFiltrados = productosFiltrados.filter((producto) =>
+        filtros.descuento.includes("descuento")
+          ? producto.descuento === true
+          : producto.descuento === false
+      );
+    } else if (filtros.descuento.includes("noDescuento")) {
+      productosFiltrados = productosFiltrados.filter(
+        (producto) => !producto.descuento
       );
     }
 
