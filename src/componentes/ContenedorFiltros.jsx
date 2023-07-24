@@ -7,23 +7,44 @@ const ContenedorFiltros = ({
   setFiltros,
   precioMinimo,
   precioMaximo,
+  setPaginaActual,
 }) => {
   const [ordenarActivo, setOrdenarActivo] = useState(null);
   const [precio, setPrecio] = useState(null);
   const [favoritos, setFavoritos] = useState(null);
   const [descuento, setDescuento] = useState(null);
+  const [filtrosSeleccionados, setFiltrosSeleccionados] = useState({
+    categorias: [],
+    precio: [],
+    ordenar: [],
+    stock: [],
+    favoritos: [],
+    descuento: [],
+  });
 
-  const manejoCheckbox = (e) => {
+  const todosLosFiltrosDesactivados = () => {
+    return (
+      filtrosSeleccionados.categorias.length === 0 &&
+      filtrosSeleccionados.precio.length === 0 &&
+      filtrosSeleccionados.ordenar.length === 0 &&
+      filtrosSeleccionados.stock.length === 0 &&
+      filtrosSeleccionados.favoritos.length === 0 &&
+      filtrosSeleccionados.descuento.length === 0
+    );
+  };
+
+  const manejoCategorias = (e) => {
     const { name, checked } = e.target;
+
     if (checked) {
-      setFiltros({
-        ...filtros,
-        categorias: [...filtros.categorias, name],
+      setFiltrosSeleccionados({
+        ...filtrosSeleccionados,
+        categorias: [...filtrosSeleccionados.categorias, name],
       });
     } else {
-      setFiltros({
-        ...filtros,
-        categorias: filtros.categorias.filter(
+      setFiltrosSeleccionados({
+        ...filtrosSeleccionados,
+        categorias: filtrosSeleccionados.categorias.filter(
           (categoria) => categoria !== name
         ),
       });
@@ -34,13 +55,13 @@ const ContenedorFiltros = ({
     const { name } = e.target;
     if (precio === name) {
       setPrecio(null);
-      setFiltros({
+      setFiltrosSeleccionados({
         ...filtros,
         precio: [],
       });
     } else {
       setPrecio(name);
-      setFiltros({
+      setFiltrosSeleccionados({
         ...filtros,
         precio: [name],
       });
@@ -51,13 +72,13 @@ const ContenedorFiltros = ({
     const { name } = e.target;
     if (ordenarActivo === name) {
       setOrdenarActivo(null);
-      setFiltros({
+      setFiltrosSeleccionados({
         ...filtros,
         ordenar: [],
       });
     } else {
       setOrdenarActivo(name);
-      setFiltros({
+      setFiltrosSeleccionados({
         ...filtros,
         ordenar: [name],
       });
@@ -67,12 +88,12 @@ const ContenedorFiltros = ({
   const manejarStock = (e) => {
     const { name, checked } = e.target;
     if (checked) {
-      setFiltros({
+      setFiltrosSeleccionados({
         ...filtros,
         stock: [...filtros.stock, name],
       });
     } else {
-      setFiltros({
+      setFiltrosSeleccionados({
         ...filtros,
         stock: filtros.stock.filter((stock) => stock !== name),
       });
@@ -83,13 +104,13 @@ const ContenedorFiltros = ({
     const { name } = e.target;
     if (favoritos === name) {
       setFavoritos(null);
-      setFiltros({
+      setFiltrosSeleccionados({
         ...filtros,
         favoritos: [],
       });
     } else {
       setFavoritos(name);
-      setFiltros({
+      setFiltrosSeleccionados({
         ...filtros,
         favoritos: [name],
       });
@@ -100,17 +121,58 @@ const ContenedorFiltros = ({
     const { name } = e.target;
     if (descuento === name) {
       setDescuento(null);
-      setFiltros({
+      setFiltrosSeleccionados({
         ...filtros,
         descuento: [],
       });
     } else {
       setDescuento(name);
-      setFiltros({
+      setFiltrosSeleccionados({
         ...filtros,
         descuento: [name],
       });
     }
+  };
+
+  const resetearCheckboxes = () => {
+    setPrecio(null);
+    setOrdenarActivo(null);
+    setFavoritos(null);
+    setDescuento(null);
+  };
+
+  const resetearFiltros = () => {
+    setFiltros({
+      categorias: [],
+      precio: [],
+      ordenar: [],
+      stock: [],
+      favoritos: [],
+      descuento: [],
+    });
+    setFiltrosSeleccionados({
+      categorias: [],
+      precio: [],
+      ordenar: [],
+      stock: [],
+      favoritos: [],
+      descuento: [],
+    });
+    resetearCheckboxes();
+    setPaginaActual(1);
+    setMostrarFiltro(!mostrarFiltro);
+  };
+
+  const aplicarFiltros = () => {
+    if (todosLosFiltrosDesactivados()) {
+      resetearFiltros();
+      resetearCheckboxes();
+      filtrosSeleccionados.favoritos = [];
+    } else {
+      setFiltros(filtrosSeleccionados);
+      setPaginaActual(1);
+    }
+    setMostrarFiltro(!mostrarFiltro);
   };
 
   return (
@@ -145,7 +207,8 @@ const ContenedorFiltros = ({
                   type="checkbox"
                   name="entradas"
                   id="entradas"
-                  onChange={manejoCheckbox}
+                  checked={filtrosSeleccionados.categorias.includes("entradas")}
+                  onChange={manejoCategorias}
                 />
                 <label htmlFor="entradas">Entradas</label>
               </div>
@@ -154,7 +217,8 @@ const ContenedorFiltros = ({
                   type="checkbox"
                   name="bebidas"
                   id="bebidas"
-                  onChange={manejoCheckbox}
+                  checked={filtrosSeleccionados.categorias.includes("bebidas")}
+                  onChange={manejoCategorias}
                 />
                 <label htmlFor="bebidas">Bebidas</label>
               </div>
@@ -163,7 +227,8 @@ const ContenedorFiltros = ({
                   type="checkbox"
                   name="postres"
                   id="postres"
-                  onChange={manejoCheckbox}
+                  checked={filtrosSeleccionados.categorias.includes("postres")}
+                  onChange={manejoCategorias}
                 />
                 <label htmlFor="postres">Postres</label>
               </div>
@@ -172,7 +237,10 @@ const ContenedorFiltros = ({
                   type="checkbox"
                   name="bebidasAlcoholicas"
                   id="bebidasAlcoholicas"
-                  onChange={manejoCheckbox}
+                  checked={filtrosSeleccionados.categorias.includes(
+                    "bebidasAlcoholicas"
+                  )}
+                  onChange={manejoCategorias}
                 />
                 <label htmlFor="bebidasAlcoholicas">Bebidas alcohólicas</label>
               </div>
@@ -181,7 +249,10 @@ const ContenedorFiltros = ({
                   type="checkbox"
                   name="comidasVeganas"
                   id="comidasVeganas"
-                  onChange={manejoCheckbox}
+                  checked={filtrosSeleccionados.categorias.includes(
+                    "comidasVeganas"
+                  )}
+                  onChange={manejoCategorias}
                 />
                 <label htmlFor="comidasVeganas">Comidas veganas</label>
               </div>
@@ -190,6 +261,7 @@ const ContenedorFiltros = ({
                   type="checkbox"
                   name="stock"
                   id="stock"
+                  checked={filtrosSeleccionados.stock.includes("stock")}
                   onChange={manejarStock}
                 />
                 <label htmlFor="stock">Stock</label>
@@ -321,8 +393,15 @@ const ContenedorFiltros = ({
             </div>
           </div>
           <div className="botones_filtro d-flex gap-2">
-            <button className="boton_secundario w-100">Borrar todo</button>
-            <button className="boton_primario w-100">Aplicar</button>
+            <button
+              className="boton_secundario w-100"
+              onClick={resetearFiltros}
+            >
+              Borrar todo
+            </button>
+            <button className="boton_primario w-100" onClick={aplicarFiltros}>
+              Aplicar
+            </button>
           </div>
         </div>
       </div>

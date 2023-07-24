@@ -209,6 +209,7 @@ const Menu = () => {
               setFiltros={setFiltros}
               precioMinimo={precioMinimo}
               precioMaximo={precioMaximo}
+              setPaginaActual={setPaginaActual}
             />
           </section>
         </Container>
