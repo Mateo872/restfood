@@ -3,7 +3,7 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import fondo from "../complementos/imagenes/366291.jpg";
 import { useLocation } from "react-router";
-import { iniciarSesion, login } from "./ayudas/consultas";
+import { iniciarSesion, registro } from "./ayudas/consultas";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
@@ -11,7 +11,6 @@ const InicioSesion = ({ setUsuarioLogeado }) => {
   const navegacion = useNavigate();
   const location = useLocation();
   const rutaActual = location.pathname;
-  
 
   const {
     register,
@@ -26,17 +25,17 @@ const InicioSesion = ({ setUsuarioLogeado }) => {
         if (respuesta) {
           sessionStorage.setItem("usuario", JSON.stringify(respuesta));
           setUsuarioLogeado(respuesta);
-          if(respuesta.rol === "Administrador"){
+          if (respuesta.rol === "Administrador") {
             Swal.fire(
-            "Bienvenido",
-            "Has iniciado sesión correctamente como administrador",
-            "success"
-          ).then((res) => {
-            if (res.isConfirmed) {
-              navegacion("/administrador");
-            }
-          });
-          }else{
+              "Bienvenido",
+              "Has iniciado sesión correctamente como administrador",
+              "success"
+            ).then((res) => {
+              if (res.isConfirmed) {
+                navegacion("/administrador");
+              }
+            });
+          } else {
             Swal.fire(
               "Bienvenido",
               "Has iniciado sesión correctamente",
@@ -47,8 +46,6 @@ const InicioSesion = ({ setUsuarioLogeado }) => {
               }
             });
           }
-
-          
         } else {
           Swal.fire("Error", "Email o contraseña incorrecta", "error");
         }
@@ -56,18 +53,18 @@ const InicioSesion = ({ setUsuarioLogeado }) => {
     } else {
       if (rutaActual === "/usuario/registrar") {
         const nuevoUsuario = {
-          imagen:usuarioRegistrado.imagen,
+          imagen: usuarioRegistrado.imagen,
           nombre: usuarioRegistrado.nombre,
-          email:usuarioRegistrado.email,
-          contrasena: usuarioRegistrado.contrasena,
+          email: usuarioRegistrado.email,
+          contrasenia: usuarioRegistrado.contrasenia,
           rol: {
-            nombre: "usuarios",
-            carrito: [],
-            pedidos: [],
-            favoritos: []
-          }
+            nombre: "usuario",
+          },
+          carrito: [],
+          pedidos: [],
+          favoritos: [],
         };
-        login(nuevoUsuario).then((respuesta) => {
+        registro(nuevoUsuario).then((respuesta) => {
           if (respuesta.status === 201) {
             Swal.fire(
               "Usuario creado",

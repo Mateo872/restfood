@@ -28,7 +28,7 @@ export const iniciarSesion = async (usuario) => {
   }
 };
 
-export const login = async (usuario) => {
+export const registro = async (usuario) => {
   try {
     const respuesta = await fetch(URL_USUARIO, {
       method: "POST",
