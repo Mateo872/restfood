@@ -143,7 +143,7 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
             </li>
             {usuarioLogueado.email ? (
               <>
-                <li className="d-flex d-md-none flex-column justify-content-end align-items-center gap-1 usuario_log">
+              {usuarioLogueado.rol === "Administrador"?(<li className="d-flex d-md-none flex-column justify-content-end align-items-center gap-1 usuario_log">
                   <Link
                     to={"/administrador"}
                     className="menu_link link_admin p-0"
@@ -185,7 +185,51 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
                       />
                     </div>
                   </div>
-                </li>
+                </li>):
+                <li className="d-flex d-md-none flex-column justify-content-end align-items-center gap-1 usuario_log">
+                <Link
+                  to={"/usuario/carrito"}
+                  className="menu_link link_admin p-0"
+                >
+                  Carrito
+                </Link>
+                <div
+                  className="d-flex flex-column align-items-center gap-1"
+                  onClick={salir}
+                  style={{ textDecoration: "none" }}
+                >
+                  <p
+                    className="mb-0"
+                    style={{
+                      fontSize: "1.2rem",
+                      color: "#fff",
+                    }}
+                  >
+                    {usuarioLogueado.nombre}
+                  </p>
+                  <div
+                    style={{
+                      width: "2.4rem",
+                      height: "2.4rem",
+                      borderRadius: "100%",
+                      backgroundColor: "#fff",
+                      order: -1,
+                    }}
+                  >
+                    <img
+                      className="w-100 h-100"
+                      src={usuarioLogueado.imagen}
+                      alt={usuarioLogueado.nombre}
+                      style={{
+                        objectFit: "cover",
+                        backgroundPosition: "center",
+                        borderRadius: "100%",
+                      }}
+                    />
+                  </div>
+                </div>
+              </li>}
+                
               </>
             ) : (
               <>
@@ -207,7 +251,7 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
         <BiMenu onClick={menuVisible} className="d-md-none" />
         {usuarioLogueado.email ? (
           <>
-            <li className="d-none d-md-flex justify-content-end align-items-center gap-1 usuario_log">
+          {usuarioLogueado.rol === "Administrador"?( <li className="d-none d-md-flex justify-content-end align-items-center gap-1 usuario_log">
               <Link to={"/administrador"} className="menu_link link_admin p-0">
                 Administrador
               </Link>
@@ -244,7 +288,45 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
                   />
                 </div>
               </div>
-            </li>
+            </li>):( <li className="d-none d-md-flex justify-content-end align-items-center gap-1 usuario_log">
+              <Link to={"/usuario/carrito"} className="menu_link link_admin p-0">
+                Carrito
+              </Link>
+              <div
+                className="d-flex align-items-center gap-1"
+                onClick={salir}
+                style={{ textDecoration: "none", cursor: "pointer" }}
+              >
+                <p
+                  className="mb-0"
+                  style={{
+                    fontSize: "1.2rem",
+                    color: "#fff",
+                  }}
+                >
+                  | {usuarioLogueado.nombre}
+                </p>
+                <div
+                  style={{
+                    width: "2.4rem",
+                    height: "2.4rem",
+                    borderRadius: "100%",
+                    backgroundColor: "#fff",
+                  }}
+                >
+                  <img
+                    className="w-100 h-100"
+                    src={usuarioLogueado.imagen}
+                    alt={usuarioLogueado.nombre}
+                    style={{
+                      objectFit: "cover",
+                      backgroundPosition: "center",
+                    }}
+                  />
+                </div>
+              </div>
+            </li>)}
+           
           </>
         ) : (
           <div
