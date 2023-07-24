@@ -16,14 +16,22 @@ import Error404 from "./componentes/Error404";
 import { useState } from "react";
 
 function App() {
-  const usuarioSessionStorage = JSON.parse(sessionStorage.getItem('usuario')) || {}
-  const [usuarioLogueado, setUsuarioLogeado]= useState(usuarioSessionStorage);
+  const usuarioSessionStorage =
+    JSON.parse(sessionStorage.getItem("usuario")) || {};
+  const [usuarioLogueado, setUsuarioLogeado] = useState(usuarioSessionStorage);
   return (
     <BrowserRouter>
-      <Header usuarioLogueado={usuarioLogueado} setUsuarioLogeado={setUsuarioLogeado}/>
+      <Header
+        usuarioLogueado={usuarioLogueado}
+        setUsuarioLogeado={setUsuarioLogeado}
+      />
       <Routes>
         <Route exact path="/" element={<Inicio />}></Route>
-        <Route exact path="/usuario/iniciar" element={<InicioSesion setUsuarioLogeado={setUsuarioLogeado} />}></Route>
+        <Route
+          exact
+          path="/usuario/iniciar"
+          element={<InicioSesion setUsuarioLogeado={setUsuarioLogeado} />}
+        ></Route>
         <Route
           exact
           path="/usuario/registrar"

@@ -930,7 +930,7 @@ form h6 {
 }
 
 .filtro_overlay .contenedor_filtro .botones_filtro {
-  padding: 0 1rem 1rem;
+  padding: .8rem 0 0;
 }
 
 .filtro_overlay .contenedor_filtro .botones_filtro .boton_secundario {
@@ -1033,6 +1033,11 @@ form h6 {
   main .contenedor_platos article h3 {
     width: 35%;
     font-size: 0.8rem;
+  }
+
+  .formCrearEditar {
+    width: 50%;
+    margin: 0 auto;
   }
 
   main .contenedor_input {
@@ -1440,6 +1445,10 @@ form h6 {
   main article .categorias {
     font-size: 0.8rem;
     gap: 1.8rem;
+  }
+
+  .formCrearEditar {
+    width: 35%;
   }
 
   .contenedor_buscador-filtro {
@@ -2074,30 +2083,31 @@ form h6 {
 }
 
 .contenedor_IniciarRegistro {
-  min-height: 100vh;
-  width: 100%;
-  background-image: url(/src/complementos/imagenes/366291.jpg);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, .7)), url("./complementos/imagenes/366291.jpg");
   background-size: cover;
   background-position: 50% 50%;
-  position: relative;
-  padding-top: 9rem;
+  padding: 6rem 0;
+}
+
+.contenedor_IniciarRegistro h1 {
+  font-size: 3rem;
 }
 
 .formCrearEditar {
-  width: 43rem;
-  margin: auto;
   padding: .6rem 1.25rem;
-  box-sizing: border-box;
   margin-top: 1.25rem;
   border-radius: .5rem;
 }
 
+.formCrearEditar label {
+  font-size: 0.8rem;
+}
+
 .input_CrearEditarpd {
   width: 100%;
-  padding: .9rem;
-  box-sizing: border-box;
-  font-size: 1rem;
-  border-radius: .6rem;
+  padding: .8rem;
+  font-size: .8rem;
+  border-radius: .3rem;
   border: none;
 }
 
@@ -2105,27 +2115,22 @@ textarea {
   resize: none;
 }
 
-.btn_AgrProducto {
+.boton_iniciar {
+  width: 100%;
   background-color: var(--color-primario);
   color: var(--color-secundario);
-  font-size: 1.2rem;
-  border-radius: .6rem;
-  text-align: center;
-  width: 100%;
-  padding: .9rem;
-  box-sizing: border-box;
-  border: none;
+  font-size: .8rem;
+  border-radius: .3rem;
+  padding: .8rem;
   font-weight: 500;
+  border: 2px solid var(--color-primario);
 }
 
-@media (max-width: 480px) {
-  .formCrearEditar {
-    width: 100%;
-  }
-
-  .btn_AgrProducto {
-    width: 100%;
-  }
+.boton_iniciar:hover {
+  background-color: transparent;
+  color: var(--color-primario);
+  transition: .3s;
+  cursor: pointer;
 }
 
 @media all and (min-width: 320px) {

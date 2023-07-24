@@ -449,7 +449,7 @@
       "nombre": "Restfood",
       "email": "restrolling@gmail.com",
       "contrasenia": "Restfoodrolling39",
-      "rol": "Administrador"
+      "rol": "administrador"
     },
     {
       "nombre": "aixa",
@@ -464,18 +464,9 @@
     },
     {
       "imagen": "https://i.postimg.cc/3J5rC6zw/Mateo-Bellini.jpg",
-      "nombre": "maca",
-      "email": "macafil99@gmail.com",
-      "rol": "usuario",
-      "carrito": [],
-      "pedidos": [],
-      "favoritos": [],
-      "id": "kueCowV"
-    },
-    {
-      "imagen": "https://i.postimg.cc/3J5rC6zw/Mateo-Bellini.jpg",
       "nombre": "Mateo",
       "email": "bellinimateo872@gmail.com",
+      "contrasenia": "Rolling872",
       "rol": "usuario",
       "carrito": [],
       "pedidos": [],

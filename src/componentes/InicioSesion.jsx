@@ -1,7 +1,5 @@
-import React from "react";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import fondo from "../complementos/imagenes/366291.jpg";
 import { useLocation } from "react-router";
 import { iniciarSesion, registro } from "./ayudas/consultas";
 import Swal from "sweetalert2";
@@ -9,8 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const InicioSesion = ({ setUsuarioLogeado }) => {
   const navegacion = useNavigate();
-  const location = useLocation();
-  const rutaActual = location.pathname;
+  const ubicacion = useLocation();
 
   const {
     register,
@@ -20,14 +17,14 @@ const InicioSesion = ({ setUsuarioLogeado }) => {
   } = useForm();
 
   const manejoEnvio = (usuarioRegistrado) => {
-    if (rutaActual === "/usuario/iniciar") {
+    if (ubicacion.pathname === "/usuario/iniciar") {
       iniciarSesion(usuarioRegistrado).then((respuesta) => {
         if (respuesta) {
           sessionStorage.setItem("usuario", JSON.stringify(respuesta));
           setUsuarioLogeado(respuesta);
-          if (respuesta.rol === "Administrador") {
+          if (respuesta.rol === "administrador") {
             Swal.fire(
-              "Bienvenido",
+              `Bienvenido, ${respuesta.nombre}`,
               "Has iniciado sesión correctamente como administrador",
               "success"
             ).then((res) => {
@@ -37,7 +34,7 @@ const InicioSesion = ({ setUsuarioLogeado }) => {
             });
           } else {
             Swal.fire(
-              "Bienvenido",
+              `Bienvenido, ${respuesta.nombre}`,
               "Has iniciado sesión correctamente",
               "success"
             ).then((res) => {
@@ -51,7 +48,7 @@ const InicioSesion = ({ setUsuarioLogeado }) => {
         }
       });
     } else {
-      if (rutaActual === "/usuario/registrar") {
+      if (ubicacion.pathname === "/usuario/registrar") {
         const nuevoUsuario = {
           imagen: usuarioRegistrado.imagen,
           nombre: usuarioRegistrado.nombre,
@@ -89,15 +86,15 @@ const InicioSesion = ({ setUsuarioLogeado }) => {
   return (
     <section className="contenedor_IniciarRegistro">
       <h1
-        className="text-center text-white display-4"
+        className="text-center text-white"
         style={{ fontFamily: "Reenie Beanie, cursive" }}
       >
-        {rutaActual === "/usuario/iniciar" ? "Inicio" : "Registro"}
+        {ubicacion.pathname === "/usuario/iniciar" ? "Inicio" : "Registro"}
       </h1>
       <Form className="formCrearEditar" onSubmit={handleSubmit(manejoEnvio)}>
-        <Form.Group className="mb-3 ">
-          <label className="text-white fs-5 mb-1">Nombre</label>
-          <div className="text-center">
+        {ubicacion.pathname === "/usuario/registrar" && (
+          <Form.Group className="mb-3">
+            <label className="text-white mb-1">Nombre</label>
             <input
               type="text"
               placeholder="Nombre de Usuario"
@@ -114,33 +111,34 @@ const InicioSesion = ({ setUsuarioLogeado }) => {
                 },
               })}
             />
-          </div>
-          <Form.Text className="text-danger">
-            {errors.nombre?.message}
+            <Form.Text className="text-danger fw-bold">
+              {errors.nombre?.message}
+            </Form.Text>
+          </Form.Group>
+        )}
+
+        <Form.Group className="mb-3 ">
+          <label className="text-white mb-1">Email</label>
+          <input
+            type="text"
+            placeholder="E-mail"
+            className="input_CrearEditarpd"
+            {...register("email", {
+              required: "El email es obligatorio",
+              pattern: {
+                value:
+                  /^(([^<>()\[\]\\.,;:\s@”]+(\.[^<>()\[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]+\.)+[a-zA-Z]{2,}))$/,
+                message: 'El Email debe contener "@" y terminar en: ".com"',
+              },
+            })}
+          />
+          <Form.Text className="text-danger fw-bold">
+            {errors.email?.message}
           </Form.Text>
         </Form.Group>
-        <Form.Group className="mb-3 ">
-          <label className="text-white fs-5 mb-1">Email</label>
-          <div className="text-center">
-            <input
-              type="text"
-              placeholder="E-mail"
-              className="input_CrearEditarpd"
-              {...register("email", {
-                required: "El email es obligatorio",
-                pattern: {
-                  value:
-                    /^(([^<>()\[\]\\.,;:\s@”]+(\.[^<>()\[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]+\.)+[a-zA-Z]{2,}))$/,
-                  message: 'El Email debe contener "@" y terminar en: ".com"',
-                },
-              })}
-            />
-          </div>
-          <Form.Text className="text-danger">{errors.email?.message}</Form.Text>
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <label className="text-white fs-5 mb-1">Imagen</label>
-          <div className="text-center">
+        {ubicacion.pathname === "/usuario/registrar" && (
+          <Form.Group className="mb-3">
+            <label className="text-white mb-1">Imagen</label>
             <input
               type="text"
               placeholder="Imagen de Usuario"
@@ -149,35 +147,36 @@ const InicioSesion = ({ setUsuarioLogeado }) => {
                 required: "La imagen es obligatoria",
               })}
             />
-          </div>
-          <Form.Text className="text-danger">
-            {errors.imagen?.message}
-          </Form.Text>
-        </Form.Group>
+            <Form.Text className="text-danger fw-bold">
+              {errors.imagen?.message}
+            </Form.Text>
+          </Form.Group>
+        )}
+
         <Form.Group className="mb-3">
-          <label className="text-white fs-5 mb-1">Contraseña</label>
-          <div className="text-center">
-            <input
-              type="password"
-              placeholder="Ej:RollingCode1"
-              className="input_CrearEditarpd"
-              {...register("contrasenia", {
-                required: "La contraseña es obligatoria",
-                pattern: {
-                  value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/,
-                  message:
-                    "La contraseña debe tener minimo 8 caracteres, al menos una mayúscula una minúscula y un número",
-                },
-              })}
-            />
-          </div>
-          <Form.Text className="text-danger">
+          <label className="text-white mb-1">Contraseña</label>
+          <input
+            type="password"
+            placeholder="Ej:RollingCode1"
+            className="input_CrearEditarpd"
+            {...register("contrasenia", {
+              required: "La contraseña es obligatoria",
+              pattern: {
+                value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/,
+                message:
+                  "La contraseña debe tener minimo 8 caracteres, al menos una mayúscula una minúscula y un número",
+              },
+            })}
+          />
+          <Form.Text className="text-danger fw-bold">
             {errors.contrasenia?.message}
           </Form.Text>
         </Form.Group>
-        <Button type="submit" className="btn_AgrProducto">
-          {rutaActual === "/usuario/iniciar" ? "Iniciar sesión" : "Registrarme"}
-        </Button>
+        <button type="submit" className="boton_iniciar">
+          {ubicacion.pathname === "/usuario/iniciar"
+            ? "Iniciar sesión"
+            : "Registrarme"}
+        </button>
       </Form>
     </section>
   );
