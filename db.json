@@ -12,7 +12,7 @@
     {
       "imagen": "https://www.cucinare.tv/wp-content/uploads/2023/03/Gramajo-Cucco-596x384.jpg",
       "nombre": "Revuelto Gramajo",
-      "precio": "900",
+      "precio": 900,
       "descripcion": "Una versión diferente de un clásico de la gastronomía porteña.Papas, pimientos rojos, verdes, queso sardo, jamón cocido y arvejas.",
       "categoria": "entradas",
       "stock": "2",
@@ -67,7 +67,7 @@
       "id": 8,
       "nombre": "Carpaccio de lomo",
       "imagen": "https://www.cucinare.tv/wp-content/uploads/2019/12/Dise%C3%B1o-sin-t%C3%ADtulo-7-4-596x384.png",
-      "precio": 7000,
+      "precio": 2000,
       "descripcion": "Lomo, aceite de oliva, jugo de limon y queso parmesano.",
       "stock": 1,
       "categoria": "entradas"
@@ -184,7 +184,7 @@
       "id": 21,
       "nombre": "Tarta de Chocolate",
       "imagen": "https://img.freepik.com/foto-gratis/alimento-chocolate-fondo-marron-panaderia_1203-6371.jpg?w=996&t=st=1689606565~exp=1689607165~hmac=890322f1e46ccd26186eb9c3fd7b181e85c2a28de30e2a79157c2a461d4531ae",
-      "precio": 6.99,
+      "precio": 230,
       "descripcion": "Una deliciosa tarta de chocolate con una base crujiente y un relleno suave y cremoso. Se sirve con una bola de helado de vainilla y salsa de chocolate caliente.",
       "stock": 15,
       "categoria": "postres"
@@ -193,7 +193,7 @@
       "id": 22,
       "nombre": "Cheesecake de Fresa",
       "imagen": "https://img.freepik.com/fotos-premium/pastel-tres-leches-crema-batida-frambuesas-frescas-encima-pastel-america-latina-copiar-espacio_114420-2260.jpg?w=740",
-      "precio": 7.99,
+      "precio": 199,
       "descripcion": "Un cheesecake clásico con un toque de frescura de fresas. La base de galleta se combina con un suave relleno de queso crema y se remata con una capa de fresas frescas y salsa de frutos rojos.",
       "stock": 12,
       "categoria": "postres"
@@ -202,7 +202,7 @@
       "id": 23,
       "nombre": "Helado de Vainilla con Topping",
       "imagen": "https://img.freepik.com/foto-gratis/cupcake-nata-delicioso_23-2147988565.jpg?w=740&t=st=1689608488~exp=1689609088~hmac=f344f9978d4270e5a2b8f53eac69bd3dae69b89ad7b6f30c3450394e2ac5a4b0",
-      "precio": 4.99,
+      "precio": 399,
       "descripcion": "Una generosa porción de helado de vainilla cremoso, coronado con una variedad de toppings a elección, como salsa de caramelo, nueces picadas, chips de chocolate y crema batida.",
       "stock": 30,
       "categoria": "postres"
@@ -211,7 +211,7 @@
       "id": 24,
       "nombre": "Crumble de Manzana",
       "imagen": "https://img.freepik.com/foto-gratis/disparo-alto-angulo-tazon-avena-cereales-nueces-rodajas-manzana-sobre-mesa-madera_181624-45253.jpg?w=996&t=st=1689608547~exp=1689609147~hmac=baaa7e9f2bc900814558ce661e27cd8a02cae072c3fba759fc1a21720182cfc4",
-      "precio": 8.99,
+      "precio": 139,
       "descripcion": "Un crumble caliente de manzana con una capa crujiente de migas de avena y canela. Se sirve con una bola de helado de vainilla para crear el contraste perfecto entre lo crujiente y lo suave.",
       "stock": 10,
       "categoria": "postres"
@@ -220,7 +220,7 @@
       "id": 25,
       "nombre": "Crema Catalana",
       "imagen": "https://img.freepik.com/fotos-premium/creme-brulee-postre-tradicional-frances-crema-vainilla-azucar-caramelizado-encima_266870-9678.jpg?w=740",
-      "precio": 5.99,
+      "precio": 980,
       "descripcion": "Un postre tradicional español similar a la crema brûlée. Una suave crema de vainilla con una capa de caramelo quemado en la parte superior. ¡El contraste de sabores y texturas lo convierte en un deleite irresistible!",
       "stock": 20,
       "categoria": "postres"
@@ -229,7 +229,7 @@
       "id": 26,
       "nombre": "Tiramisú",
       "imagen": "https://img.freepik.com/fotos-premium/concepto-postre-sabroso-pastel-tiramisu-cerca_185193-77854.jpg?w=996",
-      "precio": 7.99,
+      "precio": 199,
       "descripcion": "Una clásica y deliciosa combinación de bizcochos de soletilla empapados en café, capas de crema de mascarpone y un toque de cacao en polvo espolvoreado. ¡Un postre italiano que nunca pasa de moda!",
       "stock": 18,
       "categoria": "postres"
@@ -238,7 +238,7 @@
       "id": 27,
       "nombre": "Pastel de Zanahoria",
       "imagen": "https://www.freepik.es/foto-gratis/pastel-zanahoria-pascua-glaseado-sobre-fondo-azul_7721232.htm#query=Pastel%20de%20Zanahoria&position=5&from_view=search&track=ais",
-      "precio": 6.99,
+      "precio": 499,
       "descripcion": "Un pastel húmedo y esponjoso hecho con zanahorias ralladas, nueces y especias. Está cubierto con un glaseado de queso crema y decorado con zanahorias de azúcar. ¡Un clásico reconfortante!",
       "stock": 14,
       "categoria": "postres"
@@ -247,7 +247,7 @@
       "id": 28,
       "nombre": "Mousse de Chocolate",
       "imagen": "https://img.freepik.com/foto-gratis/close-up-deliciosa-mousse-chocolate_23-2148405885.jpg?w=740&t=st=1689608992~exp=1689609592~hmac=1eb6a7bb949040adc006a399d06821da3a2335abd0c2bceb894fae7ddc9c4b5a",
-      "precio": 6.99,
+      "precio": 699,
       "descripcion": "Un mousse de chocolate sedoso y aireado, elaborado con chocolate negro de alta calidad. Se sirve en una copa decorada con virutas de chocolate y una hoja de menta fresca.",
       "stock": 25,
       "categoria": "postres"
@@ -256,7 +256,7 @@
       "id": 29,
       "nombre": "Crepes de Nutella y Plátano",
       "imagen": "https://img.freepik.com/foto-gratis/crepes-chocolate_23-2148148771.jpg?w=740&t=st=1689609144~exp=1689609744~hmac=70ce81a588763ff70082dd56b3623583ae6e00add9b39d98a1ebb00a8ed0a71a",
-      "precio": 8.99,
+      "precio": 99,
       "descripcion": "Deliciosas crepes rellenas de Nutella y rodajas de plátano fresco. Se sirven dobladas y espolvoreadas con azúcar glas. ¡Un postre indulgente y lleno de sabor!",
       "stock": 10,
       "categoria": "postres"
@@ -265,7 +265,7 @@
       "id": 30,
       "nombre": "Frutas Frescas con Helado",
       "imagen": "https://img.freepik.com/foto-gratis/primeros-helados-frutas_23-2148507951.jpg?w=826&t=st=1689609342~exp=1689609942~hmac=34c31d71fba433a2bb255a896f81621db21e0536b0f86394f72e31f76b6f0e92",
-      "precio": 7.99,
+      "precio": 799,
       "descripcion": "Una selección de frutas frescas de temporada, como fresas, kiwis, piñas y uvas, servidas con una bola de helado de su elección y decoradas con hojas de menta. Una opción refrescante y saludable.",
       "stock": 30,
       "categoria": "postres"
@@ -274,7 +274,7 @@
       "id": 31,
       "nombre": "Margarita",
       "imagen": "https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg",
-      "precio": 5.5,
+      "precio": 95,
       "descripcion": "La margarita es un cóctel compuesto por tequila, triple seco y jugo de lima o limón. A menudo se sirve con sal en el borde de la copa. La bebida se sirve sacudiendo el hielo (con hielo), mezclado con hielo (margarita frozen), o sin hielo (hacia arriba).",
       "stock": 50,
       "categoria": "bebidasAlcoholicas"
@@ -283,7 +283,7 @@
       "id": 32,
       "nombre": "Campari ",
       "imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Bottle_of_Campari_%28United_States%29.jpg/200px-Bottle_of_Campari_%28United_States%29.jpg",
-      "precio": 15.5,
+      "precio": 175,
       "descripcion": "Campari es una bebida alcohólica de grado medio, tonificante y refrescante, calificable como aperitivo, de característico color rojo y sabor amargo. La marca es propiedad del Grupo Campari. En España y parte del mundo de habla española se le conoce con el nombre de bíter. Los bíteres son elaboraciones que se usan para aromatizar los cócteles, siendo el amargo de Angostura uno de los más conocidos y que se compra ya preparado.",
       "stock": 22,
       "categoria": "bebidasAlcoholicas"
@@ -292,7 +292,7 @@
       "id": 33,
       "nombre": "Fernet",
       "imagen": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Ferneses.jpg",
-      "precio": 18.5,
+      "precio": 185,
       "descripcion": "El fernet es una bebida alcohólica de la familia de los amaros italianos elaborada a partir de la maceración de varios tipos de hierbas (mirra, ruibarbo, manzanilla, cardamomo, orégano y azafrán, entre otras) en alcohol obtenido de la fermentación de la vid. Dependiendo del productor, la maceración es posteriormente filtrada y reposada en toneles de roble durante un período variable. Posee un color oscuro, un aroma intenso y su graduación alcohólica está comprendida entre 39 y 45 grados, según la marca.",
       "stock": 35,
       "categoria": "bebidasAlcoholicas"
@@ -364,7 +364,7 @@
       "id": 41,
       "nombre": "Delicia Vegana",
       "imagen": "https://pixabay.com/photos/falafel-deep-fried-ball-patty-89098/",
-      "precio": 12.99,
+      "precio": 199,
       "descripcion": "Un sabroso plato de falafel casero, servido sobre una cama de espinacas frescas, acompañado de hummus, salsa de tahini y pan de pita integral. ¡Una opción vegana saludable y deliciosa!",
       "stock": 0,
       "categoria": "comidasVeganas"
@@ -373,7 +373,7 @@
       "id": 42,
       "nombre": "Bowl Verde",
       "imagen": "https://www.foodiesfeed.com/wp-content/uploads/2023/05/hawaiian-poke-bowl.jpg",
-      "precio": 11.99,
+      "precio": 119,
       "descripcion": "Un tazón abundante de arroz integral, mezclado con vegetales salteados, frijoles negros, aguacate en rodajas y aderezo de cilantro-lima. Este bowl vegano te dejará satisfecho y lleno de energía.",
       "stock": 20,
       "categoria": "comidasVeganas"
@@ -382,7 +382,7 @@
       "id": 43,
       "nombre": "Bocadillos de Tofu a la Barbacoa",
       "imagen": "https://cdn.pixabay.com/photo/2016/10/31/18/19/tofu-1786318_1280.jpg",
-      "precio": 8.99,
+      "precio": 89,
       "descripcion": "Tofu marinado en una salsa barbacoa casera, asado a la parrilla y servido en un panecillo integral. Se acompaña de rodajas de pepinillos encurtidos, cebolla morada y una guarnición de patatas fritas caseras. Un plato vegano reconfortante y delicioso.",
       "stock": 6,
       "categoria": "comidasVeganas"
@@ -391,7 +391,7 @@
       "id": 44,
       "nombre": "Hamburguesa vegana",
       "imagen": "https://www.foodiesfeed.com/wp-content/uploads/2023/03/juicy-vegan-burger-with-sweet-and-sour-sauce.jpg",
-      "precio": 13.99,
+      "precio": 139,
       "descripcion": "Una hamburguesa jugosa y sabrosa hecha a base de lentejas, champiñones y cebolla caramelizada. Se sirve en un panecillo integral, acompañada de rodajas de tomate, lechuga fresca y una salsa especial vegana. ¡Una opción deliciosa para los amantes de las hamburguesas!",
       "stock": 80,
       "categoria": "comidasVeganas"
@@ -400,7 +400,7 @@
       "id": 45,
       "nombre": "Ensalada de Quinoa",
       "imagen": "https://www.foodiesfeed.com/wp-content/uploads/2023/04/quinoa-avocado-salad.jpg",
-      "precio": 10.99,
+      "precio": 109,
       "descripcion": "Una ensalada refrescante y nutritiva que combina quinoa cocida, pepino en cubitos, tomates cherry, cebolla roja, perejil fresco y un aderezo de limón y aceite de oliva. Esta ensalada vegana es perfecta como plato principal o como acompañante ligero.",
       "stock": 30,
       "categoria": "comidasVeganas"
@@ -409,7 +409,7 @@
       "id": 46,
       "nombre": "Tacos de Tofu",
       "imagen": "https://www.foodiesfeed.com/wp-content/uploads/2020/09/tacos-with-pulled-pork-fresh-vegetables-and-cream.jpg",
-      "precio": 9.99,
+      "precio": 999,
       "descripcion": "ortillas de maíz suaves rellenas de tofu marinado y salteado con pimientos, cebolla y especias. Se sirven con guacamole casero, salsa picante y una generosa porción de frijoles negros. ¡Una opción sabrosa y satisfactoria!",
       "stock": 35,
       "categoria": "comidasVeganas"
@@ -418,7 +418,7 @@
       "id": 47,
       "nombre": "Curry de Garbanzos",
       "imagen": "https://www.foodiesfeed.com/wp-content/uploads/2023/05/chickpea-coconut-curry.jpg",
-      "precio": 14.99,
+      "precio": 149,
       "descripcion": "Un delicioso curry vegano que combina garbanzos suaves y cremosos con una mezcla de especias exóticas, leche de coco y tomates frescos. Se sirve con arroz basmati y pan naan recién horneado.",
       "stock": 22,
       "categoria": "comidasVeganas"
@@ -427,7 +427,7 @@
       "id": 48,
       "nombre": "Pasta Primavera",
       "imagen": "https://images.unsplash.com/photo-1598866594230-a7c12756260f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&",
-      "precio": 12.99,
+      "precio": 129,
       "descripcion": "Espaguetis al dente con una selección de vegetales de temporada salteados, como espárragos, zanahorias, calabacines y champiñones. Todo ello mezclado con una salsa de tomate fresca y hierbas aromáticas. Un plato vegano clásico que nunca defrauda.",
       "stock": 24,
       "categoria": "comidasVeganas"
@@ -436,7 +436,7 @@
       "id": 49,
       "nombre": "Sushi Vegano",
       "imagen": "https://images.unsplash.com/photo-1602554172650-043a2de54271?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto",
-      "precio": 15.99,
+      "precio": 159,
       "descripcion": "Una selección de rollos de sushi vegano, incluyendo opciones como rollos de aguacate, pepino, zanahoria y mango. Se sirven con salsa de soja baja en sodio y jengibre encurtido. Un festín de sabores y texturas para los amantes del sushi.",
       "stock": 32,
       "categoria": "comidasVeganas"

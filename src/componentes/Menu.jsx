@@ -11,11 +11,27 @@ const Menu = () => {
   const [productos, setProductos] = useState([]);
   const [paginaActual, setPaginaActual] = useState(1);
   const [mostrarFiltro, setMostrarFiltro] = useState(null);
+  const [precioMinimo, setPrecioMinimo] = useState(0);
+  const [precioMaximo, setPrecioMaximo] = useState(0);
+  const [filtros, setFiltros] = useState({
+    categorias: [],
+    precio: [],
+    ordenar: [],
+    stock: [],
+    favoritos: null,
+    descuento: null,
+  });
   const productosPorPagina = 6;
 
   useEffect(() => {
     obtenerPlatos().then((res) => {
       setProductos(res);
+      const preciosProductosFiltrados = res.map((producto) => producto.precio);
+      const minPrecio = Math.min(...preciosProductosFiltrados);
+      const maxPrecio = Math.max(...preciosProductosFiltrados);
+
+      setPrecioMinimo(minPrecio);
+      setPrecioMaximo(maxPrecio);
     });
   }, []);
 
@@ -34,15 +50,80 @@ const Menu = () => {
     setPaginaActual(1);
   };
 
-  const platosFiltrados = productos.filter((producto) =>
-    producto.nombre.toLowerCase().includes(busqueda.toLowerCase())
-  );
+  const filtrarProductos = () => {
+    let productosFiltrados = [...productos];
 
-  const totalPaginas = Math.ceil(platosFiltrados.length / productosPorPagina);
+    if (busqueda.trim() !== "") {
+      productosFiltrados = productosFiltrados.filter((producto) =>
+        producto.nombre.toLowerCase().includes(busqueda.toLowerCase())
+      );
+    }
+
+    if (filtros.categorias.length > 0) {
+      productosFiltrados = productosFiltrados.filter((producto) =>
+        filtros.categorias.includes(producto.categoria)
+      );
+    }
+
+    if (filtros.precio.length > 0) {
+      if (filtros.precio.includes("gratis")) {
+        productosFiltrados = productosFiltrados.filter(
+          (producto) => producto.precio === 0
+        );
+      } else if (filtros.precio.includes("bajo")) {
+        productosFiltrados = productosFiltrados.filter(
+          (producto) =>
+            producto.precio > 0 && producto.precio < precioMinimo + 200
+        );
+      } else if (filtros.precio.includes("medio")) {
+        productosFiltrados = productosFiltrados.filter(
+          (producto) =>
+            producto.precio > precioMinimo + 200 &&
+            producto.precio < precioMaximo - precioMaximo / 2
+        );
+      } else if (filtros.precio.includes("caro")) {
+        productosFiltrados = productosFiltrados.filter(
+          (producto) =>
+            producto.precio > precioMaximo - precioMaximo / 2 &&
+            producto.precio < precioMaximo
+        );
+      }
+    }
+
+    if (filtros.ordenar.length > 0) {
+      if (filtros.ordenar.includes("menor")) {
+        productosFiltrados.sort((a, b) => a.precio - b.precio);
+      } else if (filtros.ordenar.includes("mayor")) {
+        productosFiltrados.sort((a, b) => b.precio - a.precio);
+      }
+    }
+
+    if (filtros.stock.length > 0) {
+      productosFiltrados = productosFiltrados.filter((producto) =>
+        filtros.stock.includes("stock")
+          ? producto.stock > 0
+          : producto.stock === 0
+      );
+    }
+
+    if (filtros.descuento !== null) {
+      productosFiltrados = productosFiltrados.filter(
+        (producto) => producto.tieneDescuento === filtros.descuento
+      );
+    }
+
+    return productosFiltrados;
+  };
+
+  const productosFiltrados = filtrarProductos();
+
+  const totalPaginas = Math.ceil(
+    productosFiltrados.length / productosPorPagina
+  );
 
   const indiceUltimoProducto = paginaActual * productosPorPagina;
   const indicePrimerProducto = indiceUltimoProducto - productosPorPagina;
-  const productosPaginaActual = platosFiltrados.slice(
+  const productosPaginaActual = productosFiltrados.slice(
     indicePrimerProducto,
     indiceUltimoProducto
   );
@@ -71,21 +152,22 @@ const Menu = () => {
           <hr className="text-white " />
           <section
             className={`container-menu-card ${
-              platosFiltrados.length === 0 && "mt-0"
+              productosFiltrados.length === 0 && "mt-0"
             }`}
           >
             <div
               className="row gap-5 "
               style={{
                 justifyContent:
-                  platosFiltrados.length < 3 || productosPaginaActual.length < 3
+                  productosFiltrados.length < 3 ||
+                  productosPaginaActual.length < 3
                     ? "center"
                     : "space-between",
               }}
             >
-              {platosFiltrados.length > 0 ? (
+              {productosFiltrados.length > 0 ? (
                 <TarjetaProducto
-                  platosFiltrados={platosFiltrados}
+                  platosFiltrados={productosFiltrados}
                   productosPaginaActual={productosPaginaActual}
                 />
               ) : (
@@ -94,7 +176,7 @@ const Menu = () => {
             </div>
             <div
               className={`${
-                platosFiltrados.length > 0 ? "d-flex" : "d-none"
+                productosFiltrados.length > 0 ? "d-flex" : "d-none"
               } justify-content-center align-items-center pb-5`}
             >
               <Paginacion
@@ -106,6 +188,10 @@ const Menu = () => {
             <ContenedorFiltros
               mostrarFiltro={mostrarFiltro}
               setMostrarFiltro={setMostrarFiltro}
+              filtros={filtros}
+              setFiltros={setFiltros}
+              precioMinimo={precioMinimo}
+              precioMaximo={precioMaximo}
             />
           </section>
         </Container>

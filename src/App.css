@@ -1473,9 +1473,9 @@ form h6 {
   }
 
   .filtro_overlay .contenedor_filtro .filtro_accion {
-    margin-top: 4.3rem;
+    margin-top: 3.8rem;
     position: sticky;
-    top: 4.3rem;
+    top: 3.5rem;
     background-color: var(--color-terciario);
   }
 
