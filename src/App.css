@@ -257,7 +257,21 @@ footer button:hover {
   transition: 0.3s;
 }
 
-/* quienes somos banaer index */
+.contenedor_badge {
+  height: .8rem;
+  width: .8rem;
+  color: var(--color-secundario);
+  background-color: #FF0000;
+  border-radius: 100%;
+  top: -.1rem;
+  right: -.2rem;
+  font-size: 0.6rem;
+}
+
+.carrito_item svg {
+  margin-top: -.1rem;
+  font-size: 1rem;
+}
 
 HEAD .contenedor-quienes-somos {
   margin-top: -50px;
@@ -934,6 +948,11 @@ form h6 {
     padding: 0.6rem;
   }
 
+  .carrito_item svg {
+    margin-top: -.1rem;
+    font-size: 1rem;
+  }
+
   div .card_producto {
     margin-bottom: 1.5rem;
   }
@@ -1315,6 +1334,11 @@ form h6 {
   .contenedor_botones button {
     font-size: 1rem;
     padding: 1.02rem;
+  }
+
+  .carrito_item svg {
+    margin-top: -0.2rem;
+    font-size: 1.2rem;
   }
 
   .texto_email {
