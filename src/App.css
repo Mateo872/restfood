@@ -930,7 +930,7 @@ form h6 {
 }
 
 .filtro_overlay .contenedor_filtro .botones_filtro {
-  padding: 0 1rem 1rem;
+  padding: .8rem 0 0;
 }
 
 .filtro_overlay .contenedor_filtro .botones_filtro .boton_secundario {
