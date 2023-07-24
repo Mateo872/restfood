@@ -2073,6 +2073,16 @@ form h6 {
   padding-top: 9rem;
 }
 
+.contenedor_IniciarRegistro {
+  min-height: 100vh;
+  width: 100%;
+  background-image: url(/src/complementos/imagenes/366291.jpg);
+  background-size: cover;
+  background-position: 50% 50%;
+  position: relative;
+  padding-top: 9rem;
+}
+
 .formCrearEditar {
   width: 43rem;
   margin: auto;
