@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { BiMenu } from "react-icons/bi";
-import { BsX } from "react-icons/bs";
+import { BsHandbag, BsX } from "react-icons/bs";
 import { Link, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -143,93 +143,98 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
             </li>
             {usuarioLogueado.email ? (
               <>
-              {usuarioLogueado.rol === "Administrador"?(<li className="d-flex d-md-none flex-column justify-content-end align-items-center gap-1 usuario_log">
-                  <Link
-                    to={"/administrador"}
-                    className="menu_link link_admin p-0"
-                  >
-                    Administrador
-                  </Link>
-                  <div
-                    className="d-flex flex-column align-items-center gap-1"
-                    onClick={salir}
-                    style={{ textDecoration: "none" }}
-                  >
-                    <p
-                      className="mb-0"
-                      style={{
-                        fontSize: "1.2rem",
-                        color: "#fff",
-                      }}
+                {usuarioLogueado.rol === "Administrador" ? (
+                  <li className="d-flex d-md-none flex-column justify-content-end align-items-center gap-1 usuario_log">
+                    <Link
+                      to={"/administrador"}
+                      className="menu_link link_admin p-0"
                     >
-                      {usuarioLogueado.nombre}
-                    </p>
+                      Administrador
+                    </Link>
                     <div
-                      style={{
-                        width: "2.4rem",
-                        height: "2.4rem",
-                        borderRadius: "100%",
-                        backgroundColor: "#fff",
-                        order: -1,
-                      }}
+                      className="d-flex flex-column align-items-center gap-1"
+                      onClick={salir}
+                      style={{ textDecoration: "none" }}
                     >
-                      <img
-                        className="w-100 h-100"
-                        src={usuarioLogueado.imagen}
-                        alt={usuarioLogueado.nombre}
+                      <p
+                        className="mb-0"
                         style={{
-                          objectFit: "cover",
-                          backgroundPosition: "center",
-                          borderRadius: "100%",
+                          fontSize: "1.2rem",
+                          color: "#fff",
                         }}
-                      />
+                      >
+                        {usuarioLogueado.nombre}
+                      </p>
+                      <div
+                        style={{
+                          width: "2.4rem",
+                          height: "2.4rem",
+                          borderRadius: "100%",
+                          backgroundColor: "#fff",
+                          order: -1,
+                        }}
+                      >
+                        <img
+                          className="w-100 h-100"
+                          src={usuarioLogueado.imagen}
+                          alt={usuarioLogueado.nombre}
+                          style={{
+                            objectFit: "cover",
+                            backgroundPosition: "center",
+                            borderRadius: "100%",
+                          }}
+                        />
+                      </div>
                     </div>
-                  </div>
-                </li>):
-                <li className="d-flex d-md-none flex-column justify-content-end align-items-center gap-1 usuario_log">
-                <Link
-                  to={"/usuario/carrito"}
-                  className="menu_link link_admin p-0"
-                >
-                  Carrito
-                </Link>
-                <div
-                  className="d-flex flex-column align-items-center gap-1"
-                  onClick={salir}
-                  style={{ textDecoration: "none" }}
-                >
-                  <p
-                    className="mb-0"
-                    style={{
-                      fontSize: "1.2rem",
-                      color: "#fff",
-                    }}
-                  >
-                    {usuarioLogueado.nombre}
-                  </p>
-                  <div
-                    style={{
-                      width: "2.4rem",
-                      height: "2.4rem",
-                      borderRadius: "100%",
-                      backgroundColor: "#fff",
-                      order: -1,
-                    }}
-                  >
-                    <img
-                      className="w-100 h-100"
-                      src={usuarioLogueado.imagen}
-                      alt={usuarioLogueado.nombre}
-                      style={{
-                        objectFit: "cover",
-                        backgroundPosition: "center",
-                        borderRadius: "100%",
-                      }}
-                    />
-                  </div>
-                </div>
-              </li>}
-                
+                  </li>
+                ) : (
+                  <li className="d-flex d-md-none flex-column justify-content-end align-items-center gap-1 usuario_log">
+                    <Link
+                      to={"/usuario/carrito"}
+                      className="menu_link link_admin p-0 position-relative"
+                    >
+                      <BsHandbag />
+                      <div className="contenedor_badge d-flex justify-content-center align-items-center position-absolute">
+                        <span>2</span>
+                      </div>
+                    </Link>
+                    <div
+                      className="d-flex flex-column align-items-center gap-1"
+                      onClick={salir}
+                      style={{ textDecoration: "none" }}
+                    >
+                      <p
+                        className="mb-0"
+                        style={{
+                          fontSize: "1.2rem",
+                          color: "#fff",
+                        }}
+                      >
+                        {usuarioLogueado.nombre}
+                      </p>
+                      <div
+                        style={{
+                          width: "2.4rem",
+                          height: "2.4rem",
+                          borderRadius: "100%",
+                          backgroundColor: "#fff",
+                          order: -1,
+                        }}
+                      >
+                        <img
+                          className="w-100 h-100"
+                          src={usuarioLogueado.imagen}
+                          alt={usuarioLogueado.nombre}
+                          style={{
+                            objectFit: "cover",
+                            backgroundPosition: "center",
+                            borderRadius: "100%",
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </li>
+                )}
               </>
             ) : (
               <>
@@ -251,82 +256,94 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
         <BiMenu onClick={menuVisible} className="d-md-none" />
         {usuarioLogueado.email ? (
           <>
-          {usuarioLogueado.rol === "Administrador"?( <li className="d-none d-md-flex justify-content-end align-items-center gap-1 usuario_log">
-              <Link to={"/administrador"} className="menu_link link_admin p-0">
-                Administrador
-              </Link>
-              <div
-                className="d-flex align-items-center gap-1"
-                onClick={salir}
-                style={{ textDecoration: "none", cursor: "pointer" }}
-              >
-                <p
-                  className="mb-0"
-                  style={{
-                    fontSize: "1.2rem",
-                    color: "#fff",
-                  }}
+            {usuarioLogueado.rol === "Administrador" ? (
+              <li className="d-none d-md-flex justify-content-end align-items-center gap-1 usuario_log">
+                <Link
+                  to={"/administrador"}
+                  className="menu_link link_admin p-0"
                 >
-                  | {usuarioLogueado.nombre}
-                </p>
+                  Administrador
+                </Link>
                 <div
-                  style={{
-                    width: "2.4rem",
-                    height: "2.4rem",
-                    borderRadius: "100%",
-                    backgroundColor: "#fff",
-                  }}
+                  className="d-flex align-items-center gap-1"
+                  onClick={salir}
+                  style={{ textDecoration: "none", cursor: "pointer" }}
                 >
-                  <img
-                    className="w-100 h-100"
-                    src={usuarioLogueado.imagen}
-                    alt={usuarioLogueado.nombre}
+                  <p
+                    className="mb-0"
                     style={{
-                      objectFit: "cover",
-                      backgroundPosition: "center",
+                      fontSize: "1.2rem",
+                      color: "#fff",
                     }}
-                  />
+                  >
+                    | {usuarioLogueado.nombre}
+                  </p>
+                  <div
+                    style={{
+                      width: "2.4rem",
+                      height: "2.4rem",
+                      borderRadius: "100%",
+                      backgroundColor: "#fff",
+                    }}
+                  >
+                    <img
+                      className="w-100 h-100"
+                      src={usuarioLogueado.imagen}
+                      alt={usuarioLogueado.nombre}
+                      style={{
+                        objectFit: "cover",
+                        backgroundPosition: "center",
+                      }}
+                    />
+                  </div>
                 </div>
-              </div>
-            </li>):( <li className="d-none d-md-flex justify-content-end align-items-center gap-1 usuario_log">
-              <Link to={"/usuario/carrito"} className="menu_link link_admin p-0">
-                Carrito
-              </Link>
-              <div
-                className="d-flex align-items-center gap-1"
-                onClick={salir}
-                style={{ textDecoration: "none", cursor: "pointer" }}
-              >
-                <p
-                  className="mb-0"
-                  style={{
-                    fontSize: "1.2rem",
-                    color: "#fff",
-                  }}
+              </li>
+            ) : (
+              <li className="d-none d-md-flex justify-content-end align-items-center gap-1 usuario_log">
+                <Link
+                  to={"/usuario/carrito"}
+                  className="carrito_item position-relative"
                 >
-                  | {usuarioLogueado.nombre}
-                </p>
+                  <BsHandbag />
+                  <div className="contenedor_badge d-flex justify-content-center align-items-center position-absolute">
+                    <span>2</span>
+                  </div>
+                </Link>
                 <div
-                  style={{
-                    width: "2.4rem",
-                    height: "2.4rem",
-                    borderRadius: "100%",
-                    backgroundColor: "#fff",
-                  }}
+                  className="d-flex align-items-center gap-1"
+                  onClick={salir}
+                  style={{ textDecoration: "none", cursor: "pointer" }}
                 >
-                  <img
-                    className="w-100 h-100"
-                    src={usuarioLogueado.imagen}
-                    alt={usuarioLogueado.nombre}
+                  <p
+                    className="mb-0"
                     style={{
-                      objectFit: "cover",
-                      backgroundPosition: "center",
+                      fontSize: "1.2rem",
+                      color: "#fff",
                     }}
-                  />
+                  >
+                    | {usuarioLogueado.nombre}
+                  </p>
+                  <div
+                    style={{
+                      width: "2.4rem",
+                      height: "2.4rem",
+                      borderRadius: "100%",
+                      backgroundColor: "#fff",
+                    }}
+                  >
+                    <img
+                      className="w-100 h-100"
+                      src={usuarioLogueado.imagen}
+                      alt={usuarioLogueado.nombre}
+                      style={{
+                        objectFit: "cover",
+                        backgroundPosition: "center",
+                      }}
+                    />
+                  </div>
                 </div>
-              </div>
-            </li>)}
-           
+              </li>
+            )}
           </>
         ) : (
           <div
