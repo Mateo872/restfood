@@ -1719,7 +1719,7 @@ form h6 {
 }
 
 .contenedor_imagen-detalle {
-  width: 17rem;
+  width: 100%;
   height: 20rem;
   background-size: cover;
   background-position: center;
@@ -1744,9 +1744,6 @@ form h6 {
 
 .descripcion_detalle {
   width: 100%;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
   border-bottom: 2px solid #ddd;
   padding-bottom: .5rem;
 }
@@ -1830,7 +1827,6 @@ form h6 {
 
 .contenedor_detalle .boton_calcular {
   width: 35%;
-  padding: 1rem;
   color: var(--color-secundario);
   background-color: var(--color-terciario);
   border: 2px solid var(--color-terciario);
