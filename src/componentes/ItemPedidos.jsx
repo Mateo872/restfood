@@ -1,24 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BsCheck, BsClockHistory } from "react-icons/bs";
 import Swal from "sweetalert2";
+import { actualizarPedidosUsuario, obtenerUsuario } from "./ayudas/consultas";
 
-const ItemPedidos = () => {
-  const [dataPedidos, setDataPedidos] = useState([
-    {
-      id: 1,
-      email: "correo1@example.com",
-      nombre: "Hamburguesa doble",
-      fecha: "11/07/2023",
-      estado: "Pendiente",
-    },
-    {
-      id: 2,
-      email: "correo2@example.com",
-      nombre: "Bocadillos de Tofu a la Barbacoa",
-      fecha: "11/07/2023",
-      estado: "Pendiente",
-    },
-  ]);
+const ItemPedidos = ({ usuarios }) => {
+  const [usuariosDB, setUsuariosDB] = useState([]);
+  const [dataPedidos, setDataPedidos] = useState([]);
+
+  useEffect(() => {
+    setUsuariosDB(usuarios);
+  }, [usuarios]);
+
+  useEffect(() => {
+    const todosPedidos = [];
+
+    usuariosDB.forEach((usuario) => {
+      if (usuario.pedidos && usuario.pedidos.length > 0) {
+        todosPedidos.push(...usuario.pedidos);
+      }
+    });
+
+    setDataPedidos(todosPedidos);
+  }, [usuariosDB]);
 
   const manejoPedido = (id) => {
     const pedido = dataPedidos.find((item) => item.id === id);
@@ -26,36 +29,67 @@ const ItemPedidos = () => {
 
     Swal.fire({
       title: `¿Estás seguro de realizar el pedido?`,
-      text: `Se realizará el pedido '${pedido.nombre}'.`,
+      text: `Se realizará el pedido '${pedido.nombresProductos}'.`,
       icon: "warning",
       showCancelButton: true,
       confirmButtonText: "Aceptar",
       cancelButtonText: "Cancelar",
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        const dataPedidosActualizado = [...dataPedidos];
-        dataPedidosActualizado[pedidoIndex] = {
-          ...pedido,
-          estado: "Realizado",
-        };
-        setDataPedidos(dataPedidosActualizado);
+        try {
+          const dataPedidosActualizado = [...dataPedidos];
+          dataPedidosActualizado[pedidoIndex] = {
+            ...pedido,
+            estado: "Realizado",
+          };
+          setDataPedidos(dataPedidosActualizado);
+
+          const usuarioEmail = pedido.email;
+          const usuarioEncontrado = usuariosDB.find(
+            (usuario) => usuario.email === usuarioEmail
+          );
+
+          if (!usuarioEncontrado) {
+            throw new Error("Usuario no encontrado.");
+          }
+
+          const usuarioID = usuarioEncontrado.id;
+
+          await actualizarPedidosUsuario(usuarioID, dataPedidosActualizado);
+
+          Swal.fire(
+            "Pedido realizado",
+            `Se realizó el pedido '${pedido.nombresProductos}' con éxito.`,
+            "success"
+          );
+        } catch (error) {
+          console.log(error);
+          Swal.fire({
+            title: "Error",
+            text: "Ocurrió un error al realizar el pedido.",
+            icon: "error",
+            confirmButtonText: "Aceptar",
+          });
+        }
       }
     });
   };
 
   return (
     <tbody>
-      {dataPedidos.map((item) => (
-        <tr key={item.id}>
-          <td className="item_tabla align-middle py-2">{item.email}</td>
-          <td className="item_tabla align-middle py-2">{item.nombre}</td>
-          <td className="align-middle w-50 py-2">{item.estado}</td>
-          <td className="align-middle w-50 py-2">{item.fecha}</td>
+      {dataPedidos.map((pedido, index) => (
+        <tr key={index}>
+          <td className="item_tabla align-middle py-2">{pedido.email}</td>
+          <td className="item_tabla align-middle py-2">
+            {pedido.nombresProductos}
+          </td>
+          <td className="align-middle w-50 py-2">{pedido.estado}</td>
+          <td className="align-middle w-50 py-2">{pedido.fecha}</td>
           <td className="align-middle py-2">
-            {item.estado === "Pendiente" ? (
+            {pedido.estado === "Pendiente" ? (
               <div
                 className="pendiente_contenedor d-flex justify-content-center align-items-center"
-                onClick={() => manejoPedido(item.id)}
+                onClick={() => manejoPedido(pedido.id)}
               >
                 <BsClockHistory size={20} />
               </div>

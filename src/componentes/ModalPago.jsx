@@ -90,6 +90,7 @@ const ModalPago = ({ setMostrarModal, totalCarrito }) => {
       estado: "Pendiente",
       fecha: new Date().toLocaleDateString(),
       envio: usuarioID.carrito.map((prod) => prod.costoEnvio),
+      id: Number(new Date().getTime()),
     });
   };
   return (

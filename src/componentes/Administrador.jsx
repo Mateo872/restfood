@@ -203,7 +203,7 @@ const Administrador = () => {
                   <th className="py-2">Acciones</th>
                 </tr>
               </thead>
-              <ItemPedidos />
+              <ItemPedidos usuarios={usuarios} />
             </table>
           </div>
         </article>
