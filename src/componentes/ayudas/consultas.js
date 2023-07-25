@@ -151,26 +151,25 @@ export const agregarCarrito = async (usuarioID, productoID, nuevoProducto) => {
     }
 };
 export const agregarPedidos = async (usuarioID, direccion) => {
-    console.log(usuarioID, direccion);
-    // try {
-    //     const usuario = await obtenerUsuario(usuarioID);
+    try {
+        const usuario = await obtenerUsuario(usuarioID);
 
-    //     if (!usuario) {
-    //         throw new Error("Usuario no encontrado.");
-    //     }
-    //     const carritoActual = usuario.carrito || [];
-    //     const PedidoActual = usuario.pedidos || [];
+        if (!usuario) {
+            throw new Error("Usuario no encontrado.");
+        }
+        const carritoActual = usuario.carrito || [];
+        const PedidoActual = usuario.pedidos || [];
 
-    //     PedidoActual.push(direccion);
-    //     usuario.pedidos = [...PedidoActual, ...carritoActual];
+        PedidoActual.push(direccion);
+        usuario.pedidos = [...PedidoActual, ...carritoActual];
 
-    //     await editarUsuario(usuario, usuarioID);
+        await editarUsuario(usuario, usuarioID);
 
-    //     return usuario.pedidos;
-    // } catch (error) {
-    //     console.log(error);
-    //     throw error;
-    // }
+        return usuario.pedidos;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
 };
 
 export const obtenerPlatos = async () => {
