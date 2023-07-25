@@ -1000,6 +1000,21 @@ form h6 {
   cursor: pointer;
 }
 
+.usuario_activo {
+  background-color: var(--color-secundario);
+}
+
+td .usuario_activo:hover {
+  transform: scale(1);
+  cursor: auto;
+}
+
+.usuario_activo svg {
+  width: 1.4rem;
+  color: var(--color-terciario);
+}
+
+
 @media (min-width: 767px) {
   .contenedor_publicidad h6 {
     font-size: 0.6rem;

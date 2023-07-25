@@ -1,33 +1,57 @@
-import { useState } from "react";
-import { BsPause } from "react-icons/bs";
+import { BsLockFill, BsPause } from "react-icons/bs";
+import { modificarEstadoUsuario } from "./ayudas/consultas";
 import Swal from "sweetalert2";
 
-const ItemUsuario = ({ data }) => {
-  const [usuariosSuspendidos, setUsuariosSuspendidos] = useState([]);
-
-  const manejoSuspenso = (id) => {
-    const usuario = data.find((item) => item.id === id);
-    const suspendido = usuariosSuspendidos.find((usuario) => usuario.id === id);
-
+const ItemUsuario = ({ usuarios }) => {
+  const manejoSuspenso = async (id) => {
+    const usuario = usuarios.find((item) => item.id === id);
     Swal.fire({
       title: `¿Estás seguro de ${
-        suspendido ? "habilitar" : "suspender"
+        usuarios.find((usuario) => usuario.id === id).estado === "suspendido"
+          ? "habilitar"
+          : "suspender"
       } el usuario?`,
-      text: `Se ${suspendido ? "habilitará" : "suspenderá"} el usuario '${
-        usuario.nombre
-      }'.`,
+      text: `Se ${
+        usuarios.find((usuario) => usuario.id === id).estado === "suspendido"
+          ? "habilitará"
+          : "suspenderá"
+      } el usuario '${usuario.nombre}'.`,
       icon: "warning",
       showCancelButton: true,
-      confirmButtonText: suspendido ? "Habilitar" : "Suspender",
+      confirmButtonText:
+        usuarios.find((usuario) => usuario.id === id).estado === "suspendido"
+          ? "Habilitar"
+          : "Suspender",
       cancelButtonText: "Cancelar",
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        if (suspendido) {
-          setUsuariosSuspendidos(
-            usuariosSuspendidos.filter((usuario) => usuario.id !== id)
-          );
-        } else {
-          setUsuariosSuspendidos([...usuariosSuspendidos, usuario]);
+        try {
+          if (
+            usuarios.find((usuario) => usuario.id === id).estado ===
+            "suspendido"
+          ) {
+            Swal.fire(
+              `Usuario habilitado`,
+              `El usuario ${usuario.nombre} fue habilitado.`,
+              "success"
+            );
+            await modificarEstadoUsuario(id, "activo");
+          } else {
+            Swal.fire(
+              `Usuario suspendido`,
+              `El usuario ${usuario.nombre} fue suspendido.`,
+              "success"
+            );
+            await modificarEstadoUsuario(id, "suspendido");
+          }
+        } catch (error) {
+          console.log(error);
+          Swal.fire({
+            title: "Error",
+            text: "Ocurrió un error al cambiar el estado del usuario.",
+            icon: "error",
+            confirmButtonText: "Aceptar",
+          });
         }
       }
     });
@@ -35,7 +59,7 @@ const ItemUsuario = ({ data }) => {
 
   return (
     <tbody>
-      {data.map((item) => (
+      {usuarios.map((item) => (
         <tr key={item.id}>
           <td className="align-middle contenedor_imagen">
             <div
@@ -45,18 +69,27 @@ const ItemUsuario = ({ data }) => {
           </td>
           <td className="align-middle item_tabla">{item.email}</td>
           <td className="align-middle item_tabla">{item.nombre}</td>
-          <td className="align-middle w-75">{item.rol}</td>
+          <td className="align-middle w-75">
+            {item.rol === "usuario" ? "Usuario" : "Administrador"}
+          </td>
           <td className="align-middle">
-            <div
-              className={`pausa_contenedor d-flex justify-content-center align-items-center ${
-                usuariosSuspendidos.find((usuario) => usuario.id === item.id)
-                  ? "suspendido"
-                  : "suspender"
-              }`}
-              onClick={() => manejoSuspenso(item.id)}
-            >
-              <BsPause size={30} />
-            </div>
+            {item.rol !== "administrador" ? (
+              <div
+                className={`pausa_contenedor d-flex justify-content-center align-items-center ${
+                  usuarios.find((usuario) => usuario.id === item.id).estado ===
+                  "suspendido"
+                    ? "suspendido"
+                    : "suspender"
+                }`}
+                onClick={() => manejoSuspenso(item.id)}
+              >
+                <BsPause size={30} />
+              </div>
+            ) : (
+              <div className="pausa_contenedor d-flex justify-content-center align-items-center usuario_activo">
+                <BsLockFill size={30} />
+              </div>
+            )}
           </td>
         </tr>
       ))}

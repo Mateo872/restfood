@@ -457,6 +457,7 @@
       "imagen": "https://i.postimg.cc/3J5rC6zw/Mateo-Bellini.jpg",
       "contrasenia": "macaHola1",
       "rol": "usuario",
+      "estado": "activo",
       "carrito": [],
       "pedidos": [],
       "favoritos": [
@@ -514,6 +515,7 @@
       "email": "bellinimateo872@gmail.com",
       "contrasenia": "Rolling872",
       "rol": "usuario",
+      "estado": "activo",
       "carrito": [],
       "pedidos": [
         {
@@ -579,9 +581,8 @@
       "nombre": "Pepe",
       "email": "marioachavez1@gmail.com",
       "contrasenia": "Mario1234",
-      "rol": {
-        "nombre": "usuario"
-      },
+      "rol": "usuario",
+      "estado": "suspendido",
       "carrito": [
         {
           "id": 4,

@@ -53,6 +53,16 @@ export const registro = async (usuario) => {
   }
 };
 
+export const obtenerUsuarios = async () => {
+  try {
+    const respuesta = await fetch(URL_USUARIO);
+    const listaUsuarios = await respuesta.json();
+    return listaUsuarios;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const obtenerUsuario = async (id) => {
   try {
     const respuesta = await fetch(`${URL_USUARIO}/${id}`);
@@ -172,6 +182,22 @@ export const agregarPedidos = async (usuarioID, datos) => {
     await editarUsuario(usuario, usuarioID);
 
     return usuario.pedidos;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+export const modificarEstadoUsuario = async (id, estado) => {
+  try {
+    const usuario = await obtenerUsuario(id);
+    if (!usuario) {
+      throw new Error("Usuario no encontrado.");
+    }
+
+    usuario.estado = estado;
+
+    await editarUsuario(usuario, id);
   } catch (error) {
     console.log(error);
     throw error;
