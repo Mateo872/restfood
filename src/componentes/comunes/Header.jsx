@@ -23,15 +23,13 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
     `,
       showCancelButton: true,
       showCancelButton: true,
-      confirmButtonColor: "#c7a17a",
-      cancelButtonColor: "#1e1e1e",
       confirmButtonText: "Salir",
       cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
         sessionStorage.removeItem("usuario");
         setUsuarioLogeado({});
-        window.location.reload()
+        window.location.reload();
         navegacion("/");
       }
     });

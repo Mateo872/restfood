@@ -41,12 +41,12 @@ const ContenedorCarrito = () => {
           ) : (
             <div className="d-flex flex-column align-items-center">
               <h3 className="text-center">No hay productos en el carrito</h3>
-              <img
+              {/* <img
                 src="https://i.ibb.co/0jZ3Q0H/carrito-vacio.png"
                 alt="carrito-vacio"
                 border="0"
                 className="img-fluid"
-              />
+              /> */}
             </div>
           )}
         </div>
