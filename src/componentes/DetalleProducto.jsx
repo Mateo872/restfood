@@ -59,10 +59,22 @@ const DetalleProducto = () => {
   }, []);
 
   useEffect(() => {
-    obtenerUsuario(usuario.id).then((res) => {
-      setUsuarioID(res);
-    });
+    if (usuario && usuario.id) {
+      obtenerUsuario(usuario.id).then((res) => {
+        setUsuarioID(res);
+      });
+    }
   }, [usuarioID]);
+
+  const manejoSesion = async () => {
+    await Swal.fire({
+      title: "Inicia sesión para agregar productos al carrito",
+      icon: "warning",
+      showCancelButton: false,
+      confirmButtonText: "OK",
+    });
+    return;
+  };
 
   const manejoFav = async () => {
     const existe = usuario.favoritos.find((fav) => fav === plato.id);
@@ -178,13 +190,16 @@ const DetalleProducto = () => {
                   backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${plato.imagen})`,
                 }}
               ></div>
-              <div onClick={manejoFav}>
-                {usuarioID.favoritos.find((fav) => fav.id === plato.id) ? (
-                  <GoBookmarkFill className="bookmark position-absolute" />
-                ) : (
-                  <GoBookmark className="bookmark position-absolute" />
-                )}
-              </div>
+              {usuarioID && (
+                <div onClick={manejoFav}>
+                  {usuarioID &&
+                  usuarioID.favoritos.find((fav) => fav.id === plato.id) ? (
+                    <GoBookmarkFill className="bookmark position-absolute" />
+                  ) : (
+                    <GoBookmark className="bookmark position-absolute" />
+                  )}
+                </div>
+              )}
               <form
                 onSubmit={handleSubmit(manejoEnvio)}
                 className="contenedor_caracteristicas-detalle d-flex flex-column justify-content-lg-between"
@@ -275,7 +290,13 @@ const DetalleProducto = () => {
                         <ClipLoader />
                       </div>
                     ) : (
-                      <button className="boton_calcular">Calcular</button>
+                      <button
+                        type={!usuarioID ? "button" : "submit"}
+                        className="boton_calcular"
+                        onClick={!usuarioID ? manejoSesion : null}
+                      >
+                        Calcular
+                      </button>
                     )}
                   </div>
                 ) : (
