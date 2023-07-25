@@ -2082,8 +2082,13 @@ form h6 {
   padding-top: 9rem;
 }
 
+div:where(.swal2-icon).swal2-question.swal2-icon-show {
+  color: var(--color-primario);
+  border-color: var(--color-primario);
+}
+
 .contenedor_IniciarRegistro {
-  min-height:100vh ;
+  min-height: 100vh;
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, .7)), url("./complementos/imagenes/366291.jpg");
   background-size: cover;
   background-position: 50% 50%;

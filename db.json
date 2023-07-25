@@ -514,7 +514,43 @@
       "email": "bellinimateo872@gmail.com",
       "contrasenia": "Rolling872",
       "rol": "usuario",
-      "carrito": [],
+      "carrito": [
+        {
+          "id": 22,
+          "nombre": "Cheesecake de Fresa",
+          "precio": 239,
+          "cantidad": 1,
+          "costoEnvio": 189
+        },
+        {
+          "id": 22,
+          "nombre": "Cheesecake de Fresa",
+          "precio": 279,
+          "cantidad": 5,
+          "costoEnvio": 325
+        },
+        {
+          "id": 2,
+          "nombre": "Revuelto Gramajo",
+          "precio": 1080,
+          "cantidad": 1,
+          "costoEnvio": 374
+        },
+        {
+          "id": 21,
+          "nombre": "Tarta de Chocolate",
+          "precio": 276,
+          "cantidad": 1,
+          "costoEnvio": 406
+        },
+        {
+          "id": 21,
+          "nombre": "Tarta de Chocolate",
+          "precio": 230,
+          "cantidad": 2,
+          "costoEnvio": 257
+        }
+      ],
       "pedidos": [],
       "favoritos": [
         {
