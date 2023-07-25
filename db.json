@@ -546,6 +546,56 @@
         }
       ],
       "id": "ljFFAng"
+    },
+    {
+      "imagen": "https://pics.filmaffinity.com/el_amor_despues_del_amor-583843731-large.jpg",
+      "nombre": "Pepe",
+      "email": "marioachavez1@gmail.com",
+      "contrasenia": "Mario1234",
+      "rol": {
+        "nombre": "usuario"
+      },
+      "carrito": [
+        {
+          "id": 4,
+          "nombre": "Croquetas de hongos de Il Giardino Romagnoli",
+          "precio": 1400,
+          "cantidad": 3,
+          "costoEnvio": 473,
+          "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRikSllAlUYdH0zs9eUmChLLSLEl5-7glm45g&usqp=CAU"
+        },
+        {
+          "id": 2,
+          "nombre": "Revuelto Gramajo",
+          "precio": 1260,
+          "cantidad": 2,
+          "costoEnvio": 327,
+          "imagen": "https://1.bp.blogspot.com/-QnM9iMosb-E/Xb9Ecj5tydI/AAAAAAAAYx4/TIBT1kf2HrwEqW8YJ0BAl-Hcamuzg4cVgCK4BGAYYCw/s1600/Revuelto%2BGramajo%2BII.jpg"
+        }
+      ],
+      "pedidos": [
+        {
+          "domicilio": "san lorenzo 547"
+        },
+        {
+          "id": 4,
+          "nombre": "Croquetas de hongos de Il Giardino Romagnoli",
+          "precio": 1400,
+          "cantidad": 3,
+          "costoEnvio": 473,
+          "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRikSllAlUYdH0zs9eUmChLLSLEl5-7glm45g&usqp=CAU"
+        },
+        {
+          "id": 2,
+          "nombre": "Revuelto Gramajo",
+          "precio": 1260,
+          "cantidad": 2,
+          "costoEnvio": 327,
+          "imagen": "https://1.bp.blogspot.com/-QnM9iMosb-E/Xb9Ecj5tydI/AAAAAAAAYx4/TIBT1kf2HrwEqW8YJ0BAl-Hcamuzg4cVgCK4BGAYYCw/s1600/Revuelto%2BGramajo%2BII.jpg"
+        }
+      ],
+      "favoritos": [],
+      "id": "3tCCe7y"
     }
   ]
 }
