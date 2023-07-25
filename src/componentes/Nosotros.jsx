@@ -2,6 +2,10 @@ import React from "react";
 import { useState } from "react";
 import CardNosotros from "./CardNosotros";
 import { useEffect } from "react";
+import mario from "../complementos/imagenes/mario.jpeg";
+import aixa from "../complementos/imagenes/aixa.jpeg";
+import juan from "../complementos/imagenes/juan.jpeg";
+import { Link } from "react-router-dom";
 
 const Nosotros = () => {
   const [tarjeta, setTarjeta] = useState(false);
@@ -13,26 +17,31 @@ const Nosotros = () => {
       nombre: "Mateo",
       github: "https://github.com/mateo872",
       edad: 21,
+      imagen: "https://i.postimg.cc/3J5rC6zw/Mateo-Bellini.jpg",
     },
     {
       nombre: "Mario",
       github: "https://github.com/Mario-Chavez",
       edad: 25,
+      imagen: mario,
     },
     {
       nombre: "Aixa",
       github: "https://github.com/AixaFilsinger",
       edad: 22,
+      imagen: aixa,
     },
     {
       nombre: "Tadeo",
       github: "https://github.com/teoMunoz99",
       edad: 23,
+      imagen: juan,
     },
     {
       nombre: "Juan",
       github: "https://github.com/juantoranzos",
       edad: 22,
+      imagen: juan,
     },
   ];
 
@@ -77,6 +86,9 @@ const Nosotros = () => {
                   setTarjetaNosotros(true);
                   setTarjetaNombre(nos.nombre);
                 }}
+                style={{
+                  cursor: "pointer",
+                }}
               >
                 {nos.nombre}
               </p>
@@ -96,10 +108,19 @@ const Nosotros = () => {
             tarjetaNosotros && "nosotros_carac-activo"
           } nosotros_carac d-flex flex-column flex-md-row justify-content-center align-items-center mt-4`}
         >
-          <div
+          <a
+            href={nosotros.find((nos) => nos.nombre === tarjetaNombre)?.github}
+            target="_blank"
             className="imagen_nosotros"
-            style={{ backgroundColor: "#ddd" }}
-          ></div>
+            style={{
+              backgroundImage: `url(${
+                nosotros.find((nos) => nos.nombre === tarjetaNombre)?.imagen
+              })`,
+              backgroundPosition: "center",
+              backgroundSize: "cover",
+              cursor: "pointer",
+            }}
+          ></a>
           <CardNosotros nosotros={nosotros} tarjetaNombre={tarjetaNombre} />
         </div>
       </article>
