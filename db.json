@@ -495,6 +495,15 @@
           "descripcion": "¡Un clásico italiano! Las tradicionales croquetas de arroz, parmesano, cebolla, limon, queso azul, queso brie, muzzarella y arroz carnaroli",
           "stock": 1,
           "categoria": "entradas"
+        },
+        {
+          "id": 3,
+          "nombre": "Croquetas de arroz",
+          "imagen": "https://locosxlaparrilla.com/wp-content/uploads/2015/02/Receta-recetas-locos-x-la-parrilla-locosxlaparrilla-receta-croquetas-zucchinis-croquetas-zucchinis-croquetas-receta-croquetas-2.jpg",
+          "precio": 500,
+          "descripcion": "Tienen arroz amarillo, harina, queso parmesano, huevos de campos y son fritas.",
+          "stock": 1,
+          "categoria": "entradas"
         }
       ],
       "id": "Xbyh-ni"
