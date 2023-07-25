@@ -36,16 +36,20 @@ const CarritoItem = ({ producto }) => {
           carrito: carritoActualizado,
         };
 
+        // Actualiza el usuario en la base de datos
         await editarUsuario(usuarioActualizado, usuarioID.id);
-        setUsuarioID(usuarioActualizado);
+
+        // Actualiza el estado local del usuario con los cambios del carrito
+        setUsuarioID((prevUsuario) => ({
+          ...prevUsuario,
+          carrito: carritoActualizado,
+        }));
 
         Swal.fire(
           "Producto eliminado",
           "El producto se eliminó correctamente",
           "success"
-        ).then(() => {
-          window.location.reload();
-        });
+        );
       }
     });
   };
