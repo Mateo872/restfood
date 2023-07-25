@@ -31,6 +31,7 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
       if (result.isConfirmed) {
         sessionStorage.removeItem("usuario");
         setUsuarioLogeado({});
+        window.location.reload()
         navegacion("/");
       }
     });
