@@ -45,10 +45,20 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
       cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
-        sessionStorage.removeItem("usuario");
-        setUsuarioLogeado({});
-        window.location.reload();
-        navegacion("/");
+        Swal.fire({
+          title: "Sesión cerrada",
+          text: "La sesión se cerró correctamente",
+          icon: "success",
+          timer: 2000,
+          timerProgressBar: true,
+          didOpen: () => {
+            Swal.showLoading();
+          },
+        }).then(() => {
+          sessionStorage.removeItem("usuario");
+          setUsuarioLogeado({});
+          navegacion("/");
+        });
       }
     });
   };
