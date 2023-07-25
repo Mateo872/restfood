@@ -6,7 +6,6 @@ import { editarUsuario, obtenerUsuario } from "./ayudas/consultas";
 import { Link } from "react-router-dom";
 import { GiShoppingBag } from "react-icons/gi";
 import ClipLoader from "react-spinners/ClipLoader";
-import Error404 from "./Error404";
 import { useNavigate } from "react-router-dom";
 
 const ContenedorCarrito = () => {
