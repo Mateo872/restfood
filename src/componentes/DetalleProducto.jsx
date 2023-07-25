@@ -115,6 +115,7 @@ const DetalleProducto = () => {
           precio: obtenerPrecioConTamanio(),
           cantidad: parseInt(data.cantidad),
           costoEnvio,
+          imagen: plato.imagen,
         };
 
         Swal.fire({

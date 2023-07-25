@@ -516,39 +516,28 @@
       "rol": "usuario",
       "carrito": [
         {
-          "id": 22,
-          "nombre": "Cheesecake de Fresa",
-          "precio": 239,
-          "cantidad": 1,
-          "costoEnvio": 189
-        },
-        {
-          "id": 22,
-          "nombre": "Cheesecake de Fresa",
-          "precio": 279,
-          "cantidad": 5,
-          "costoEnvio": 325
-        },
-        {
-          "id": 2,
-          "nombre": "Revuelto Gramajo",
-          "precio": 1080,
-          "cantidad": 1,
-          "costoEnvio": 374
-        },
-        {
           "id": 21,
           "nombre": "Tarta de Chocolate",
           "precio": 276,
-          "cantidad": 1,
-          "costoEnvio": 406
+          "cantidad": 2,
+          "costoEnvio": 209,
+          "imagen": "https://img.freepik.com/foto-gratis/alimento-chocolate-fondo-marron-panaderia_1203-6371.jpg?w=996&t=st=1689606565~exp=1689607165~hmac=890322f1e46ccd26186eb9c3fd7b181e85c2a28de30e2a79157c2a461d4531ae"
         },
         {
-          "id": 21,
-          "nombre": "Tarta de Chocolate",
-          "precio": 230,
+          "id": 43,
+          "nombre": "Bocadillos de Tofu a la Barbacoa",
+          "precio": 125,
           "cantidad": 2,
-          "costoEnvio": 257
+          "costoEnvio": 281,
+          "imagen": "https://cdn.pixabay.com/photo/2016/10/31/18/19/tofu-1786318_1280.jpg"
+        },
+        {
+          "id": 19,
+          "nombre": "Licuado de Frutilla",
+          "precio": 600,
+          "cantidad": 2,
+          "costoEnvio": 371,
+          "imagen": "https://images.pexels.com/photos/3625372/pexels-photo-3625372.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
         }
       ],
       "pedidos": [],
