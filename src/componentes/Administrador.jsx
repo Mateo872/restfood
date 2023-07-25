@@ -3,7 +3,11 @@ import ItemProducto from "./ItemProducto";
 import ItemUsuario from "./ItemUsuario";
 import ItemPedidos from "./ItemPedidos";
 import { Link } from "react-router-dom";
-import { borrarPlatos, obtenerPlatos } from "./ayudas/consultas";
+import {
+  borrarPlatos,
+  obtenerPlatos,
+  obtenerUsuarios,
+} from "./ayudas/consultas";
 import Swal from "sweetalert2";
 
 const Administrador = () => {
@@ -11,11 +15,20 @@ const Administrador = () => {
   const [platos, setPlatos] = useState([]);
   const [seleccion, setSeleccion] = useState(false);
   const [seleccionados, setSeleccionados] = useState([]);
+  const [usuarios, setUsuarios] = useState([]);
 
   useEffect(() => {
     obtenerPlatos().then((res) => {
       setPlatos(res);
     });
+  }, []);
+
+  useEffect(() => {
+    if (usuarios) {
+      obtenerUsuarios().then((res) => {
+        setUsuarios(res);
+      });
+    }
   }, []);
 
   const eliminarProductos = () => {
@@ -68,23 +81,6 @@ const Administrador = () => {
       );
     }
   };
-
-  const data = [
-    {
-      id: 1,
-      imagen: "https://i.postimg.cc/3J5rC6zw/Mateo-Bellini.jpg",
-      email: "correo1@example.com",
-      nombre: "Nombre 1",
-      rol: "Administrador",
-    },
-    {
-      id: 2,
-      imagen: "url_de_la_imagen_2",
-      email: "correo2@example.com",
-      nombre: "Nombre 2",
-      rol: "Usuario",
-    },
-  ];
 
   const manejoBuscador = (e) => {
     setInput(e.target.value);
@@ -190,7 +186,7 @@ const Administrador = () => {
                   <th className="py-2">Acciones</th>
                 </tr>
               </thead>
-              <ItemUsuario data={data} />
+              <ItemUsuario usuarios={usuarios} />
             </table>
           </div>
         </article>

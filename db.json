@@ -457,6 +457,7 @@
       "imagen": "https://i.postimg.cc/3J5rC6zw/Mateo-Bellini.jpg",
       "contrasenia": "macaHola1",
       "rol": "usuario",
+      "estado": "activo",
       "carrito": [],
       "pedidos": [],
       "favoritos": [
@@ -514,33 +515,26 @@
       "email": "bellinimateo872@gmail.com",
       "contrasenia": "Rolling872",
       "rol": "usuario",
+      "estado": "activo",
       "carrito": [],
       "pedidos": [
         {
           "domicilio": "San Juan 295",
           "total": 957,
-          "nombresProductos": [
-            "Cheesecake de Fresa"
-          ],
+          "nombresProductos": ["Cheesecake de Fresa"],
           "email": "bellinimateo872@gmail.com",
           "estado": "Pendiente",
           "fecha": "25/7/2023",
-          "envio": [
-            479
-          ]
+          "envio": [479]
         },
         {
           "domicilio": "San Juan 295",
           "total": 1468,
-          "nombresProductos": [
-            "Licuado de Frutilla"
-          ],
+          "nombresProductos": ["Licuado de Frutilla"],
           "email": "bellinimateo872@gmail.com",
           "estado": "Pendiente",
           "fecha": "25/7/2023",
-          "envio": [
-            468
-          ]
+          "envio": [468]
         }
       ],
       "favoritos": [
@@ -579,9 +573,8 @@
       "nombre": "Pepe",
       "email": "marioachavez1@gmail.com",
       "contrasenia": "Mario1234",
-      "rol": {
-        "nombre": "usuario"
-      },
+      "rol": "usuario",
+      "estado": "suspendido",
       "carrito": [
         {
           "id": 4,

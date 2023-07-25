@@ -1000,6 +1000,21 @@ form h6 {
   cursor: pointer;
 }
 
+.usuario_activo {
+  background-color: var(--color-secundario);
+}
+
+td .usuario_activo:hover {
+  transform: scale(1);
+  cursor: auto;
+}
+
+.usuario_activo svg {
+  width: 1.4rem;
+  color: var(--color-terciario);
+}
+
+
 @media (min-width: 767px) {
   .contenedor_publicidad h6 {
     font-size: 0.6rem;
@@ -1102,6 +1117,11 @@ form h6 {
   .carrito_item svg {
     margin-top: -.1rem;
     font-size: 1rem;
+  }
+
+
+  div .contenedor_IniciarRegistro {
+    padding-top: 12rem;
   }
 
   .filtro_overlay .contenedor_filtro {
@@ -1495,6 +1515,10 @@ form h6 {
   main article .categorias {
     font-size: 0.8rem;
     gap: 1.8rem;
+  }
+
+  div .contenedor_IniciarRegistro {
+    padding-top: 6rem;
   }
 
   .formCrearEditar {
@@ -2152,7 +2176,6 @@ div:where(.swal2-icon).swal2-question.swal2-icon-show {
 }
 
 .contenedor_IniciarRegistro {
-  min-height: 100vh;
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, .7)), url("./complementos/imagenes/366291.jpg");
   background-size: cover;
   background-position: 50% 50%;
