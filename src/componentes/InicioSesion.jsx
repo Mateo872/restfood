@@ -20,8 +20,6 @@ const InicioSesion = ({ setUsuarioLogeado }) => {
     if (ubicacion.pathname === "/usuario/iniciar") {
       iniciarSesion(usuarioRegistrado).then((respuesta) => {
         if (respuesta) {
-          sessionStorage.setItem("usuario", JSON.stringify(respuesta));
-          setUsuarioLogeado(respuesta);
           if (respuesta.rol === "administrador") {
             Swal.fire(
               `Bienvenido, ${respuesta.nombre}`,
@@ -30,9 +28,11 @@ const InicioSesion = ({ setUsuarioLogeado }) => {
             ).then((res) => {
               if (res.isConfirmed) {
                 navegacion("/administrador");
+                sessionStorage.setItem("usuario", JSON.stringify(respuesta));
+                setUsuarioLogeado(respuesta);
               }
             });
-          } else {
+          } else if (respuesta.estado !== "suspendido") {
             Swal.fire(
               `Bienvenido, ${respuesta.nombre}`,
               "Has iniciado sesión correctamente",
@@ -40,8 +40,16 @@ const InicioSesion = ({ setUsuarioLogeado }) => {
             ).then((res) => {
               if (res.isConfirmed) {
                 navegacion("/");
+                sessionStorage.setItem("usuario", JSON.stringify(respuesta));
+                setUsuarioLogeado(respuesta);
               }
             });
+          } else {
+            Swal.fire(
+              `Usuario suspendido`,
+              "El usuario se encuentra suspendido",
+              "error"
+            );
           }
         } else {
           Swal.fire("Error", "Email o contraseña incorrecta", "error");
@@ -54,12 +62,11 @@ const InicioSesion = ({ setUsuarioLogeado }) => {
           nombre: usuarioRegistrado.nombre,
           email: usuarioRegistrado.email,
           contrasenia: usuarioRegistrado.contrasenia,
-          rol: {
-            nombre: "usuario",
-          },
+          rol: "usuario",
           carrito: [],
           pedidos: [],
           favoritos: [],
+          estado: "activo",
         };
         registro(nuevoUsuario).then((respuesta) => {
           if (respuesta.status === 201) {
