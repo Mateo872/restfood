@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import TarjetaProducto from "./TarjetaProducto";
-import { obtenerPlatos } from "./ayudas/consultas";
+import { obtenerPlatos, obtenerUsuario } from "./ayudas/consultas";
 import Paginacion from "./Paginacion";
 import { BsSliders } from "react-icons/bs";
 import ContenedorFiltros from "./ContenedorFiltros";
@@ -22,7 +22,8 @@ const Menu = () => {
     descuento: [],
   });
   const productosPorPagina = 6;
-  let favPlato = JSON.parse(localStorage.getItem("favPlato")) || [];
+  const usuario = JSON.parse(sessionStorage.getItem("usuario")) || null;
+  const [usuarioID, setUsuarioID] = useState(null);
 
   useEffect(() => {
     obtenerPlatos().then((res) => {
@@ -34,6 +35,14 @@ const Menu = () => {
       setPrecioMinimo(minPrecio);
       setPrecioMaximo(maxPrecio);
     });
+  }, []);
+
+  useEffect(() => {
+    if (usuario && usuario.id) {
+      obtenerUsuario(usuario.id).then((res) => {
+        setUsuarioID(res);
+      });
+    }
   }, []);
 
   const manejarScroll = () => {
@@ -108,12 +117,14 @@ const Menu = () => {
     }
 
     if (filtros.favoritos.includes("favoritos")) {
-      productosFiltrados = productosFiltrados.filter((producto) =>
-        favPlato.find((fav) => fav == producto.id)
+      productosFiltrados = productosFiltrados.filter(
+        (producto) =>
+          usuarioID && usuarioID.favoritos.find((fav) => fav.id === producto.id)
       );
     } else if (filtros.favoritos.includes("noFavoritos")) {
       productosFiltrados = productosFiltrados.filter(
-        (producto) => !favPlato.find((fav) => fav == producto.id)
+        (producto) =>
+          !usuarioID && usuarioID.favoritos.find((fav) => fav.id == producto.id)
       );
     }
 
