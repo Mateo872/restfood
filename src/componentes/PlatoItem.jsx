@@ -1,8 +1,17 @@
 import { Link } from "react-router-dom";
 import { BsFillHeartFill } from "react-icons/bs";
+import { useEffect, useState } from "react";
+import { obtenerUsuario } from "./ayudas/consultas";
 
 const PlatoItem = ({ platosFiltrados }) => {
-  let favPlato = JSON.parse(localStorage.getItem("favPlato")) || [];
+  const usuario = JSON.parse(sessionStorage.getItem("usuario")) || null;
+  const [usuarioID, setUsuarioID] = useState(null);
+
+  useEffect(() => {
+    obtenerUsuario(usuario.id).then((res) => {
+      setUsuarioID(res);
+    });
+  }, []);
 
   return (
     <>
@@ -15,7 +24,10 @@ const PlatoItem = ({ platosFiltrados }) => {
           <div className="buscador d-flex align-items-center gap-2 position-relative">
             <div
               className={`contenedor_favoritos-buscador ${
-                favPlato.find((fav) => fav == plato.id) ? "d-flex" : "d-none"
+                usuarioID &&
+                usuarioID.favoritos.find((fav) => fav.id === plato.id)
+                  ? "d-flex"
+                  : "d-none"
               } justify-content-center align-items-center position-absolute`}
             >
               <BsFillHeartFill className="svg_favorito" />

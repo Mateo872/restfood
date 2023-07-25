@@ -53,6 +53,72 @@ export const registro = async (usuario) => {
   }
 };
 
+export const obtenerUsuario = async (id) => {
+  try {
+    const respuesta = await fetch(`${URL_USUARIO}/${id}`);
+    const usuario = await respuesta.json();
+    if (!usuario.favoritos) {
+      usuario.favoritos = [];
+    }
+
+    return usuario;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const editarUsuario = async (usuario, id) => {
+  try {
+    const respuesta = await fetch(`${URL_USUARIO}/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(usuario),
+    });
+    return respuesta;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const agregarFavoritos = async (idUsuario, arrayIdsPlatos) => {
+  try {
+    const usuario = await obtenerUsuario(idUsuario);
+
+    if (!usuario) {
+      throw new Error("Usuario no encontrado.");
+    }
+
+    const platosActuales = usuario.favoritos.map((plato) => plato.id);
+
+    const nuevosPlatos = arrayIdsPlatos.filter(
+      (idPlato) => !platosActuales.includes(idPlato)
+    );
+
+    const platosARemover = platosActuales.filter((idPlato) =>
+      arrayIdsPlatos.includes(idPlato)
+    );
+
+    const platos = await Promise.all(
+      nuevosPlatos.map((idPlato) => obtenerPlato(idPlato))
+    );
+
+    const platosValidos = platos.filter((plato) => !!plato);
+
+    usuario.favoritos.push(...platosValidos);
+
+    usuario.favoritos = usuario.favoritos.filter(
+      (plato) => !platosARemover.includes(plato.id)
+    );
+
+    await editarUsuario(usuario, idUsuario);
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
 export const obtenerPlatos = async () => {
   try {
     const respuesta = await fetch(URL_PLATO);
