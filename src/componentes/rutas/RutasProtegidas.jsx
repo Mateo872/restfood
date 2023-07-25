@@ -1,12 +1,11 @@
-import { Navigate } from "react-router-dom";
+import Error404 from "../Error404";
 
 const RutasProtegidas = ({ children }) => {
-   const usuarioLogueado = JSON.parse(sessionStorage.getItem("usuario")) || null;
+  const usuarioLogueado = JSON.parse(sessionStorage.getItem("usuario")) || null;
 
-   if (!usuarioLogueado) {
-       console.log("entre");
-       return <Navigate to={"/usuario/iniciar"} />;
-   }
+  if (!usuarioLogueado || usuarioLogueado.rol !== "administrador") {
+    return <Error404 />;
+  }
   return children;
 };
 

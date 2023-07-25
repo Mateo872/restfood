@@ -86,7 +86,7 @@ const ContenedorCarrito = () => {
                   />
                 </div>
               ) : usuarioID && usuarioID.carrito.length > 0 ? (
-                usuarioID.carrito.map((producto, index) => (
+                usuarioID?.carrito.map((producto, index) => (
                   <CarritoItem
                     key={index}
                     producto={producto}
