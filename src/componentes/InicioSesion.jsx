@@ -74,8 +74,19 @@ const InicioSesion = ({ setUsuarioLogeado }) => {
               "Usuario creado",
               `El usuario ${nuevoUsuario.nombre} fue creado con éxito!`,
               "success"
-            );
-            navegacion("/usuario/iniciar");
+            ).then((res) => {
+              if (res.isConfirmed) {
+                Swal.fire(
+                  "Iniciar sesión",
+                  `Inicie sesión para continuar`,
+                  "info"
+                ).then((res) => {
+                  if (res.isConfirmed) {
+                    navegacion("/usuario/iniciar");
+                  }
+                });
+              }
+            });
             reset();
           } else {
             Swal.fire(
