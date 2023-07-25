@@ -66,6 +66,16 @@ const DetalleProducto = () => {
     }
   }, [usuarioID]);
 
+  const manejoSesion = async () => {
+    await Swal.fire({
+      title: "Inicia sesión para agregar productos al carrito",
+      icon: "warning",
+      showCancelButton: false,
+      confirmButtonText: "OK",
+    });
+    return;
+  };
+
   const manejoFav = async () => {
     const existe = usuario.favoritos.find((fav) => fav === plato.id);
     try {
@@ -280,7 +290,13 @@ const DetalleProducto = () => {
                         <ClipLoader />
                       </div>
                     ) : (
-                      <button className="boton_calcular">Calcular</button>
+                      <button
+                        type={!usuarioID ? "button" : "submit"}
+                        className="boton_calcular"
+                        onClick={!usuarioID ? manejoSesion : null}
+                      >
+                        Calcular
+                      </button>
                     )}
                   </div>
                 ) : (
