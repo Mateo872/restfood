@@ -520,20 +520,6 @@
       "pedidos": [
         {
           "domicilio": "San Juan 295",
-          "total": 957,
-          "nombresProductos": [
-            "Cheesecake de Fresa"
-          ],
-          "email": "bellinimateo872@gmail.com",
-          "estado": "Pendiente",
-          "fecha": "25/7/2023",
-          "envio": [
-            479
-          ],
-          "id": 123456789753
-        },
-        {
-          "domicilio": "San Juan 295",
           "total": 1468,
           "nombresProductos": [
             "Licuado de Frutilla"

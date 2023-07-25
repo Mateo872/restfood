@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { BsCheck, BsClockHistory } from "react-icons/bs";
 import Swal from "sweetalert2";
-import { actualizarPedidosUsuario, obtenerUsuario } from "./ayudas/consultas";
+import { actualizarPedidosUsuario } from "./ayudas/consultas";
 
 const ItemPedidos = ({ usuarios }) => {
   const [usuariosDB, setUsuariosDB] = useState([]);
@@ -74,6 +74,59 @@ const ItemPedidos = ({ usuarios }) => {
       }
     });
   };
+  const eliminarPedido = (idPedido) => {
+    Swal.fire({
+      title: "¿Estás seguro de eliminar el pedido?",
+      text: "Esta acción no se puede deshacer.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Eliminar",
+      cancelButtonText: "Cancelar",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const pedidoAEliminar = dataPedidos.find(
+            (pedido) => pedido.id === idPedido
+          );
+          if (!pedidoAEliminar) {
+            throw new Error("Pedido no encontrado.");
+          }
+
+          const pedidosActualizados = dataPedidos.filter(
+            (pedido) => pedido.id !== idPedido
+          );
+          setDataPedidos(pedidosActualizados);
+
+          const usuarioEncontrado = usuariosDB.find(
+            (usuario) => usuario.email === pedidoAEliminar.email
+          );
+
+          if (!usuarioEncontrado) {
+            throw new Error("Usuario no encontrado.");
+          }
+
+          await actualizarPedidosUsuario(
+            usuarioEncontrado.id,
+            pedidosActualizados
+          );
+
+          Swal.fire(
+            "Pedido eliminado",
+            "El pedido ha sido eliminado correctamente.",
+            "success"
+          );
+        } catch (error) {
+          console.log(error);
+          Swal.fire({
+            title: "Error",
+            text: "Ocurrió un error al eliminar el pedido.",
+            icon: "error",
+            confirmButtonText: "Aceptar",
+          });
+        }
+      }
+    });
+  };
 
   return (
     <tbody>
@@ -95,7 +148,7 @@ const ItemPedidos = ({ usuarios }) => {
               </div>
             ) : (
               <div className="check_contenedor d-flex justify-content-center align-items-center">
-                <BsCheck size={20} />
+                <BsCheck size={20} onClick={() => eliminarPedido(pedido.id)} />
               </div>
             )}
           </td>
