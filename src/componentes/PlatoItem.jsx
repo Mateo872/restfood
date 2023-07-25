@@ -8,9 +8,12 @@ const PlatoItem = ({ platosFiltrados }) => {
   const [usuarioID, setUsuarioID] = useState(null);
 
   useEffect(() => {
-    obtenerUsuario(usuario.id).then((res) => {
+    if (usuario && usuario.id){
+       obtenerUsuario(usuario.id).then((res) => {
       setUsuarioID(res);
     });
+    }
+   
   }, []);
 
   return (

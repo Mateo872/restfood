@@ -59,9 +59,12 @@ const DetalleProducto = () => {
   }, []);
 
   useEffect(() => {
-    obtenerUsuario(usuario.id).then((res) => {
+    if (usuario && usuario.id){
+      obtenerUsuario(usuario.id).then((res) => {
       setUsuarioID(res);
     });
+    }
+    
   }, [usuarioID]);
 
   const manejoFav = async () => {
@@ -179,7 +182,7 @@ const DetalleProducto = () => {
                 }}
               ></div>
               <div onClick={manejoFav}>
-                {usuarioID.favoritos.find((fav) => fav.id === plato.id) ? (
+                {usuarioID?.favoritos.find((fav) => fav.id === plato.id) ? (
                   <GoBookmarkFill className="bookmark position-absolute" />
                 ) : (
                   <GoBookmark className="bookmark position-absolute" />
