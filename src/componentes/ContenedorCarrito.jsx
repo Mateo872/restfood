@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import CarritoItem from "./CarritoItem";
 import ModalPago from "./ModalPago";
 import Swal from "sweetalert2";
-import { obtenerUsuario } from "./ayudas/consultas";
+import { editarUsuario, obtenerUsuario } from "./ayudas/consultas";
 import { Link } from "react-router-dom";
 import { GiShoppingBag } from "react-icons/gi";
 import ClipLoader from "react-spinners/ClipLoader";
@@ -35,6 +35,36 @@ const ContenedorCarrito = () => {
     );
   }
 
+  const vaciarCarrito = () => {
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "El carrito se vaciará",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Sí, vaciar",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const usuarioActualizado = {
+          ...usuarioID,
+          carrito: [],
+        };
+
+        Swal.fire(
+          "Carrito vaciado",
+          "El carrito se vació correctamente",
+          "success"
+        ).then(async (result) => {
+          if (result.isConfirmed) {
+            await editarUsuario(usuarioActualizado, usuarioID.id);
+            setUsuarioID(usuarioActualizado);
+            window.location.reload();
+          }
+        });
+      }
+    });
+  };
+
   return (
     <section className="contenedor_carrito">
       <article>
@@ -64,7 +94,9 @@ const ContenedorCarrito = () => {
         </div>
         {usuarioID && usuarioID.carrito.length > 0 && (
           <div className="contenedor_botones w-100 d-flex justify-content-between mt-3">
-            <button className="boton_vaciar">Vaciar carrito</button>
+            <button className="boton_vaciar" onClick={vaciarCarrito}>
+              Vaciar carrito
+            </button>
             <div className="d-flex align-items-center">
               <h5 className="mb-0">
                 Total: $<span>{totalCarrito}</span>
