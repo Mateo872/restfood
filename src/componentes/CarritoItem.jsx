@@ -37,15 +37,12 @@ const CarritoItem = ({ producto }) => {
         };
 
         await editarUsuario(usuarioActualizado, usuarioID.id);
-        setUsuarioID(usuarioActualizado);
 
         Swal.fire(
           "Producto eliminado",
           "El producto se eliminó correctamente",
           "success"
-        ).then(() => {
-          window.location.reload();
-        });
+        );
       }
     });
   };

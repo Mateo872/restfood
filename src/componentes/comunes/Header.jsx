@@ -25,8 +25,8 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
   }, []);
 
   useEffect(() => {
-    if (usuarioID && usuarioID.carrito) {
-      setBadge(usuarioID.carrito.length);
+    if (usuarioID && usuarioLogueado) {
+      setBadge(usuarioLogueado.length);
     }
   }, [usuarioID]);
 
@@ -160,7 +160,7 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
             </li>
             {usuarioLogueado.email ? (
               <>
-                {usuarioLogueado.rol === "Administrador" ? (
+                {usuarioLogueado.rol === "administrador" ? (
                   <li className="d-flex d-md-none flex-column justify-content-end align-items-center gap-1 usuario_log">
                     <Link
                       to={"/administrador"}
@@ -211,7 +211,8 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
                       className="menu_link link_admin p-0 position-relative order-1"
                     >
                       <BsHandbag />
-                      {usuarioID && usuarioID.carrito.length > 0 ? (
+                      {usuarioLogueado.rol === "usuario" &&
+                      usuarioLogueado.length > 0 ? (
                         <div className="contenedor_badge d-flex justify-content-center align-items-center position-absolute">
                           <span>{badge}</span>
                         </div>
@@ -277,7 +278,7 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
         <BiMenu onClick={menuVisible} className="d-md-none" />
         {usuarioLogueado.email ? (
           <>
-            {usuarioLogueado.rol === "Administrador" ? (
+            {usuarioLogueado.rol === "administrador" ? (
               <li className="d-none d-md-flex justify-content-end align-items-center gap-1 usuario_log">
                 <Link
                   to={"/administrador"}
@@ -326,11 +327,12 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
                   className="carrito_item position-relative"
                 >
                   <BsHandbag />
-                  {usuarioID && usuarioID.carrito.length > 0 && (
-                    <div className="contenedor_badge d-flex justify-content-center align-items-center position-absolute">
-                      <span>{usuarioID.carrito.length}</span>
-                    </div>
-                  )}
+                  {usuarioLogueado.rol === "usuario" &&
+                    usuarioLogueado.length > 0 && (
+                      <div className="contenedor_badge d-flex justify-content-center align-items-center position-absolute">
+                        <span>{usuarioLogueado.length}</span>
+                      </div>
+                    )}
                 </Link>
                 <div
                   className="d-flex align-items-center gap-1"

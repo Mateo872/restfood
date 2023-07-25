@@ -515,7 +515,34 @@
       "contrasenia": "Rolling872",
       "rol": "usuario",
       "carrito": [],
-      "pedidos": [],
+      "pedidos": [
+        {
+          "domicilio": "San Juan 295",
+          "total": 957,
+          "nombresProductos": [
+            "Cheesecake de Fresa"
+          ],
+          "email": "bellinimateo872@gmail.com",
+          "estado": "Pendiente",
+          "fecha": "25/7/2023",
+          "envio": [
+            479
+          ]
+        },
+        {
+          "domicilio": "San Juan 295",
+          "total": 1468,
+          "nombresProductos": [
+            "Licuado de Frutilla"
+          ],
+          "email": "bellinimateo872@gmail.com",
+          "estado": "Pendiente",
+          "fecha": "25/7/2023",
+          "envio": [
+            468
+          ]
+        }
+      ],
       "favoritos": [
         {
           "id": 12,
@@ -573,27 +600,7 @@
           "imagen": "https://1.bp.blogspot.com/-QnM9iMosb-E/Xb9Ecj5tydI/AAAAAAAAYx4/TIBT1kf2HrwEqW8YJ0BAl-Hcamuzg4cVgCK4BGAYYCw/s1600/Revuelto%2BGramajo%2BII.jpg"
         }
       ],
-      "pedidos": [
-        {
-          "domicilio": "san lorenzo 547"
-        },
-        {
-          "id": 4,
-          "nombre": "Croquetas de hongos de Il Giardino Romagnoli",
-          "precio": 1400,
-          "cantidad": 3,
-          "costoEnvio": 473,
-          "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRikSllAlUYdH0zs9eUmChLLSLEl5-7glm45g&usqp=CAU"
-        },
-        {
-          "id": 2,
-          "nombre": "Revuelto Gramajo",
-          "precio": 1260,
-          "cantidad": 2,
-          "costoEnvio": 327,
-          "imagen": "https://1.bp.blogspot.com/-QnM9iMosb-E/Xb9Ecj5tydI/AAAAAAAAYx4/TIBT1kf2HrwEqW8YJ0BAl-Hcamuzg4cVgCK4BGAYYCw/s1600/Revuelto%2BGramajo%2BII.jpg"
-        }
-      ],
+      "pedidos": [],
       "favoritos": [],
       "id": "3tCCe7y"
     }

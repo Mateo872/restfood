@@ -32,7 +32,8 @@ const ContenedorCarrito = () => {
   let totalCarrito = 0;
   if (usuarioID) {
     totalCarrito = usuarioID.carrito.reduce(
-      (total, producto) => total + producto.precio * producto.cantidad,
+      (total, producto) =>
+        total + producto.precio * producto.cantidad + producto.costoEnvio,
       0
     );
   }
@@ -85,7 +86,7 @@ const ContenedorCarrito = () => {
                   />
                 </div>
               ) : usuarioID && usuarioID.carrito.length > 0 ? (
-                usuarioID.carrito.map((producto, index) => (
+                usuarioID?.carrito.map((producto, index) => (
                   <CarritoItem
                     key={index}
                     producto={producto}
@@ -143,6 +144,7 @@ const ContenedorCarrito = () => {
                 <ModalPago
                   mostrarModal={mostrarModal}
                   setMostrarModal={setMostrarModal}
+                  totalCarrito={totalCarrito}
                 />
               </div>
             ) : (
