@@ -158,10 +158,10 @@ export const agregarPedidos = async (usuarioID, direccion) => {
             throw new Error("Usuario no encontrado.");
         }
         const carritoActual = usuario.carrito || [];
-        const PedidoActual = usuario.pedidos || [];
+        const pedidoActual = usuario.pedidos || [];
 
-        PedidoActual.push(direccion);
-        usuario.pedidos = [...PedidoActual, ...carritoActual];
+        pedidoActual.push(direccion);
+        usuario.pedidos = [...pedidoActual, ...carritoActual];
 
         await editarUsuario(usuario, usuarioID);
 
