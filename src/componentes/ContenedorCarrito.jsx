@@ -5,17 +5,25 @@ import Swal from "sweetalert2";
 import { obtenerUsuario } from "./ayudas/consultas";
 import { Link } from "react-router-dom";
 import { GiShoppingBag } from "react-icons/gi";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const ContenedorCarrito = () => {
   const [mostrarModal, setMostrarModal] = useState(false);
   const [usuarioID, setUsuarioID] = useState(null);
   const usuario = JSON.parse(sessionStorage.getItem("usuario")) || null;
+  const [mostrarSpinner, setMostrarSpinner] = useState(true);
 
   useEffect(() => {
     if (usuario && usuario.id) {
-      obtenerUsuario(usuario.id).then((res) => {
-        setUsuarioID(res);
-      });
+      obtenerUsuario(usuario.id)
+        .then((res) => {
+          setUsuarioID(res);
+        })
+        .finally(() => {
+          setMostrarSpinner(false);
+        });
+    } else {
+      setMostrarSpinner(false);
     }
   }, []);
 
@@ -34,10 +42,14 @@ const ContenedorCarrito = () => {
           <h1 className="titulo_carrito">Carrito</h1>
         )}
         <div className="d-flex flex-column gap-3">
-          {usuarioID && usuarioID.carrito.length > 0 ? (
-            usuarioID.carrito.map((producto) => (
+          {mostrarSpinner ? (
+            <div className="d-flex justify-content-center align-items-center vh-100">
+              <ClipLoader color="#1e1e1e" loading={mostrarSpinner} size={35} />
+            </div>
+          ) : usuarioID && usuarioID.carrito.length > 0 ? (
+            usuarioID.carrito.map((producto, index) => (
               <CarritoItem
-                key={producto.id}
+                key={index}
                 producto={producto}
                 usuarioID={usuarioID}
               />

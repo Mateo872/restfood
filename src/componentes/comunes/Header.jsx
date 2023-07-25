@@ -4,13 +4,31 @@ import { BsHandbag, BsX } from "react-icons/bs";
 import { Link, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { obtenerUsuario } from "../ayudas/consultas";
 
 const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
+  const navegacion = useNavigate();
   const menuCapaRef = useRef(null);
   const menuRef = useRef(null);
   const ubicacion = useLocation();
   const [scroll, setScroll] = useState(false);
-  const navegacion = useNavigate();
+  const [usuarioID, setUsuarioID] = useState(null);
+  const [badge, setBadge] = useState(0);
+  const usuario = JSON.parse(sessionStorage.getItem("usuario")) || null;
+
+  useEffect(() => {
+    if (usuario && usuario.id) {
+      obtenerUsuario(usuario.id).then((res) => {
+        setUsuarioID(res);
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (usuarioID && usuarioID.carrito) {
+      setBadge(usuarioID.carrito.length);
+    }
+  }, [usuarioID]);
 
   const salir = () => {
     Swal.fire({
@@ -193,9 +211,13 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
                       className="menu_link link_admin p-0 position-relative order-1"
                     >
                       <BsHandbag />
-                      <div className="contenedor_badge d-flex justify-content-center align-items-center position-absolute">
-                        <span>2</span>
-                      </div>
+                      {usuarioID && usuarioID.carrito.length > 0 ? (
+                        <div className="contenedor_badge d-flex justify-content-center align-items-center position-absolute">
+                          <span>{badge}</span>
+                        </div>
+                      ) : (
+                        <></>
+                      )}
                     </Link>
                     <div
                       className="d-flex flex-column align-items-center gap-1"
@@ -304,9 +326,11 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
                   className="carrito_item position-relative"
                 >
                   <BsHandbag />
-                  <div className="contenedor_badge d-flex justify-content-center align-items-center position-absolute">
-                    <span>2</span>
-                  </div>
+                  {usuarioID && usuarioID.carrito.length > 0 && (
+                    <div className="contenedor_badge d-flex justify-content-center align-items-center position-absolute">
+                      <span>{usuarioID.carrito.length}</span>
+                    </div>
+                  )}
                 </Link>
                 <div
                   className="d-flex align-items-center gap-1"

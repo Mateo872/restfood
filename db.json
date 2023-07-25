@@ -514,7 +514,32 @@
       "email": "bellinimateo872@gmail.com",
       "contrasenia": "Rolling872",
       "rol": "usuario",
-      "carrito": [],
+      "carrito": [
+        {
+          "id": 22,
+          "nombre": "Cheesecake de Fresa",
+          "precio": 199,
+          "cantidad": 1,
+          "costoEnvio": 477,
+          "imagen": "https://img.freepik.com/fotos-premium/pastel-tres-leches-crema-batida-frambuesas-frescas-encima-pastel-america-latina-copiar-espacio_114420-2260.jpg?w=740"
+        },
+        {
+          "id": 1,
+          "nombre": "Mini sándwiches de cuadril",
+          "precio": 700,
+          "cantidad": 1,
+          "costoEnvio": 467,
+          "imagen": "https://asadocriolloargentino.com/wp-content/uploads/2019/12/sandwich-de-cuadril-a-la-parrilla-500x500.jpg"
+        },
+        {
+          "id": 22,
+          "nombre": "Cheesecake de Fresa",
+          "precio": 279,
+          "cantidad": 2,
+          "costoEnvio": 298,
+          "imagen": "https://img.freepik.com/fotos-premium/pastel-tres-leches-crema-batida-frambuesas-frescas-encima-pastel-america-latina-copiar-espacio_114420-2260.jpg?w=740"
+        }
+      ],
       "pedidos": [],
       "favoritos": [
         {
