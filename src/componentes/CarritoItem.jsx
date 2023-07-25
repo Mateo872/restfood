@@ -1,11 +1,7 @@
 import { useEffect, useState } from "react";
 import { BsTrash } from "react-icons/bs";
 import Swal from "sweetalert2";
-import {
-  agregarCarrito,
-  editarUsuario,
-  obtenerUsuario,
-} from "./ayudas/consultas";
+import { editarUsuario, obtenerUsuario } from "./ayudas/consultas";
 
 const CarritoItem = ({ producto }) => {
   const [usuarioID, setUsuarioID] = useState(null);
