@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { GoBookmark, GoBookmarkFill } from "react-icons/go";
 import { BsTruck } from "react-icons/bs";
-import { obtenerPlato } from "./ayudas/consultas";
+import {
+  agregarFavoritos,
+  obtenerPlato,
+  obtenerUsuario,
+} from "./ayudas/consultas";
 import { useForm } from "react-hook-form";
 import ClipLoader from "react-spinners/ClipLoader";
 import Error404 from "./Error404";
@@ -20,7 +24,8 @@ const DetalleProducto = () => {
   const [formEnviado, setFormEnviado] = useState(null);
   const [costoEnvio, setCostoEnvio] = useState(0);
   const [productos, setProductos] = useState([]);
-  let favPlato = JSON.parse(localStorage.getItem("favPlato")) || [];
+  const [usuarioID, setUsuarioID] = useState(null);
+  const usuario = JSON.parse(sessionStorage.getItem("usuario")) || null;
 
   const {
     register,
@@ -55,17 +60,27 @@ const DetalleProducto = () => {
   }, []);
 
   useEffect(() => {
-    setFavoritos(favPlato.includes(id));
-  }, [id, favPlato]);
+    obtenerUsuario(usuario.id).then((res) => {
+      setUsuarioID(res);
+    });
+  }, [usuarioID]);
 
-  const manejoFav = () => {
-    setFavoritos(!favoritos);
-    if (!favoritos) {
-      favPlato.push(id);
-    } else {
-      favPlato = favPlato.filter((favMovie) => favMovie !== id);
+  const manejoFav = async () => {
+    const existe = usuario.favoritos.find((fav) => fav === plato.id);
+    try {
+      if (!existe) {
+        setFavoritos(true);
+        await agregarFavoritos(usuario.id, [plato.id]);
+      } else {
+        setFavoritos(false);
+        const nuevosFavoritos = usuario.favoritos.filter(
+          (fav) => fav !== plato.id
+        );
+        await agregarFavoritos(usuario.id, nuevosFavoritos);
+      }
+    } catch (error) {
+      console.log(error);
     }
-    localStorage.setItem("favPlato", JSON.stringify(favPlato));
   };
 
   const manejoTamanio = (e) => {
@@ -167,7 +182,7 @@ const DetalleProducto = () => {
                 }}
               ></div>
               <div onClick={manejoFav}>
-                {favoritos ? (
+                {usuarioID.favoritos.find((fav) => fav.id === plato.id) ? (
                   <GoBookmarkFill className="bookmark position-absolute" />
                 ) : (
                   <GoBookmark className="bookmark position-absolute" />
