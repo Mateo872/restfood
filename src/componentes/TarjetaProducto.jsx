@@ -1,9 +1,18 @@
+import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import { BsPlusCircleFill, BsFillHeartFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { obtenerUsuario } from "./ayudas/consultas";
 
 const TarjetaProducto = ({ platosFiltrados, productosPaginaActual }) => {
-  let favPlato = JSON.parse(localStorage.getItem("favPlato")) || [];
+  const usuario = JSON.parse(sessionStorage.getItem("usuario")) || null;
+  const [usuarioID, setUsuarioID] = useState(null);
+
+  useEffect(() => {
+    obtenerUsuario(usuario.id).then((res) => {
+      setUsuarioID(res);
+    });
+  }, []);
 
   return (
     <>
@@ -19,7 +28,8 @@ const TarjetaProducto = ({ platosFiltrados, productosPaginaActual }) => {
               <Card.Body className="body-tarjeta position-relative">
                 <div
                   className={`contenedor_favoritos ${
-                    favPlato.find((fav) => fav == producto.id)
+                    usuarioID &&
+                    usuarioID.favoritos.find((fav) => fav.id === producto.id)
                       ? "d-flex"
                       : "d-none"
                   } justify-content-center align-items-center position-absolute`}

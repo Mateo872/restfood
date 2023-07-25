@@ -19,7 +19,6 @@ const DetalleProducto = () => {
   const [mostrarSpinner, setMostrarSpinner] = useState(false);
   const [mostrarSpinnerPostal, setMostrarSpinnerPostal] = useState(false);
   const [tamanio, setTamanio] = useState("Chico");
-  const [favoritos, setFavoritos] = useState(false);
   const [error, setError] = useState(false);
   const [formEnviado, setFormEnviado] = useState(null);
   const [costoEnvio, setCostoEnvio] = useState(0);
@@ -69,10 +68,8 @@ const DetalleProducto = () => {
     const existe = usuario.favoritos.find((fav) => fav === plato.id);
     try {
       if (!existe) {
-        setFavoritos(true);
         await agregarFavoritos(usuario.id, [plato.id]);
       } else {
-        setFavoritos(false);
         const nuevosFavoritos = usuario.favoritos.filter(
           (fav) => fav !== plato.id
         );
