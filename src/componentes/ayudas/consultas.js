@@ -119,6 +119,38 @@ export const agregarFavoritos = async (idUsuario, arrayIdsPlatos) => {
   }
 };
 
+export const agregarCarrito = async (usuarioID, productoID, nuevoProducto) => {
+  try {
+    const usuario = await obtenerUsuario(usuarioID);
+
+    if (!usuario) {
+      throw new Error("Usuario no encontrado.");
+    }
+
+    const carritoActual = usuario.carrito || [];
+
+    const productoExistente = carritoActual.find(
+      (producto) =>
+        producto.id === productoID && producto.precio === nuevoProducto.precio
+    );
+
+    if (productoExistente) {
+      productoExistente.cantidad += nuevoProducto.cantidad;
+    } else {
+      carritoActual.push(nuevoProducto);
+    }
+
+    usuario.carrito = carritoActual;
+
+    await editarUsuario(usuario, usuarioID);
+
+    return usuario.carrito;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
 export const obtenerPlatos = async () => {
   try {
     const respuesta = await fetch(URL_PLATO);

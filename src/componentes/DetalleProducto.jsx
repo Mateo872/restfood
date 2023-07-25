@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { GoBookmark, GoBookmarkFill } from "react-icons/go";
 import { BsTruck } from "react-icons/bs";
 import {
+  agregarCarrito,
   agregarFavoritos,
   obtenerPlato,
   obtenerUsuario,
@@ -22,7 +23,6 @@ const DetalleProducto = () => {
   const [error, setError] = useState(false);
   const [formEnviado, setFormEnviado] = useState(null);
   const [costoEnvio, setCostoEnvio] = useState(0);
-  const [productos, setProductos] = useState([]);
   const [usuarioID, setUsuarioID] = useState(null);
   const usuario = JSON.parse(sessionStorage.getItem("usuario")) || null;
 
@@ -59,12 +59,9 @@ const DetalleProducto = () => {
   }, []);
 
   useEffect(() => {
-    if (usuario && usuario.id){
-      obtenerUsuario(usuario.id).then((res) => {
+    obtenerUsuario(usuario.id).then((res) => {
       setUsuarioID(res);
     });
-    }
-    
   }, [usuarioID]);
 
   const manejoFav = async () => {
@@ -100,53 +97,53 @@ const DetalleProducto = () => {
     return precioInicial;
   };
 
-  const manejoEnvio = (data) => {
-    if (!formEnviado && !mostrarSpinnerPostal) {
-      setMostrarSpinnerPostal(true);
-      setTimeout(() => {
-        const costoEnvio = Math.floor(Math.random() * 401) + 100;
-        setCostoEnvio(costoEnvio);
-        setPostal(true);
-        setMostrarSpinnerPostal(false);
-        setFormEnviado(true);
-      }, 1500);
-    } else {
-      data = {
-        id: plato.id,
-        nombre: plato.nombre,
-        precio: obtenerPrecioConTamanio(),
-        cantidad: parseInt(data.cantidad),
-        costoEnvio,
-      };
+  const manejoEnvio = async (data) => {
+    try {
+      if (!formEnviado && !mostrarSpinnerPostal) {
+        setMostrarSpinnerPostal(true);
+        setTimeout(() => {
+          const costoEnvio = Math.floor(Math.random() * 401) + 100;
+          setCostoEnvio(costoEnvio);
+          setPostal(true);
+          setMostrarSpinnerPostal(false);
+          setFormEnviado(true);
+        }, 1500);
+      } else {
+        data = {
+          id: plato.id,
+          nombre: plato.nombre,
+          precio: obtenerPrecioConTamanio(),
+          cantidad: parseInt(data.cantidad),
+          costoEnvio,
+          imagen: plato.imagen,
+        };
 
-      const existe = productos.find((producto) => producto.id === data.id);
-
-      if (!existe) {
-        Swal.fire(
-          "¡Producto agregado!",
-          "El producto se agregó correctamente al carrito",
-          "success"
-        ).then((res) => {
+        Swal.fire({
+          title: "¿Querés agregar este producto al carrito?",
+          text: "Si no querés, podés cancelar la acción",
+          icon: "question",
+          showCancelButton: true,
+          confirmButtonText: "Sí, agregar",
+          cancelButtonText: "No, cancelar",
+        }).then((res) => {
           if (res.isConfirmed) {
             setTamanio("Chico");
             setPostal(false);
             setCostoEnvio(0);
             setFormEnviado(false);
-            setProductos([...productos, data]);
+            agregarCarrito(usuario.id, plato.id, data);
+            reset();
+          } else {
+            setTamanio("Chico");
+            setPostal(false);
+            setCostoEnvio(0);
+            setFormEnviado(false);
             reset();
           }
         });
-      } else {
-        data = {
-          ...data,
-          cantidad: existe.cantidad + parseInt(data.cantidad),
-        };
-        setProductos(
-          productos.map((producto) =>
-            producto.id === data.id ? { ...data } : producto
-          )
-        );
       }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -182,7 +179,7 @@ const DetalleProducto = () => {
                 }}
               ></div>
               <div onClick={manejoFav}>
-                {usuarioID?.favoritos.find((fav) => fav.id === plato.id) ? (
+                {usuarioID.favoritos.find((fav) => fav.id === plato.id) ? (
                   <GoBookmarkFill className="bookmark position-absolute" />
                 ) : (
                   <GoBookmark className="bookmark position-absolute" />

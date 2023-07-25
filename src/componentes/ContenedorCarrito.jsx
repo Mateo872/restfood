@@ -1,34 +1,115 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CarritoItem from "./CarritoItem";
 import ModalPago from "./ModalPago";
 import Swal from "sweetalert2";
+import { editarUsuario, obtenerUsuario } from "./ayudas/consultas";
+import { Link } from "react-router-dom";
+import { GiShoppingBag } from "react-icons/gi";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const ContenedorCarrito = () => {
   const [mostrarModal, setMostrarModal] = useState(false);
+  const [usuarioID, setUsuarioID] = useState(null);
+  const usuario = JSON.parse(sessionStorage.getItem("usuario")) || null;
+  const [mostrarSpinner, setMostrarSpinner] = useState(true);
+
+  useEffect(() => {
+    if (usuario && usuario.id) {
+      obtenerUsuario(usuario.id)
+        .then((res) => {
+          setUsuarioID(res);
+        })
+        .finally(() => {
+          setMostrarSpinner(false);
+        });
+    } else {
+      setMostrarSpinner(false);
+    }
+  }, []);
+
+  let totalCarrito = 0;
+  if (usuarioID) {
+    totalCarrito = usuarioID.carrito.reduce(
+      (total, producto) => total + producto.precio * producto.cantidad,
+      0
+    );
+  }
+
+  const vaciarCarrito = () => {
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "El carrito se vaciará",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Sí, vaciar",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const usuarioActualizado = {
+          ...usuarioID,
+          carrito: [],
+        };
+
+        Swal.fire(
+          "Carrito vaciado",
+          "El carrito se vació correctamente",
+          "success"
+        ).then(async (result) => {
+          if (result.isConfirmed) {
+            await editarUsuario(usuarioActualizado, usuarioID.id);
+            setUsuarioID(usuarioActualizado);
+            window.location.reload();
+          }
+        });
+      }
+    });
+  };
 
   return (
     <section className="contenedor_carrito">
       <article>
-        <h1 className="titulo_carrito">Carrito</h1>
+        {usuarioID && usuarioID.carrito.length > 0 && (
+          <h1 className="titulo_carrito">Carrito</h1>
+        )}
         <div className="d-flex flex-column gap-3">
-          <CarritoItem />
-          <CarritoItem />
-          <CarritoItem />
+          {mostrarSpinner ? (
+            <div className="d-flex justify-content-center align-items-center vh-100">
+              <ClipLoader color="#1e1e1e" loading={mostrarSpinner} size={35} />
+            </div>
+          ) : usuarioID && usuarioID.carrito.length > 0 ? (
+            usuarioID.carrito.map((producto, index) => (
+              <CarritoItem
+                key={index}
+                producto={producto}
+                usuarioID={usuarioID}
+              />
+            ))
+          ) : (
+            <div className="contenedor_carrito-vacio d-flex flex-column align-items-center">
+              <h3 className="text-center">No hay productos en el carrito</h3>
+              <GiShoppingBag />
+              <Link to={"/"}>Sumá productos</Link>
+            </div>
+          )}
         </div>
-        <div className="contenedor_botones w-100 d-flex justify-content-between mt-3">
-          <button className="boton_vaciar">Vaciar carrito</button>
-          <div className="d-flex align-items-center">
-            <h5 className="mb-0">
-              Total: $<span>6000</span>
-            </h5>
-            <button
-              className="boton_comprar"
-              onClick={() => setMostrarModal(!mostrarModal)}
-            >
-              Comprar
+        {usuarioID && usuarioID.carrito.length > 0 && (
+          <div className="contenedor_botones w-100 d-flex justify-content-between mt-3">
+            <button className="boton_vaciar" onClick={vaciarCarrito}>
+              Vaciar carrito
             </button>
+            <div className="d-flex align-items-center">
+              <h5 className="mb-0">
+                Total: $<span>{totalCarrito}</span>
+              </h5>
+              <button
+                className="boton_comprar"
+                onClick={() => setMostrarModal(!mostrarModal)}
+              >
+                Comprar
+              </button>
+            </div>
           </div>
-        </div>
+        )}
         {mostrarModal ? (
           <div
             className="modal_overlay d-flex justify-content-center align-items-center vh-100 w-100"
