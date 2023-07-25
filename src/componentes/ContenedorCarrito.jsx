@@ -3,6 +3,8 @@ import CarritoItem from "./CarritoItem";
 import ModalPago from "./ModalPago";
 import Swal from "sweetalert2";
 import { obtenerUsuario } from "./ayudas/consultas";
+import { Link } from "react-router-dom";
+import { GiShoppingBag } from "react-icons/gi";
 
 const ContenedorCarrito = () => {
   const [mostrarModal, setMostrarModal] = useState(false);
@@ -28,7 +30,9 @@ const ContenedorCarrito = () => {
   return (
     <section className="contenedor_carrito">
       <article>
-        <h1 className="titulo_carrito">Carrito</h1>
+        {usuarioID && usuarioID.carrito.length > 0 && (
+          <h1 className="titulo_carrito">Carrito</h1>
+        )}
         <div className="d-flex flex-column gap-3">
           {usuarioID && usuarioID.carrito.length > 0 ? (
             usuarioID.carrito.map((producto) => (
@@ -39,31 +43,29 @@ const ContenedorCarrito = () => {
               />
             ))
           ) : (
-            <div className="d-flex flex-column align-items-center">
+            <div className="contenedor_carrito-vacio d-flex flex-column align-items-center">
               <h3 className="text-center">No hay productos en el carrito</h3>
-              {/* <img
-                src="https://i.ibb.co/0jZ3Q0H/carrito-vacio.png"
-                alt="carrito-vacio"
-                border="0"
-                className="img-fluid"
-              /> */}
+              <GiShoppingBag />
+              <Link to={"/"}>Sumá productos</Link>
             </div>
           )}
         </div>
-        <div className="contenedor_botones w-100 d-flex justify-content-between mt-3">
-          <button className="boton_vaciar">Vaciar carrito</button>
-          <div className="d-flex align-items-center">
-            <h5 className="mb-0">
-              Total: $<span>{totalCarrito}</span>
-            </h5>
-            <button
-              className="boton_comprar"
-              onClick={() => setMostrarModal(!mostrarModal)}
-            >
-              Comprar
-            </button>
+        {usuarioID && usuarioID.carrito.length > 0 && (
+          <div className="contenedor_botones w-100 d-flex justify-content-between mt-3">
+            <button className="boton_vaciar">Vaciar carrito</button>
+            <div className="d-flex align-items-center">
+              <h5 className="mb-0">
+                Total: $<span>{totalCarrito}</span>
+              </h5>
+              <button
+                className="boton_comprar"
+                onClick={() => setMostrarModal(!mostrarModal)}
+              >
+                Comprar
+              </button>
+            </div>
           </div>
-        </div>
+        )}
         {mostrarModal ? (
           <div
             className="modal_overlay d-flex justify-content-center align-items-center vh-100 w-100"

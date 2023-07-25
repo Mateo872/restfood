@@ -607,6 +607,29 @@ footer h3 {
   right: 0.4rem;
 }
 
+.contenedor_carrito-vacio {
+  margin-top: 3rem;
+  padding: 2rem 0;
+}
+
+.contenedor_carrito-vacio h3 {
+  width: 50%;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.contenedor_carrito-vacio a {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: var(--color-terciario);
+  font-weight: bold;
+}
+
+.contenedor_carrito-vacio svg {
+  font-size: 9rem;
+}
+
+
 .modal_pago form label {
   font-size: 0.5rem;
 }
@@ -1057,6 +1080,23 @@ form h6 {
   main article .contenedor_input input {
     width: 91%;
     padding: 0.6rem;
+  }
+
+  .contenedor_carrito-vacio {
+    margin-top: 6rem;
+  }
+
+  .contenedor_carrito-vacio h3 {
+    width: 35%;
+    font-size: 1.6rem;
+  }
+
+  .contenedor_carrito-vacio a {
+    font-size: 1.3rem;
+  }
+
+  .contenedor_carrito-vacio svg {
+    font-size: 20rem;
   }
 
   .carrito_item svg {
@@ -1528,6 +1568,10 @@ form h6 {
     padding: .8rem 0;
     position: sticky;
     background-color: var(--color-terciario);
+  }
+
+  .contenedor_carrito-vacio h3 {
+    width: 20%;
   }
 
   .input_menu {

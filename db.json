@@ -514,16 +514,7 @@
       "email": "bellinimateo872@gmail.com",
       "contrasenia": "Rolling872",
       "rol": "usuario",
-      "carrito": [
-        {
-          "id": 14,
-          "nombre": "Tonica Schweppes",
-          "precio": 400,
-          "cantidad": 1,
-          "costoEnvio": 113,
-          "imagen": "https://images.pexels.com/photos/6467798/pexels-photo-6467798.jpeg?auto=compress&cs=tinysrgb&w=600"
-        }
-      ],
+      "carrito": [],
       "pedidos": [],
       "favoritos": [
         {
