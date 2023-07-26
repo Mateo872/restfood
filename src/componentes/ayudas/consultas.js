@@ -201,6 +201,23 @@ export const agregarPedidos = async (usuarioID, datos) => {
   }
 };
 
+export const actualizarStockProducto = async (id, cantidad) => {
+  try {
+    const producto = await obtenerPlato(id);
+
+    if (!producto) {
+      throw new Error("Producto no encontrado.");
+    }
+
+    producto.stock += cantidad;
+
+    await editarPlato(producto, id);
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
 export const actualizarPedidosUsuario = async (idUsuario, nuevosPedidos) => {
   try {
     const usuario = await obtenerUsuario(idUsuario);

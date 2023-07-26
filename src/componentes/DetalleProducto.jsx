@@ -42,8 +42,8 @@ const DetalleProducto = () => {
           setMostrarSpinner(true);
           setTimeout(() => {
             setPlato(respuesta);
-            setMostrarSpinner(false);
             setStockOriginal(respuesta.stock);
+            setMostrarSpinner(false);
           }, 500);
         } else {
           setMostrarSpinner(false);
@@ -62,18 +62,12 @@ const DetalleProducto = () => {
   }, [id]);
 
   useEffect(() => {
-    if (plato && plato.stock) {
-      setStockOriginal(plato.stock);
-    }
-  }, [plato, usuarioID]);
-
-  useEffect(() => {
     if (usuario && usuario.id) {
       obtenerUsuario(usuario.id).then((res) => {
         setUsuarioID(res);
       });
     }
-  }, [usuarioID]);
+  }, [usuarioID, id, usuario]);
 
   const manejoSesion = async () => {
     if (usuarioID?.rol !== "administrador") {
