@@ -26,7 +26,6 @@ const Menu = () => {
   const productosPorPagina = 6;
   const usuario = JSON.parse(sessionStorage.getItem("usuario")) || null;
   const [usuarioID, setUsuarioID] = useState(null);
-  const [cantidadCategoria, setCantidadCategoria] = useState([0]);
 
   useEffect(() => {
     obtenerPlatos().then((res) => {
@@ -232,8 +231,6 @@ const Menu = () => {
               precioMaximo={precioMaximo}
               setPaginaActual={setPaginaActual}
               actualizarTitulo={actualizarTitulo}
-              productosFiltrados={productosFiltrados}
-              usuarioID={usuarioID}
             />
           </section>
         </Container>
