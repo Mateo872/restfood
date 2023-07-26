@@ -26,8 +26,7 @@ const PlatoItem = ({ platosFiltrados }) => {
           <div className="buscador d-flex align-items-center gap-2 position-relative">
             <div
               className={`contenedor_favoritos-buscador ${
-                usuarioID &&
-                usuarioID.favoritos.find((fav) => fav.id === plato.id)
+                usuarioID && usuarioID.favoritos.find((fav) => fav === plato.id)
                   ? "d-flex"
                   : "d-none"
               } justify-content-center align-items-center position-absolute`}

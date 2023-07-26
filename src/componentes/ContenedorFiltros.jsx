@@ -9,6 +9,7 @@ const ContenedorFiltros = ({
   precioMaximo,
   setPaginaActual,
   actualizarTitulo,
+  setBusqueda,
 }) => {
   const [ordenarActivo, setOrdenarActivo] = useState(null);
   const [precio, setPrecio] = useState(null);
@@ -152,6 +153,7 @@ const ContenedorFiltros = ({
       favoritos: [],
       descuento: [],
     });
+    setBusqueda("");
     setFiltrosSeleccionados({
       categorias: [],
       precio: [],

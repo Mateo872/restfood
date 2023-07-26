@@ -124,7 +124,7 @@ const Menu = () => {
     if (filtros.favoritos.includes("favoritos")) {
       productosFiltrados = productosFiltrados.filter(
         (producto) =>
-          usuarioID && usuarioID.favoritos.find((fav) => fav.id == producto.id)
+          usuarioID && usuarioID.favoritos.find((fav) => fav == producto.id)
       );
       if (filtros.favoritos.length === 0) {
         setTextoVacio("No tenés productos favoritos");
@@ -132,8 +132,7 @@ const Menu = () => {
     } else if (filtros.favoritos.includes("noFavoritos")) {
       productosFiltrados = productosFiltrados.filter(
         (producto) =>
-          !usuarioID ||
-          !usuarioID.favoritos.find((fav) => fav.id === producto.id)
+          !usuarioID || !usuarioID.favoritos.find((fav) => fav === producto.id)
       );
     }
 
@@ -231,6 +230,7 @@ const Menu = () => {
               precioMaximo={precioMaximo}
               setPaginaActual={setPaginaActual}
               actualizarTitulo={actualizarTitulo}
+              setBusqueda={setBusqueda}
             />
           </section>
         </Container>

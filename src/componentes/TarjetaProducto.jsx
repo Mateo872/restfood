@@ -9,12 +9,11 @@ const TarjetaProducto = ({ platosFiltrados, productosPaginaActual }) => {
   const [usuarioID, setUsuarioID] = useState(null);
 
   useEffect(() => {
-    if (usuario && usuario.id){
+    if (usuario && usuario.id) {
       obtenerUsuario(usuario.id).then((res) => {
-      setUsuarioID(res);
-    });
+        setUsuarioID(res);
+      });
     }
-    
   }, []);
 
   return (
@@ -32,7 +31,7 @@ const TarjetaProducto = ({ platosFiltrados, productosPaginaActual }) => {
                 <div
                   className={`contenedor_favoritos ${
                     usuarioID &&
-                    usuarioID.favoritos.find((fav) => fav.id === producto.id)
+                    usuarioID.favoritos.find((fav) => fav === producto.id)
                       ? "d-flex"
                       : "d-none"
                   } justify-content-center align-items-center position-absolute`}
