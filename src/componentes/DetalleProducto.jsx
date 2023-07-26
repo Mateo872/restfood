@@ -296,7 +296,7 @@ const DetalleProducto = () => {
                       disabled={
                         mostrarSpinnerPostal ||
                         !usuarioID ||
-                        usuarioID?.rol !== "administrador"
+                        usuarioID?.rol === "administrador"
                       }
                       style={{
                         opacity:
