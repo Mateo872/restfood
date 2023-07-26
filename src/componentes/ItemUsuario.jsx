@@ -62,6 +62,13 @@ const ItemUsuario = ({ usuarios, setUsuarios }) => {
   };
 
   const manejoEliminarUsuario = (id) => {
+    const admin =
+      usuarios.find((usuario) => usuario.id === id).rol === "administrador";
+
+    if (admin) {
+      return;
+    }
+
     const usuario = usuarios.find((item) => item.id === id);
     Swal.fire({
       title: `¿Estás seguro de eliminar el usuario?`,
@@ -130,7 +137,11 @@ const ItemUsuario = ({ usuarios, setUsuarios }) => {
             )}
           </td>
           <td className="align-middle">
-            <div className="pausa_contenedor d-flex justify-content-center align-items-center usuario_eliminar">
+            <div
+              className={`pausa_contenedor d-flex justify-content-center align-items-center usuario_eliminar ${
+                item.rol === "administrador" && "usuario_admin"
+              }`}
+            >
               <BsX size={30} onClick={() => manejoEliminarUsuario(item.id)} />
             </div>
           </td>

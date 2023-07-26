@@ -2035,6 +2035,14 @@ td .usuario_activo:hover {
   opacity: .5;
 }
 
+.usuario_admin {
+  opacity: .5;
+}
+
+.usuario_admin:hover {
+  pointer-events: none;
+}
+
 .contenedor_imagen-detalle {
   width: 100%;
   height: 20rem;
