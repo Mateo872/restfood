@@ -105,7 +105,7 @@
       "imagen": "https://images.pexels.com/photos/10616180/pexels-photo-10616180.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "precio": 1000,
       "descripcion": "Schweppes Mandarina 1L",
-      "stock": 198,
+      "stock": 194,
       "categoria": "bebidas"
     },
     {
@@ -294,7 +294,7 @@
       "imagen": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Ferneses.jpg",
       "precio": 185,
       "descripcion": "El fernet es una bebida alcohólica de la familia de los amaros italianos elaborada a partir de la maceración de varios tipos de hierbas (mirra, ruibarbo, manzanilla, cardamomo, orégano y azafrán, entre otras) en alcohol obtenido de la fermentación de la vid. Dependiendo del productor, la maceración es posteriormente filtrada y reposada en toneles de roble durante un período variable. Posee un color oscuro, un aroma intenso y su graduación alcohólica está comprendida entre 39 y 45 grados, según la marca.",
-      "stock": 35,
+      "stock": 33,
       "categoria": "bebidasAlcoholicas"
     },
     {
@@ -384,7 +384,7 @@
       "imagen": "https://cdn.pixabay.com/photo/2016/10/31/18/19/tofu-1786318_1280.jpg",
       "precio": 89,
       "descripcion": "Tofu marinado en una salsa barbacoa casera, asado a la parrilla y servido en un panecillo integral. Se acompaña de rodajas de pepinillos encurtidos, cebolla morada y una guarnición de patatas fritas caseras. Un plato vegano reconfortante y delicioso.",
-      "stock": 6,
+      "stock": 5,
       "categoria": "comidasVeganas"
     },
     {
@@ -429,7 +429,7 @@
       "imagen": "https://images.unsplash.com/photo-1598866594230-a7c12756260f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&",
       "precio": 129,
       "descripcion": "Espaguetis al dente con una selección de vegetales de temporada salteados, como espárragos, zanahorias, calabacines y champiñones. Todo ello mezclado con una salsa de tomate fresca y hierbas aromáticas. Un plato vegano clásico que nunca defrauda.",
-      "stock": 24,
+      "stock": 22,
       "categoria": "comidasVeganas"
     },
     {
@@ -596,6 +596,71 @@
             130
           ],
           "id": 1690395498423
+        },
+        {
+          "total": 319,
+          "nombresProductos": [
+            "Bocadillos de Tofu a la Barbacoa"
+          ],
+          "email": "bellinimateo872@gmail.com",
+          "estado": "Pendiente",
+          "fecha": "26/7/2023",
+          "envio": [
+            230
+          ],
+          "id": 1690396187726
+        },
+        {
+          "total": 2431,
+          "nombresProductos": [
+            "Schweppes Mandarina"
+          ],
+          "email": "bellinimateo872@gmail.com",
+          "estado": "Pendiente",
+          "fecha": "26/7/2023",
+          "envio": [
+            431
+          ],
+          "id": 1690396334028
+        },
+        {
+          "total": 701,
+          "nombresProductos": [
+            "Pasta Primavera"
+          ],
+          "email": "bellinimateo872@gmail.com",
+          "estado": "Pendiente",
+          "fecha": "26/7/2023",
+          "envio": [
+            443
+          ],
+          "id": 1690396405236
+        },
+        {
+          "total": 776,
+          "nombresProductos": [
+            "Fernet"
+          ],
+          "email": "bellinimateo872@gmail.com",
+          "estado": "Pendiente",
+          "fecha": "26/7/2023",
+          "envio": [
+            406
+          ],
+          "id": 1690396520472
+        },
+        {
+          "total": 2398,
+          "nombresProductos": [
+            "Schweppes Mandarina"
+          ],
+          "email": "bellinimateo872@gmail.com",
+          "estado": "Realizado",
+          "fecha": "26/7/2023",
+          "envio": [
+            398
+          ],
+          "id": 1690396568570
         }
       ],
       "favoritos": [
