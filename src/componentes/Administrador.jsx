@@ -42,7 +42,7 @@ const Administrador = () => {
         setUsuarios(res);
       });
     }
-  }, []);
+  }, [usuarios]);
 
   const eliminarProductos = () => {
     if (seleccionados.length > 0) {
