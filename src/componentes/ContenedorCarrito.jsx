@@ -30,8 +30,9 @@ const ContenedorCarrito = () => {
   }, [usuarioID]);
 
   let totalCarrito = 0;
+
   if (usuarioID) {
-    totalCarrito = usuarioID.carrito.reduce(
+    totalCarrito = usuarioID?.carrito?.reduce(
       (total, producto) =>
         total + producto.precio * producto.cantidad + producto.costoEnvio,
       0
