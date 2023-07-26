@@ -1000,6 +1000,11 @@ form h6 {
   cursor: pointer;
 }
 
+.texto_cantidad {
+  font-size: 0.6rem;
+  opacity: .7;
+}
+
 .usuario_activo {
   background-color: var(--color-secundario);
 }
@@ -1567,10 +1572,11 @@ td .usuario_activo:hover {
   }
 
   .filtro_overlay .contenedor_filtro .filtro_accion {
-    margin-top: 3.8rem;
+    margin-top: 4.4rem;
     position: sticky;
-    top: 3.5rem;
+    top: 4.4rem;
     background-color: var(--color-terciario);
+    z-index: 9;
   }
 
   .filtro_overlay .contenedor_filtro .filtro h5 {

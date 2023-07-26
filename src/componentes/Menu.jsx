@@ -14,7 +14,6 @@ const Menu = () => {
   const [precioMinimo, setPrecioMinimo] = useState(0);
   const [precioMaximo, setPrecioMaximo] = useState(0);
   const [titulo, setTitulo] = useState("Todos los productos");
-  const [tituloActivo, setTituloActivo] = useState(false);
   const [textoVacio, setTextoVacio] = useState("No hay productos disponibles");
   const [filtros, setFiltros] = useState({
     categorias: [],
@@ -27,6 +26,7 @@ const Menu = () => {
   const productosPorPagina = 6;
   const usuario = JSON.parse(sessionStorage.getItem("usuario")) || null;
   const [usuarioID, setUsuarioID] = useState(null);
+  const [cantidadCategoria, setCantidadCategoria] = useState([0]);
 
   useEffect(() => {
     obtenerPlatos().then((res) => {
@@ -232,6 +232,8 @@ const Menu = () => {
               precioMaximo={precioMaximo}
               setPaginaActual={setPaginaActual}
               actualizarTitulo={actualizarTitulo}
+              productosFiltrados={productosFiltrados}
+              usuarioID={usuarioID}
             />
           </section>
         </Container>
