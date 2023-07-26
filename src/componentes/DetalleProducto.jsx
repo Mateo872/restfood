@@ -5,6 +5,7 @@ import { BsTruck } from "react-icons/bs";
 import {
   agregarCarrito,
   agregarFavoritos,
+  editarPlato,
   obtenerPlato,
   obtenerUsuario,
 } from "./ayudas/consultas";
@@ -25,6 +26,7 @@ const DetalleProducto = () => {
   const [costoEnvio, setCostoEnvio] = useState(0);
   const [usuarioID, setUsuarioID] = useState(null);
   const usuario = JSON.parse(sessionStorage.getItem("usuario")) || null;
+  const [stockOriginal, setStockOriginal] = useState(0);
 
   const {
     register,
@@ -41,6 +43,7 @@ const DetalleProducto = () => {
           setTimeout(() => {
             setPlato(respuesta);
             setMostrarSpinner(false);
+            setStockOriginal(respuesta.stock);
           }, 500);
         } else {
           setMostrarSpinner(false);
@@ -56,7 +59,13 @@ const DetalleProducto = () => {
           setError(true);
         }, 500);
       });
-  }, []);
+  }, [id]);
+
+  useEffect(() => {
+    if (plato && plato.stock) {
+      setStockOriginal(plato.stock);
+    }
+  }, [plato, usuarioID]);
 
   useEffect(() => {
     if (usuario && usuario.id) {
@@ -118,6 +127,24 @@ const DetalleProducto = () => {
     return precioInicial;
   };
 
+  const actualizarStock = async (cantidad) => {
+    try {
+      const nuevoStock = stockOriginal - cantidad;
+      if (nuevoStock >= 0) {
+        await editarPlato({ ...plato, stock: nuevoStock }, plato.id);
+        setStockOriginal(nuevoStock);
+      } else {
+        Swal.fire({
+          title: "Error",
+          text: "No hay suficiente stock disponible para realizar la compra",
+          icon: "error",
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const manejoEnvio = async (data) => {
     try {
       if (!formEnviado && !mostrarSpinnerPostal) {
@@ -148,6 +175,7 @@ const DetalleProducto = () => {
           cancelButtonText: "No, cancelar",
         }).then((res) => {
           if (res.isConfirmed) {
+            actualizarStock(data.cantidad);
             setTamanio("Chico");
             setPostal(false);
             setCostoEnvio(0);
@@ -190,7 +218,7 @@ const DetalleProducto = () => {
               </span>
             </div>
             <p className="stock mb-0">
-              Stock - <span>{plato.stock}</span>
+              Stock - <span>{stockOriginal}</span>
             </p>
             <div className="contenedor_imagen-carac d-flex flex-column flex-md-row gap-4 position-relative">
               <div

@@ -276,7 +276,7 @@
       "imagen": "https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg",
       "precio": 95,
       "descripcion": "La margarita es un cóctel compuesto por tequila, triple seco y jugo de lima o limón. A menudo se sirve con sal en el borde de la copa. La bebida se sirve sacudiendo el hielo (con hielo), mezclado con hielo (margarita frozen), o sin hielo (hacia arriba).",
-      "stock": 50,
+      "stock": 35,
       "categoria": "bebidasAlcoholicas"
     },
     {
@@ -615,7 +615,24 @@
       "contrasenia": "Rolling872",
       "rol": "usuario",
       "estado": "activo",
-      "carrito": [],
+      "carrito": [
+        {
+          "id": 31,
+          "nombre": "Margarita",
+          "precio": 114,
+          "cantidad": 14,
+          "costoEnvio": 332,
+          "imagen": "https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg"
+        },
+        {
+          "id": 31,
+          "nombre": "Margarita",
+          "precio": 95,
+          "cantidad": 2,
+          "costoEnvio": 390,
+          "imagen": "https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg"
+        }
+      ],
       "pedidos": [],
       "favoritos": [
         {
