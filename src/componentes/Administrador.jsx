@@ -16,12 +16,25 @@ const Administrador = () => {
   const [seleccion, setSeleccion] = useState(false);
   const [seleccionados, setSeleccionados] = useState([]);
   const [usuarios, setUsuarios] = useState([]);
+  const [dataPedidos, setDataPedidos] = useState([]);
 
   useEffect(() => {
     obtenerPlatos().then((res) => {
       setPlatos(res);
     });
   }, []);
+
+  useEffect(() => {
+    const todosPedidos = [];
+
+    usuarios.forEach((usuario) => {
+      if (usuario.pedidos && usuario.pedidos.length > 0) {
+        todosPedidos.push(...usuario.pedidos);
+      }
+    });
+
+    setDataPedidos(todosPedidos);
+  }, [usuarios]);
 
   useEffect(() => {
     if (usuarios) {
@@ -190,23 +203,29 @@ const Administrador = () => {
             </table>
           </div>
         </article>
-        <article className="botones my-5">
-          <h2 className="admin_titulo mb-3">Pedidos</h2>
-          <div className="tabla_contenedor">
-            <table className="tabla">
-              <thead>
-                <tr>
-                  <th className="py-2">Email de usuario</th>
-                  <th className="py-2">Nombre</th>
-                  <th className="py-2">Estado</th>
-                  <th className="py-2">Fecha</th>
-                  <th className="py-2">Acciones</th>
-                </tr>
-              </thead>
-              <ItemPedidos />
-            </table>
-          </div>
-        </article>
+        {dataPedidos.length > 0 && (
+          <article className="botones my-5">
+            <h2 className="admin_titulo mb-3">Pedidos</h2>
+            <div className="tabla_contenedor">
+              <table className="tabla">
+                <thead>
+                  <tr>
+                    <th className="py-2">Email de usuario</th>
+                    <th className="py-2">Nombre</th>
+                    <th className="py-2">Estado</th>
+                    <th className="py-2">Fecha</th>
+                    <th className="py-2">Acciones</th>
+                  </tr>
+                </thead>
+                <ItemPedidos
+                  usuarios={usuarios}
+                  dataPedidos={dataPedidos}
+                  setDataPedidos={setDataPedidos}
+                />
+              </table>
+            </div>
+          </article>
+        )}
       </section>
     </div>
   );

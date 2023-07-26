@@ -180,8 +180,30 @@ export const agregarPedidos = async (usuarioID, datos) => {
     usuario.carrito = [];
 
     await editarUsuario(usuario, usuarioID);
+    await actualizarPedidosUsuario(usuarioID, usuario.pedidos);
 
     return usuario.pedidos;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+export const actualizarPedidosUsuario = async (idUsuario, nuevosPedidos) => {
+  try {
+    const usuario = await obtenerUsuario(idUsuario);
+
+    if (!usuario) {
+      throw new Error("Usuario no encontrado.");
+    }
+
+    const pedidosUsuario = nuevosPedidos.filter(
+      (pedido) => pedido.email === usuario.email
+    );
+
+    usuario.pedidos = pedidosUsuario;
+
+    await editarUsuario(usuario, idUsuario);
   } catch (error) {
     console.log(error);
     throw error;

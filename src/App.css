@@ -2390,6 +2390,12 @@ textarea {
     height: 2rem;
     background-color: #00FF29;
     border-radius: 100%;
+    cursor: pointer;
+  }
+
+  .check_contenedor:hover {
+    transform: scale(.95);
+    transition: .3s;
   }
 
   .item_tabla {
