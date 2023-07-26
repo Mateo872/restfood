@@ -224,7 +224,7 @@ const DetalleProducto = () => {
               {usuarioID && (
                 <div onClick={manejoFav}>
                   {usuarioID &&
-                  usuarioID.favoritos.find((fav) => fav.id === plato.id) ? (
+                  usuarioID.favoritos.find((fav) => fav === plato.id) ? (
                     <GoBookmarkFill className="bookmark position-absolute" />
                   ) : (
                     <GoBookmark className="bookmark position-absolute" />

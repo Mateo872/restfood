@@ -559,53 +559,7 @@
           "id": 1690343236132
         }
       ],
-      "favoritos": [
-        {
-          "id": 1,
-          "nombre": "Mini sándwiches de cuadril",
-          "imagen": "https://asadocriolloargentino.com/wp-content/uploads/2019/12/sandwich-de-cuadril-a-la-parrilla-500x500.jpg",
-          "precio": 700,
-          "descripcion": "Sanguchitos perfectos para compartir con amigos. Hechos con mini ciabattas, tienen mayonesa, fetas de queso y panceta, chimichurri, rucula, tomates cherrys.",
-          "stock": 1,
-          "categoria": "entradas"
-        },
-        {
-          "id": 5,
-          "nombre": "Papas full de Blossom",
-          "imagen": "https://www.gastrolabweb.com/u/fotografias/m/2022/5/1/f850x638-28934_106423_5050.jpg",
-          "precio": 1000,
-          "descripcion": "Papas medianas, peladas y cortadas en bastones, queso cheddar, ramas de cebolla de verdeo, panceta picada y un huevo a la plancha.",
-          "stock": 1,
-          "categoria": "entradas"
-        },
-        {
-          "id": 4,
-          "nombre": "Croquetas de hongos de Il Giardino Romagnoli",
-          "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRikSllAlUYdH0zs9eUmChLLSLEl5-7glm45g&usqp=CAU",
-          "precio": 1000,
-          "descripcion": "Una entrada diferente, hongos y setas, ajó y nuez moscada.",
-          "stock": 1,
-          "categoria": "entradas"
-        },
-        {
-          "id": 6,
-          "nombre": "Arancini de 4 quesos",
-          "imagen": "https://content-cocina.lecturas.com/medio/2022/03/16/paso_a_paso_para_hacer_arancini_conos_de_arroz_y_carne_resultado_final_8c88a02b_600x600.jpg",
-          "precio": 800,
-          "descripcion": "¡Un clásico italiano! Las tradicionales croquetas de arroz, parmesano, cebolla, limon, queso azul, queso brie, muzzarella y arroz carnaroli",
-          "stock": 1,
-          "categoria": "entradas"
-        },
-        {
-          "id": 3,
-          "nombre": "Croquetas de arroz",
-          "imagen": "https://locosxlaparrilla.com/wp-content/uploads/2015/02/Receta-recetas-locos-x-la-parrilla-locosxlaparrilla-receta-croquetas-zucchinis-croquetas-zucchinis-croquetas-receta-croquetas-2.jpg",
-          "precio": 500,
-          "descripcion": "Tienen arroz amarillo, harina, queso parmesano, huevos de campos y son fritas.",
-          "stock": 1,
-          "categoria": "entradas"
-        }
-      ],
+      "favoritos": [],
       "id": "Xbyh-ni"
     },
     {
@@ -618,33 +572,7 @@
       "carrito": [],
       "pedidos": [],
       "favoritos": [
-        {
-          "id": 12,
-          "nombre": "Schweppes Mandarina",
-          "imagen": "https://images.pexels.com/photos/10616180/pexels-photo-10616180.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-          "precio": 1000,
-          "descripcion": "Schweppes Mandarina 1L",
-          "stock": 200,
-          "categoria": "bebidas"
-        },
-        {
-          "id": 1,
-          "nombre": "Mini sándwiches de cuadril",
-          "imagen": "https://asadocriolloargentino.com/wp-content/uploads/2019/12/sandwich-de-cuadril-a-la-parrilla-500x500.jpg",
-          "precio": 700,
-          "descripcion": "Sanguchitos perfectos para compartir con amigos. Hechos con mini ciabattas, tienen mayonesa, fetas de queso y panceta, chimichurri, rucula, tomates cherrys.",
-          "stock": 1,
-          "categoria": "entradas"
-        },
-        {
-          "id": 22,
-          "nombre": "Cheesecake de Fresa",
-          "imagen": "https://img.freepik.com/fotos-premium/pastel-tres-leches-crema-batida-frambuesas-frescas-encima-pastel-america-latina-copiar-espacio_114420-2260.jpg?w=740",
-          "precio": 199,
-          "descripcion": "Un cheesecake clásico con un toque de frescura de fresas. La base de galleta se combina con un suave relleno de queso crema y se remata con una capa de fresas frescas y salsa de frutos rojos.",
-          "stock": 12,
-          "categoria": "postres"
-        }
+        12
       ],
       "id": "ljFFAng"
     },
@@ -655,24 +583,7 @@
       "contrasenia": "Mario1234",
       "rol": "usuario",
       "estado": "suspendido",
-      "carrito": [
-        {
-          "id": 4,
-          "nombre": "Croquetas de hongos de Il Giardino Romagnoli",
-          "precio": 1400,
-          "cantidad": 3,
-          "costoEnvio": 473,
-          "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRikSllAlUYdH0zs9eUmChLLSLEl5-7glm45g&usqp=CAU"
-        },
-        {
-          "id": 2,
-          "nombre": "Revuelto Gramajo",
-          "precio": 1260,
-          "cantidad": 2,
-          "costoEnvio": 327,
-          "imagen": "https://1.bp.blogspot.com/-QnM9iMosb-E/Xb9Ecj5tydI/AAAAAAAAYx4/TIBT1kf2HrwEqW8YJ0BAl-Hcamuzg4cVgCK4BGAYYCw/s1600/Revuelto%2BGramajo%2BII.jpg"
-        }
-      ],
+      "carrito": [],
       "pedidos": [],
       "favoritos": [],
       "id": "3tCCe7y"

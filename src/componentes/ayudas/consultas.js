@@ -112,7 +112,7 @@ export const agregarFavoritos = async (idUsuario, arrayIdsPlatos) => {
       throw new Error("Usuario no encontrado.");
     }
 
-    const platosActuales = usuario.favoritos.map((plato) => plato.id);
+    const platosActuales = usuario.favoritos || [];
 
     const nuevosPlatos = arrayIdsPlatos.filter(
       (idPlato) => !platosActuales.includes(idPlato)
@@ -122,16 +122,9 @@ export const agregarFavoritos = async (idUsuario, arrayIdsPlatos) => {
       arrayIdsPlatos.includes(idPlato)
     );
 
-    const platos = await Promise.all(
-      nuevosPlatos.map((idPlato) => obtenerPlato(idPlato))
-    );
-
-    const platosValidos = platos.filter((plato) => !!plato);
-
-    usuario.favoritos.push(...platosValidos);
-
+    usuario.favoritos = [...platosActuales, ...nuevosPlatos];
     usuario.favoritos = usuario.favoritos.filter(
-      (plato) => !platosARemover.includes(plato.id)
+      (platoId) => !platosARemover.includes(platoId)
     );
 
     await editarUsuario(usuario, idUsuario);
