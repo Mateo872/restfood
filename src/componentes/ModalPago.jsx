@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import { agregarPedidos, obtenerUsuario } from "./ayudas/consultas";
 
-const ModalPago = ({ setMostrarModal, totalCarrito }) => {
+const ModalPago = ({ setMostrarModal, totalCarrito, costoEnvio }) => {
   const [mostrarDire, setMostrarDire] = useState(false);
   const [mostrarConfirmarPago, setMostrarConfirmarPago] = useState(false);
   const [pago, setPago] = useState(false);
@@ -69,9 +69,9 @@ const ModalPago = ({ setMostrarModal, totalCarrito }) => {
       spinner();
       setMostrarConfirmarPago(!mostrarConfirmarPago);
     } else if (boton === "boton_pago") {
+      cerrarModal();
       setPago(!pago);
       spinner();
-      cerrarModal();
       agregarPedidos(usuario.id, {
         ...datos,
         total: totalCarrito,
@@ -91,6 +91,7 @@ const ModalPago = ({ setMostrarModal, totalCarrito }) => {
       [name]: value,
     }));
   };
+
   return (
     <div className="modal_pago position-relative">
       <div className="modal_cierre position-absolute">
@@ -399,7 +400,6 @@ const ModalPago = ({ setMostrarModal, totalCarrito }) => {
                     minLength="2"
                     maxLength="100"
                     required
-                    //   value={domicilio}
                     onChange={guardarDatos}
                     {...register("domicilio", {
                       required: "El domicilio es obligatorio",
@@ -448,15 +448,15 @@ const ModalPago = ({ setMostrarModal, totalCarrito }) => {
               <hr className="m-0 mt-3" />
               <div className="d-flex justify-content-between">
                 <h5>Subtotal</h5>
-                <h6>$6000</h6>
+                <h6>${parseInt(totalCarrito).toLocaleString()}</h6>
               </div>
               <div className="d-flex justify-content-between">
                 <h5>Costo de envío</h5>
-                <h6>$200</h6>
+                <h6>${costoEnvio}</h6>
               </div>
               <div className="d-flex justify-content-between">
                 <h5>Total</h5>
-                <h6>$6200</h6>
+                <h6>${parseInt(totalCarrito + costoEnvio)}</h6>
               </div>
               <hr className="m-0" />
             </div>
