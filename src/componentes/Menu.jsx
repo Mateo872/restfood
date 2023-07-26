@@ -13,6 +13,8 @@ const Menu = () => {
   const [mostrarFiltro, setMostrarFiltro] = useState(null);
   const [precioMinimo, setPrecioMinimo] = useState(0);
   const [precioMaximo, setPrecioMaximo] = useState(0);
+  const [titulo, setTitulo] = useState("Todos los productos");
+  const [textoVacio, setTextoVacio] = useState("No hay productos disponibles");
   const [filtros, setFiltros] = useState({
     categorias: [],
     precio: [],
@@ -24,6 +26,7 @@ const Menu = () => {
   const productosPorPagina = 6;
   const usuario = JSON.parse(sessionStorage.getItem("usuario")) || null;
   const [usuarioID, setUsuarioID] = useState(null);
+  const [cantidadCategoria, setCantidadCategoria] = useState([0]);
 
   useEffect(() => {
     obtenerPlatos().then((res) => {
@@ -60,9 +63,12 @@ const Menu = () => {
     setPaginaActual(1);
   };
 
+  const actualizarTitulo = (nuevoTitulo) => {
+    setTitulo(nuevoTitulo);
+  };
+
   const filtrarProductos = () => {
     let productosFiltrados = [...productos];
-
     if (busqueda.trim() !== "") {
       productosFiltrados = productosFiltrados.filter((producto) =>
         producto.nombre.toLowerCase().includes(busqueda.toLowerCase())
@@ -119,12 +125,16 @@ const Menu = () => {
     if (filtros.favoritos.includes("favoritos")) {
       productosFiltrados = productosFiltrados.filter(
         (producto) =>
-          usuarioID && usuarioID.favoritos.find((fav) => fav.id === producto.id)
+          usuarioID && usuarioID.favoritos.find((fav) => fav.id == producto.id)
       );
+      if (filtros.favoritos.length === 0) {
+        setTextoVacio("No tenés productos favoritos");
+      }
     } else if (filtros.favoritos.includes("noFavoritos")) {
       productosFiltrados = productosFiltrados.filter(
         (producto) =>
-          !usuarioID && usuarioID.favoritos.find((fav) => fav.id == producto.id)
+          !usuarioID ||
+          !usuarioID.favoritos.find((fav) => fav.id === producto.id)
       );
     }
 
@@ -164,7 +174,7 @@ const Menu = () => {
           <h2 className="text-white text-center menu-titulo mb-5">Menu</h2>
           <div className="d-flex flex-column flex-md-row flex-lg-row justify-content-between align-items-center">
             <p className="titulo text-center text-lg-start mb-2 mb-md-0">
-              Todos los productos
+              {titulo}
             </p>
             <div className="contenedor_buscador-filtro d-flex justify-content-between justify-content-md-end align-items-center gap-2">
               <input
@@ -199,7 +209,7 @@ const Menu = () => {
                   productosPaginaActual={productosPaginaActual}
                 />
               ) : (
-                <p className="text-center py-4">No hay platos disponibles</p>
+                <p className="text-center py-4">{textoVacio}</p>
               )}
             </div>
             <div
@@ -221,6 +231,9 @@ const Menu = () => {
               precioMinimo={precioMinimo}
               precioMaximo={precioMaximo}
               setPaginaActual={setPaginaActual}
+              actualizarTitulo={actualizarTitulo}
+              productosFiltrados={productosFiltrados}
+              usuarioID={usuarioID}
             />
           </section>
         </Container>

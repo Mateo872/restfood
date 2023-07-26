@@ -67,12 +67,21 @@ const DetalleProducto = () => {
   }, [usuarioID]);
 
   const manejoSesion = async () => {
-    await Swal.fire({
-      title: "Inicia sesión para agregar productos al carrito",
-      icon: "warning",
-      showCancelButton: false,
-      confirmButtonText: "OK",
-    });
+    if (usuarioID?.rol !== "administrador") {
+      await Swal.fire({
+        title: "Inicia sesión para agregar productos al carrito",
+        icon: "warning",
+        showCancelButton: false,
+        confirmButtonText: "OK",
+      });
+    } else {
+      await Swal.fire({
+        title: "No puedes agregar productos al carrito siendo administrador",
+        icon: "warning",
+        showCancelButton: false,
+        confirmButtonText: "OK",
+      });
+    }
     return;
   };
 
@@ -244,9 +253,16 @@ const DetalleProducto = () => {
                   type="number"
                   className="input_cantidad"
                   placeholder="0"
-                  disabled={mostrarSpinnerPostal}
+                  disabled={
+                    mostrarSpinnerPostal ||
+                    !usuarioID ||
+                    usuarioID?.rol === "administrador"
+                  }
                   style={{
-                    opacity: mostrarSpinnerPostal && ".2",
+                    opacity:
+                      mostrarSpinnerPostal ||
+                      !usuarioID ||
+                      (usuarioID?.rol === "administrador" && ".2"),
                   }}
                   {...register("cantidad", {
                     required: "La cantidad es obligatoria",
@@ -260,7 +276,12 @@ const DetalleProducto = () => {
                     },
                   })}
                 />
-                <div className="text-danger">{errors.cantidad?.message}</div>
+                {!usuarioID ||
+                  (usuarioID?.rol !== "administrador" && (
+                    <div className="text-danger w-75">
+                      {errors.cantidad?.message}
+                    </div>
+                  ))}
                 <hr />
                 <div className="d-flex align-items-center gap-1 mb-2">
                   <BsTruck className="svg_postal" size={25} />
@@ -272,9 +293,16 @@ const DetalleProducto = () => {
                       type="text"
                       className="input_postal"
                       placeholder="Tu código postal"
-                      disabled={mostrarSpinnerPostal && true}
+                      disabled={
+                        mostrarSpinnerPostal ||
+                        !usuarioID ||
+                        usuarioID?.rol !== "administrador"
+                      }
                       style={{
-                        opacity: mostrarSpinnerPostal && ".2",
+                        opacity:
+                          mostrarSpinnerPostal ||
+                          !usuarioID ||
+                          (usuarioID?.rol === "administrador" && ".2"),
                       }}
                       {...register("codigoPostal", {
                         required: "El código postal es obligatorio",
@@ -293,7 +321,12 @@ const DetalleProducto = () => {
                       <button
                         type={!usuarioID ? "button" : "submit"}
                         className="boton_calcular"
-                        onClick={!usuarioID ? manejoSesion : null}
+                        onClick={
+                          !usuarioID?.carrito ||
+                          usuarioID?.rol === "administrador"
+                            ? manejoSesion
+                            : null
+                        }
                       >
                         Calcular
                       </button>
@@ -304,9 +337,12 @@ const DetalleProducto = () => {
                     Tu envío es de ${costoEnvio}
                   </div>
                 )}
-                <div className="text-danger w-75">
-                  {errors.codigoPostal?.message}
-                </div>
+                {!usuarioID ||
+                  (usuarioID?.rol !== "administrador" && (
+                    <div className="text-danger w-75">
+                      {errors.codigoPostal?.message}
+                    </div>
+                  ))}
                 <button
                   className="agregar_carrito w-100"
                   type="submit"

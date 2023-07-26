@@ -8,6 +8,9 @@ const ContenedorFiltros = ({
   precioMinimo,
   precioMaximo,
   setPaginaActual,
+  actualizarTitulo,
+  productosFiltrados,
+  usuarioID,
 }) => {
   const [ordenarActivo, setOrdenarActivo] = useState(null);
   const [precio, setPrecio] = useState(null);
@@ -56,13 +59,13 @@ const ContenedorFiltros = ({
     if (precio === name) {
       setPrecio(null);
       setFiltrosSeleccionados({
-        ...filtros,
+        ...filtrosSeleccionados,
         precio: [],
       });
     } else {
       setPrecio(name);
       setFiltrosSeleccionados({
-        ...filtros,
+        ...filtrosSeleccionados,
         precio: [name],
       });
     }
@@ -73,13 +76,13 @@ const ContenedorFiltros = ({
     if (ordenarActivo === name) {
       setOrdenarActivo(null);
       setFiltrosSeleccionados({
-        ...filtros,
+        ...filtrosSeleccionados,
         ordenar: [],
       });
     } else {
       setOrdenarActivo(name);
       setFiltrosSeleccionados({
-        ...filtros,
+        ...filtrosSeleccionados,
         ordenar: [name],
       });
     }
@@ -89,12 +92,12 @@ const ContenedorFiltros = ({
     const { name, checked } = e.target;
     if (checked) {
       setFiltrosSeleccionados({
-        ...filtros,
-        stock: [...filtros.stock, name],
+        ...filtrosSeleccionados,
+        stock: [...filtrosSeleccionados.stock, name],
       });
     } else {
       setFiltrosSeleccionados({
-        ...filtros,
+        ...filtrosSeleccionados,
         stock: filtros.stock.filter((stock) => stock !== name),
       });
     }
@@ -105,13 +108,13 @@ const ContenedorFiltros = ({
     if (favoritos === name) {
       setFavoritos(null);
       setFiltrosSeleccionados({
-        ...filtros,
+        ...filtrosSeleccionados,
         favoritos: [],
       });
     } else {
       setFavoritos(name);
       setFiltrosSeleccionados({
-        ...filtros,
+        ...filtrosSeleccionados,
         favoritos: [name],
       });
     }
@@ -122,13 +125,13 @@ const ContenedorFiltros = ({
     if (descuento === name) {
       setDescuento(null);
       setFiltrosSeleccionados({
-        ...filtros,
+        ...filtrosSeleccionados,
         descuento: [],
       });
     } else {
       setDescuento(name);
       setFiltrosSeleccionados({
-        ...filtros,
+        ...filtrosSeleccionados,
         descuento: [name],
       });
     }
@@ -142,6 +145,7 @@ const ContenedorFiltros = ({
   };
 
   const resetearFiltros = () => {
+    actualizarTitulo("Todos los productos");
     setFiltros({
       categorias: [],
       precio: [],
@@ -171,8 +175,111 @@ const ContenedorFiltros = ({
     } else {
       setFiltros(filtrosSeleccionados);
       setPaginaActual(1);
+      if (filtrosSeleccionados.categorias.length === 0) {
+        actualizarTitulo("Todos los productos");
+      } else if (filtrosSeleccionados.categorias.length === 1) {
+        actualizarTitulo(filtrosSeleccionados.categorias[0]);
+      } else {
+        actualizarTitulo(filtrosSeleccionados.categorias.join(", "));
+      }
+      if (favoritos === "favoritos") {
+        actualizarTitulo("Tus favoritos");
+      }
+      if (descuento === "descuento") {
+        actualizarTitulo("Con descuento");
+      } else if (descuento === "noDescuento") {
+        actualizarTitulo("Sin descuento");
+      }
     }
+
     setMostrarFiltro(!mostrarFiltro);
+  };
+
+  const contarCantidadCategoria = (categoria) => {
+    return productosFiltrados.filter(
+      (producto) => producto.categoria === categoria
+    ).length;
+  };
+
+  const contarCantidadPrecio = (valor) => {
+    switch (valor) {
+      case "gratis":
+        return productosFiltrados.filter((producto) => producto.precio === 0)
+          .length;
+      case "bajo":
+        return productosFiltrados.filter(
+          (producto) =>
+            producto.precio > 0 && producto.precio < precioMinimo + 200
+        ).length;
+      case "medio":
+        return productosFiltrados.filter(
+          (producto) =>
+            producto.precio > precioMinimo + 200 &&
+            producto.precio < precioMaximo - precioMaximo / 2
+        ).length;
+      case "caro":
+        return productosFiltrados.filter(
+          (producto) =>
+            producto.precio > precioMaximo - precioMaximo / 2 &&
+            producto.precio <= precioMaximo
+        ).length;
+      default:
+        return 0;
+    }
+  };
+
+  const contarCantidadOrdenar = (valor) => {
+    switch (valor) {
+      case "menor":
+        return productosFiltrados.filter((producto) => producto.precio).length;
+      case "mayor":
+        return productosFiltrados.filter((producto) => producto.precio).length;
+      default:
+        return 0;
+    }
+  };
+
+  const contarCantidadStock = (valor) => {
+    switch (valor) {
+      case "stock":
+        return productosFiltrados.filter((producto) => producto.stock > 0)
+          .length;
+      default:
+        return 0;
+    }
+  };
+
+  const contarCantidadFavoritos = (valor) => {
+    switch (valor) {
+      case "favoritos":
+        return productosFiltrados.filter(
+          (producto) =>
+            usuarioID &&
+            usuarioID.favoritos.find((fav) => fav.id == producto.id)
+        ).length;
+      case "noFavoritos":
+        return productosFiltrados.filter(
+          (producto) =>
+            !usuarioID ||
+            !usuarioID.favoritos.find((fav) => fav.id === producto.id)
+        ).length;
+      default:
+        return 0;
+    }
+  };
+
+  const contarCantidadDescuento = (valor) => {
+    switch (valor) {
+      case "descuento":
+        return productosFiltrados.filter(
+          (producto) => producto.descuento === true
+        ).length;
+      case "noDescuento":
+        return productosFiltrados.filter((producto) => !producto.descuento)
+          .length;
+      default:
+        return 0;
+    }
   };
 
   return (
@@ -211,6 +318,9 @@ const ContenedorFiltros = ({
                   onChange={manejoCategorias}
                 />
                 <label htmlFor="entradas">Entradas</label>
+                <p className="texto_cantidad mb-0">
+                  ({contarCantidadCategoria("entradas")})
+                </p>
               </div>
               <div className="input d-flex align-items-center gap-1">
                 <input
@@ -221,6 +331,9 @@ const ContenedorFiltros = ({
                   onChange={manejoCategorias}
                 />
                 <label htmlFor="bebidas">Bebidas</label>
+                <p className="texto_cantidad mb-0">
+                  ({contarCantidadCategoria("bebidas")})
+                </p>
               </div>
               <div className="input d-flex align-items-center gap-1">
                 <input
@@ -231,6 +344,9 @@ const ContenedorFiltros = ({
                   onChange={manejoCategorias}
                 />
                 <label htmlFor="postres">Postres</label>
+                <p className="texto_cantidad mb-0">
+                  ({contarCantidadCategoria("postres")})
+                </p>
               </div>
               <div className="input d-flex align-items-center gap-1">
                 <input
@@ -243,6 +359,9 @@ const ContenedorFiltros = ({
                   onChange={manejoCategorias}
                 />
                 <label htmlFor="bebidasAlcoholicas">Bebidas alcohólicas</label>
+                <p className="texto_cantidad mb-0">
+                  ({contarCantidadCategoria("bebidasAlcoholicas")})
+                </p>
               </div>
               <div className="input d-flex align-items-center gap-1">
                 <input
@@ -255,6 +374,9 @@ const ContenedorFiltros = ({
                   onChange={manejoCategorias}
                 />
                 <label htmlFor="comidasVeganas">Comidas veganas</label>
+                <p className="texto_cantidad mb-0">
+                  ({contarCantidadCategoria("comidasVeganas")})
+                </p>
               </div>
               <div className="input d-flex align-items-center gap-1">
                 <input
@@ -265,6 +387,9 @@ const ContenedorFiltros = ({
                   onChange={manejarStock}
                 />
                 <label htmlFor="stock">Stock</label>
+                <p className="texto_cantidad mb-0">
+                  ({contarCantidadStock("stock")})
+                </p>
               </div>
             </div>
           </div>
@@ -280,6 +405,9 @@ const ContenedorFiltros = ({
                   onChange={manejarPrecio}
                 />
                 <label htmlFor="gratis">Gratis</label>
+                <p className="texto_cantidad mb-0">
+                  ({contarCantidadPrecio("gratis")})
+                </p>
               </div>
               <div className="input d-flex align-items-center gap-1">
                 <input
@@ -290,6 +418,9 @@ const ContenedorFiltros = ({
                   onChange={manejarPrecio}
                 />
                 <label htmlFor="bajo">Hasta ${precioMinimo + 200}</label>
+                <p className="texto_cantidad mb-0">
+                  ({contarCantidadPrecio("bajo")})
+                </p>
               </div>
               <div className="input d-flex align-items-center gap-1">
                 <input
@@ -302,6 +433,9 @@ const ContenedorFiltros = ({
                 <label htmlFor="medio">
                   ${precioMinimo + 200} a ${precioMaximo - precioMaximo / 2}
                 </label>
+                <p className="texto_cantidad mb-0">
+                  ({contarCantidadPrecio("medio")})
+                </p>
               </div>
               <div className="input d-flex align-items-center gap-1">
                 <input
@@ -314,6 +448,9 @@ const ContenedorFiltros = ({
                 <label htmlFor="caro">
                   ${precioMaximo - precioMaximo / 2} a ${precioMaximo}
                 </label>
+                <p className="texto_cantidad mb-0">
+                  ({contarCantidadPrecio("caro")})
+                </p>
               </div>
             </div>
           </div>
@@ -329,6 +466,9 @@ const ContenedorFiltros = ({
                   onChange={manejarOrdenar}
                 />
                 <label htmlFor="menor">Menor precio</label>
+                <p className="texto_cantidad mb-0">
+                  ({contarCantidadOrdenar("menor")})
+                </p>
               </div>
               <div className="input d-flex align-items-center gap-1">
                 <input
@@ -339,6 +479,9 @@ const ContenedorFiltros = ({
                   onChange={manejarOrdenar}
                 />
                 <label htmlFor="mayor">Mayor precio</label>
+                <p className="texto_cantidad mb-0">
+                  ({contarCantidadOrdenar("mayor")})
+                </p>
               </div>
             </div>
           </div>
@@ -354,6 +497,9 @@ const ContenedorFiltros = ({
                   onChange={manejarFavoritos}
                 />
                 <label htmlFor="favoritos">Sí</label>
+                <p className="texto_cantidad mb-0">
+                  ({contarCantidadFavoritos("favoritos")})
+                </p>
               </div>
               <div className="input d-flex align-items-center gap-1">
                 <input
@@ -364,6 +510,9 @@ const ContenedorFiltros = ({
                   onChange={manejarFavoritos}
                 />
                 <label htmlFor="noFavoritos">No</label>
+                <p className="texto_cantidad mb-0">
+                  ({contarCantidadFavoritos("noFavoritos")})
+                </p>
               </div>
             </div>
           </div>
@@ -379,6 +528,9 @@ const ContenedorFiltros = ({
                   onChange={manejarDescuento}
                 />
                 <label htmlFor="descuento">Sí</label>
+                <p className="texto_cantidad mb-0">
+                  ({contarCantidadDescuento("descuento")})
+                </p>
               </div>
               <div className="input d-flex align-items-center gap-1 ultimo">
                 <input
@@ -389,6 +541,9 @@ const ContenedorFiltros = ({
                   onChange={manejarDescuento}
                 />
                 <label htmlFor="noDescuento">No</label>
+                <p className="texto_cantidad mb-0">
+                  ({contarCantidadDescuento("noDescuento")})
+                </p>
               </div>
             </div>
           </div>
