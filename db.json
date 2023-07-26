@@ -6,7 +6,7 @@
       "imagen": "https://asadocriolloargentino.com/wp-content/uploads/2019/12/sandwich-de-cuadril-a-la-parrilla-500x500.jpg",
       "precio": 700,
       "descripcion": "Sanguchitos perfectos para compartir con amigos. Hechos con mini ciabattas, tienen mayonesa, fetas de queso y panceta, chimichurri, rucula, tomates cherrys.",
-      "stock": 1,
+      "stock": 0,
       "categoria": "entradas"
     },
     {
@@ -463,99 +463,71 @@
         {
           "domicilio": "mzna a 546",
           "total": 1597,
-          "nombresProductos": [
-            "Revuelto Gramajo"
-          ],
+          "nombresProductos": ["Revuelto Gramajo"],
           "email": "aixa.filsinger@gmail.com",
           "estado": "Pendiente",
           "fecha": "26/7/2023",
-          "envio": [
-            337
-          ],
+          "envio": [337],
           "id": 1690340483453
         },
         {
           "domicilio": "mitre 545",
           "total": 1364,
-          "nombresProductos": [
-            "Coca-cola Zero"
-          ],
+          "nombresProductos": ["Coca-cola Zero"],
           "email": "aixa.filsinger@gmail.com",
           "estado": "Pendiente",
           "fecha": "26/7/2023",
-          "envio": [
-            244
-          ],
+          "envio": [244],
           "id": 1690340887801
         },
         {
           "domicilio": "san lorenzo 548",
           "total": 2806,
-          "nombresProductos": [
-            "Revuelto Gramajo"
-          ],
+          "nombresProductos": ["Revuelto Gramajo"],
           "email": "aixa.filsinger@gmail.com",
           "estado": "Pendiente",
           "fecha": "26/7/2023",
-          "envio": [
-            286
-          ],
+          "envio": [286],
           "id": 1690341345639
         },
         {
           "domicilio": "san lorenzo 500",
           "total": 2742,
-          "nombresProductos": [
-            "Revuelto Gramajo"
-          ],
+          "nombresProductos": ["Revuelto Gramajo"],
           "email": "aixa.filsinger@gmail.com",
           "estado": "Pendiente",
           "fecha": "26/7/2023",
-          "envio": [
-            222
-          ],
+          "envio": [222],
           "id": 1690342299970
         },
         {
           "domicilio": "san lorenzo 500",
           "total": 602,
-          "nombresProductos": [
-            "Crumble de Manzana"
-          ],
+          "nombresProductos": ["Crumble de Manzana"],
           "email": "aixa.filsinger@gmail.com",
           "estado": "Pendiente",
           "fecha": "26/7/2023",
-          "envio": [
-            212
-          ],
+          "envio": [212],
           "id": 1690342975725
         },
         {
           "domicilio": "san lorenzo550",
           "total": 5316,
-          "nombresProductos": [
-            "Revuelto Gramajo"
-          ],
+          "nombresProductos": ["Revuelto Gramajo"],
           "email": "aixa.filsinger@gmail.com",
           "estado": "Pendiente",
           "fecha": "26/7/2023",
-          "envio": [
-            276
-          ],
+          "envio": [276],
           "id": 1690343107668
         },
         {
           "domicilio": "san lorenzo 500",
           "total": 5142,
-          "nombresProductos": [
-            "Revuelto Gramajo"
-          ],
+          "nombresProductos": ["Revuelto Gramajo"],
           "email": "aixa.filsinger@gmail.com",
           "estado": "Pendiente",
           "fecha": "26/7/2023",
-          "envio": [
-            102
-          ],
+          "envio": [102],
           "id": 1690343236132
         }
       ],
@@ -571,9 +543,7 @@
       "estado": "activo",
       "carrito": [],
       "pedidos": [],
-      "favoritos": [
-        12
-      ],
+      "favoritos": [12],
       "id": "ljFFAng"
     },
     {

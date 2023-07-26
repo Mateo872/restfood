@@ -127,12 +127,6 @@ const DetalleProducto = () => {
       if (nuevoStock >= 0) {
         await editarPlato({ ...plato, stock: nuevoStock }, plato.id);
         setStockOriginal(nuevoStock);
-      } else {
-        Swal.fire({
-          title: "Error",
-          text: "No hay suficiente stock disponible para realizar la compra",
-          icon: "error",
-        });
       }
     } catch (error) {
       console.log(error);
@@ -169,13 +163,27 @@ const DetalleProducto = () => {
           cancelButtonText: "No, cancelar",
         }).then((res) => {
           if (res.isConfirmed) {
-            actualizarStock(data.cantidad);
-            setTamanio("Chico");
-            setPostal(false);
-            setCostoEnvio(0);
-            setFormEnviado(false);
-            agregarCarrito(usuario.id, plato.id, data);
-            reset();
+            if (stockOriginal > 0) {
+              actualizarStock(data.cantidad);
+              setTamanio("Chico");
+              setPostal(false);
+              setCostoEnvio(0);
+              setFormEnviado(false);
+              agregarCarrito(usuario.id, plato.id, data);
+              reset();
+            } else {
+              Swal.fire({
+                title: "No hay stock disponible",
+                icon: "warning",
+                showCancelButton: false,
+                confirmButtonText: "OK",
+              });
+              setTamanio("Chico");
+              setPostal(false);
+              setCostoEnvio(0);
+              setFormEnviado(false);
+              reset();
+            }
           } else {
             setTamanio("Chico");
             setPostal(false);
