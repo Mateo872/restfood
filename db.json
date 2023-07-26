@@ -24,7 +24,7 @@
       "imagen": "https://locosxlaparrilla.com/wp-content/uploads/2015/02/Receta-recetas-locos-x-la-parrilla-locosxlaparrilla-receta-croquetas-zucchinis-croquetas-zucchinis-croquetas-receta-croquetas-2.jpg",
       "precio": 500,
       "descripcion": "Tienen arroz amarillo, harina, queso parmesano, huevos de campos y son fritas.",
-      "stock": 1,
+      "stock": 0,
       "categoria": "entradas"
     },
     {
@@ -569,7 +569,16 @@
       "contrasenia": "Rolling872",
       "rol": "usuario",
       "estado": "activo",
-      "carrito": [],
+      "carrito": [
+        {
+          "id": 3,
+          "nombre": "Croquetas de arroz",
+          "precio": 500,
+          "cantidad": 1,
+          "costoEnvio": 420,
+          "imagen": "https://locosxlaparrilla.com/wp-content/uploads/2015/02/Receta-recetas-locos-x-la-parrilla-locosxlaparrilla-receta-croquetas-zucchinis-croquetas-zucchinis-croquetas-receta-croquetas-2.jpg"
+        }
+      ],
       "pedidos": [],
       "favoritos": [
         12
