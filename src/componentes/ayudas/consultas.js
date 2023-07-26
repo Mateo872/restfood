@@ -92,6 +92,18 @@ export const editarUsuario = async (usuario, id) => {
   }
 };
 
+export const eliminarUsuario = async (id) => {
+  try {
+    const respuesta = await fetch(`${URL_USUARIO}/${id}`, {
+      method: "DELETE",
+    });
+    return respuesta;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
 export const agregarFavoritos = async (idUsuario, arrayIdsPlatos) => {
   try {
     const usuario = await obtenerUsuario(idUsuario);

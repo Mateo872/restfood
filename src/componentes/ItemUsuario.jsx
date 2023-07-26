@@ -1,8 +1,12 @@
-import { BsLockFill, BsPause } from "react-icons/bs";
-import { modificarEstadoUsuario } from "./ayudas/consultas";
+import { BsLockFill, BsPause, BsX } from "react-icons/bs";
+import {
+  eliminarUsuario,
+  modificarEstadoUsuario,
+  obtenerUsuarios,
+} from "./ayudas/consultas";
 import Swal from "sweetalert2";
 
-const ItemUsuario = ({ usuarios }) => {
+const ItemUsuario = ({ usuarios, setUsuarios }) => {
   const manejoSuspenso = async (id) => {
     const usuario = usuarios.find((item) => item.id === id);
     Swal.fire({
@@ -57,6 +61,40 @@ const ItemUsuario = ({ usuarios }) => {
     });
   };
 
+  const manejoEliminarUsuario = (id) => {
+    const usuario = usuarios.find((item) => item.id === id);
+    Swal.fire({
+      title: `¿Estás seguro de eliminar el usuario?`,
+      text: `Se eliminará el usuario '${usuario.nombre}'.`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Eliminar",
+      cancelButtonText: "Cancelar",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          Swal.fire(
+            `Usuario eliminado`,
+            `El usuario ${usuario.nombre} fue eliminado.`,
+            "success"
+          );
+          await eliminarUsuario(id);
+          obtenerUsuarios().then((data) => {
+            setUsuarios(data);
+          });
+        } catch (error) {
+          console.log(error);
+          Swal.fire({
+            title: "Error",
+            text: "Ocurrió un error al eliminar el usuario.",
+            icon: "error",
+            confirmButtonText: "Aceptar",
+          });
+        }
+      }
+    });
+  };
+
   return (
     <tbody>
       {usuarios.map((item) => (
@@ -90,6 +128,11 @@ const ItemUsuario = ({ usuarios }) => {
                 <BsLockFill size={30} />
               </div>
             )}
+          </td>
+          <td className="align-middle">
+            <div className="pausa_contenedor d-flex justify-content-center align-items-center usuario_eliminar">
+              <BsX size={30} onClick={() => manejoEliminarUsuario(item.id)} />
+            </div>
           </td>
         </tr>
       ))}
