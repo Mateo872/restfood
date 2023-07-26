@@ -196,10 +196,11 @@ const Administrador = () => {
                   <th className="py-2">Email</th>
                   <th className="py-2">Nombre</th>
                   <th className="py-2">Rol</th>
-                  <th className="py-2">Acciones</th>
+                  <th className="py-2">Suspender</th>
+                  <th className="py-2">Eliminar</th>
                 </tr>
               </thead>
-              <ItemUsuario usuarios={usuarios} />
+              <ItemUsuario usuarios={usuarios} setUsuarios={setUsuarios} />
             </table>
           </div>
         </article>

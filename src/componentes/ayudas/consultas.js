@@ -9,7 +9,7 @@ export const iniciarSesion = async (usuario) => {
       (itemUsuario) => itemUsuario.email === usuario.email
     );
     if (usuarioBuscado) {
-      if (usuarioBuscado.password === usuario.password) {
+      if (usuarioBuscado.contrasenia === usuario.contrasenia) {
         return usuarioBuscado;
       } else {
         return null;
@@ -89,6 +89,18 @@ export const editarUsuario = async (usuario, id) => {
     return respuesta;
   } catch (error) {
     console.log(error);
+  }
+};
+
+export const eliminarUsuario = async (id) => {
+  try {
+    const respuesta = await fetch(`${URL_USUARIO}/${id}`, {
+      method: "DELETE",
+    });
+    return respuesta;
+  } catch (error) {
+    console.log(error);
+    throw error;
   }
 };
 

@@ -2192,6 +2192,10 @@ div:where(.swal2-icon).swal2-question.swal2-icon-show {
   border-radius: .5rem;
 }
 
+.usuario_eliminar {
+  background-color: #FF0000;
+}
+
 .formCrearEditar label {
   font-size: 0.8rem;
 }
@@ -2367,7 +2371,7 @@ textarea {
   }
 
   .suspendido {
-    background-color: #C20202;
+    background-color: #FF0000;
   }
 
   .pendiente_contenedor {
