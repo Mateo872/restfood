@@ -2031,6 +2031,10 @@ td .usuario_activo:hover {
   opacity: .7;
 }
 
+.producto_stock {
+  opacity: .5;
+}
+
 .contenedor_imagen-detalle {
   width: 100%;
   height: 20rem;

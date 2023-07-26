@@ -66,6 +66,8 @@ const Menu = () => {
     setTitulo(nuevoTitulo);
   };
 
+  const productoSinStock = productos.filter((producto) => producto.stock === 0);
+
   const filtrarProductos = () => {
     let productosFiltrados = [...productos];
     if (busqueda.trim() !== "") {
@@ -205,6 +207,7 @@ const Menu = () => {
                 <TarjetaProducto
                   platosFiltrados={productosFiltrados}
                   productosPaginaActual={productosPaginaActual}
+                  productoSinStock={productoSinStock}
                 />
               ) : (
                 <p className="text-center py-4">{textoVacio}</p>

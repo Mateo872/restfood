@@ -4,7 +4,11 @@ import { BsPlusCircleFill, BsFillHeartFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { obtenerUsuario } from "./ayudas/consultas";
 
-const TarjetaProducto = ({ platosFiltrados, productosPaginaActual }) => {
+const TarjetaProducto = ({
+  platosFiltrados,
+  productosPaginaActual,
+  productoSinStock,
+}) => {
   const usuario = JSON.parse(sessionStorage.getItem("usuario")) || null;
   const [usuarioID, setUsuarioID] = useState(null);
 
@@ -43,19 +47,46 @@ const TarjetaProducto = ({ platosFiltrados, productosPaginaActual }) => {
                 </Card.Title>
                 <Card.Text className="fs-5 my-4">
                   Stock:{" "}
-                  <span className="fw-light text-secondary">
+                  <span className="fw-light producto_stock">
                     {" "}
                     {producto.stock}
                   </span>
                 </Card.Text>
-                <div className="d-flex mt-5 justify-content-between align-items-center">
-                  <Card.Text className="fs-5 my-5">
+                <div
+                  className={`d-flex mt-5 ${
+                    productoSinStock.find((prod) => prod.id === producto.id)
+                      ? "justify-content-center"
+                      : "justify-content-between"
+                  } align-items-center`}
+                >
+                  <Card.Text
+                    className={`${
+                      productoSinStock.find((prod) => prod.id === producto.id)
+                        ? "d-none"
+                        : "d-block"
+                    } fs-5 my-5`}
+                  >
                     {" "}
                     $ {producto.precio}
                   </Card.Text>
-                  <Link to={`/producto/detalle/${producto.id}`}>
+                  <Link
+                    className={`${
+                      productoSinStock.find((prod) => prod.id === producto.id)
+                        ? "d-none"
+                        : "d-block"
+                    }`}
+                    to={`/producto/detalle/${producto.id}`}
+                  >
                     <BsPlusCircleFill fontSize={40} color="#fff" />
                   </Link>
+                  {productoSinStock.find((prod) => prod.id === producto.id) && (
+                    <p
+                      className="text-danger mb-0"
+                      style={{ marginTop: "3rem" }}
+                    >
+                      Sin stock
+                    </p>
+                  )}
                 </div>
               </Card.Body>
             </Card>
