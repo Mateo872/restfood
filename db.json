@@ -105,7 +105,7 @@
       "imagen": "https://images.pexels.com/photos/10616180/pexels-photo-10616180.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "precio": 1000,
       "descripcion": "Schweppes Mandarina 1L",
-      "stock": 200,
+      "stock": 198,
       "categoria": "bebidas"
     },
     {
@@ -569,17 +569,35 @@
       "contrasenia": "Rolling872",
       "rol": "usuario",
       "estado": "activo",
-      "carrito": [
+      "carrito": [],
+      "pedidos": [
         {
-          "id": 3,
-          "nombre": "Croquetas de arroz",
-          "precio": 500,
-          "cantidad": 1,
-          "costoEnvio": 420,
-          "imagen": "https://locosxlaparrilla.com/wp-content/uploads/2015/02/Receta-recetas-locos-x-la-parrilla-locosxlaparrilla-receta-croquetas-zucchinis-croquetas-zucchinis-croquetas-receta-croquetas-2.jpg"
+          "total": 920,
+          "nombresProductos": [
+            "Croquetas de arroz"
+          ],
+          "email": "bellinimateo872@gmail.com",
+          "estado": "Pendiente",
+          "fecha": "26/7/2023",
+          "envio": [
+            420
+          ],
+          "id": 1690395442105
+        },
+        {
+          "total": 2130,
+          "nombresProductos": [
+            "Schweppes Mandarina"
+          ],
+          "email": "bellinimateo872@gmail.com",
+          "estado": "Pendiente",
+          "fecha": "26/7/2023",
+          "envio": [
+            130
+          ],
+          "id": 1690395498423
         }
       ],
-      "pedidos": [],
       "favoritos": [
         12
       ],
