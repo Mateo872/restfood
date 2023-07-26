@@ -6,7 +6,7 @@ const QuienesSomos = () => {
   return (
     <section className="container-fluid">
       <div className="container contenedor-quienes-somos">
-        <article className="row d-flex flex-sm-row-reverse">
+        <article className="row d-flex flex-sm-row-reverse mx-0">
           <aside className="d-flex col-12 col-md-6 mb-lg-0 p-0">
             <img
               className="d-block w-100 img-quienes-somos"
@@ -25,7 +25,7 @@ const QuienesSomos = () => {
             </p>
           </aside>
         </article>
-        <article className="row my-0">
+        <article className="row my-0 mx-0">
           <aside className="d-flex col-12 col-md-6 mb-3 mb-lg-0 p-0">
             <img
               className="d-block w-100 img-quienes-somos"

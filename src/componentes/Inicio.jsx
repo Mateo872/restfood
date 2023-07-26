@@ -5,7 +5,7 @@ import Menu from "./Menu";
 
 const Inicio = () => {
   return (
-    <main>
+    <main style={{ backgroundColor: "#ddd" }}>
       <BuscadorPlatos />
       <QuienesSomos />
       <Menu />
