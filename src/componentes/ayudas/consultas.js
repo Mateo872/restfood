@@ -9,7 +9,7 @@ export const iniciarSesion = async (usuario) => {
       (itemUsuario) => itemUsuario.email === usuario.email
     );
     if (usuarioBuscado) {
-      if (usuarioBuscado.password === usuario.password) {
+      if (usuarioBuscado.contrasenia === usuario.contrasenia) {
         return usuarioBuscado;
       } else {
         return null;
