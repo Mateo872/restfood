@@ -1596,6 +1596,11 @@ td .usuario_activo:hover {
     gap: .6rem;
   }
 
+  .titulo_carrito {
+    margin-top: 3.5rem;
+    font-size: 1.2rem;
+  }
+
   .ultimo {
     margin-bottom: -1rem;
   }
