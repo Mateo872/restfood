@@ -8,6 +8,7 @@ const ContenedorFiltros = ({
   precioMinimo,
   precioMaximo,
   setPaginaActual,
+  actualizarTitulo,
 }) => {
   const [ordenarActivo, setOrdenarActivo] = useState(null);
   const [precio, setPrecio] = useState(null);
@@ -142,6 +143,7 @@ const ContenedorFiltros = ({
   };
 
   const resetearFiltros = () => {
+    actualizarTitulo("Todos los productos");
     setFiltros({
       categorias: [],
       precio: [],
@@ -171,7 +173,23 @@ const ContenedorFiltros = ({
     } else {
       setFiltros(filtrosSeleccionados);
       setPaginaActual(1);
+      if (filtrosSeleccionados.categorias.length === 0) {
+        actualizarTitulo("Todos los productos");
+      } else if (filtrosSeleccionados.categorias.length === 1) {
+        actualizarTitulo(filtrosSeleccionados.categorias[0]);
+      } else {
+        actualizarTitulo(filtrosSeleccionados.categorias.join(", "));
+      }
+      if (favoritos === "favoritos") {
+        actualizarTitulo("Tus favoritos");
+      }
+      if (descuento === "descuento") {
+        actualizarTitulo("Con descuento");
+      } else if (descuento === "noDescuento") {
+        actualizarTitulo("Sin descuento");
+      }
     }
+
     setMostrarFiltro(!mostrarFiltro);
   };
 
