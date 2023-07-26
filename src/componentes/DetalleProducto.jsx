@@ -5,6 +5,7 @@ import { BsTruck } from "react-icons/bs";
 import {
   agregarCarrito,
   agregarFavoritos,
+  editarPlato,
   obtenerPlato,
   obtenerUsuario,
 } from "./ayudas/consultas";
@@ -25,6 +26,7 @@ const DetalleProducto = () => {
   const [costoEnvio, setCostoEnvio] = useState(0);
   const [usuarioID, setUsuarioID] = useState(null);
   const usuario = JSON.parse(sessionStorage.getItem("usuario")) || null;
+  const [stockOriginal, setStockOriginal] = useState(0);
 
   const {
     register,
@@ -40,6 +42,7 @@ const DetalleProducto = () => {
           setMostrarSpinner(true);
           setTimeout(() => {
             setPlato(respuesta);
+            setStockOriginal(respuesta.stock);
             setMostrarSpinner(false);
           }, 500);
         } else {
@@ -56,7 +59,7 @@ const DetalleProducto = () => {
           setError(true);
         }, 500);
       });
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     if (usuario && usuario.id) {
@@ -64,7 +67,7 @@ const DetalleProducto = () => {
         setUsuarioID(res);
       });
     }
-  }, [usuarioID]);
+  }, [usuarioID, id, usuario]);
 
   const manejoSesion = async () => {
     if (usuarioID?.rol !== "administrador") {
@@ -118,6 +121,18 @@ const DetalleProducto = () => {
     return precioInicial;
   };
 
+  const actualizarStock = async (cantidad) => {
+    try {
+      const nuevoStock = stockOriginal - cantidad;
+      if (nuevoStock >= 0) {
+        await editarPlato({ ...plato, stock: nuevoStock }, plato.id);
+        setStockOriginal(nuevoStock);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const manejoEnvio = async (data) => {
     try {
       if (!formEnviado && !mostrarSpinnerPostal) {
@@ -130,38 +145,58 @@ const DetalleProducto = () => {
           setFormEnviado(true);
         }, 1500);
       } else {
-        data = {
-          id: plato.id,
-          nombre: plato.nombre,
-          precio: obtenerPrecioConTamanio(),
-          cantidad: parseInt(data.cantidad),
-          costoEnvio,
-          imagen: plato.imagen,
-        };
+        const cantidadSeleccionada = parseInt(data.cantidad);
+        if (cantidadSeleccionada > 0) {
+          if (cantidadSeleccionada <= stockOriginal) {
+            data = {
+              id: plato.id,
+              nombre: plato.nombre,
+              precio: obtenerPrecioConTamanio(),
+              cantidad: cantidadSeleccionada,
+              costoEnvio,
+              imagen: plato.imagen,
+            };
 
-        Swal.fire({
-          title: "¿Querés agregar este producto al carrito?",
-          text: "Si no querés, podés cancelar la acción",
-          icon: "question",
-          showCancelButton: true,
-          confirmButtonText: "Sí, agregar",
-          cancelButtonText: "No, cancelar",
-        }).then((res) => {
-          if (res.isConfirmed) {
-            setTamanio("Chico");
-            setPostal(false);
-            setCostoEnvio(0);
-            setFormEnviado(false);
-            agregarCarrito(usuario.id, plato.id, data);
-            reset();
+            Swal.fire({
+              title: "¿Querés agregar este producto al carrito?",
+              text: "Si no querés, podés cancelar la acción",
+              icon: "question",
+              showCancelButton: true,
+              confirmButtonText: "Sí, agregar",
+              cancelButtonText: "No, cancelar",
+            }).then((res) => {
+              if (res.isConfirmed) {
+                actualizarStock(cantidadSeleccionada);
+                setTamanio("Chico");
+                setPostal(false);
+                setCostoEnvio(0);
+                setFormEnviado(false);
+                agregarCarrito(usuario.id, plato.id, data);
+                reset();
+              } else {
+                setTamanio("Chico");
+                setPostal(false);
+                setCostoEnvio(0);
+                setFormEnviado(false);
+                reset();
+              }
+            });
           } else {
-            setTamanio("Chico");
-            setPostal(false);
-            setCostoEnvio(0);
-            setFormEnviado(false);
-            reset();
+            Swal.fire({
+              title: "No hay suficiente stock disponible",
+              icon: "warning",
+              showCancelButton: false,
+              confirmButtonText: "OK",
+            });
           }
-        });
+        } else {
+          Swal.fire({
+            title: "La cantidad debe ser mayor que cero",
+            icon: "warning",
+            showCancelButton: false,
+            confirmButtonText: "OK",
+          });
+        }
       }
     } catch (error) {
       console.log(error);
@@ -190,7 +225,7 @@ const DetalleProducto = () => {
               </span>
             </div>
             <p className="stock mb-0">
-              Stock - <span>{plato.stock}</span>
+              Stock - <span>{stockOriginal}</span>
             </p>
             <div className="contenedor_imagen-carac d-flex flex-column flex-md-row gap-4 position-relative">
               <div
@@ -202,7 +237,7 @@ const DetalleProducto = () => {
               {usuarioID && (
                 <div onClick={manejoFav}>
                   {usuarioID &&
-                  usuarioID.favoritos.find((fav) => fav.id === plato.id) ? (
+                  usuarioID.favoritos.find((fav) => fav === plato.id) ? (
                     <GoBookmarkFill className="bookmark position-absolute" />
                   ) : (
                     <GoBookmark className="bookmark position-absolute" />

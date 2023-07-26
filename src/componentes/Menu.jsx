@@ -66,6 +66,8 @@ const Menu = () => {
     setTitulo(nuevoTitulo);
   };
 
+  const productoSinStock = productos.filter((producto) => producto.stock === 0);
+
   const filtrarProductos = () => {
     let productosFiltrados = [...productos];
     if (busqueda.trim() !== "") {
@@ -124,7 +126,7 @@ const Menu = () => {
     if (filtros.favoritos.includes("favoritos")) {
       productosFiltrados = productosFiltrados.filter(
         (producto) =>
-          usuarioID && usuarioID.favoritos.find((fav) => fav.id == producto.id)
+          usuarioID && usuarioID.favoritos.find((fav) => fav == producto.id)
       );
       if (filtros.favoritos.length === 0) {
         setTextoVacio("No tenés productos favoritos");
@@ -132,8 +134,7 @@ const Menu = () => {
     } else if (filtros.favoritos.includes("noFavoritos")) {
       productosFiltrados = productosFiltrados.filter(
         (producto) =>
-          !usuarioID ||
-          !usuarioID.favoritos.find((fav) => fav.id === producto.id)
+          !usuarioID || !usuarioID.favoritos.find((fav) => fav === producto.id)
       );
     }
 
@@ -206,6 +207,7 @@ const Menu = () => {
                 <TarjetaProducto
                   platosFiltrados={productosFiltrados}
                   productosPaginaActual={productosPaginaActual}
+                  productoSinStock={productoSinStock}
                 />
               ) : (
                 <p className="text-center py-4">{textoVacio}</p>
@@ -231,6 +233,7 @@ const Menu = () => {
               precioMaximo={precioMaximo}
               setPaginaActual={setPaginaActual}
               actualizarTitulo={actualizarTitulo}
+              setBusqueda={setBusqueda}
             />
           </section>
         </Container>

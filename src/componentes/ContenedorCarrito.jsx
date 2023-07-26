@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import CarritoItem from "./CarritoItem";
 import ModalPago from "./ModalPago";
 import Swal from "sweetalert2";
-import { editarUsuario, obtenerUsuario } from "./ayudas/consultas";
+import {
+  actualizarStockProducto,
+  editarUsuario,
+  obtenerUsuario,
+} from "./ayudas/consultas";
 import { Link } from "react-router-dom";
 import { GiShoppingBag } from "react-icons/gi";
 import ClipLoader from "react-spinners/ClipLoader";
@@ -49,6 +53,11 @@ const ContenedorCarrito = () => {
       cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
+        const carritoActualizado = usuarioID?.carrito || [];
+
+        carritoActualizado.forEach(async (producto) => {
+          await actualizarStockProducto(producto.id, producto.cantidad);
+        });
         const usuarioActualizado = {
           ...usuarioID,
           carrito: [],
@@ -63,17 +72,6 @@ const ContenedorCarrito = () => {
             await editarUsuario(usuarioActualizado, usuarioID.id);
             setUsuarioID(usuarioActualizado);
           }
-          Swal.fire(
-            "Carrito vaciado",
-            "El carrito se vació correctamente",
-            "success"
-          ).then(async (result) => {
-            if (result.isConfirmed) {
-              await editarUsuario(usuarioActualizado, usuarioID.id);
-              setUsuarioID(usuarioActualizado);
-              window.location.reload();
-            }
-          });
         });
       }
     });

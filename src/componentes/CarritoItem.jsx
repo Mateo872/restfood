@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { BsTrash } from "react-icons/bs";
 import Swal from "sweetalert2";
-import { editarUsuario, obtenerUsuario } from "./ayudas/consultas";
+import {
+  actualizarStockProducto,
+  editarUsuario,
+  obtenerUsuario,
+} from "./ayudas/consultas";
 
 const CarritoItem = ({ producto }) => {
   const [usuarioID, setUsuarioID] = useState(null);
@@ -34,6 +38,8 @@ const CarritoItem = ({ producto }) => {
           "El producto se eliminó correctamente",
           "success"
         ).then(async () => {
+          await actualizarStockProducto(producto.id, producto.cantidad);
+
           const usuarioActualizado = {
             ...usuarioID,
             carrito: carritoActualizado,
