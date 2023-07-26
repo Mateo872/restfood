@@ -1000,11 +1000,6 @@ form h6 {
   cursor: pointer;
 }
 
-.texto_cantidad {
-  font-size: 0.6rem;
-  opacity: .7;
-}
-
 .usuario_activo {
   background-color: var(--color-secundario);
 }
