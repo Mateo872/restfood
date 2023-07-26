@@ -13,9 +13,7 @@ const CarritoItem = ({ producto }) => {
         setUsuarioID(res);
       });
     }
-  }, []);
-
-  const { nombre, precio, imagen, cantidad } = producto;
+  }, [usuarioID]);
 
   const eliminarProducto = () => {
     Swal.fire({
@@ -31,21 +29,23 @@ const CarritoItem = ({ producto }) => {
           (prod) => prod.id !== producto.id || prod.precio !== producto.precio
         );
 
-        const usuarioActualizado = {
-          ...usuarioID,
-          carrito: carritoActualizado,
-        };
-
-        await editarUsuario(usuarioActualizado, usuarioID.id);
-
         Swal.fire(
           "Producto eliminado",
           "El producto se eliminó correctamente",
           "success"
-        );
+        ).then(async () => {
+          const usuarioActualizado = {
+            ...usuarioID,
+            carrito: carritoActualizado,
+          };
+
+          setUsuarioID(usuarioActualizado);
+          await editarUsuario(usuarioActualizado, usuarioID.id);
+        });
       }
     });
   };
+  const { nombre, precio, imagen, cantidad } = producto;
 
   return (
     <div className="contenedor_producto-carrito d-flex justify-content-between align-items-center">

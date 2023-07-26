@@ -1097,6 +1097,12 @@ td .usuario_activo:hover {
     padding: 0.6rem;
   }
 
+  .contenedor_carrito {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
   .contenedor_carrito-vacio {
     margin-top: 6rem;
   }

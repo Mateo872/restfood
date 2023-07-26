@@ -27,7 +27,7 @@ const ContenedorCarrito = () => {
     } else {
       setMostrarSpinner(false);
     }
-  }, []);
+  }, [usuarioID]);
 
   let totalCarrito = 0;
   if (usuarioID) {
@@ -61,7 +61,6 @@ const ContenedorCarrito = () => {
           if (result.isConfirmed) {
             await editarUsuario(usuarioActualizado, usuarioID.id);
             setUsuarioID(usuarioActualizado);
-            window.location.reload();
           }
         });
       }
@@ -108,9 +107,9 @@ const ContenedorCarrito = () => {
                 <button className="boton_vaciar" onClick={vaciarCarrito}>
                   Vaciar carrito
                 </button>
-                <div className="d-flex align-items-center">
+                <div className="d-flex">
                   <h5 className="mb-0">
-                    Total: $<span>{totalCarrito}</span>
+                    Total: $<span>{totalCarrito.toLocaleString()}</span>
                   </h5>
                   <button
                     className="boton_comprar"

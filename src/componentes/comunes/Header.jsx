@@ -22,11 +22,15 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
         setUsuarioID(res);
       });
     }
-  }, []);
+  }, [usuario]);
 
   useEffect(() => {
-    if (usuarioID && usuarioLogueado) {
-      setBadge(usuarioLogueado.length);
+    if (usuarioID) {
+      const cantidadTotalProductos = usuarioID.carrito.reduce(
+        (total, producto) => total + producto.cantidad,
+        0
+      );
+      setBadge(cantidadTotalProductos);
     }
   }, [usuarioID]);
 
@@ -39,7 +43,6 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
       <h2 class="titulo-dialogo mt-3">Hola, ${usuarioLogueado.nombre}</h2>
       <p class="texto-dialogo mb-0">¿Deseas cerrar sesión?</p>
     `,
-      showCancelButton: true,
       showCancelButton: true,
       confirmButtonText: "Salir",
       cancelButtonText: "Cancelar",
@@ -221,8 +224,8 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
                       className="menu_link link_admin p-0 position-relative order-1"
                     >
                       <BsHandbag />
-                      {usuarioLogueado.rol === "usuario" &&
-                      usuarioLogueado.length > 0 ? (
+                      {usuarioID?.rol === "usuario" &&
+                      usuarioID?.carrito.length > 0 ? (
                         <div className="contenedor_badge d-flex justify-content-center align-items-center position-absolute">
                           <span>{badge}</span>
                         </div>
@@ -337,10 +340,10 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
                   className="carrito_item position-relative"
                 >
                   <BsHandbag />
-                  {usuarioLogueado.rol === "usuario" &&
-                    usuarioLogueado.length > 0 && (
+                  {usuarioID?.rol === "usuario" &&
+                    usuarioID?.carrito.length > 0 && (
                       <div className="contenedor_badge d-flex justify-content-center align-items-center position-absolute">
-                        <span>{usuarioLogueado.length}</span>
+                        <span>{badge}</span>
                       </div>
                     )}
                 </Link>
