@@ -25,13 +25,6 @@ const Administrador = () => {
   }, []);
 
   useEffect(() => {
-    if (usuarios) {
-      obtenerUsuarios().then((res) => {
-        setUsuarios(res);
-      });
-    }
-  }, []);
-  useEffect(() => {
     const todosPedidos = [];
 
     usuarios.forEach((usuario) => {
@@ -42,6 +35,14 @@ const Administrador = () => {
 
     setDataPedidos(todosPedidos);
   }, [usuarios]);
+
+  useEffect(() => {
+    if (usuarios) {
+      obtenerUsuarios().then((res) => {
+        setUsuarios(res);
+      });
+    }
+  }, []);
 
   const eliminarProductos = () => {
     if (seleccionados.length > 0) {

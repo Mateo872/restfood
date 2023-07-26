@@ -459,22 +459,7 @@
       "rol": "usuario",
       "estado": "activo",
       "carrito": [],
-      "pedidos": [
-        {
-          "domicilio": "San Juan 295",
-          "total": 1316,
-          "nombresProductos": [
-            "Tarta de Chocolate"
-          ],
-          "email": "aixa.filsinger@gmail.com",
-          "estado": "Pendiente",
-          "fecha": "25/7/2023",
-          "envio": [
-            488
-          ],
-          "id": 1690327519420
-        }
-      ],
+      "pedidos": [],
       "favoritos": [
         {
           "id": 1,
@@ -532,24 +517,7 @@
       "rol": "usuario",
       "estado": "activo",
       "carrito": [],
-      "pedidos": [
-        {
-          "domicilio": "San Juan 295",
-          "total": 3797,
-          "nombresProductos": [
-            "Croquetas de arroz",
-            "Croquetas de arroz"
-          ],
-          "email": "bellinimateo872@gmail.com",
-          "estado": "Pendiente",
-          "fecha": "25/7/2023",
-          "envio": [
-            123,
-            374
-          ],
-          "id": 1690327456063
-        }
-      ],
+      "pedidos": [],
       "favoritos": [
         {
           "id": 12,

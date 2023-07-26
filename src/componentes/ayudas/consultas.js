@@ -197,7 +197,11 @@ export const actualizarPedidosUsuario = async (idUsuario, nuevosPedidos) => {
       throw new Error("Usuario no encontrado.");
     }
 
-    usuario.pedidos = nuevosPedidos;
+    const pedidosUsuario = nuevosPedidos.filter(
+      (pedido) => pedido.email === usuario.email
+    );
+
+    usuario.pedidos = pedidosUsuario;
 
     await editarUsuario(usuario, idUsuario);
   } catch (error) {

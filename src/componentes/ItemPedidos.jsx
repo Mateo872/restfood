@@ -16,7 +16,11 @@ const ItemPedidos = ({ usuarios, dataPedidos, setDataPedidos }) => {
 
     Swal.fire({
       title: `¿Estás seguro de realizar el pedido?`,
-      text: `Se realizará el pedido '${pedido.nombresProductos}'.`,
+      text: `Se ${
+        pedido.nombresProductos.length > 1 ? "realizarán" : "realizará"
+      } ${pedido.nombresProductos.length > 1 ? "los" : "el"} ${
+        pedido.nombresProductos.length > 1 ? "pedidos" : "pedido"
+      } '${pedido.nombresProductos}'.`,
       icon: "warning",
       showCancelButton: true,
       confirmButtonText: "Aceptar",
@@ -25,12 +29,9 @@ const ItemPedidos = ({ usuarios, dataPedidos, setDataPedidos }) => {
       if (result.isConfirmed) {
         try {
           const dataPedidosActualizado = [...dataPedidos];
-          dataPedidosActualizado[pedidoIndex] = {
-            ...pedido,
-            estado: "Realizado",
-          };
-          setDataPedidos(dataPedidosActualizado);
+          dataPedidosActualizado[pedidoIndex].estado = "Realizado";
 
+          setDataPedidos(dataPedidosActualizado);
           const usuarioEmail = pedido.email;
           const usuarioEncontrado = usuariosDB.find(
             (usuario) => usuario.email === usuarioEmail
