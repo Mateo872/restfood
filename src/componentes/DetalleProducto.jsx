@@ -145,53 +145,58 @@ const DetalleProducto = () => {
           setFormEnviado(true);
         }, 1500);
       } else {
-        data = {
-          id: plato.id,
-          nombre: plato.nombre,
-          precio: obtenerPrecioConTamanio(),
-          cantidad: parseInt(data.cantidad),
-          costoEnvio,
-          imagen: plato.imagen,
-        };
+        const cantidadSeleccionada = parseInt(data.cantidad);
+        if (cantidadSeleccionada > 0) {
+          if (cantidadSeleccionada <= stockOriginal) {
+            data = {
+              id: plato.id,
+              nombre: plato.nombre,
+              precio: obtenerPrecioConTamanio(),
+              cantidad: cantidadSeleccionada,
+              costoEnvio,
+              imagen: plato.imagen,
+            };
 
-        Swal.fire({
-          title: "¿Querés agregar este producto al carrito?",
-          text: "Si no querés, podés cancelar la acción",
-          icon: "question",
-          showCancelButton: true,
-          confirmButtonText: "Sí, agregar",
-          cancelButtonText: "No, cancelar",
-        }).then((res) => {
-          if (res.isConfirmed) {
-            if (stockOriginal > 0) {
-              actualizarStock(data.cantidad);
-              setTamanio("Chico");
-              setPostal(false);
-              setCostoEnvio(0);
-              setFormEnviado(false);
-              agregarCarrito(usuario.id, plato.id, data);
-              reset();
-            } else {
-              Swal.fire({
-                title: "No hay stock disponible",
-                icon: "warning",
-                showCancelButton: false,
-                confirmButtonText: "OK",
-              });
-              setTamanio("Chico");
-              setPostal(false);
-              setCostoEnvio(0);
-              setFormEnviado(false);
-              reset();
-            }
+            Swal.fire({
+              title: "¿Querés agregar este producto al carrito?",
+              text: "Si no querés, podés cancelar la acción",
+              icon: "question",
+              showCancelButton: true,
+              confirmButtonText: "Sí, agregar",
+              cancelButtonText: "No, cancelar",
+            }).then((res) => {
+              if (res.isConfirmed) {
+                actualizarStock(cantidadSeleccionada);
+                setTamanio("Chico");
+                setPostal(false);
+                setCostoEnvio(0);
+                setFormEnviado(false);
+                agregarCarrito(usuario.id, plato.id, data);
+                reset();
+              } else {
+                setTamanio("Chico");
+                setPostal(false);
+                setCostoEnvio(0);
+                setFormEnviado(false);
+                reset();
+              }
+            });
           } else {
-            setTamanio("Chico");
-            setPostal(false);
-            setCostoEnvio(0);
-            setFormEnviado(false);
-            reset();
+            Swal.fire({
+              title: "No hay suficiente stock disponible",
+              icon: "warning",
+              showCancelButton: false,
+              confirmButtonText: "OK",
+            });
           }
-        });
+        } else {
+          Swal.fire({
+            title: "La cantidad debe ser mayor que cero",
+            icon: "warning",
+            showCancelButton: false,
+            confirmButtonText: "OK",
+          });
+        }
       }
     } catch (error) {
       console.log(error);
