@@ -36,7 +36,7 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
   }, [usuarioID]);
 
   useEffect(() => {
-    if (ubicacion.pathname === "/usuario/iniciar" && usuarioID) {
+    if (ubicacion.pathname === "/usuario/iniciar" && usuarioID && !editar) {
       setValue("nombre", usuarioID.nombre);
       setValue("email", usuarioID.email);
       setValue("imagen", usuarioID.imagen);

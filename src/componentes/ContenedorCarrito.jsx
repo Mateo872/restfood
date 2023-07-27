@@ -38,7 +38,7 @@ const ContenedorCarrito = () => {
         setMostrarCarrito(true);
       }, 300);
     }
-  }, [usuarioID]);
+  }, [usuario]);
 
   let totalCarrito = 0;
   if (usuarioID) {
@@ -100,7 +100,7 @@ const ContenedorCarrito = () => {
         }`}
       >
         {mostrarCarrito ? (
-          usuarioID?.carrito ? (
+          usuario?.carrito ? (
             <>
               {usuarioID && usuarioID?.carrito?.length > 0 && (
                 <h1 className="titulo_carrito">Carrito</h1>

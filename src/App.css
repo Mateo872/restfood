@@ -475,6 +475,7 @@ footer h3 {
   width: 8.3rem;
   height: 8.3rem;
   background-color: var(--color-secundario);
+  border-radius: .4rem;
 }
 
 .imagen-contenedor-swal img {
