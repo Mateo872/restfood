@@ -36,12 +36,22 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
   }, [usuarioLogueado]);
 
   useEffect(() => {
-    if (usuarioID) {
+    if (ubicacion.pathname === "/usuario/iniciar" && usuarioID && !editar) {
       setValue("nombre", usuarioID.nombre);
       setValue("email", usuarioID.email);
       setValue("imagen", usuarioID.imagen);
       setValue("contrasenia", usuarioID.contrasenia);
       setEditar(true);
+    } else if (ubicacion.pathname === "/usuario/registrar" && usuarioID) {
+      Swal.fire(
+        "Error",
+        "No puede registrarse si ya inició sesión",
+        "error"
+      ).then((res) => {
+        if (res.isConfirmed) {
+          navegacion("/");
+        }
+      });
     }
   }, [usuarioID]);
 
