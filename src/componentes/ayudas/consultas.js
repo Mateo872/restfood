@@ -53,9 +53,8 @@ export const registro = async (usuario) => {
       rol: datos.rol,
       pedido: datos.pedido,
       carrito: datos.carrito,
-      productosFavoritos: datos.productosFavoritos,
-      uid: datos.uid,
-      // token: datos.token,
+      favoritos: datos.favoritos,
+      _id: datos._id,
     };
   } catch (error) {
     console.log(error);
@@ -66,7 +65,7 @@ export const verificarEmailExistente = async (email) => {
   try {
     const respuesta = await fetch(`${URL_USUARIO}?email=${email}`);
     const usuariosConMismoEmail = await respuesta.json();
-    return usuariosConMismoEmail.length > 0;
+    return usuariosConMismoEmail && usuariosConMismoEmail.length > 0;
   } catch (error) {
     console.log(error);
     return false;

@@ -22,7 +22,7 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
         setUsuarioID(res);
       });
     }
-  }, [usuarioID]);
+  }, [usuario]);
 
   useEffect(() => {
     if (usuarioID) {
@@ -32,7 +32,7 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
       );
       setBadge(cantidadTotalProductos);
     }
-  }, [usuarioID]);
+  }, [usuario]);
 
   const salir = () => {
     Swal.fire({
