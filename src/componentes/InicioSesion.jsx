@@ -43,15 +43,13 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
       setValue("contrasenia", usuarioID.contrasenia);
       setEditar(true);
     } else if (ubicacion.pathname === "/usuario/registrar" && usuarioID) {
-      Swal.fire(
-        "Error",
-        "No puede registrarse si ya inició sesión",
-        "error"
-      ).then((res) => {
-        if (res.isConfirmed) {
-          navegacion("/");
+      Swal.fire("Error", "Cierre sesión para poder registrarse", "error").then(
+        (res) => {
+          if (res.isConfirmed) {
+            navegacion("/");
+          }
         }
-      });
+      );
     }
   }, [usuarioID]);
 
