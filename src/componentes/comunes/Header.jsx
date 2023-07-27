@@ -12,17 +12,17 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
   const menuRef = useRef(null);
   const ubicacion = useLocation();
   const [scroll, setScroll] = useState(false);
-  const [usuarioID, setUsuarioID] = useState(null);
   const [badge, setBadge] = useState(0);
   const usuario = JSON.parse(sessionStorage.getItem("usuario")) || null;
+  const [usuarioID, setUsuarioID] = useState(null);
 
   useEffect(() => {
-    if (usuario && usuario.id) {
-      obtenerUsuario(usuario.id).then((res) => {
+    if (usuario && usuario._id) {
+      obtenerUsuario(usuario._id).then((res) => {
         setUsuarioID(res);
       });
     }
-  }, [usuario]);
+  }, [usuarioID]);
 
   useEffect(() => {
     if (usuarioID) {
@@ -41,9 +41,9 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
         <a href="/usuario/iniciar" class="contenedor_editar position-absolute d-flex justify-content-center align-items-center">
           <i class="bi bi-pencil"></i>
         </a>
-        <img class="w-100 h-100" src="${usuarioLogueado.imagen}" alt="${usuarioLogueado.nombre}" />
+        <img class="w-100 h-100" src="${usuarioID?.imagen}" alt="${usuarioID?.nombre}" />
         </div>
-        <h2 class="titulo-dialogo mt-3">${usuarioID.nombre}</h2>
+        <h2 class="titulo-dialogo mt-3">${usuarioID?.nombre}</h2>
         <p class="texto-dialogo mb-0">¿Deseas cerrar sesión?</p>
       `,
       showCancelButton: true,

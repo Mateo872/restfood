@@ -3,20 +3,29 @@ const URL_USUARIO = import.meta.env.VITE_API_USUARIO;
 
 export const iniciarSesion = async (usuario) => {
   try {
-    const respuesta = await fetch(URL_USUARIO);
-    const listaUsuarios = await respuesta.json();
-    const usuarioBuscado = listaUsuarios.find(
-      (itemUsuario) => itemUsuario.email === usuario.email
-    );
-    if (usuarioBuscado) {
-      if (usuarioBuscado.contrasenia === usuario.contrasenia) {
-        return usuarioBuscado;
-      } else {
-        return null;
-      }
-    } else {
-      return null;
-    }
+    const respuesta = await fetch(URL_USUARIO, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(usuario),
+    });
+
+    const datos = await respuesta.json();
+    return {
+      status: respuesta.status,
+      mensaje: datos.mensaje,
+      nombre: datos.nombre,
+      email: datos.email,
+      imagen: datos.imagen,
+      estado: datos.estado,
+      rol: datos.rol,
+      pedido: datos.pedido,
+      carrito: datos.carrito,
+      favoritos: datos.favoritos,
+      estado: datos.estado,
+      _id: datos.uid,
+    };
   } catch (error) {
     console.log(error);
     return null;
@@ -25,7 +34,7 @@ export const iniciarSesion = async (usuario) => {
 
 export const registro = async (usuario) => {
   try {
-    const respuesta = await fetch(URL_USUARIO, {
+    const respuesta = await fetch(`${URL_USUARIO}/nuevo`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -76,11 +85,11 @@ export const obtenerUsuarios = async () => {
 
 export const obtenerUsuario = async (id) => {
   try {
-    const respuesta = await fetch(`${URL_USUARIO}/${id}`);
+    const respuesta = await fetch(`${URL_USUARIO}/usuario/${id}`);
     const usuario = await respuesta.json();
-    if (!usuario.favoritos) {
-      usuario.favoritos = [];
-    }
+    // if (!usuario.favoritos) {
+    //   usuario.favoritos = [];
+    // }
 
     return usuario;
   } catch (error) {
@@ -90,7 +99,7 @@ export const obtenerUsuario = async (id) => {
 
 export const editarUsuario = async (usuario, id) => {
   try {
-    const respuesta = await fetch(`${URL_USUARIO}/${id}`, {
+    const respuesta = await fetch(`${URL_USUARIO}/usuario/${id}`, {
       method: "PUT",
       headers: {
         "Content-type": "application/json",
@@ -105,7 +114,7 @@ export const editarUsuario = async (usuario, id) => {
 
 export const eliminarUsuario = async (id) => {
   try {
-    const respuesta = await fetch(`${URL_USUARIO}/${id}`, {
+    const respuesta = await fetch(`${URL_USUARIO}/usuario/${id}`, {
       method: "DELETE",
     });
     return respuesta;

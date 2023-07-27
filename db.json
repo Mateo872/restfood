@@ -469,17 +469,22 @@
       "imagen": "https://i.postimg.cc/3J5rC6zw/Mateo-Bellini.jpg",
       "nombre": "Mateo",
       "rol": "usuario",
-      "carrito": [
+      "carrito": [],
+      "pedidos": [
         {
-          "id": 21,
-          "nombre": "Tarta de Chocolate",
-          "precio": 230,
-          "cantidad": 2,
-          "costoEnvio": 483,
-          "imagen": "https://img.freepik.com/foto-gratis/alimento-chocolate-fondo-marron-panaderia_1203-6371.jpg?w=996&t=st=1689606565~exp=1689607165~hmac=890322f1e46ccd26186eb9c3fd7b181e85c2a28de30e2a79157c2a461d4531ae"
+          "total": 943,
+          "nombresProductos": [
+            "Tarta de Chocolate"
+          ],
+          "email": "bellinimateo872@gmail.com",
+          "estado": "Pendiente",
+          "fecha": "27/7/2023",
+          "envio": [
+            483
+          ],
+          "id": 1690475919738
         }
       ],
-      "pedidos": [],
       "favoritos": [
         12,
         30

@@ -28,12 +28,12 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
   } = useForm();
 
   useEffect(() => {
-    if (usuarioLogueado && usuarioLogueado.id) {
-      obtenerUsuario(usuarioLogueado.id).then((res) => {
+    if (usuarioLogueado && usuarioLogueado._id) {
+      obtenerUsuario(usuarioLogueado._id).then((res) => {
         setUsuarioID(res);
       });
     }
-  }, [usuarioLogueado]);
+  }, [usuarioID]);
 
   useEffect(() => {
     if (ubicacion.pathname === "/usuario/iniciar" && usuarioID && !editar) {
@@ -47,6 +47,8 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
         (res) => {
           if (res.isConfirmed) {
             navegacion("/");
+          } else {
+            navegacion("/");
           }
         }
       );
@@ -54,9 +56,12 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
   }, [usuarioID]);
 
   const manejoEnvio = async (usuarioRegistrado) => {
-    if (ubicacion.pathname === "/usuario/iniciar" && usuarioID && editar) {
+    if (
+      ubicacion.pathname === "/usuario/iniciar" &&
+      usuarioLogueado &&
+      editar
+    ) {
       setEditar(true);
-
       const usuarioActualizado = {
         email: getValues("email"),
         contrasenia: getValues("contrasenia"),
@@ -69,13 +74,13 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
         estado: usuarioID.estado,
       };
 
-      await editarUsuario(usuarioActualizado, usuarioID.id);
       Swal.fire(
         "Usuario actualizado",
         "Los datos del usuario se han actualizado correctamente.",
         "success"
-      ).then((res) => {
+      ).then(async (res) => {
         if (res.isConfirmed) {
+          await editarUsuario(usuarioActualizado, usuarioID._id);
           navegacion("/");
           sessionStorage.setItem("usuario", JSON.stringify(usuarioID));
           setUsuarioLogeado(usuarioID);
@@ -88,7 +93,7 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
       ) {
         iniciarSesion(usuarioRegistrado).then((respuesta) => {
           setEditar(false);
-          if (respuesta) {
+          if (respuesta.status === 200) {
             if (respuesta.rol === "administrador") {
               Swal.fire(
                 `Bienvenido, ${respuesta.nombre}`,
