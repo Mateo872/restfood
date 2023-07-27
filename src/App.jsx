@@ -39,7 +39,12 @@ function App() {
         <Route
           exact
           path="/usuario/registrar"
-          element={<InicioSesion />}
+          element={
+            <InicioSesion
+              setUsuarioLogeado={setUsuarioLogeado}
+              usuarioLogueado={usuarioLogueado}
+            />
+          }
         ></Route>
         <Route
           exact
