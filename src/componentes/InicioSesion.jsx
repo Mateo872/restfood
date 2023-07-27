@@ -33,7 +33,7 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
         setUsuarioID(res);
       });
     }
-  }, [usuarioLogueado]);
+  }, [usuarioID]);
 
   useEffect(() => {
     if (ubicacion.pathname === "/usuario/iniciar" && usuarioID && !editar) {
@@ -47,6 +47,8 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
         (res) => {
           if (res.isConfirmed) {
             navegacion("/");
+          } else {
+            navegacion("/");
           }
         }
       );
@@ -54,9 +56,12 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
   }, [usuarioID]);
 
   const manejoEnvio = async (usuarioRegistrado) => {
-    if (ubicacion.pathname === "/usuario/iniciar" && usuarioID && editar) {
+    if (
+      ubicacion.pathname === "/usuario/iniciar" &&
+      usuarioLogueado &&
+      editar
+    ) {
       setEditar(true);
-
       const usuarioActualizado = {
         email: getValues("email"),
         contrasenia: getValues("contrasenia"),
@@ -69,30 +74,79 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
         estado: usuarioID.estado,
       };
 
-      await editarUsuario(usuarioActualizado, usuarioID._id);
       Swal.fire(
         "Usuario actualizado",
         "Los datos del usuario se han actualizado correctamente.",
         "success"
-      ).then((res) => {
+      ).then(async (res) => {
         if (res.isConfirmed) {
+          await editarUsuario(usuarioActualizado, usuarioID._id);
           navegacion("/");
           sessionStorage.setItem("usuario", JSON.stringify(usuarioID));
           setUsuarioLogeado(usuarioID);
         }
       });
     } else {
-      if (ubicacion.pathname === "/usuario/iniciar" && !usuarioID) {
-        iniciarSesion(usuarioRegistrado).then((res) => {
-          console.log(res);
+      if (
+        (ubicacion.pathname === "/usuario/iniciar" && !usuarioID) ||
+        editar === false
+      ) {
+        iniciarSesion(usuarioRegistrado).then((respuesta) => {
+          setEditar(false);
+          if (respuesta.status === 200) {
+            if (respuesta.rol === "administrador") {
+              Swal.fire(
+                `Bienvenido, ${respuesta.nombre}`,
+                "Has iniciado sesión correctamente como administrador",
+                "success"
+              ).then((res) => {
+                if (res.isConfirmed) {
+                  navegacion("/administrador");
+                  sessionStorage.setItem("usuario", JSON.stringify(respuesta));
+                  setUsuarioLogeado(respuesta);
+                }
+              });
+            } else if (respuesta.estado !== "suspendido") {
+              Swal.fire(
+                `Bienvenido, ${respuesta.nombre}`,
+                "Has iniciado sesión correctamente",
+                "success"
+              ).then((res) => {
+                if (res.isConfirmed) {
+                  navegacion("/");
+                  sessionStorage.setItem("usuario", JSON.stringify(respuesta));
+                  setUsuarioLogeado(respuesta);
+                }
+              });
+            } else {
+              Swal.fire(
+                `Usuario suspendido`,
+                "El usuario se encuentra suspendido",
+                "error"
+              );
+            }
+          } else {
+            Swal.fire("Error", "Email o contraseña incorrecta", "error");
+          }
         });
       } else {
         if (ubicacion.pathname === "/usuario/registrar") {
+          const emailExiste = await verificarEmailExistente(
+            usuarioRegistrado.email
+          );
+          if (emailExiste) {
+            Swal.fire(
+              "Error",
+              "El correo electrónico ya está registrado.",
+              "error"
+            );
+            return;
+          }
           const nuevoUsuario = {
-            imagen: getValues("imagen"),
-            nombre: getValues("nombre"),
-            email: getValues("email"),
-            contrasenia: getValues("contrasenia"),
+            imagen: usuarioRegistrado.imagen,
+            nombre: usuarioRegistrado.nombre,
+            email: usuarioRegistrado.email,
+            contrasenia: usuarioRegistrado.contrasenia,
             rol: "usuario",
             carrito: [],
             pedidos: [],

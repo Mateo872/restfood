@@ -24,7 +24,7 @@ export const iniciarSesion = async (usuario) => {
       carrito: datos.carrito,
       favoritos: datos.favoritos,
       estado: datos.estado,
-      id: datos.uid,
+      _id: datos.uid,
     };
   } catch (error) {
     console.log(error);
