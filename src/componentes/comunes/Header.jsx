@@ -17,8 +17,8 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
   const usuario = JSON.parse(sessionStorage.getItem("usuario")) || null;
 
   useEffect(() => {
-    if (usuario && usuario.id) {
-      obtenerUsuario(usuario.id).then((res) => {
+    if (usuario && usuario._id) {
+      obtenerUsuario(usuario._id).then((res) => {
         setUsuarioID(res);
       });
     }

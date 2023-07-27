@@ -28,8 +28,8 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
   } = useForm();
 
   useEffect(() => {
-    if (usuarioLogueado && usuarioLogueado.id) {
-      obtenerUsuario(usuarioLogueado.id).then((res) => {
+    if (usuarioLogueado && usuarioLogueado._id) {
+      obtenerUsuario(usuarioLogueado._id).then((res) => {
         setUsuarioID(res);
       });
     }
@@ -69,7 +69,7 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
         estado: usuarioID.estado,
       };
 
-      await editarUsuario(usuarioActualizado, usuarioID.id);
+      await editarUsuario(usuarioActualizado, usuarioID._id);
       Swal.fire(
         "Usuario actualizado",
         "Los datos del usuario se han actualizado correctamente.",
@@ -82,10 +82,7 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
         }
       });
     } else {
-      if (
-        (ubicacion.pathname === "/usuario/iniciar" && !usuarioID) ||
-        editar === false
-      ) {
+      if (ubicacion.pathname === "/usuario/iniciar" && !usuarioID) {
         iniciarSesion(usuarioRegistrado).then((respuesta) => {
           setEditar(false);
           if (respuesta) {
@@ -126,22 +123,11 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
         });
       } else {
         if (ubicacion.pathname === "/usuario/registrar") {
-          const emailExiste = await verificarEmailExistente(
-            usuarioRegistrado.email
-          );
-          if (emailExiste) {
-            Swal.fire(
-              "Error",
-              "El correo electrónico ya está registrado.",
-              "error"
-            );
-            return;
-          }
           const nuevoUsuario = {
-            imagen: usuarioRegistrado.imagen,
-            nombre: usuarioRegistrado.nombre,
-            email: usuarioRegistrado.email,
-            contrasenia: usuarioRegistrado.contrasenia,
+            imagen: getValues("imagen"),
+            nombre: getValues("nombre"),
+            email: getValues("email"),
+            contrasenia: getValues("contrasenia"),
             rol: "usuario",
             carrito: [],
             pedidos: [],

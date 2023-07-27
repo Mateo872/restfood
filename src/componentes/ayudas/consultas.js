@@ -25,7 +25,7 @@ export const iniciarSesion = async (usuario) => {
 
 export const registro = async (usuario) => {
   try {
-    const respuesta = await fetch(URL_USUARIO, {
+    const respuesta = await fetch(`${URL_USUARIO}/nuevo`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -76,7 +76,7 @@ export const obtenerUsuarios = async () => {
 
 export const obtenerUsuario = async (id) => {
   try {
-    const respuesta = await fetch(`${URL_USUARIO}/${id}`);
+    const respuesta = await fetch(`${URL_USUARIO}/usuario/${id}`);
     const usuario = await respuesta.json();
     if (!usuario.favoritos) {
       usuario.favoritos = [];
@@ -90,7 +90,7 @@ export const obtenerUsuario = async (id) => {
 
 export const editarUsuario = async (usuario, id) => {
   try {
-    const respuesta = await fetch(`${URL_USUARIO}/${id}`, {
+    const respuesta = await fetch(`${URL_USUARIO}/usuario/${id}`, {
       method: "PUT",
       headers: {
         "Content-type": "application/json",
@@ -105,7 +105,7 @@ export const editarUsuario = async (usuario, id) => {
 
 export const eliminarUsuario = async (id) => {
   try {
-    const respuesta = await fetch(`${URL_USUARIO}/${id}`, {
+    const respuesta = await fetch(`${URL_USUARIO}/usuario/${id}`, {
       method: "DELETE",
     });
     return respuesta;
