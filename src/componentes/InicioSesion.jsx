@@ -83,43 +83,8 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
       });
     } else {
       if (ubicacion.pathname === "/usuario/iniciar" && !usuarioID) {
-        iniciarSesion(usuarioRegistrado).then((respuesta) => {
-          setEditar(false);
-          if (respuesta) {
-            if (respuesta.rol === "administrador") {
-              Swal.fire(
-                `Bienvenido, ${respuesta.nombre}`,
-                "Has iniciado sesión correctamente como administrador",
-                "success"
-              ).then((res) => {
-                if (res.isConfirmed) {
-                  navegacion("/administrador");
-                  sessionStorage.setItem("usuario", JSON.stringify(respuesta));
-                  setUsuarioLogeado(respuesta);
-                }
-              });
-            } else if (respuesta.estado !== "suspendido") {
-              Swal.fire(
-                `Bienvenido, ${respuesta.nombre}`,
-                "Has iniciado sesión correctamente",
-                "success"
-              ).then((res) => {
-                if (res.isConfirmed) {
-                  navegacion("/");
-                  sessionStorage.setItem("usuario", JSON.stringify(respuesta));
-                  setUsuarioLogeado(respuesta);
-                }
-              });
-            } else {
-              Swal.fire(
-                `Usuario suspendido`,
-                "El usuario se encuentra suspendido",
-                "error"
-              );
-            }
-          } else {
-            Swal.fire("Error", "Email o contraseña incorrecta", "error");
-          }
+        iniciarSesion(usuarioRegistrado).then((res) => {
+          console.log(res);
         });
       } else {
         if (ubicacion.pathname === "/usuario/registrar") {
