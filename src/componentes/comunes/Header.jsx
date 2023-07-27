@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { BiMenu } from "react-icons/bi";
-import { BsHandbag, BsX } from "react-icons/bs";
+import { BsHandbag, BsX, BsFillPencilFill } from "react-icons/bs";
 import { Link, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -37,12 +37,15 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
   const salir = () => {
     Swal.fire({
       html: `
-      <div class="imagen-contenedor-swal">
+        <div class="imagen-contenedor-swal mt-3">
+        <a href="/usuario/iniciar" class="contenedor_editar position-absolute d-flex justify-content-center align-items-center">
+          <i class="bi bi-pencil"></i>
+        </a>
         <img class="w-100 h-100" src="${usuarioLogueado.imagen}" alt="${usuarioLogueado.nombre}" />
-      </div>
-      <h2 class="titulo-dialogo mt-3">Hola, ${usuarioLogueado.nombre}</h2>
-      <p class="texto-dialogo mb-0">¿Deseas cerrar sesión?</p>
-    `,
+        </div>
+        <h2 class="titulo-dialogo mt-3">${usuarioLogueado.nombre}</h2>
+        <p class="texto-dialogo mb-0">¿Deseas cerrar sesión?</p>
+      `,
       showCancelButton: true,
       confirmButtonText: "Salir",
       cancelButtonText: "Cancelar",

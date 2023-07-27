@@ -1,9 +1,8 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
 import "./App.css";
 import Header from "./componentes/comunes/Header";
-
 import Footer from "./componentes/comunes/Footer";
-
 import Inicio from "./componentes/Inicio";
 import DetalleProducto from "./componentes/DetalleProducto";
 import InicioSesion from "./componentes/InicioSesion";
@@ -30,7 +29,12 @@ function App() {
         <Route
           exact
           path="/usuario/iniciar"
-          element={<InicioSesion setUsuarioLogeado={setUsuarioLogeado} />}
+          element={
+            <InicioSesion
+              setUsuarioLogeado={setUsuarioLogeado}
+              usuarioLogueado={usuarioLogueado}
+            />
+          }
         ></Route>
         <Route
           exact

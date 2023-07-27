@@ -475,7 +475,6 @@ footer h3 {
   width: 8.3rem;
   height: 8.3rem;
   background-color: var(--color-secundario);
-  border-radius: 100%;
 }
 
 .imagen-contenedor-swal img {
@@ -1125,6 +1124,10 @@ td .usuario_activo:hover {
     font-size: 1rem;
   }
 
+  div .contenedor_editar {
+    top: 1.1rem;
+    right: 11rem;
+  }
 
   div .contenedor_IniciarRegistro {
     padding-top: 12rem;
@@ -1535,6 +1538,17 @@ td .usuario_activo:hover {
     width: 30%;
   }
 
+  div .contenedor_editar {
+    top: 1.2rem;
+    right: 11rem;
+  }
+
+  .contenedor_editar i {
+    font-size: .8rem;
+    color: var(--color-secundario);
+  }
+
+
   article .svg_error {
     margin-top: 4.4rem;
     height: 80vh;
@@ -1602,6 +1616,10 @@ td .usuario_activo:hover {
 
   .filtro_overlay .contenedor_filtro .filtro .filtro_input .input label {
     font-size: .8rem;
+  }
+
+  div .contenedor_imagen-editar {
+    height: 22rem;
   }
 
   .filtro_overlay .contenedor_filtro .botones_filtro {
@@ -2041,6 +2059,28 @@ td .usuario_activo:hover {
 
 .usuario_admin:hover {
   pointer-events: none;
+}
+
+.contenedor_editar {
+  width: 2.2rem;
+  height: 2.2rem;
+  background-color: var(--color-primario);
+  border-radius: 100%;
+  top: 1.1rem;
+  right: 4.5rem;
+}
+
+.contenedor_editar i {
+  font-size: .8rem;
+  color: var(--color-secundario);
+}
+
+.contenedor_imagen-editar {
+  width: 100%;
+  height: 16rem;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--color-secundario);
 }
 
 .contenedor_imagen-detalle {
