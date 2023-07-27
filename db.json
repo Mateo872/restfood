@@ -563,12 +563,11 @@
       "id": "Xbyh-ni"
     },
     {
+      "email": "bellinimateo8722@gmail.com",
+      "contrasenia": "Rolling872",
       "imagen": "https://i.postimg.cc/3J5rC6zw/Mateo-Bellini.jpg",
       "nombre": "Mateo",
-      "email": "bellinimateo872@gmail.com",
-      "contrasenia": "Rolling872",
       "rol": "usuario",
-      "estado": "activo",
       "carrito": [],
       "pedidos": [
         {
@@ -653,6 +652,7 @@
       "favoritos": [
         12
       ],
+      "estado": "activo",
       "id": "ljFFAng"
     },
     {

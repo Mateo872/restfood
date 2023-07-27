@@ -2043,6 +2043,20 @@ td .usuario_activo:hover {
   pointer-events: none;
 }
 
+.contenedor_editar {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: var(--color-primario);
+  border-radius: 100%;
+  top: 0rem;
+  right: 0rem;
+}
+
+.contenedor_editar i {
+  font-size: 1.1rem;
+  color: var(--color-secundario);
+}
+
 .contenedor_imagen-detalle {
   width: 100%;
   height: 20rem;
