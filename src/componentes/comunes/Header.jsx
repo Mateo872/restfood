@@ -37,13 +37,13 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
   const salir = () => {
     Swal.fire({
       html: `
-        <div class="imagen-contenedor-swal position-relative">
+        <div class="imagen-contenedor-swal mt-3">
         <a href="/usuario/iniciar" class="contenedor_editar position-absolute d-flex justify-content-center align-items-center">
           <i class="bi bi-pencil"></i>
         </a>
         <img class="w-100 h-100" src="${usuarioLogueado.imagen}" alt="${usuarioLogueado.nombre}" />
         </div>
-        <h2 class="titulo-dialogo mt-3">Hola, ${usuarioLogueado.nombre}</h2>
+        <h2 class="titulo-dialogo mt-3">${usuarioLogueado.nombre}</h2>
         <p class="texto-dialogo mb-0">¿Deseas cerrar sesión?</p>
       `,
       showCancelButton: true,
