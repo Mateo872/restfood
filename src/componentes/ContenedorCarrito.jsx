@@ -17,6 +17,7 @@ const ContenedorCarrito = () => {
   const [usuarioID, setUsuarioID] = useState(null);
   const usuario = JSON.parse(sessionStorage.getItem("usuario")) || null;
   const [mostrarSpinner, setMostrarSpinner] = useState(true);
+  const [mostrarCarrito, setMostrarCarrito] = useState(false);
   const navegacion = useNavigate();
 
   useEffect(() => {
@@ -27,15 +28,21 @@ const ContenedorCarrito = () => {
         })
         .finally(() => {
           setMostrarSpinner(false);
+          setTimeout(() => {
+            setMostrarCarrito(true);
+          }, 300);
         });
     } else {
       setMostrarSpinner(false);
+      setTimeout(() => {
+        setMostrarCarrito(true);
+      }, 300);
     }
   }, [usuarioID]);
 
   let totalCarrito = 0;
   if (usuarioID) {
-    totalCarrito = usuarioID.carrito.reduce(
+    totalCarrito = usuarioID?.carrito?.reduce(
       (total, producto) =>
         total + producto.precio * producto.cantidad + producto.costoEnvio,
       0
@@ -45,7 +52,7 @@ const ContenedorCarrito = () => {
   let costoEnvio = 0;
 
   if (usuarioID) {
-    costoEnvio = usuarioID.carrito.reduce(
+    costoEnvio = usuarioID?.carrito?.reduce(
       (total, producto) => total + producto.costoEnvio,
       0
     );
@@ -87,90 +94,100 @@ const ContenedorCarrito = () => {
 
   return (
     <section className="contenedor_carrito">
-      <article>
-        {usuarioID ? (
-          <>
-            {usuarioID && usuarioID.carrito.length > 0 && (
-              <h1 className="titulo_carrito">Carrito</h1>
-            )}
-            <div className="d-flex flex-column gap-3">
-              {mostrarSpinner ? (
-                <div className="d-flex justify-content-center align-items-center vh-100">
-                  <ClipLoader
-                    color="#1e1e1e"
-                    loading={mostrarSpinner}
-                    size={35}
-                  />
-                </div>
-              ) : usuarioID && usuarioID.carrito.length > 0 ? (
-                usuarioID?.carrito.map((producto, index) => (
-                  <CarritoItem
-                    key={index}
-                    producto={producto}
-                    usuarioID={usuarioID}
-                  />
-                ))
-              ) : (
-                <div className="contenedor_carrito-vacio d-flex flex-column align-items-center">
-                  <h3 className="text-center">
-                    No hay productos en el carrito
-                  </h3>
-                  <GiShoppingBag />
-                  <Link to={"/"}>Sumá productos</Link>
+      <article
+        className={`${!mostrarCarrito && "d-flex"} ${
+          !mostrarCarrito && "justify-content-center"
+        }`}
+      >
+        {mostrarCarrito ? (
+          usuarioID?.carrito ? (
+            <>
+              {usuarioID && usuarioID?.carrito?.length > 0 && (
+                <h1 className="titulo_carrito">Carrito</h1>
+              )}
+              <div className="d-flex flex-column gap-3">
+                {mostrarSpinner ? (
+                  <div className="d-flex justify-content-center align-items-center vh-100">
+                    <ClipLoader
+                      color="#1e1e1e"
+                      loading={mostrarSpinner}
+                      size={35}
+                    />
+                  </div>
+                ) : usuarioID && usuarioID?.carrito?.length > 0 ? (
+                  usuarioID?.carrito.map((producto, index) => (
+                    <CarritoItem
+                      key={index}
+                      producto={producto}
+                      usuarioID={usuarioID}
+                    />
+                  ))
+                ) : (
+                  <div className="contenedor_carrito-vacio d-flex flex-column align-items-center">
+                    <h3 className="text-center">
+                      No hay productos en el carrito
+                    </h3>
+                    <GiShoppingBag />
+                    <Link to={"/"}>Sumá productos</Link>
+                  </div>
+                )}
+              </div>
+              {usuarioID && usuarioID?.carrito?.length > 0 && (
+                <div className="contenedor_botones w-100 d-flex justify-content-between mt-3">
+                  <button className="boton_vaciar" onClick={vaciarCarrito}>
+                    Vaciar carrito
+                  </button>
+                  <div className="d-flex">
+                    <h5 className="mb-0">
+                      Total: $<span>{totalCarrito.toLocaleString()}</span>
+                    </h5>
+                    <button
+                      className="boton_comprar"
+                      onClick={() => setMostrarModal(!mostrarModal)}
+                    >
+                      Comprar
+                    </button>
+                  </div>
                 </div>
               )}
-            </div>
-            {usuarioID && usuarioID.carrito.length > 0 && (
-              <div className="contenedor_botones w-100 d-flex justify-content-between mt-3">
-                <button className="boton_vaciar" onClick={vaciarCarrito}>
-                  Vaciar carrito
-                </button>
-                <div className="d-flex">
-                  <h5 className="mb-0">
-                    Total: $<span>{totalCarrito.toLocaleString()}</span>
-                  </h5>
-                  <button
-                    className="boton_comprar"
-                    onClick={() => setMostrarModal(!mostrarModal)}
-                  >
-                    Comprar
-                  </button>
+              {mostrarModal ? (
+                <div
+                  className="modal_overlay d-flex justify-content-center align-items-center vh-100 w-100"
+                  onClick={(e) => {
+                    if (e.target.classList.contains("modal_overlay")) {
+                      Swal.fire({
+                        title: "¿Estás seguro?",
+                        text: "Perderás el proceso de compra",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonText: "Si, salir",
+                        cancelButtonText: "Cancelar",
+                      }).then((result) => {
+                        if (result.isConfirmed) {
+                          setMostrarModal(false);
+                        }
+                      });
+                    }
+                  }}
+                >
+                  <ModalPago
+                    mostrarModal={mostrarModal}
+                    setMostrarModal={setMostrarModal}
+                    totalCarrito={totalCarrito}
+                    costoEnvio={costoEnvio}
+                  />
                 </div>
-              </div>
-            )}
-            {mostrarModal ? (
-              <div
-                className="modal_overlay d-flex justify-content-center align-items-center vh-100 w-100"
-                onClick={(e) => {
-                  if (e.target.classList.contains("modal_overlay")) {
-                    Swal.fire({
-                      title: "¿Estás seguro?",
-                      text: "Perderás el proceso de compra",
-                      icon: "warning",
-                      showCancelButton: true,
-                      confirmButtonText: "Si, salir",
-                      cancelButtonText: "Cancelar",
-                    }).then((result) => {
-                      if (result.isConfirmed) {
-                        setMostrarModal(false);
-                      }
-                    });
-                  }
-                }}
-              >
-                <ModalPago
-                  mostrarModal={mostrarModal}
-                  setMostrarModal={setMostrarModal}
-                  totalCarrito={totalCarrito}
-                  costoEnvio={costoEnvio}
-                />
-              </div>
-            ) : (
-              <></>
-            )}
-          </>
+              ) : (
+                <></>
+              )}
+            </>
+          ) : usuarioID?.rol === "administrador" ? (
+            navegacion("/")
+          ) : (
+            navegacion("/usuario/iniciar")
+          )
         ) : (
-          navegacion("/usuario/iniciar")
+          <ClipLoader />
         )}
       </article>
     </section>

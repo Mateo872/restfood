@@ -15,7 +15,7 @@
       "precio": 900,
       "descripcion": "Una versión diferente de un clásico de la gastronomía porteña.Papas, pimientos rojos, verdes, queso sardo, jamón cocido y arvejas.",
       "categoria": "entradas",
-      "stock": "2",
+      "stock": 2,
       "id": 2
     },
     {
@@ -96,7 +96,7 @@
       "imagen": "https://images.pexels.com/photos/2983100/pexels-photo-2983100.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "precio": 600,
       "descripcion": "Coca-Cola 500ml",
-      "stock": 250,
+      "stock": 245,
       "categoria": "bebidas"
     },
     {
@@ -186,7 +186,7 @@
       "imagen": "https://img.freepik.com/foto-gratis/alimento-chocolate-fondo-marron-panaderia_1203-6371.jpg?w=996&t=st=1689606565~exp=1689607165~hmac=890322f1e46ccd26186eb9c3fd7b181e85c2a28de30e2a79157c2a461d4531ae",
       "precio": 230,
       "descripcion": "Una deliciosa tarta de chocolate con una base crujiente y un relleno suave y cremoso. Se sirve con una bola de helado de vainilla y salsa de chocolate caliente.",
-      "stock": 12,
+      "stock": 8,
       "categoria": "postres"
     },
     {
@@ -459,106 +459,7 @@
       "rol": "usuario",
       "estado": "activo",
       "carrito": [],
-      "pedidos": [
-        {
-          "domicilio": "mzna a 546",
-          "total": 1597,
-          "nombresProductos": [
-            "Revuelto Gramajo"
-          ],
-          "email": "aixa.filsinger@gmail.com",
-          "estado": "Pendiente",
-          "fecha": "26/7/2023",
-          "envio": [
-            337
-          ],
-          "id": 1690340483453
-        },
-        {
-          "domicilio": "mitre 545",
-          "total": 1364,
-          "nombresProductos": [
-            "Coca-cola Zero"
-          ],
-          "email": "aixa.filsinger@gmail.com",
-          "estado": "Pendiente",
-          "fecha": "26/7/2023",
-          "envio": [
-            244
-          ],
-          "id": 1690340887801
-        },
-        {
-          "domicilio": "san lorenzo 548",
-          "total": 2806,
-          "nombresProductos": [
-            "Revuelto Gramajo"
-          ],
-          "email": "aixa.filsinger@gmail.com",
-          "estado": "Pendiente",
-          "fecha": "26/7/2023",
-          "envio": [
-            286
-          ],
-          "id": 1690341345639
-        },
-        {
-          "domicilio": "san lorenzo 500",
-          "total": 2742,
-          "nombresProductos": [
-            "Revuelto Gramajo"
-          ],
-          "email": "aixa.filsinger@gmail.com",
-          "estado": "Pendiente",
-          "fecha": "26/7/2023",
-          "envio": [
-            222
-          ],
-          "id": 1690342299970
-        },
-        {
-          "domicilio": "san lorenzo 500",
-          "total": 602,
-          "nombresProductos": [
-            "Crumble de Manzana"
-          ],
-          "email": "aixa.filsinger@gmail.com",
-          "estado": "Pendiente",
-          "fecha": "26/7/2023",
-          "envio": [
-            212
-          ],
-          "id": 1690342975725
-        },
-        {
-          "domicilio": "san lorenzo550",
-          "total": 5316,
-          "nombresProductos": [
-            "Revuelto Gramajo"
-          ],
-          "email": "aixa.filsinger@gmail.com",
-          "estado": "Pendiente",
-          "fecha": "26/7/2023",
-          "envio": [
-            276
-          ],
-          "id": 1690343107668
-        },
-        {
-          "domicilio": "san lorenzo 500",
-          "total": 5142,
-          "nombresProductos": [
-            "Revuelto Gramajo"
-          ],
-          "email": "aixa.filsinger@gmail.com",
-          "estado": "Pendiente",
-          "fecha": "26/7/2023",
-          "envio": [
-            102
-          ],
-          "id": 1690343236132
-        }
-      ],
+      "pedidos": [],
       "favoritos": [],
       "id": "Xbyh-ni"
     },
@@ -568,89 +469,20 @@
       "imagen": "https://i.postimg.cc/3J5rC6zw/Mateo-Bellini.jpg",
       "nombre": "Mateo",
       "rol": "usuario",
-      "carrito": [],
-      "pedidos": [
+      "carrito": [
         {
-          "total": 920,
-          "nombresProductos": [
-            "Croquetas de arroz"
-          ],
-          "email": "bellinimateo872@gmail.com",
-          "estado": "Pendiente",
-          "fecha": "26/7/2023",
-          "envio": [
-            420
-          ],
-          "id": 1690395442105
-        },
-        {
-          "total": 2130,
-          "nombresProductos": [
-            "Schweppes Mandarina"
-          ],
-          "email": "bellinimateo872@gmail.com",
-          "estado": "Pendiente",
-          "fecha": "26/7/2023",
-          "envio": [
-            130
-          ],
-          "id": 1690395498423
-        },
-        {
-          "total": 319,
-          "nombresProductos": [
-            "Bocadillos de Tofu a la Barbacoa"
-          ],
-          "email": "bellinimateo872@gmail.com",
-          "estado": "Pendiente",
-          "fecha": "26/7/2023",
-          "envio": [
-            230
-          ],
-          "id": 1690396187726
-        },
-        {
-          "total": 2431,
-          "nombresProductos": [
-            "Schweppes Mandarina"
-          ],
-          "email": "bellinimateo872@gmail.com",
-          "estado": "Pendiente",
-          "fecha": "26/7/2023",
-          "envio": [
-            431
-          ],
-          "id": 1690396334028
-        },
-        {
-          "total": 701,
-          "nombresProductos": [
-            "Pasta Primavera"
-          ],
-          "email": "bellinimateo872@gmail.com",
-          "estado": "Pendiente",
-          "fecha": "26/7/2023",
-          "envio": [
-            443
-          ],
-          "id": 1690396405236
-        },
-        {
-          "total": 776,
-          "nombresProductos": [
-            "Fernet"
-          ],
-          "email": "bellinimateo872@gmail.com",
-          "estado": "Realizado",
-          "fecha": "26/7/2023",
-          "envio": [
-            406
-          ],
-          "id": 1690396520472
+          "id": 21,
+          "nombre": "Tarta de Chocolate",
+          "precio": 230,
+          "cantidad": 2,
+          "costoEnvio": 483,
+          "imagen": "https://img.freepik.com/foto-gratis/alimento-chocolate-fondo-marron-panaderia_1203-6371.jpg?w=996&t=st=1689606565~exp=1689607165~hmac=890322f1e46ccd26186eb9c3fd7b181e85c2a28de30e2a79157c2a461d4531ae"
         }
       ],
+      "pedidos": [],
       "favoritos": [
-        12
+        12,
+        30
       ],
       "estado": "activo",
       "id": "ljFFAng"
@@ -661,7 +493,7 @@
       "email": "marioachavez1@gmail.com",
       "contrasenia": "Mario1234",
       "rol": "usuario",
-      "estado": "activo",
+      "estado": "suspendido",
       "carrito": [],
       "pedidos": [],
       "favoritos": [],

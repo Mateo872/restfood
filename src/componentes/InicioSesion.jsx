@@ -203,7 +203,16 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
         </h2>
       )}
       <Form className="formCrearEditar" onSubmit={handleSubmit(manejoEnvio)}>
-        {ubicacion.pathname === "/usuario/registrar" && (
+        {editar && (
+          <div
+            className="contenedor_imagen-editar mb-3"
+            style={{
+              backgroundImage: `url(${usuarioID.imagen})`,
+            }}
+          ></div>
+        )}
+        {((ubicacion.pathname === "/usuario/iniciar" && usuarioID) ||
+          ubicacion.pathname === "/usuario/registrar") && (
           <Form.Group className="mb-3">
             <label className="text-white mb-1">Nombre</label>
             <input
@@ -227,15 +236,6 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
             </Form.Text>
           </Form.Group>
         )}
-
-        {editar && (
-          <div
-            className="contenedor_imagen-editar mb-3"
-            style={{
-              backgroundImage: `url(${usuarioID.imagen})`,
-            }}
-          ></div>
-        )}
         <Form.Group className="mb-3 ">
           <label className="text-white mb-1">Email</label>
           <input
@@ -255,23 +255,23 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
             {errors.email?.message}
           </Form.Text>
         </Form.Group>
-        {ubicacion.pathname === "/usuario/registrar" ||
-          (editar && (
-            <Form.Group className="mb-3">
-              <label className="text-white mb-1">Imagen</label>
-              <input
-                type="text"
-                placeholder="Imagen de Usuario"
-                className="input_CrearEditarpd"
-                {...register("imagen", {
-                  required: "La imagen es obligatoria",
-                })}
-              />
-              <Form.Text className="text-danger fw-bold">
-                {errors.imagen?.message}
-              </Form.Text>
-            </Form.Group>
-          ))}
+        {((ubicacion.pathname === "/usuario/iniciar" && usuarioID) ||
+          ubicacion.pathname === "/usuario/registrar") && (
+          <Form.Group className="mb-3">
+            <label className="text-white mb-1">Imagen</label>
+            <input
+              type="text"
+              placeholder="Imagen de Usuario"
+              className="input_CrearEditarpd"
+              {...register("imagen", {
+                required: "La imagen es obligatoria",
+              })}
+            />
+            <Form.Text className="text-danger fw-bold">
+              {errors.imagen?.message}
+            </Form.Text>
+          </Form.Group>
+        )}
 
         <Form.Group className="mb-3">
           <label className="text-white mb-1">Contraseña</label>

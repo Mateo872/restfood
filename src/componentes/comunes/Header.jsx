@@ -43,7 +43,7 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
         </a>
         <img class="w-100 h-100" src="${usuarioLogueado.imagen}" alt="${usuarioLogueado.nombre}" />
         </div>
-        <h2 class="titulo-dialogo mt-3">${usuarioLogueado.nombre}</h2>
+        <h2 class="titulo-dialogo mt-3">${usuarioID.nombre}</h2>
         <p class="texto-dialogo mb-0">¿Deseas cerrar sesión?</p>
       `,
       showCancelButton: true,
@@ -196,7 +196,7 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
                           color: "#fff",
                         }}
                       >
-                        {usuarioLogueado.nombre}
+                        {usuarioID?.nombre}
                       </p>
                       <div
                         style={{
@@ -209,8 +209,8 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
                       >
                         <img
                           className="w-100 h-100"
-                          src={usuarioLogueado.imagen}
-                          alt={usuarioLogueado.nombre}
+                          src={usuarioID?.imagen}
+                          alt={usuarioID?.nombre}
                           style={{
                             objectFit: "cover",
                             backgroundPosition: "center",
@@ -248,7 +248,7 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
                           color: "#fff",
                         }}
                       >
-                        {usuarioLogueado.nombre}
+                        {usuarioID?.nombre}
                       </p>
                       <div
                         style={{
@@ -261,8 +261,8 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
                       >
                         <img
                           className="w-100 h-100"
-                          src={usuarioLogueado.imagen}
-                          alt={usuarioLogueado.nombre}
+                          src={usuarioID?.imagen}
+                          alt={usuarioID?.nombre}
                           style={{
                             objectFit: "cover",
                             backgroundPosition: "center",
@@ -314,7 +314,7 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
                       color: "#fff",
                     }}
                   >
-                    | {usuarioLogueado.nombre}
+                    | {usuarioID?.nombre}
                   </p>
                   <div
                     style={{
@@ -326,8 +326,8 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
                   >
                     <img
                       className="w-100 h-100"
-                      src={usuarioLogueado.imagen}
-                      alt={usuarioLogueado.nombre}
+                      src={usuarioID?.imagen}
+                      alt={usuarioID?.nombre}
                       style={{
                         objectFit: "cover",
                         backgroundPosition: "center",
@@ -362,7 +362,7 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
                       color: "#fff",
                     }}
                   >
-                    | {usuarioLogueado.nombre}
+                    | {usuarioID?.nombre}
                   </p>
                   <div
                     style={{
@@ -374,8 +374,8 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
                   >
                     <img
                       className="w-100 h-100"
-                      src={usuarioLogueado.imagen}
-                      alt={usuarioLogueado.nombre}
+                      src={usuarioID?.imagen}
+                      alt={usuarioID?.nombre}
                       style={{
                         objectFit: "cover",
                         backgroundPosition: "center",
