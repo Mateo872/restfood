@@ -463,71 +463,99 @@
         {
           "domicilio": "mzna a 546",
           "total": 1597,
-          "nombresProductos": ["Revuelto Gramajo"],
+          "nombresProductos": [
+            "Revuelto Gramajo"
+          ],
           "email": "aixa.filsinger@gmail.com",
           "estado": "Pendiente",
           "fecha": "26/7/2023",
-          "envio": [337],
+          "envio": [
+            337
+          ],
           "id": 1690340483453
         },
         {
           "domicilio": "mitre 545",
           "total": 1364,
-          "nombresProductos": ["Coca-cola Zero"],
+          "nombresProductos": [
+            "Coca-cola Zero"
+          ],
           "email": "aixa.filsinger@gmail.com",
           "estado": "Pendiente",
           "fecha": "26/7/2023",
-          "envio": [244],
+          "envio": [
+            244
+          ],
           "id": 1690340887801
         },
         {
           "domicilio": "san lorenzo 548",
           "total": 2806,
-          "nombresProductos": ["Revuelto Gramajo"],
+          "nombresProductos": [
+            "Revuelto Gramajo"
+          ],
           "email": "aixa.filsinger@gmail.com",
           "estado": "Pendiente",
           "fecha": "26/7/2023",
-          "envio": [286],
+          "envio": [
+            286
+          ],
           "id": 1690341345639
         },
         {
           "domicilio": "san lorenzo 500",
           "total": 2742,
-          "nombresProductos": ["Revuelto Gramajo"],
+          "nombresProductos": [
+            "Revuelto Gramajo"
+          ],
           "email": "aixa.filsinger@gmail.com",
           "estado": "Pendiente",
           "fecha": "26/7/2023",
-          "envio": [222],
+          "envio": [
+            222
+          ],
           "id": 1690342299970
         },
         {
           "domicilio": "san lorenzo 500",
           "total": 602,
-          "nombresProductos": ["Crumble de Manzana"],
+          "nombresProductos": [
+            "Crumble de Manzana"
+          ],
           "email": "aixa.filsinger@gmail.com",
           "estado": "Pendiente",
           "fecha": "26/7/2023",
-          "envio": [212],
+          "envio": [
+            212
+          ],
           "id": 1690342975725
         },
         {
           "domicilio": "san lorenzo550",
           "total": 5316,
-          "nombresProductos": ["Revuelto Gramajo"],
+          "nombresProductos": [
+            "Revuelto Gramajo"
+          ],
           "email": "aixa.filsinger@gmail.com",
           "estado": "Pendiente",
           "fecha": "26/7/2023",
-          "envio": [276],
+          "envio": [
+            276
+          ],
           "id": 1690343107668
         },
         {
           "domicilio": "san lorenzo 500",
           "total": 5142,
-          "nombresProductos": ["Revuelto Gramajo"],
+          "nombresProductos": [
+            "Revuelto Gramajo"
+          ],
           "email": "aixa.filsinger@gmail.com",
           "estado": "Pendiente",
           "fecha": "26/7/2023",
-          "envio": [102],
+          "envio": [
+            102
+          ],
           "id": 1690343236132
         }
       ],
@@ -545,60 +573,86 @@
       "pedidos": [
         {
           "total": 920,
-          "nombresProductos": ["Croquetas de arroz"],
+          "nombresProductos": [
+            "Croquetas de arroz"
+          ],
           "email": "bellinimateo872@gmail.com",
           "estado": "Pendiente",
           "fecha": "26/7/2023",
-          "envio": [420],
+          "envio": [
+            420
+          ],
           "id": 1690395442105
         },
         {
           "total": 2130,
-          "nombresProductos": ["Schweppes Mandarina"],
+          "nombresProductos": [
+            "Schweppes Mandarina"
+          ],
           "email": "bellinimateo872@gmail.com",
           "estado": "Pendiente",
           "fecha": "26/7/2023",
-          "envio": [130],
+          "envio": [
+            130
+          ],
           "id": 1690395498423
         },
         {
           "total": 319,
-          "nombresProductos": ["Bocadillos de Tofu a la Barbacoa"],
+          "nombresProductos": [
+            "Bocadillos de Tofu a la Barbacoa"
+          ],
           "email": "bellinimateo872@gmail.com",
           "estado": "Pendiente",
           "fecha": "26/7/2023",
-          "envio": [230],
+          "envio": [
+            230
+          ],
           "id": 1690396187726
         },
         {
           "total": 2431,
-          "nombresProductos": ["Schweppes Mandarina"],
+          "nombresProductos": [
+            "Schweppes Mandarina"
+          ],
           "email": "bellinimateo872@gmail.com",
           "estado": "Pendiente",
           "fecha": "26/7/2023",
-          "envio": [431],
+          "envio": [
+            431
+          ],
           "id": 1690396334028
         },
         {
           "total": 701,
-          "nombresProductos": ["Pasta Primavera"],
+          "nombresProductos": [
+            "Pasta Primavera"
+          ],
           "email": "bellinimateo872@gmail.com",
           "estado": "Pendiente",
           "fecha": "26/7/2023",
-          "envio": [443],
+          "envio": [
+            443
+          ],
           "id": 1690396405236
         },
         {
           "total": 776,
-          "nombresProductos": ["Fernet"],
+          "nombresProductos": [
+            "Fernet"
+          ],
           "email": "bellinimateo872@gmail.com",
           "estado": "Realizado",
           "fecha": "26/7/2023",
-          "envio": [406],
+          "envio": [
+            406
+          ],
           "id": 1690396520472
         }
       ],
-      "favoritos": [12],
+      "favoritos": [
+        12
+      ],
       "id": "ljFFAng"
     },
     {

@@ -1,7 +1,11 @@
 import { Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useLocation } from "react-router";
-import { iniciarSesion, registro } from "./ayudas/consultas";
+import {
+  iniciarSesion,
+  registro,
+  verificarEmailExistente,
+} from "./ayudas/consultas";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
@@ -16,7 +20,7 @@ const InicioSesion = ({ setUsuarioLogeado }) => {
     reset,
   } = useForm();
 
-  const manejoEnvio = (usuarioRegistrado) => {
+  const manejoEnvio = async (usuarioRegistrado) => {
     if (ubicacion.pathname === "/usuario/iniciar") {
       iniciarSesion(usuarioRegistrado).then((respuesta) => {
         if (respuesta) {
@@ -57,6 +61,17 @@ const InicioSesion = ({ setUsuarioLogeado }) => {
       });
     } else {
       if (ubicacion.pathname === "/usuario/registrar") {
+        const emailExiste = await verificarEmailExistente(
+          usuarioRegistrado.email
+        );
+        if (emailExiste) {
+          Swal.fire(
+            "Error",
+            "El correo electrónico ya está registrado.",
+            "error"
+          );
+          return;
+        }
         const nuevoUsuario = {
           imagen: usuarioRegistrado.imagen,
           nombre: usuarioRegistrado.nombre,

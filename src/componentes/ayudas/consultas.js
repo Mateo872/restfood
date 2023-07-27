@@ -53,6 +53,17 @@ export const registro = async (usuario) => {
   }
 };
 
+export const verificarEmailExistente = async (email) => {
+  try {
+    const respuesta = await fetch(`${URL_USUARIO}?email=${email}`);
+    const usuariosConMismoEmail = await respuesta.json();
+    return usuariosConMismoEmail.length > 0;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};
+
 export const obtenerUsuarios = async () => {
   try {
     const respuesta = await fetch(URL_USUARIO);
