@@ -40,8 +40,8 @@ const Menu = () => {
   }, []);
 
   useEffect(() => {
-    if (usuario && usuario.id) {
-      obtenerUsuario(usuario.id).then((res) => {
+    if (usuario && usuario._id) {
+      obtenerUsuario(usuario._id).then((res) => {
         setUsuarioID(res);
       });
     }
@@ -126,7 +126,7 @@ const Menu = () => {
     if (filtros.favoritos.includes("favoritos")) {
       productosFiltrados = productosFiltrados.filter(
         (producto) =>
-          usuarioID && usuarioID.favoritos.find((fav) => fav == producto.id)
+          usuarioID && usuarioID.favoritos.find((fav) => fav == producto._id)
       );
       if (filtros.favoritos.length === 0) {
         setTextoVacio("No tenés productos favoritos");
@@ -134,7 +134,7 @@ const Menu = () => {
     } else if (filtros.favoritos.includes("noFavoritos")) {
       productosFiltrados = productosFiltrados.filter(
         (producto) =>
-          !usuarioID || !usuarioID.favoritos.find((fav) => fav === producto.id)
+          !usuarioID || !usuarioID.favoritos.find((fav) => fav === producto._id)
       );
     }
 

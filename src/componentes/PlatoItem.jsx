@@ -8,8 +8,8 @@ const PlatoItem = ({ platosFiltrados }) => {
   const [usuarioID, setUsuarioID] = useState(null);
 
   useEffect(() => {
-    if (usuario && usuario.id) {
-      obtenerUsuario(usuario.id).then((res) => {
+    if (usuario && usuario._id) {
+      obtenerUsuario(usuario._id).then((res) => {
         setUsuarioID(res);
       });
     }
@@ -19,14 +19,15 @@ const PlatoItem = ({ platosFiltrados }) => {
     <>
       {platosFiltrados.map((plato) => (
         <Link
-          to={`producto/detalle/${plato.id}`}
+          to={`producto/detalle/${plato._id}`}
           className="buscador d-flex justify-content-between align-items-center"
-          key={plato.id}
+          key={plato._id}
         >
           <div className="buscador d-flex align-items-center gap-2 position-relative">
             <div
               className={`contenedor_favoritos-buscador ${
-                usuarioID && usuarioID.favoritos.find((fav) => fav === plato.id)
+                usuarioID &&
+                usuarioID.favoritos.find((fav) => fav === plato._id)
                   ? "d-flex"
                   : "d-none"
               } justify-content-center align-items-center position-absolute`}

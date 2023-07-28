@@ -11,8 +11,8 @@ const ItemPedidos = ({ usuarios, dataPedidos, setDataPedidos }) => {
   }, [usuarios]);
 
   const manejoPedido = (id) => {
-    const pedido = dataPedidos.find((item) => item.id === id);
-    const pedidoIndex = dataPedidos.findIndex((item) => item.id === id);
+    const pedido = dataPedidos.find((item) => item._id === id);
+    const pedidoIndex = dataPedidos.findIndex((item) => item._id === id);
 
     Swal.fire({
       title: `¿Estás seguro de realizar el pedido?`,
@@ -41,7 +41,7 @@ const ItemPedidos = ({ usuarios, dataPedidos, setDataPedidos }) => {
             throw new Error("Usuario no encontrado.");
           }
 
-          const usuarioID = usuarioEncontrado.id;
+          const usuarioID = usuarioEncontrado._id;
 
           await actualizarPedidosUsuario(usuarioID, dataPedidosActualizado);
 
@@ -74,14 +74,14 @@ const ItemPedidos = ({ usuarios, dataPedidos, setDataPedidos }) => {
       if (result.isConfirmed) {
         try {
           const pedidoAEliminar = dataPedidos.find(
-            (pedido) => pedido.id === idPedido
+            (pedido) => pedido._id === idPedido
           );
           if (!pedidoAEliminar) {
             throw new Error("Pedido no encontrado.");
           }
 
           const pedidosActualizados = dataPedidos.filter(
-            (pedido) => pedido.id !== idPedido
+            (pedido) => pedido._id !== idPedido
           );
           setDataPedidos(pedidosActualizados);
 
@@ -94,7 +94,7 @@ const ItemPedidos = ({ usuarios, dataPedidos, setDataPedidos }) => {
           }
 
           await actualizarPedidosUsuario(
-            usuarioEncontrado.id,
+            usuarioEncontrado._id,
             pedidosActualizados
           );
 
@@ -132,13 +132,13 @@ const ItemPedidos = ({ usuarios, dataPedidos, setDataPedidos }) => {
             {pedido.estado === "Pendiente" ? (
               <div
                 className="pendiente_contenedor d-flex justify-content-center align-items-center"
-                onClick={() => manejoPedido(pedido.id)}
+                onClick={() => manejoPedido(pedido._id)}
               >
                 <BsClockHistory size={20} />
               </div>
             ) : (
               <div className="check_contenedor d-flex justify-content-center align-items-center">
-                <BsCheck size={20} onClick={() => eliminarPedido(pedido.id)} />
+                <BsCheck size={20} onClick={() => eliminarPedido(pedido._id)} />
               </div>
             )}
           </td>

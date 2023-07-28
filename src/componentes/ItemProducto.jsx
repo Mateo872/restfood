@@ -13,12 +13,12 @@ const ItemProducto = ({
   setInput,
 }) => {
   const manejoSeleccion = () => {
-    const existe = seleccionados.find((selec) => selec === platos.id);
+    const existe = seleccionados.find((selec) => selec === platos._id);
 
     if (!existe) {
-      setSeleccionados([...seleccionados, platos.id]);
+      setSeleccionados([...seleccionados, platos._id]);
     } else {
-      const existe = seleccionados.filter((selec) => selec !== platos.id);
+      const existe = seleccionados.filter((selec) => selec !== platos._id);
       setSeleccionados(existe);
     }
   };
@@ -33,7 +33,7 @@ const ItemProducto = ({
       cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
-        borrarPlato(platos.id).then((res) => {
+        borrarPlato(platos._id).then((res) => {
           if (res.status === 200) {
             Swal.fire(
               "Producto eliminado con éxito!",
@@ -68,7 +68,7 @@ const ItemProducto = ({
       <Card.Title className="titulo_producto">{platos.nombre}</Card.Title>
       <div className={`${seleccion && "d-none"}`}>
         <Link
-          to={`/administrador/producto/editar/${platos.id}`}
+          to={`/administrador/producto/editar/${platos._id}`}
           className="boton_producto boton_editar m-1"
         >
           Editar
@@ -90,7 +90,7 @@ const ItemProducto = ({
           onClick={manejoSeleccion}
         >
           {seleccionados.length > 0 &&
-          seleccionados.find((selec) => selec === platos.id)
+          seleccionados.find((selec) => selec === platos._id)
             ? "Cancelar"
             : "Seleccionar"}
         </button>

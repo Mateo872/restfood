@@ -20,8 +20,8 @@ const ContenedorCarrito = () => {
   const [mostrarCarrito, setMostrarCarrito] = useState(false);
 
   useEffect(() => {
-    if (usuario && usuario.id) {
-      obtenerUsuario(usuario.id)
+    if (usuario && usuario._id) {
+      obtenerUsuario(usuario._id)
         .then((res) => {
           setUsuarioID(res);
         })
@@ -70,7 +70,7 @@ const ContenedorCarrito = () => {
         const carritoActualizado = usuarioID?.carrito || [];
 
         carritoActualizado.forEach(async (producto) => {
-          await actualizarStockProducto(producto.id, producto.cantidad);
+          await actualizarStockProducto(producto._id, producto.cantidad);
         });
         const usuarioActualizado = {
           ...usuarioID,
@@ -83,7 +83,7 @@ const ContenedorCarrito = () => {
           "success"
         ).then(async (result) => {
           if (result.isConfirmed) {
-            await editarUsuario(usuarioActualizado, usuarioID.id);
+            await editarUsuario(usuarioActualizado, usuarioID._id);
             setUsuarioID(usuarioActualizado);
           }
         });
