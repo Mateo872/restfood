@@ -41,20 +41,24 @@ const ContenedorCarrito = () => {
 
   let totalCarrito = 0;
   if (usuarioID) {
-    totalCarrito = usuarioID?.carrito?.reduce(
-      (total, producto) =>
-        total + producto.precio * producto.cantidad + producto.costoEnvio,
-      0
-    );
+    totalCarrito =
+      usuarioID.rol === "usuario" &&
+      usuarioID?.carrito?.reduce(
+        (total, producto) =>
+          total + producto.precio * producto.cantidad + producto.costoEnvio,
+        0
+      );
   }
 
   let costoEnvio = 0;
 
   if (usuarioID) {
-    costoEnvio = usuarioID?.carrito?.reduce(
-      (total, producto) => total + producto.costoEnvio,
-      0
-    );
+    costoEnvio =
+      usuarioID.rol === "usuario" &&
+      usuarioID?.carrito?.reduce(
+        (total, producto) => total + producto.costoEnvio,
+        0
+      );
   }
 
   const vaciarCarrito = () => {

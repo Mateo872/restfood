@@ -26,11 +26,12 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
 
   useEffect(() => {
     if (usuarioID) {
-      const usuario = usuarioID?.rol === "usuario";
-      const cantidadTotalProductos = usuario.carrito?.reduce(
-        (total, producto) => total + producto.cantidad,
-        0
-      );
+      const cantidadTotalProductos =
+        usuarioID.rol === "usuario" &&
+        usuarioID.carrito?.reduce(
+          (total, producto) => total + producto.cantidad,
+          0
+        );
       setBadge(cantidadTotalProductos);
     }
   }, [usuario]);
