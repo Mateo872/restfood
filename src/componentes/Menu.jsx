@@ -66,7 +66,9 @@ const Menu = () => {
     setTitulo(nuevoTitulo);
   };
 
-  const productoSinStock = productos.filter((producto) => producto.stock === 0);
+  const productoSinStock = productos.filter(
+    (producto) => producto.stock === null || producto.stock === 0
+  );
 
   const filtrarProductos = () => {
     let productosFiltrados = [...productos];
