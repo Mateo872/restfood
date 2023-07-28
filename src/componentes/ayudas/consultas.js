@@ -161,7 +161,6 @@ export const agregarCarrito = async (usuarioID, productoID, nuevoProducto) => {
     usuario.carrito = carritoActual;
 
     await editarUsuario(usuario, usuarioID);
-    console.log(usuario);
 
     return usuario.carrito;
   } catch (error) {
