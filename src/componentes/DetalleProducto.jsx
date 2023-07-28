@@ -38,7 +38,7 @@ const DetalleProducto = () => {
   useEffect(() => {
     obtenerPlato(id)
       .then((respuesta) => {
-        if (Object.keys(respuesta).length !== 0) {
+        if (respuesta.mensaje !== "Error al buscar el plato") {
           setMostrarSpinner(true);
           setTimeout(() => {
             setPlato(respuesta);
@@ -212,7 +212,7 @@ const DetalleProducto = () => {
           >
             <ClipLoader size={45} />
           </div>
-        ) : plato && Object.keys(plato).length !== 0 ? (
+        ) : plato ? (
           <>
             <div className="d-flex gap-1 paginacion">
               <Link to={"/"}>INICIO /</Link>
