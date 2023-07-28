@@ -96,21 +96,6 @@ export const obtenerUsuario = async (id) => {
   }
 };
 
-export const editarUsuario = async (usuario, id) => {
-  try {
-    const respuesta = await fetch(`${URL_USUARIO}/usuario/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(usuario),
-    });
-    return respuesta;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 export const eliminarUsuario = async (id) => {
   try {
     const respuesta = await fetch(`${URL_USUARIO}/usuario/${id}`, {
@@ -156,7 +141,6 @@ export const agregarFavoritos = async (idUsuario, arrayIdsPlatos) => {
 export const agregarCarrito = async (usuarioID, productoID, nuevoProducto) => {
   try {
     const usuario = await obtenerUsuario(usuarioID);
-
     if (!usuario) {
       throw new Error("Usuario no encontrado.");
     }
@@ -165,7 +149,7 @@ export const agregarCarrito = async (usuarioID, productoID, nuevoProducto) => {
 
     const productoExistente = carritoActual.find(
       (producto) =>
-        producto.id === productoID && producto.precio === nuevoProducto.precio
+        producto._id === productoID && producto.precio === nuevoProducto.precio
     );
 
     if (productoExistente) {
@@ -177,11 +161,27 @@ export const agregarCarrito = async (usuarioID, productoID, nuevoProducto) => {
     usuario.carrito = carritoActual;
 
     await editarUsuario(usuario, usuarioID);
+    console.log(usuario);
 
     return usuario.carrito;
   } catch (error) {
     console.log(error);
     throw error;
+  }
+};
+
+export const editarUsuario = async (usuario, id) => {
+  try {
+    const respuesta = await fetch(`${URL_USUARIO}/usuario/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(usuario),
+    });
+    return respuesta;
+  } catch (error) {
+    console.log(error);
   }
 };
 
