@@ -26,7 +26,8 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
 
   useEffect(() => {
     if (usuarioID) {
-      const cantidadTotalProductos = usuarioID?.carrito?.reduce(
+      const usuario = usuarioID?.rol === "usuario";
+      const cantidadTotalProductos = usuario.carrito?.reduce(
         (total, producto) => total + producto.cantidad,
         0
       );

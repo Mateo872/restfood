@@ -167,7 +167,7 @@ const Administrador = () => {
             {platosFiltrados.length > 0 ? (
               platosFiltrados.map((plato) => (
                 <ItemProducto
-                  key={plato.nombre}
+                  key={plato._id}
                   platos={plato}
                   setPlatos={setPlatos}
                   setInput={setInput}
