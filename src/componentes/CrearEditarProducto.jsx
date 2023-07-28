@@ -1,12 +1,13 @@
 import Form from "react-bootstrap/Form";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router";
-import { crearPlato, editarPlato, obtenerPlato } from "./ayudas/consultas";
-import { useEffect } from "react";
+import { crearPlato, editarPlato, obtenerPlato, obtenerPlatos } from "./ayudas/consultas";
+import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 const CrearEditarProducto = () => {
   const navegacion = useNavigate();
   const { id } = useParams();
+  const [platos, setPlatos] = useState([]);
 
   const {
     register,
@@ -26,11 +27,19 @@ const CrearEditarProducto = () => {
         setValue("stock", respuesta.stock);
         setValue("categoria", respuesta.categoria);
       });
+      obtenerPlatos().then((respuesta)=>{
+        setPlatos(respuesta)
+      });
     }
   }, []);
 
+  const verificarNombrePlato = (nombre) => {
+    return platos.some((plato) => plato.nombre === nombre);
+  };
+
   const onSubmit = (plato) => {
     if (id) {
+      const nombreExiste = verificarNombrePlato(plato.nombre);
       editarPlato(plato, id).then((respuesta) => {
         if (respuesta.status === 200) {
           Swal.fire(
@@ -43,11 +52,19 @@ const CrearEditarProducto = () => {
             }
           });
         } else {
-          Swal.fire(
+          if(nombreExiste){
+            Swal.fire(
+              "Error",
+              `El plato ya existe, Introduzca un nombre diferente.`,
+              "error"
+            );
+          }else {
+             Swal.fire(
             "Error",
             `Intente realizar esta operación más tarde.`,
             "error"
           );
+          }
         }
       });
     } else {
@@ -67,11 +84,19 @@ const CrearEditarProducto = () => {
           });
           reset();
         } else {
-          Swal.fire(
+          if(respuesta.status === 400){
+            Swal.fire(
+              "Error",
+              `El plato ya existe, Introduzca un plato diferente.`,
+              "error"
+            );
+          }else {
+             Swal.fire(
             "Error",
             `Intente realizar esta operación más tarde.`,
             "error"
           );
+          }
         }
       });
       reset();
