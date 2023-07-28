@@ -62,12 +62,12 @@ const DetalleProducto = () => {
   }, [id]);
 
   useEffect(() => {
-    if (usuario && usuario.id) {
-      obtenerUsuario(usuario.id).then((res) => {
+    if (usuario && usuario._id) {
+      obtenerUsuario(usuario._id).then((res) => {
         setUsuarioID(res);
       });
     }
-  }, [usuarioID, id, usuario]);
+  }, [id, usuario]);
 
   const manejoSesion = async () => {
     if (usuarioID?.rol !== "administrador") {
@@ -125,7 +125,7 @@ const DetalleProducto = () => {
     try {
       const nuevoStock = stockOriginal - cantidad;
       if (nuevoStock >= 0) {
-        await editarPlato({ ...plato, stock: nuevoStock }, plato.id);
+        await editarPlato({ ...plato, stock: nuevoStock }, plato._id);
         setStockOriginal(nuevoStock);
       }
     } catch (error) {
@@ -149,14 +149,12 @@ const DetalleProducto = () => {
         if (cantidadSeleccionada > 0) {
           if (cantidadSeleccionada <= stockOriginal) {
             data = {
-              id: plato.id,
               nombre: plato.nombre,
               precio: obtenerPrecioConTamanio(),
               cantidad: cantidadSeleccionada,
               costoEnvio,
               imagen: plato.imagen,
             };
-
             Swal.fire({
               title: "¿Querés agregar este producto al carrito?",
               text: "Si no querés, podés cancelar la acción",
@@ -166,12 +164,12 @@ const DetalleProducto = () => {
               cancelButtonText: "No, cancelar",
             }).then((res) => {
               if (res.isConfirmed) {
-                actualizarStock(cantidadSeleccionada);
+                // actualizarStock(cantidadSeleccionada);
                 setTamanio("Chico");
                 setPostal(false);
                 setCostoEnvio(0);
                 setFormEnviado(false);
-                agregarCarrito(usuario.id, plato.id, data);
+                agregarCarrito(usuarioID._id, plato._id, data);
                 reset();
               } else {
                 setTamanio("Chico");
