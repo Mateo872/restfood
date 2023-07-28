@@ -42,7 +42,7 @@ const DetalleProducto = () => {
           setMostrarSpinner(true);
           setTimeout(() => {
             setPlato(respuesta);
-            setStockOriginal(respuesta.stock);
+            setStockOriginal(respuesta.stock || 0);
             setMostrarSpinner(false);
           }, 500);
         } else {

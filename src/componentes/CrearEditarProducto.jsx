@@ -225,7 +225,7 @@ const CrearEditarProducto = () => {
         </Form.Group>
 
         <div className="text-center">
-          <button type="submit" className="btn_AgrProducto">
+          <button type="submit" className="boton_admin w-100">
             {id ? "Editar Plato" : "Crear Plato"}
           </button>
         </div>

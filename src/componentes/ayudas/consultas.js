@@ -86,9 +86,6 @@ export const obtenerUsuario = async (id) => {
   try {
     const respuesta = await fetch(`${URL_USUARIO}/usuario/${id}`);
     const usuario = await respuesta.json();
-    // if (!usuario.favoritos) {
-    //   usuario.favoritos = [];
-    // }
 
     return usuario;
   } catch (error) {

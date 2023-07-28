@@ -18,7 +18,8 @@ const TarjetaProducto = ({
         setUsuarioID(res);
       });
     }
-  }, []);
+  }, [usuario]);
+
   return (
     <>
       {platosFiltrados
@@ -34,7 +35,7 @@ const TarjetaProducto = ({
                 <div
                   className={`contenedor_favoritos ${
                     usuarioID &&
-                    usuarioID.favoritos.find((fav) => fav === producto._id)
+                    usuarioID?.favoritos?.find((fav) => fav === producto._id)
                       ? "d-flex"
                       : "d-none"
                   } justify-content-center align-items-center position-absolute`}
@@ -48,7 +49,7 @@ const TarjetaProducto = ({
                   Stock:{" "}
                   <span className="fw-light producto_stock">
                     {" "}
-                    {producto.stock}
+                    {producto.stock || 0}
                   </span>
                 </Card.Text>
                 <div
