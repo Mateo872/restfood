@@ -29,13 +29,13 @@ const CrearEditarProducto = () => {
     }
   }, []);
 
-  const onSubmit = (platoEditado) => {
+  const onSubmit = (plato) => {
     if (id) {
-      editarPlato(platoEditado, id).then((respuesta) => {
+      editarPlato(plato, id).then((respuesta) => {
         if (respuesta.status === 200) {
           Swal.fire(
             "Producto modificado",
-            `El producto ${platoEditado.nombre} fue modificado con éxito.`,
+            `El producto ${plato.nombre} fue modificado con éxito.`,
             "success"
           ).then((res) => {
             if (res.isConfirmed) {
@@ -51,13 +51,20 @@ const CrearEditarProducto = () => {
         }
       });
     } else {
-      crearPlato(platoEditado).then((respuesta) => {
+      crearPlato(plato).then((respuesta) => {
         if (respuesta.status === 201) {
-          Swal.fire(
-            "Producto creado",
-            `El plato ${platoEditado.nombre} fue creado con éxito!`,
-            "success"
-          );
+          Swal.fire({
+            title: "Producto creado",
+            text: `El producto ${plato.nombre} fue creado con éxito.`,
+            icon: "success",
+            confirmButtonText: "Ir al administrador",
+            cancelButtonText: "Seguir creando",
+            showCancelButton: true,
+          }).then((result) => {
+            if (result.isConfirmed) {
+              navegacion("/administrador");
+            }
+          });
           reset();
         } else {
           Swal.fire(
