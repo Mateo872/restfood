@@ -89,7 +89,7 @@ const DetalleProducto = () => {
   };
 
   const manejoFav = async () => {
-    const existe = usuario.favoritos.find((fav) => fav === plato._id);
+    const existe = usuario.favoritos?.find((fav) => fav === plato._id);
     try {
       if (!existe) {
         await agregarFavoritos(usuario._id, [plato._id]);
@@ -236,7 +236,8 @@ const DetalleProducto = () => {
               {usuarioID && (
                 <div onClick={manejoFav}>
                   {usuarioID &&
-                  usuarioID.favoritos.find((fav) => fav === plato._id) ? (
+                  usuarioID.favoritos.length > 0 &&
+                  usuarioID.favoritos?.find((fav) => fav === plato._id) ? (
                     <GoBookmarkFill className="bookmark position-absolute" />
                   ) : (
                     <GoBookmark className="bookmark position-absolute" />

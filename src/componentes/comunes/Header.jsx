@@ -28,6 +28,7 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
     if (usuarioID) {
       const cantidadTotalProductos =
         usuarioID.rol === "usuario" &&
+        usuarioID.carrito.length > 0 &&
         usuarioID.carrito?.reduce(
           (total, producto) => total + producto.cantidad,
           0

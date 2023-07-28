@@ -35,6 +35,7 @@ const TarjetaProducto = ({
                 <div
                   className={`contenedor_favoritos ${
                     usuarioID &&
+                    usuarioID.favoritos.length > 0 &&
                     usuarioID?.favoritos?.find((fav) => fav === producto._id)
                       ? "d-flex"
                       : "d-none"
