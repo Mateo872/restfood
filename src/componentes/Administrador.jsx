@@ -9,6 +9,7 @@ import {
   obtenerPlatos,
   obtenerUsuarios,
 } from "./ayudas/consultas";
+import ClipLoader from "react-spinners/ClipLoader";
 import Swal from "sweetalert2";
 
 const Administrador = () => {
@@ -18,6 +19,7 @@ const Administrador = () => {
   const [seleccionados, setSeleccionados] = useState([]);
   const [usuarios, setUsuarios] = useState([]);
   const [dataPedidos, setDataPedidos] = useState([]);
+  const [spinner, setSpinner] = useState(false);
 
   useEffect(() => {
     obtenerPlatos().then((res) => {
@@ -98,6 +100,10 @@ const Administrador = () => {
 
   const manejoBuscador = (e) => {
     setInput(e.target.value);
+    setSpinner(true);
+    setTimeout(() => {
+      setSpinner(false);
+    }, 400);
   };
 
   const platosFiltrados = platos.filter((producto) =>
@@ -200,10 +206,14 @@ const Administrador = () => {
                 platosFiltrados.length < 3 && platosFiltrados.length !== 0
                   ? "center"
                   : "space-between",
-              height: platosFiltrados.length < 6 && "auto",
+              height: platosFiltrados.length < 6 ? "auto" : spinner && "4rem",
             }}
           >
-            {platosFiltrados.length > 0 ? (
+            {spinner ? (
+              <div className="d-flex justify-content-center w-100">
+                <ClipLoader color="#ffffff" loading={spinner} size={35} />
+              </div>
+            ) : platosFiltrados.length > 0 ? (
               platosFiltrados.map((plato) => (
                 <ItemProducto
                   key={plato._id}
