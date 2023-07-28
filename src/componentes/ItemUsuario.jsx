@@ -7,6 +7,11 @@ import {
 import Swal from "sweetalert2";
 
 const ItemUsuario = ({ usuarios, setUsuarios }) => {
+  const admin = usuarios.filter((item) => item.rol === "administrador");
+  const usuarioNormal = usuarios.filter((item) => item.rol !== "administrador");
+
+  const usuariosOrdenados = [...admin, ...usuarioNormal];
+
   const manejoSuspenso = async (id) => {
     const usuario = usuarios.find((item) => item._id === id);
     Swal.fire({
@@ -104,7 +109,7 @@ const ItemUsuario = ({ usuarios, setUsuarios }) => {
 
   return (
     <tbody>
-      {usuarios.map((item) => (
+      {usuariosOrdenados.map((item) => (
         <tr key={item._id}>
           <td className="align-middle contenedor_imagen">
             <div
