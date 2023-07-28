@@ -149,6 +149,7 @@ const DetalleProducto = () => {
         if (cantidadSeleccionada > 0) {
           if (cantidadSeleccionada <= stockOriginal) {
             data = {
+              _id: plato._id,
               nombre: plato.nombre,
               precio: obtenerPrecioConTamanio(),
               cantidad: cantidadSeleccionada,
@@ -164,7 +165,7 @@ const DetalleProducto = () => {
               cancelButtonText: "No, cancelar",
             }).then((res) => {
               if (res.isConfirmed) {
-                // actualizarStock(cantidadSeleccionada);
+                actualizarStock(cantidadSeleccionada);
                 setTamanio("Chico");
                 setPostal(false);
                 setCostoEnvio(0);
