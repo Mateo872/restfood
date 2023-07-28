@@ -29,13 +29,13 @@ const CrearEditarProducto = () => {
     }
   }, []);
 
-  const onSubmit = (platoEditado) => {
+  const onSubmit = (plato) => {
     if (id) {
-      editarPlato(platoEditado, id).then((respuesta) => {
+      editarPlato(plato, id).then((respuesta) => {
         if (respuesta.status === 200) {
           Swal.fire(
             "Producto modificado",
-            `El producto ${platoEditado.nombre} fue modificado con éxito.`,
+            `El producto ${plato.nombre} fue modificado con éxito.`,
             "success"
           ).then((res) => {
             if (res.isConfirmed) {
@@ -51,13 +51,20 @@ const CrearEditarProducto = () => {
         }
       });
     } else {
-      crearPlato(platoEditado).then((respuesta) => {
+      crearPlato(plato).then((respuesta) => {
         if (respuesta.status === 201) {
-          Swal.fire(
-            "Producto creado",
-            `El plato ${platoEditado.nombre} fue creado con éxito!`,
-            "success"
-          );
+          Swal.fire({
+            title: "Producto creado",
+            text: `El producto ${plato.nombre} fue creado con éxito.`,
+            icon: "success",
+            confirmButtonText: "Ir al administrador",
+            cancelButtonText: "Seguir creando",
+            showCancelButton: true,
+          }).then((result) => {
+            if (result.isConfirmed) {
+              navegacion("/administrador");
+            }
+          });
           reset();
         } else {
           Swal.fire(
@@ -85,7 +92,7 @@ const CrearEditarProducto = () => {
               placeholder="Imagen del Producto"
               className="input_CrearEditarpd"
               {...register("imagen", {
-                required: "La imagen es obligatoria",
+                required: "La imágen es obligatoria",
               })}
             />
           </div>
@@ -106,12 +113,12 @@ const CrearEditarProducto = () => {
                 required: "El nombre del producto es obligatorio",
                 minLength: {
                   value: 2,
-                  message: "La cantidad minima de caracteres es de 2 digitos",
+                  message: "La cantidad mínima de caracteres es de 3 dígitos.",
                 },
                 maxLength: {
                   value: 100,
                   message:
-                    "La cantidad maxima  de caracteres es de 100 digitos",
+                    "La cantidad máxima de caracteres es de 100 dígitos.",
                 },
               })}
             />
@@ -130,14 +137,14 @@ const CrearEditarProducto = () => {
               placeholder="Precio del producto"
               className="input_CrearEditarpd"
               {...register("precio", {
-                required: "El precio del producto es obligatorio",
+                required: "El precio del producto es obligatorio.",
                 min: {
-                  value: 1,
-                  message: "El precio minimo es de $1",
+                  value: 0,
+                  message: "El precio mínimo es de $0.",
                 },
                 max: {
                   value: 10000,
-                  message: "El precio maximo es de $10000",
+                  message: "El precio máximo es de $10.000.",
                 },
               })}
             />
@@ -161,11 +168,12 @@ const CrearEditarProducto = () => {
                 required: "La descripción del producto es obligatorio",
                 minLength: {
                   value: 2,
-                  message: "La cantidad minima de caracteres es de 2 digitos",
+                  message: "La cantidad mínima de caracteres es de 3 dígitos.",
                 },
                 maxLength: {
-                  value: 500,
-                  message: "La cantidad minima de caracteres es de 500 digitos",
+                  value: 800,
+                  message:
+                    "La cantidad máxima de caracteres es de 800 dígitos.",
                 },
               })}
             ></textarea>
@@ -184,7 +192,7 @@ const CrearEditarProducto = () => {
               id="selec_Categoria"
               className="input_CrearEditarpd"
               {...register("categoria", {
-                required: "La Categoría es obligatoria",
+                required: "La categoría es obligatoria",
               })}
             >
               <option value="">Categoría del producto</option>
@@ -208,14 +216,14 @@ const CrearEditarProducto = () => {
               placeholder="Stock del producto"
               className="input_CrearEditarpd"
               {...register("stock", {
-                required: "El Stock del producto es obligatorio",
+                required: "El stock del producto es obligatorio",
                 min: {
                   value: 0,
-                  message: "El stock minimo es de 0",
+                  message: "El stock mínimo es de 0.",
                 },
                 max: {
                   value: 10000,
-                  message: "El Stock maximo es de 10000",
+                  message: "El Stock máximo es de 10.000.",
                 },
               })}
             />
