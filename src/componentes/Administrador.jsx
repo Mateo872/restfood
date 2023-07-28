@@ -4,10 +4,12 @@ import ItemUsuario from "./ItemUsuario";
 import ItemPedidos from "./ItemPedidos";
 import { Link } from "react-router-dom";
 import {
+  actualizarPedidosUsuario,
   borrarPlatos,
   obtenerPlatos,
   obtenerUsuarios,
 } from "./ayudas/consultas";
+import ClipLoader from "react-spinners/ClipLoader";
 import Swal from "sweetalert2";
 
 const Administrador = () => {
@@ -17,6 +19,7 @@ const Administrador = () => {
   const [seleccionados, setSeleccionados] = useState([]);
   const [usuarios, setUsuarios] = useState([]);
   const [dataPedidos, setDataPedidos] = useState([]);
+  const [spinner, setSpinner] = useState(false);
 
   useEffect(() => {
     obtenerPlatos().then((res) => {
@@ -97,11 +100,53 @@ const Administrador = () => {
 
   const manejoBuscador = (e) => {
     setInput(e.target.value);
+    setSpinner(true);
+    setTimeout(() => {
+      setSpinner(false);
+    }, 400);
   };
 
   const platosFiltrados = platos.filter((producto) =>
     producto.nombre.toLowerCase().includes(input.toLowerCase())
   );
+
+  const eliminarPedidos = () => {
+    Swal.fire({
+      title: "¿Estás seguro de eliminar todos los pedidos?",
+      text: "Este paso no se puede revertir.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Borrar",
+      cancelButtonText: "Cancelar",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const pedidosActualizados = dataPedidos.filter(
+            (pedido) => pedido.estado !== "Realizado"
+          );
+
+          setDataPedidos(pedidosActualizados);
+
+          for (const usuario of usuarios) {
+            await actualizarPedidosUsuario(usuario._id, []);
+          }
+
+          Swal.fire(
+            "Pedidos eliminados con éxito!",
+            "Los pedidos fueron eliminados.",
+            "success"
+          );
+        } catch (error) {
+          console.log(error);
+          Swal.fire(
+            "Se produjo un error",
+            "Intente realizar esta operación más tarde.",
+            "error"
+          );
+        }
+      }
+    });
+  };
 
   return (
     <div className="fondo">
@@ -161,10 +206,14 @@ const Administrador = () => {
                 platosFiltrados.length < 3 && platosFiltrados.length !== 0
                   ? "center"
                   : "space-between",
-              height: platosFiltrados.length < 6 && "auto",
+              height: platosFiltrados.length < 6 ? "auto" : spinner && "4rem",
             }}
           >
-            {platosFiltrados.length > 0 ? (
+            {spinner ? (
+              <div className="d-flex justify-content-center w-100">
+                <ClipLoader color="#ffffff" loading={spinner} size={35} />
+              </div>
+            ) : platosFiltrados.length > 0 ? (
               platosFiltrados.map((plato) => (
                 <ItemProducto
                   key={plato._id}
@@ -206,7 +255,18 @@ const Administrador = () => {
         </article>
         {dataPedidos.length > 0 && (
           <article className="botones my-5">
-            <h2 className="admin_titulo mb-3">Pedidos</h2>
+            <div className="d-flex justify-content-between align-items-center mb-3">
+              <h2 className="admin_titulo mb-0">Pedidos</h2>
+              {dataPedidos.filter((pedido) => pedido.estado === "Realizado")
+                .length > 0 && (
+                <button
+                  className="boton_admin boton_eliminar-todos"
+                  onClick={eliminarPedidos}
+                >
+                  Eliminar todos
+                </button>
+              )}
+            </div>
             <div className="tabla_contenedor">
               <table className="tabla">
                 <thead>
