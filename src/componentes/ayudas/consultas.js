@@ -324,36 +324,12 @@ export const borrarPlato = async (id) => {
   }
 };
 
-/*export const borrarPlatos = async (ids) => {
+export const borrarPlatos = async (ids) => {
   try {
     const respuestas = await Promise.all(
       ids.map((id) =>
         fetch(`${URL_PLATO}/${id}`, {
           method: "DELETE",
-        })
-      )
-    );
-    return respuestas;
-  } catch (error) {
-    console.log(error);
-  }
-};*/
-
-//borrar varios platos modificada
-export const borrarPlatos = async (ids) => {
-  try {
-    const requestBody = {
-      ids: ids,
-    };
-
-    const respuestas = await Promise.all(
-      ids.map((id) =>
-        fetch(`${URL_PLATO}/borrarVarios`, {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(requestBody),
         })
       )
     );
