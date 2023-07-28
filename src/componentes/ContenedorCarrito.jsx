@@ -43,6 +43,7 @@ const ContenedorCarrito = () => {
   if (usuarioID) {
     totalCarrito =
       usuarioID.rol === "usuario" &&
+      usuarioID.carrito.length > 0 &&
       usuarioID?.carrito?.reduce(
         (total, producto) =>
           total + producto.precio * producto.cantidad + producto.costoEnvio,
@@ -55,6 +56,7 @@ const ContenedorCarrito = () => {
   if (usuarioID) {
     costoEnvio =
       usuarioID.rol === "usuario" &&
+      usuarioID.carrito.length > 0 &&
       usuarioID?.carrito?.reduce(
         (total, producto) => total + producto.costoEnvio,
         0
