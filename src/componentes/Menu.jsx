@@ -5,6 +5,7 @@ import { obtenerPlatos, obtenerUsuario } from "./ayudas/consultas";
 import Paginacion from "./Paginacion";
 import { BsSliders } from "react-icons/bs";
 import ContenedorFiltros from "./ContenedorFiltros";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Menu = () => {
   const [busqueda, setBusqueda] = useState("");
@@ -15,6 +16,7 @@ const Menu = () => {
   const [precioMaximo, setPrecioMaximo] = useState(0);
   const [titulo, setTitulo] = useState("Todos los productos");
   const [textoVacio, setTextoVacio] = useState("No hay productos disponibles");
+  const [spinner, setSpinner] = useState(false);
   const [filtros, setFiltros] = useState({
     categorias: [],
     precio: [],
@@ -59,6 +61,10 @@ const Menu = () => {
 
   const manejoBuscador = (e) => {
     setBusqueda(e.target.value);
+    setSpinner(true);
+    setTimeout(() => {
+      setSpinner(false);
+    }, 400);
     setPaginaActual(1);
   };
 
@@ -205,7 +211,14 @@ const Menu = () => {
                     : "space-between",
               }}
             >
-              {productosFiltrados.length > 0 ? (
+              {spinner ? (
+                <div
+                  className="d-flex justify-content-center"
+                  style={{ paddingBottom: "8rem" }}
+                >
+                  <ClipLoader color="#ffffff" loading={spinner} size={35} />
+                </div>
+              ) : productosFiltrados.length > 0 ? (
                 <TarjetaProducto
                   platosFiltrados={productosFiltrados}
                   productosPaginaActual={productosPaginaActual}
@@ -215,17 +228,19 @@ const Menu = () => {
                 <p className="text-center py-4">{textoVacio}</p>
               )}
             </div>
-            <div
-              className={`${
-                productosFiltrados.length > 0 ? "d-flex" : "d-none"
-              } justify-content-center align-items-center pb-5`}
-            >
-              <Paginacion
-                totalPaginas={totalPaginas}
-                paginaActual={paginaActual}
-                setPaginaActual={setPaginaActual}
-              />
-            </div>
+            {!spinner && (
+              <div
+                className={`${
+                  productosFiltrados.length > 0 ? "d-flex" : "d-none"
+                } justify-content-center align-items-center pb-5`}
+              >
+                <Paginacion
+                  totalPaginas={totalPaginas}
+                  paginaActual={paginaActual}
+                  setPaginaActual={setPaginaActual}
+                />
+              </div>
+            )}
             <ContenedorFiltros
               mostrarFiltro={mostrarFiltro}
               setMostrarFiltro={setMostrarFiltro}

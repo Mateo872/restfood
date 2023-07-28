@@ -2333,6 +2333,7 @@ textarea {
   }
 
   .contenedorProductos {
+    margin-top: 3rem;
     height: 30rem;
     overflow: auto;
   }
