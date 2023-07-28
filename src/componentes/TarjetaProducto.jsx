@@ -13,18 +13,18 @@ const TarjetaProducto = ({
   const [usuarioID, setUsuarioID] = useState(null);
 
   useEffect(() => {
-    if (usuario && usuario.id) {
-      obtenerUsuario(usuario.id).then((res) => {
+    if (usuario && usuario._id) {
+      obtenerUsuario(usuario._id).then((res) => {
         setUsuarioID(res);
       });
     }
-  }, []);
+  }, [usuario]);
 
   return (
     <>
       {platosFiltrados
         ? productosPaginaActual.map((producto) => (
-            <Card key={producto.id} className="card-body my-3 mt-5 mb-5">
+            <Card key={producto._id} className="card-body my-3 mt-5 mb-5">
               <Card.Img
                 variant="top"
                 src={producto.imagen}
@@ -35,7 +35,7 @@ const TarjetaProducto = ({
                 <div
                   className={`contenedor_favoritos ${
                     usuarioID &&
-                    usuarioID.favoritos.find((fav) => fav === producto.id)
+                    usuarioID?.favoritos?.find((fav) => fav === producto._id)
                       ? "d-flex"
                       : "d-none"
                   } justify-content-center align-items-center position-absolute`}
@@ -49,19 +49,19 @@ const TarjetaProducto = ({
                   Stock:{" "}
                   <span className="fw-light producto_stock">
                     {" "}
-                    {producto.stock}
+                    {producto.stock || 0}
                   </span>
                 </Card.Text>
                 <div
                   className={`d-flex mt-5 ${
-                    productoSinStock.find((prod) => prod.id === producto.id)
+                    productoSinStock.find((prod) => prod._id === producto._id)
                       ? "justify-content-center"
                       : "justify-content-between"
                   } align-items-center`}
                 >
                   <Card.Text
                     className={`${
-                      productoSinStock.find((prod) => prod.id === producto.id)
+                      productoSinStock.find((prod) => prod._id === producto._id)
                         ? "d-none"
                         : "d-block"
                     } fs-5 my-5`}
@@ -71,15 +71,17 @@ const TarjetaProducto = ({
                   </Card.Text>
                   <Link
                     className={`${
-                      productoSinStock.find((prod) => prod.id === producto.id)
+                      productoSinStock.find((prod) => prod._id === producto._id)
                         ? "d-none"
                         : "d-block"
                     }`}
-                    to={`/producto/detalle/${producto.id}`}
+                    to={`/producto/detalle/${producto._id}`}
                   >
                     <BsPlusCircleFill fontSize={40} color="#fff" />
                   </Link>
-                  {productoSinStock.find((prod) => prod.id === producto.id) && (
+                  {productoSinStock.find(
+                    (prod) => prod._id === producto._id
+                  ) && (
                     <p
                       className="text-danger mb-0"
                       style={{ marginTop: "3rem" }}

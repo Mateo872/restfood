@@ -12,8 +12,8 @@ const CarritoItem = ({ producto }) => {
   const usuario = JSON.parse(sessionStorage.getItem("usuario")) || null;
 
   useEffect(() => {
-    if (usuario && usuario.id) {
-      obtenerUsuario(usuario.id).then((res) => {
+    if (usuario && usuario._id) {
+      obtenerUsuario(usuario._id).then((res) => {
         setUsuarioID(res);
       });
     }
@@ -30,7 +30,7 @@ const CarritoItem = ({ producto }) => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         const carritoActualizado = usuarioID?.carrito.filter(
-          (prod) => prod.id !== producto.id || prod.precio !== producto.precio
+          (prod) => prod._id !== producto._id || prod.precio !== producto.precio
         );
 
         Swal.fire(
@@ -38,7 +38,7 @@ const CarritoItem = ({ producto }) => {
           "El producto se eliminó correctamente",
           "success"
         ).then(async () => {
-          await actualizarStockProducto(producto.id, producto.cantidad);
+          await actualizarStockProducto(producto._id, producto.cantidad);
 
           const usuarioActualizado = {
             ...usuarioID,
@@ -46,7 +46,7 @@ const CarritoItem = ({ producto }) => {
           };
 
           setUsuarioID(usuarioActualizado);
-          await editarUsuario(usuarioActualizado, usuarioID.id);
+          await editarUsuario(usuarioActualizado, usuarioID._id);
         });
       }
     });

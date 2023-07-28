@@ -22,17 +22,19 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
         setUsuarioID(res);
       });
     }
-  }, [usuarioID]);
+  }, [usuario]);
 
   useEffect(() => {
     if (usuarioID) {
-      const cantidadTotalProductos = usuarioID?.carrito?.reduce(
-        (total, producto) => total + producto.cantidad,
-        0
-      );
+      const cantidadTotalProductos =
+        usuarioID.rol === "usuario" &&
+        usuarioID.carrito?.reduce(
+          (total, producto) => total + producto.cantidad,
+          0
+        );
       setBadge(cantidadTotalProductos);
     }
-  }, [usuarioID]);
+  }, [usuario]);
 
   const salir = () => {
     Swal.fire({

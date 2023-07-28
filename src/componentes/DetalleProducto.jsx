@@ -42,7 +42,7 @@ const DetalleProducto = () => {
           setMostrarSpinner(true);
           setTimeout(() => {
             setPlato(respuesta);
-            setStockOriginal(respuesta.stock);
+            setStockOriginal(respuesta.stock || 0);
             setMostrarSpinner(false);
           }, 500);
         } else {
@@ -62,12 +62,12 @@ const DetalleProducto = () => {
   }, [id]);
 
   useEffect(() => {
-    if (usuario && usuario.id) {
-      obtenerUsuario(usuario.id).then((res) => {
+    if (usuario && usuario._id) {
+      obtenerUsuario(usuario._id).then((res) => {
         setUsuarioID(res);
       });
     }
-  }, [usuarioID, id, usuario]);
+  }, [id, usuario]);
 
   const manejoSesion = async () => {
     if (usuarioID?.rol !== "administrador") {
@@ -89,15 +89,15 @@ const DetalleProducto = () => {
   };
 
   const manejoFav = async () => {
-    const existe = usuario.favoritos.find((fav) => fav === plato.id);
+    const existe = usuario.favoritos.find((fav) => fav === plato._id);
     try {
       if (!existe) {
-        await agregarFavoritos(usuario.id, [plato.id]);
+        await agregarFavoritos(usuario._id, [plato._id]);
       } else {
         const nuevosFavoritos = usuario.favoritos.filter(
-          (fav) => fav !== plato.id
+          (fav) => fav !== plato._id
         );
-        await agregarFavoritos(usuario.id, nuevosFavoritos);
+        await agregarFavoritos(usuario._id, nuevosFavoritos);
       }
     } catch (error) {
       console.log(error);
@@ -125,7 +125,7 @@ const DetalleProducto = () => {
     try {
       const nuevoStock = stockOriginal - cantidad;
       if (nuevoStock >= 0) {
-        await editarPlato({ ...plato, stock: nuevoStock }, plato.id);
+        await editarPlato({ ...plato, stock: nuevoStock }, plato._id);
         setStockOriginal(nuevoStock);
       }
     } catch (error) {
@@ -149,14 +149,13 @@ const DetalleProducto = () => {
         if (cantidadSeleccionada > 0) {
           if (cantidadSeleccionada <= stockOriginal) {
             data = {
-              id: plato.id,
+              _id: plato._id,
               nombre: plato.nombre,
               precio: obtenerPrecioConTamanio(),
               cantidad: cantidadSeleccionada,
               costoEnvio,
               imagen: plato.imagen,
             };
-
             Swal.fire({
               title: "¿Querés agregar este producto al carrito?",
               text: "Si no querés, podés cancelar la acción",
@@ -171,7 +170,7 @@ const DetalleProducto = () => {
                 setPostal(false);
                 setCostoEnvio(0);
                 setFormEnviado(false);
-                agregarCarrito(usuario.id, plato.id, data);
+                agregarCarrito(usuarioID._id, plato._id, data);
                 reset();
               } else {
                 setTamanio("Chico");
@@ -237,7 +236,7 @@ const DetalleProducto = () => {
               {usuarioID && (
                 <div onClick={manejoFav}>
                   {usuarioID &&
-                  usuarioID.favoritos.find((fav) => fav === plato.id) ? (
+                  usuarioID.favoritos.find((fav) => fav === plato._id) ? (
                     <GoBookmarkFill className="bookmark position-absolute" />
                   ) : (
                     <GoBookmark className="bookmark position-absolute" />

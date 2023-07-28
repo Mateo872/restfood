@@ -43,15 +43,7 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
       setValue("contrasenia", usuarioID.contrasenia);
       setEditar(true);
     } else if (ubicacion.pathname === "/usuario/registrar" && usuarioID) {
-      Swal.fire("Error", "Cierre sesión para poder registrarse", "error").then(
-        (res) => {
-          if (res.isConfirmed) {
-            navegacion("/");
-          } else {
-            navegacion("/");
-          }
-        }
-      );
+      navegacion("/");
     }
   }, [usuarioID]);
 
@@ -89,10 +81,9 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
     } else {
       if (
         (ubicacion.pathname === "/usuario/iniciar" && !usuarioID) ||
-        editar === false
+        (usuarioID && editar === false)
       ) {
         iniciarSesion(usuarioRegistrado).then((respuesta) => {
-          setEditar(false);
           if (respuesta.status === 200) {
             if (respuesta.rol === "administrador") {
               Swal.fire(
@@ -130,18 +121,23 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
           }
         });
       } else {
-        if (ubicacion.pathname === "/usuario/registrar") {
-          const emailExiste = await verificarEmailExistente(
-            usuarioRegistrado.email
-          );
-          if (emailExiste) {
-            Swal.fire(
-              "Error",
-              "El correo electrónico ya está registrado.",
-              "error"
-            );
-            return;
-          }
+        if (
+          ubicacion.pathname === "/usuario/registrar" &&
+          usuarioID === null &&
+          !editar
+        ) {
+          //   const idExiste = await verificarEmailExistente(
+          //     usuarioRegistrado.email
+          //   );
+          //   if (idExiste) {
+          //     Swal.fire(
+          //       "Error",
+          //       "El correo electrónico ya está registrado.",
+          //       "error"
+          //     );
+          //     return;
+          //   }
+
           const nuevoUsuario = {
             imagen: usuarioRegistrado.imagen,
             nombre: usuarioRegistrado.nombre,

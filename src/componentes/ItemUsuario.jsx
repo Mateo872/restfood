@@ -7,23 +7,28 @@ import {
 import Swal from "sweetalert2";
 
 const ItemUsuario = ({ usuarios, setUsuarios }) => {
+  const admin = usuarios.filter((item) => item.rol === "administrador");
+  const usuarioNormal = usuarios.filter((item) => item.rol !== "administrador");
+
+  const usuariosOrdenados = [...admin, ...usuarioNormal];
+
   const manejoSuspenso = async (id) => {
-    const usuario = usuarios.find((item) => item.id === id);
+    const usuario = usuarios.find((item) => item._id === id);
     Swal.fire({
       title: `¿Estás seguro de ${
-        usuarios.find((usuario) => usuario.id === id).estado === "suspendido"
+        usuarios.find((usuario) => usuario._id === id).estado === "suspendido"
           ? "habilitar"
           : "suspender"
       } el usuario?`,
       text: `Se ${
-        usuarios.find((usuario) => usuario.id === id).estado === "suspendido"
+        usuarios.find((usuario) => usuario._id === id).estado === "suspendido"
           ? "habilitará"
           : "suspenderá"
       } el usuario '${usuario.nombre}'.`,
       icon: "warning",
       showCancelButton: true,
       confirmButtonText:
-        usuarios.find((usuario) => usuario.id === id).estado === "suspendido"
+        usuarios.find((usuario) => usuario._id === id).estado === "suspendido"
           ? "Habilitar"
           : "Suspender",
       cancelButtonText: "Cancelar",
@@ -31,7 +36,7 @@ const ItemUsuario = ({ usuarios, setUsuarios }) => {
       if (result.isConfirmed) {
         try {
           if (
-            usuarios.find((usuario) => usuario.id === id).estado ===
+            usuarios.find((usuario) => usuario._id === id).estado ===
             "suspendido"
           ) {
             Swal.fire(
@@ -63,13 +68,13 @@ const ItemUsuario = ({ usuarios, setUsuarios }) => {
 
   const manejoEliminarUsuario = (id) => {
     const admin =
-      usuarios.find((usuario) => usuario.id === id).rol === "administrador";
+      usuarios.find((usuario) => usuario._id === id).rol === "administrador";
 
     if (admin) {
       return;
     }
 
-    const usuario = usuarios.find((item) => item.id === id);
+    const usuario = usuarios.find((item) => item._id === id);
     Swal.fire({
       title: `¿Estás seguro de eliminar el usuario?`,
       text: `Se eliminará el usuario '${usuario.nombre}'.`,
@@ -104,8 +109,8 @@ const ItemUsuario = ({ usuarios, setUsuarios }) => {
 
   return (
     <tbody>
-      {usuarios.map((item) => (
-        <tr key={item.id}>
+      {usuariosOrdenados.map((item) => (
+        <tr key={item._id}>
           <td className="align-middle contenedor_imagen">
             <div
               className="imagen_tabla"
@@ -121,12 +126,12 @@ const ItemUsuario = ({ usuarios, setUsuarios }) => {
             {item.rol !== "administrador" ? (
               <div
                 className={`pausa_contenedor d-flex justify-content-center align-items-center ${
-                  usuarios.find((usuario) => usuario.id === item.id).estado ===
-                  "suspendido"
+                  usuarios.find((usuario) => usuario._id === item._id)
+                    .estado === "suspendido"
                     ? "suspendido"
                     : "suspender"
                 }`}
-                onClick={() => manejoSuspenso(item.id)}
+                onClick={() => manejoSuspenso(item._id)}
               >
                 <BsPause size={30} />
               </div>
@@ -142,7 +147,7 @@ const ItemUsuario = ({ usuarios, setUsuarios }) => {
                 item.rol === "administrador" && "usuario_admin"
               }`}
             >
-              <BsX size={30} onClick={() => manejoEliminarUsuario(item.id)} />
+              <BsX size={30} onClick={() => manejoEliminarUsuario(item._id)} />
             </div>
           </td>
         </tr>

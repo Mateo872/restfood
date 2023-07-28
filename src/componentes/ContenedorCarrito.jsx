@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import CarritoItem from "./CarritoItem";
 import ModalPago from "./ModalPago";
+import Error404 from "../componentes/Error404";
 import Swal from "sweetalert2";
 import {
   actualizarStockProducto,
@@ -10,7 +11,6 @@ import {
 import { Link } from "react-router-dom";
 import { GiShoppingBag } from "react-icons/gi";
 import ClipLoader from "react-spinners/ClipLoader";
-import { useNavigate } from "react-router-dom";
 
 const ContenedorCarrito = () => {
   const [mostrarModal, setMostrarModal] = useState(false);
@@ -18,11 +18,10 @@ const ContenedorCarrito = () => {
   const usuario = JSON.parse(sessionStorage.getItem("usuario")) || null;
   const [mostrarSpinner, setMostrarSpinner] = useState(true);
   const [mostrarCarrito, setMostrarCarrito] = useState(false);
-  const navegacion = useNavigate();
 
   useEffect(() => {
-    if (usuario && usuario.id) {
-      obtenerUsuario(usuario.id)
+    if (usuario && usuario._id) {
+      obtenerUsuario(usuario._id)
         .then((res) => {
           setUsuarioID(res);
         })
@@ -38,24 +37,28 @@ const ContenedorCarrito = () => {
         setMostrarCarrito(true);
       }, 300);
     }
-  }, [usuarioID]);
+  }, [usuario]);
 
   let totalCarrito = 0;
   if (usuarioID) {
-    totalCarrito = usuarioID?.carrito?.reduce(
-      (total, producto) =>
-        total + producto.precio * producto.cantidad + producto.costoEnvio,
-      0
-    );
+    totalCarrito =
+      usuarioID.rol === "usuario" &&
+      usuarioID?.carrito?.reduce(
+        (total, producto) =>
+          total + producto.precio * producto.cantidad + producto.costoEnvio,
+        0
+      );
   }
 
   let costoEnvio = 0;
 
   if (usuarioID) {
-    costoEnvio = usuarioID?.carrito?.reduce(
-      (total, producto) => total + producto.costoEnvio,
-      0
-    );
+    costoEnvio =
+      usuarioID.rol === "usuario" &&
+      usuarioID?.carrito?.reduce(
+        (total, producto) => total + producto.costoEnvio,
+        0
+      );
   }
 
   const vaciarCarrito = () => {
@@ -71,7 +74,7 @@ const ContenedorCarrito = () => {
         const carritoActualizado = usuarioID?.carrito || [];
 
         carritoActualizado.forEach(async (producto) => {
-          await actualizarStockProducto(producto.id, producto.cantidad);
+          await actualizarStockProducto(producto._id, producto.cantidad);
         });
         const usuarioActualizado = {
           ...usuarioID,
@@ -84,7 +87,7 @@ const ContenedorCarrito = () => {
           "success"
         ).then(async (result) => {
           if (result.isConfirmed) {
-            await editarUsuario(usuarioActualizado, usuarioID.id);
+            await editarUsuario(usuarioActualizado, usuarioID._id);
             setUsuarioID(usuarioActualizado);
           }
         });
@@ -100,7 +103,7 @@ const ContenedorCarrito = () => {
         }`}
       >
         {mostrarCarrito ? (
-          usuarioID?.carrito ? (
+          usuario?.carrito && usuario?.rol === "usuario" ? (
             <>
               {usuarioID && usuarioID?.carrito?.length > 0 && (
                 <h1 className="titulo_carrito">Carrito</h1>
@@ -182,9 +185,9 @@ const ContenedorCarrito = () => {
               )}
             </>
           ) : usuarioID?.rol === "administrador" ? (
-            navegacion("/")
+            <Error404 />
           ) : (
-            navegacion("/usuario/iniciar")
+            <Error404 />
           )
         ) : (
           <ClipLoader />

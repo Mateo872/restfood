@@ -20,8 +20,8 @@ const ModalPago = ({ setMostrarModal, totalCarrito, costoEnvio }) => {
   } = useForm();
 
   useEffect(() => {
-    if (usuario && usuario.id) {
-      obtenerUsuario(usuario.id).then((res) => {
+    if (usuario && usuario._id) {
+      obtenerUsuario(usuario._id).then((res) => {
         setUsuarioID(res);
       });
     }
@@ -72,7 +72,7 @@ const ModalPago = ({ setMostrarModal, totalCarrito, costoEnvio }) => {
       cerrarModal();
       setPago(!pago);
       spinner();
-      agregarPedidos(usuario.id, {
+      agregarPedidos(usuario._id, {
         ...datos,
         total: totalCarrito,
         nombresProductos: usuarioID.carrito.map((prod) => prod.nombre),
