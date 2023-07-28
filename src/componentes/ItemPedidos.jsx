@@ -11,8 +11,8 @@ const ItemPedidos = ({ usuarios, dataPedidos, setDataPedidos }) => {
   }, [usuarios]);
 
   const manejoPedido = (id) => {
-    const pedido = dataPedidos.find((item) => item._id === id);
-    const pedidoIndex = dataPedidos.findIndex((item) => item._id === id);
+    const pedido = dataPedidos.find((item) => item.id === id);
+    const pedidoIndex = dataPedidos.findIndex((item) => item.id === id);
 
     Swal.fire({
       title: `¿Estás seguro de realizar el pedido?`,
@@ -32,6 +32,7 @@ const ItemPedidos = ({ usuarios, dataPedidos, setDataPedidos }) => {
           dataPedidosActualizado[pedidoIndex].estado = "Realizado";
 
           setDataPedidos(dataPedidosActualizado);
+
           const usuarioEmail = pedido.email;
           const usuarioEncontrado = usuariosDB.find(
             (usuario) => usuario.email === usuarioEmail
@@ -74,14 +75,14 @@ const ItemPedidos = ({ usuarios, dataPedidos, setDataPedidos }) => {
       if (result.isConfirmed) {
         try {
           const pedidoAEliminar = dataPedidos.find(
-            (pedido) => pedido._id === idPedido
+            (pedido) => pedido.id === idPedido
           );
           if (!pedidoAEliminar) {
             throw new Error("Pedido no encontrado.");
           }
 
           const pedidosActualizados = dataPedidos.filter(
-            (pedido) => pedido._id !== idPedido
+            (pedido) => pedido.id !== idPedido
           );
           setDataPedidos(pedidosActualizados);
 
@@ -132,13 +133,13 @@ const ItemPedidos = ({ usuarios, dataPedidos, setDataPedidos }) => {
             {pedido.estado === "Pendiente" ? (
               <div
                 className="pendiente_contenedor d-flex justify-content-center align-items-center"
-                onClick={() => manejoPedido(pedido._id)}
+                onClick={() => manejoPedido(pedido.id)}
               >
                 <BsClockHistory size={20} />
               </div>
             ) : (
               <div className="check_contenedor d-flex justify-content-center align-items-center">
-                <BsCheck size={20} onClick={() => eliminarPedido(pedido._id)} />
+                <BsCheck size={20} onClick={() => eliminarPedido(pedido.id)} />
               </div>
             )}
           </td>
