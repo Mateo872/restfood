@@ -87,7 +87,7 @@ const CrearEditarProducto = () => {
           if(respuesta.status === 400){
             Swal.fire(
               "Error",
-              `El plato ya existe, Introduzca un producto diferente.`,
+              `El plato ya existe, Introduzca un plato diferente.`,
               "error"
             );
           }else {
