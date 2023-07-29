@@ -1,7 +1,12 @@
 import Form from "react-bootstrap/Form";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router";
-import { crearPlato, editarPlato, obtenerPlato, obtenerPlatos } from "./ayudas/consultas";
+import {
+  crearPlato,
+  editarPlato,
+  obtenerPlato,
+  obtenerPlatos,
+} from "./ayudas/consultas";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 const CrearEditarProducto = () => {
@@ -27,8 +32,8 @@ const CrearEditarProducto = () => {
         setValue("stock", respuesta.stock);
         setValue("categoria", respuesta.categoria);
       });
-      obtenerPlatos().then((respuesta)=>{
-        setPlatos(respuesta)
+      obtenerPlatos().then((respuesta) => {
+        setPlatos(respuesta);
       });
     }
   }, []);
@@ -52,18 +57,18 @@ const CrearEditarProducto = () => {
             }
           });
         } else {
-          if(nombreExiste){
+          if (nombreExiste) {
             Swal.fire(
               "Error",
               `El plato ya existe, Introduzca un nombre diferente.`,
               "error"
             );
-          }else {
-             Swal.fire(
-            "Error",
-            `Intente realizar esta operación más tarde.`,
-            "error"
-          );
+          } else {
+            Swal.fire(
+              "Error",
+              `Intente realizar esta operación más tarde.`,
+              "error"
+            );
           }
         }
       });
@@ -84,18 +89,18 @@ const CrearEditarProducto = () => {
           });
           reset();
         } else {
-          if(respuesta.status === 400){
+          if (respuesta.status === 400) {
             Swal.fire(
               "Error",
               `El plato ya existe, Introduzca un plato diferente.`,
               "error"
             );
-          }else {
-             Swal.fire(
-            "Error",
-            `Intente realizar esta operación más tarde.`,
-            "error"
-          );
+          } else {
+            Swal.fire(
+              "Error",
+              `Intente realizar esta operación más tarde.`,
+              "error"
+            );
           }
         }
       });
