@@ -18,7 +18,7 @@ const Nosotros = () => {
     {
       nombre: "Mario",
       github: "https://github.com/Mario-Chavez",
-      edad: 25,
+      edad: 35,
       imagen: "https://i.postimg.cc/65Fw1SDW/mario.jpg",
     },
     {
@@ -30,14 +30,14 @@ const Nosotros = () => {
     {
       nombre: "Tadeo",
       github: "https://github.com/teoMunoz99",
-      edad: 23,
+      edad: 24,
       imagen:
         "https://i.postimg.cc/wvT5kP00/45eb0dac-2704-42bb-8d43-d46b831f9bba.jpg",
     },
     {
       nombre: "Juan",
       github: "https://github.com/juantoranzos",
-      edad: 22,
+      edad: 20,
       imagen: "https://i.postimg.cc/tTtfsL7k/juan.jpg",
     },
   ];

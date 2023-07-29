@@ -12,6 +12,7 @@ export const iniciarSesion = async (usuario) => {
     });
 
     const datos = await respuesta.json();
+
     return {
       status: respuesta.status,
       mensaje: datos.mensaje,
@@ -20,7 +21,7 @@ export const iniciarSesion = async (usuario) => {
       imagen: datos.imagen,
       estado: datos.estado,
       rol: datos.rol,
-      pedido: datos.pedido,
+      pedidos: datos.pedidos,
       carrito: datos.carrito,
       favoritos: datos.favoritos,
       estado: datos.estado,
