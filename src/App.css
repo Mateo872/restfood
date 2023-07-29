@@ -487,7 +487,7 @@ footer h3 {
 /* Menu  */
 .menu-contenedor {
   width: 100%;
-  background-image: url("./src/complementos/imagenes/img-menu-background.png");
+  background-image: url(/src/complementos/imagenes/img-menu-background.png);
   background-size: cover;
   background-position: 50% 50%;
   position: relative;
@@ -1985,15 +1985,6 @@ td .usuario_activo:hover {
   height: 1rem;
   background-color: rgb(0, 0, 0);
   z-index: -1;
-}
-
-.menu-contenedor {
-  width: 100%;
-  background-image: url("./src/complementos/imagenes/img-menu-background.png");
-  background-size: cover;
-  background-position: 50% 50%;
-  position: relative;
-  padding-top: 5rem;
 }
 
 .menu-contenedor-body {

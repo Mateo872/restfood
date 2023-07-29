@@ -233,7 +233,7 @@ const DetalleProducto = () => {
                   backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${plato.imagen})`,
                 }}
               ></div>
-              {usuarioID && (
+              {usuarioID && usuarioID.rol !== "administrador" && (
                 <div onClick={manejoFav}>
                   {usuarioID &&
                   usuarioID.favoritos.length > 0 &&
