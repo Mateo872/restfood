@@ -40,7 +40,7 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
       setValue("nombre", usuarioID.nombre);
       setValue("email", usuarioID.email);
       setValue("imagen", usuarioID.imagen);
-      setValue("contrasenia");
+      setValue("contrasenia", usuarioID.contrasenia);
       setEditar(true);
     } else if (ubicacion.pathname === "/usuario/registrar" && usuarioID) {
       navegacion("/");
