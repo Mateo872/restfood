@@ -2,10 +2,6 @@ import React from "react";
 import { useState } from "react";
 import CardNosotros from "./CardNosotros";
 import { useEffect } from "react";
-import mario from "../complementos/imagenes/mario.jpeg";
-import aixa from "../complementos/imagenes/aixa.jpeg";
-import juan from "../complementos/imagenes/juan.jpeg";
-import { Link } from "react-router-dom";
 
 const Nosotros = () => {
   const [tarjeta, setTarjeta] = useState(false);
@@ -23,25 +19,26 @@ const Nosotros = () => {
       nombre: "Mario",
       github: "https://github.com/Mario-Chavez",
       edad: 25,
-      imagen: mario,
+      imagen: "https://i.postimg.cc/65Fw1SDW/mario.jpg",
     },
     {
       nombre: "Aixa",
       github: "https://github.com/AixaFilsinger",
       edad: 22,
-      imagen: aixa,
+      imagen: "https://i.postimg.cc/Bnnq4BYR/aixa.jpg",
     },
     {
       nombre: "Tadeo",
       github: "https://github.com/teoMunoz99",
       edad: 23,
-      imagen: juan,
+      imagen:
+        "https://i.postimg.cc/wvT5kP00/45eb0dac-2704-42bb-8d43-d46b831f9bba.jpg",
     },
     {
       nombre: "Juan",
       github: "https://github.com/juantoranzos",
       edad: 22,
-      imagen: juan,
+      imagen: "https://i.postimg.cc/tTtfsL7k/juan.jpg",
     },
   ];
 
