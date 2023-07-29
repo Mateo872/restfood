@@ -42,10 +42,7 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
       setValue("imagen", usuarioID.imagen);
       setValue("contrasenia");
       setEditar(true);
-    } else if (
-      ubicacion.pathname === "/usuario/registrar" &&
-      usuarioLogueado.rol !== "administrador"
-    ) {
+    } else if (ubicacion.pathname === "/usuario/registrar" && usuarioID) {
       navegacion("/");
     }
   }, [usuarioID]);
@@ -134,18 +131,6 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
           usuarioID === null &&
           !editar
         ) {
-          //   const idExiste = await verificarEmailExistente(
-          //     usuarioRegistrado.email
-          //   );
-          //   if (idExiste) {
-          //     Swal.fire(
-          //       "Error",
-          //       "El correo electrónico ya está registrado.",
-          //       "error"
-          //     );
-          //     return;
-          //   }
-
           const nuevoUsuario = {
             imagen: usuarioRegistrado.imagen,
             nombre: usuarioRegistrado.nombre,
@@ -177,6 +162,13 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
                 }
               });
               reset();
+            } else if (respuesta.status === 400) {
+              Swal.fire(
+                "Error",
+                "El correo electrónico ya está registrado.",
+                "error"
+              );
+              return;
             } else {
               Swal.fire(
                 "Error",
