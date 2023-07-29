@@ -7,7 +7,6 @@ import {
   iniciarSesion,
   obtenerUsuario,
   registro,
-  verificarEmailExistente,
 } from "./ayudas/consultas";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
@@ -58,18 +57,13 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
         email: getValues("email"),
         imagen: getValues("imagen"),
         nombre: getValues("nombre"),
+        contrasenia: getValues("contrasenia"),
         rol: usuarioID.rol,
         carrito: usuarioID.carrito,
         pedidos: usuarioID.pedidos,
         favoritos: usuarioID.favoritos,
         estado: usuarioID.estado,
       };
-      // const nuevaContrasenia = getValues("contrasenia");
-      // if (nuevaContrasenia && nuevaContrasenia !== "") {
-      //   usuarioActualizado.contrasenia = nuevaContrasenia;
-      // }
-
-      // await editarUsuario(usuarioActualizado, usuarioID._id);
 
       Swal.fire(
         "Usuario actualizado",
