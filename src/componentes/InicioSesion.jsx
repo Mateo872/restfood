@@ -40,7 +40,7 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
       setValue("nombre", usuarioID.nombre);
       setValue("email", usuarioID.email);
       setValue("imagen", usuarioID.imagen);
-      setValue("contrasenia", usuarioID.contrasenia);
+      setValue("contrasenia");
       setEditar(true);
     } else if (ubicacion.pathname === "/usuario/registrar" && usuarioID) {
       navegacion("/");
@@ -56,7 +56,6 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
       setEditar(true);
       const usuarioActualizado = {
         email: getValues("email"),
-        contrasenia: getValues("contrasenia"),
         imagen: getValues("imagen"),
         nombre: getValues("nombre"),
         rol: usuarioID.rol,
@@ -65,6 +64,12 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
         favoritos: usuarioID.favoritos,
         estado: usuarioID.estado,
       };
+      const nuevaContrasenia = getValues("contrasenia");
+      if (nuevaContrasenia && nuevaContrasenia !== "") {
+        usuarioActualizado.contrasenia = nuevaContrasenia;
+      }
+
+      await editarUsuario(usuarioActualizado, usuarioID._id);
 
       Swal.fire(
         "Usuario actualizado",
@@ -126,18 +131,6 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
           usuarioID === null &&
           !editar
         ) {
-          //   const idExiste = await verificarEmailExistente(
-          //     usuarioRegistrado.email
-          //   );
-          //   if (idExiste) {
-          //     Swal.fire(
-          //       "Error",
-          //       "El correo electrónico ya está registrado.",
-          //       "error"
-          //     );
-          //     return;
-          //   }
-
           const nuevoUsuario = {
             imagen: usuarioRegistrado.imagen,
             nombre: usuarioRegistrado.nombre,
@@ -169,6 +162,13 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
                 }
               });
               reset();
+            } else if (respuesta.status === 400) {
+              Swal.fire(
+                "Error",
+                "El correo electrónico ya está registrado.",
+                "error"
+              );
+              return;
             } else {
               Swal.fire(
                 "Error",
