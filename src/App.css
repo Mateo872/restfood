@@ -434,13 +434,13 @@ footer h3 {
   border-radius: 1rem;
 }
 
-.MuiPagination-ul li button,
-.MuiPagination-ul li div {
+div nav .MuiPagination-ul li button,
+div nav .MuiPagination-ul li div {
   color: #ddd;
   background-color: var(--color-secundario);
 }
 
-.MuiButtonBase-root.MuiPaginationItem-root.MuiPaginationItem-sizeSmall.MuiPaginationItem-text.MuiPaginationItem-circular.MuiPaginationItem-page.css-1ba2zw7-MuiButtonBase-root-MuiPaginationItem-root:hover {
+li ul nav .MuiButtonBase-root.MuiPaginationItem-root.MuiPaginationItem-sizeSmall.MuiPaginationItem-text.MuiPaginationItem-circular.MuiPaginationItem-page.css-1ba2zw7-MuiButtonBase-root-MuiPaginationItem-root:hover {
   background-color: var(--color-primario);
   color: var(--color-secundario);
 }
