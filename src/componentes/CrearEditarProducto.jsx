@@ -115,11 +115,11 @@ const CrearEditarProducto = () => {
       </h2>
       <Form onSubmit={handleSubmit(onSubmit)} className="formCrearEditar pb-5">
         <Form.Group className="mb-3" controlId="input_imgPro">
-          <label className="text-white mb-1">Imagen</label>
+          <label className="text-white mb-1"> URL de Imagen</label>
           <div className="text-center">
             <input
               type="text"
-              placeholder="Imagen del Producto"
+              placeholder="Ej: https://img.freepi/-flor-morada_181624-25863.jpg"
               className="input_CrearEditarpd"
               {...register("imagen", {
                 required: "La imágen es obligatoria",
