@@ -42,7 +42,10 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
       setValue("imagen", usuarioID.imagen);
       setValue("contrasenia");
       setEditar(true);
-    } else if (ubicacion.pathname === "/usuario/registrar" && usuarioID) {
+    } else if (
+      ubicacion.pathname === "/usuario/registrar" &&
+      usuarioLogueado.rol !== "administrador"
+    ) {
       navegacion("/");
     }
   }, [usuarioID]);
