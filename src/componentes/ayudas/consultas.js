@@ -52,7 +52,7 @@ export const registro = async (usuario) => {
       imagen: datos.imagen,
       estado: datos.estado,
       rol: datos.rol,
-      pedido: datos.pedido,
+      pedidos: datos.pedidos,
       carrito: datos.carrito,
       favoritos: datos.favoritos,
       _id: datos._id,

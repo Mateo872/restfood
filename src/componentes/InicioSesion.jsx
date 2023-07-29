@@ -6,6 +6,7 @@ import {
   editarUsuario,
   iniciarSesion,
   obtenerUsuario,
+  obtenerUsuarios,
   registro,
 } from "./ayudas/consultas";
 import Swal from "sweetalert2";
@@ -146,42 +147,44 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
             favoritos: [],
             estado: "activo",
           };
-          registro(nuevoUsuario).then((respuesta) => {
-            if (respuesta.status === 201) {
-              Swal.fire(
-                "Usuario creado",
-                `El usuario ${nuevoUsuario.nombre} fue creado con éxito!`,
-                "success"
-              ).then((res) => {
-                if (res.isConfirmed) {
-                  Swal.fire(
-                    "Iniciar sesión",
-                    `Inicie sesión para continuar`,
-                    "info"
-                  ).then((res) => {
-                    if (res.isConfirmed) {
-                      navegacion("/usuario/iniciar");
-                    }
-                  });
-                }
-              });
-              reset();
-            } else if (respuesta.status === 400) {
-              Swal.fire(
-                "Error",
-                "El correo electrónico ya está registrado.",
-                "error"
-              );
-              return;
-            } else {
-              Swal.fire(
-                "Error",
-                `Intente realizar esta operación más tarde.`,
-                "error"
-              );
-            }
-          });
-          reset();
+          const usuarios = await obtenerUsuarios();
+
+          const emailExiste = usuarios.some(
+            (usuario) => usuario.email === nuevoUsuario.email
+          );
+
+          if (emailExiste) {
+            Swal.fire(
+              "Error",
+              "El correo electrónico ya está registrado.",
+              "error"
+            );
+          } else {
+            registro(nuevoUsuario).then((respuesta) => {
+              if (respuesta.status === 201) {
+                Swal.fire(
+                  "Usuario creado",
+                  `El usuario ${nuevoUsuario.nombre} fue creado con éxito!`,
+                  "success"
+                ).then((res) => {
+                  if (res.isConfirmed) {
+                    Swal.fire(
+                      "Iniciar sesión",
+                      `Inicie sesión para continuar`,
+                      "info"
+                    ).then((res) => {
+                      if (res.isConfirmed) {
+                        navegacion("/usuario/iniciar");
+                      }
+                    });
+                  }
+                });
+                reset();
+              } else {
+                Swal.fire("Error", "No se pudo crear el usuario", "error");
+              }
+            });
+          }
         }
       }
     }
