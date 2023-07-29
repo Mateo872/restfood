@@ -327,7 +327,7 @@ const DetalleProducto = () => {
                     <input
                       type="text"
                       className="input_postal"
-                      placeholder="Tu código postal"
+                      placeholder="A2919"
                       disabled={
                         mostrarSpinnerPostal ||
                         !usuarioID ||
