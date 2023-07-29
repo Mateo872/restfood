@@ -286,13 +286,13 @@ footer button:hover {
 HEAD .contenedor-quienes-somos {
   margin-top: -3rem;
   margin-bottom: -3rem;
-  background-color: #fff;
+  background-color: var(--color-secundario);
 }
 
 .contenedor-quienes-somos {
   margin-top: -3rem;
   margin-bottom: -3.75rem;
-  background-color: #fff;
+  background-color: var(--color-secundario);
   position: relative;
   padding: 0%;
 }
@@ -422,7 +422,7 @@ footer h3 {
   transform: translateY(30%);
   transform: translateX(-50%);
   object-fit: cover;
-  background-color: #fff;
+  background-color: var(--color-secundario);
   border-radius: 50%;
 
 }
@@ -437,37 +437,37 @@ footer h3 {
 div nav .MuiPagination-ul li button,
 div nav .MuiPagination-ul li div {
   color: #ddd;
-  background-color: var(--color-secundario);
+  background-color: #fff;
 }
 
 li ul nav .MuiButtonBase-root.MuiPaginationItem-root.MuiPaginationItem-sizeSmall.MuiPaginationItem-text.MuiPaginationItem-circular.MuiPaginationItem-page.css-1ba2zw7-MuiButtonBase-root-MuiPaginationItem-root:hover {
-  background-color: var(--color-primario);
-  color: var(--color-secundario);
+  background-color: #c7a17a;
+  color: #fff;
 }
 
 .MuiPagination-root .css-1ba2zw7-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
-  background-color: var(--color-primario);
-  color: var(--color-secundario);
+  background-color: #c7a17a;
+  color: #fff;
 }
 
 .MuiButtonBase-root.MuiPaginationItem-root.MuiPaginationItem-sizeSmall.MuiPaginationItem-text.MuiPaginationItem-circular.MuiPaginationItem-previousNext.css-1ba2zw7-MuiButtonBase-root-MuiPaginationItem-root {
-  background-color: var(--color-secundario);
+  background-color: #fff;
 }
 
 .MuiButtonBase-root.MuiPaginationItem-root.MuiPaginationItem-sizeSmall.MuiPaginationItem-text.MuiPaginationItem-circular.MuiPaginationItem-previousNext.css-1ba2zw7-MuiButtonBase-root-MuiPaginationItem-root:hover {
-  background-color: var(--color-primario);
-  color: var(--color-secundario);
+  background-color: #c7a17a;
+  color: #fff;
 }
 
 .MuiPagination-root .css-1ba2zw7-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected:hover {
-  background-color: var(--color-primario);
-  color: var(--color-secundario);
+  background-color: #c7a17a;
+  color: #fff;
 }
 
 
 .MuiPagination-root .css-1ba2zw7-MuiButtonBase-root-MuiPaginationItem-root:hover {
-  background-color: var(--color-secundario);
-  color: var(--color-terciario);
+  background-color: #fff;
+  color: #1e1e1e;
 }
 
 .imagen-contenedor-swal {
@@ -587,7 +587,7 @@ li ul nav .MuiButtonBase-root.MuiPaginationItem-root.MuiPaginationItem-sizeSmall
 .modal_pago form {
   width: 80%;
   margin: 0 auto;
-  color: #fff;
+  color: var(--color-secundario);
   font-size: 0.6rem;
 }
 
@@ -691,7 +691,7 @@ form h6 {
 .modal_cierre {
   top: 0.5rem;
   right: 0.8rem;
-  color: #fff;
+  color: var(--color-secundario);
   font-size: 0.7rem;
 }
 
@@ -1793,7 +1793,7 @@ td .usuario_activo:hover {
   }
 
   .contenedor_slider::-webkit-scrollbar-thumb {
-    background: #c7a17a;
+    background: var(--color-primario);
     border-radius: 2rem;
   }
 
@@ -2344,7 +2344,7 @@ textarea {
   }
 
   .contenedorProductos::-webkit-scrollbar-thumb {
-    background: #c7a17a;
+    background: var(--color-primario);
     border-radius: 1rem;
   }
 
