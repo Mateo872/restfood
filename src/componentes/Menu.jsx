@@ -202,11 +202,13 @@ const Menu = () => {
             }`}
           >
             <div
-              className="row gap-5 "
+              className="row gap-5 contenedor_menu"
               style={{
                 justifyContent:
-                  productosFiltrados.length < 3 ||
-                  productosPaginaActual.length < 3
+                  window.innerWidth < 500
+                    ? "center"
+                    : productosFiltrados.length < 3 ||
+                      productosPaginaActual.length < 3
                     ? "center"
                     : "space-between",
               }}
