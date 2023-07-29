@@ -2327,7 +2327,8 @@ textarea {
   .contenedorProductos {
     margin-top: 3rem;
     height: 30rem;
-    overflow: auto;
+    overflow-y: scroll;
+    overflow-x: hidden;
   }
 
   .contenedorProductos::-webkit-scrollbar {
