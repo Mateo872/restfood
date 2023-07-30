@@ -18,9 +18,9 @@ Además, cuenta con un sistema de administrador protegido con usuario y contrase
 -   Registra nuevos usuarios y visualiza la lista de usuarios y pedidos pendientes.
 -   Administra los pedidos, marcándolos como entregados o eliminándolos cuando sea necesario.
 
-## Características Tecnicas
+## Características Tecnologicas utilizadas
 
--   **React.js** es una biblioteca de JavaScript de código abierto que se utiliza para construir interfaces de usuario interactivas y dinámicas. En RestFood, React se utiliza para crear la interfaz de usuario y gestionar los componentes reactivos que permiten a los usuarios interactuar con la aplicación de forma rápida y eficiente.
+-   React.js es una biblioteca de JavaScript de código abierto que se utiliza para construir interfaces de usuario interactivas y dinámicas. En RestFood, React se utiliza para crear la interfaz de usuario y gestionar los componentes reactivos que permiten a los usuarios interactuar con la aplicación de forma rápida y eficiente.
 -   React Hook Form. Permite manejar fácilmente la validación y el seguimiento de los datos ingresados por el usuario en los formularios.
 -   React.js para construir la interfaz de usuario interactiva.
 -   React Bootstrap es una biblioteca de componentes que combina el poder de Bootstrap con las capacidades de React. Proporciona un conjunto de componentes preestilizados y listos para usar, lo que facilita la creación de interfaces de usuario consistentes y atractivas.
@@ -38,19 +38,24 @@ Asegúrate de tener instalado lo siguiente en tu sistema:
 
 Sigue estos pasos para configurar el proyecto en tu entorno local:
 
-1. Clona el repositorio desde GitHub: `git clone https://github.com/Mario-Chavez/app-cook-reactjs.git`
-2. Navega al directorio del proyecto: `cd app-cook-reactjs`
+1. Clona el repositorio desde GitHub: `git clone https://github.com/Mateo872/restfood.git`
+2. Navega al directorio del proyecto: `cd restfood`
 3. Instala las dependencias del proyecto: `npm install`
 
-## Uso
+## Contribución
 
-1. Inicializa el servidor JSON: `json-server --watch db.json --port 3004`
-2. Inicia la Aplicacion : `npm start`
-3. Abre tu navegador web y visita `http://127.0.0.1:5173/` para ver la aplicación en funcionamiento.
+¡Gracias por considerar contribuir a RestFood! Si deseas colaborar con el proyecto, sigue estos pasos:
+
+1. Haz un fork del repositorio.
+2. Crea una nueva rama para tus cambios: `git checkout -b feature/nueva-funcionalidad`.
+3. Realiza tus modificaciones y guarda los cambios.
+4. Realiza un commit con un mensaje descriptivo: `git commit -m "Agregar nueva funcionalidad"`.
+5. Envía tus cambios al repositorio remoto: `git push origin feature/nueva-funcionalidad`.
+6. Abre una solicitud de extracción en GitHub y describe tus cambios detalladamente.
 
 ## Desarrolladores 🖥️
 
--   [Ana Rocha ](https://github.com/anasoledad)
+-   [Mateo Bellini ](https://github.com/anasoledad)
 -   [Tadeo Muñoz ](https://github.com/teoMunoz99)
 -   [Mario Chavez ](https://github.com/Mario-Chavez)
 
