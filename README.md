@@ -1,8 +1,6 @@
 <p align="center">
-  <img src="https://res.cloudinary.com/mach/image/upload/v1687295125/Captura_de_pantalla_2023-06-15_160009_d7pxwu.png" alt="Captura de pantalla">
+  <img src="https://res.cloudinary.com/mach/image/upload/v1690740259/logoRestFood_po52of.png" alt="Captura de pantalla">
 </p>
-
-# RestFood 🧑‍🍳
 
 RestFood es una aplicación de menú de restaurante que te permite explorar y comprar una amplia variedad de platos y bebidas para disfrutar de deliciosos productos desde la comodidad de tu hogar. La aplicación cuenta con un buscador por nombre y categoría, filtros de precio y categoría, un carrito de compra, y métodos de pago con tarjeta para una experiencia de compra fluida.
 
