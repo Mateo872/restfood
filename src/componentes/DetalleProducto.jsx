@@ -67,7 +67,7 @@ const DetalleProducto = () => {
         setUsuarioID(res);
       });
     }
-  }, [id, usuario]);
+  }, [id, usuarioID]);
 
   const manejoSesion = async () => {
     if (usuarioID?.rol !== "administrador") {
@@ -230,7 +230,7 @@ const DetalleProducto = () => {
               <div
                 className="contenedor_imagen-detalle"
                 style={{
-                  backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${plato.imagen})`,
+                  backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${plato.imagen})`,
                 }}
               ></div>
               {usuarioID && usuarioID.rol !== "administrador" && (

@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Footer = () => {
   const {
@@ -14,6 +15,17 @@ const Footer = () => {
 
   const envio = (data) => {
     setEnviandoEmail(true);
+    setTimeout(() => {
+      setEnviandoEmail(false);
+      Swal.fire({
+        icon: "success",
+        title: "Estamos procesando tu solicitud",
+        text: "Gracias por suscribirte a nuestro boletín",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      reset();
+    }, 2000);
   };
 
   return (
