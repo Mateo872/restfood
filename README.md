@@ -53,10 +53,12 @@ Sigue estos pasos para configurar el proyecto en tu entorno local:
 
 ## Desarrolladores 🖥️
 
--   [Mateo Bellini ](https://github.com/anasoledad)
+-   [Aixa Filsinger](https://github.com/AixaFilsinger)
+-   [Mateo Bellini ](https://github.com/Mateo872)
 -   [Tadeo Muñoz ](https://github.com/teoMunoz99)
 -   [Mario Chavez ](https://github.com/Mario-Chavez)
+-   [Juan Toranzo ](https://github.com/juantoranzos)
 
 ## ¡Visita nuestro sitio Aqui!
 
-[Noticias](https://noticias-con-react.netlify.app/)
+[RestFood](https://restfood-gamma.vercel.app/)
