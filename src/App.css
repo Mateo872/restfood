@@ -1487,6 +1487,10 @@ td .usuario_activo:hover {
     list-style: none;
   }
 
+  .container-fluid {
+    margin-top: 2rem;
+  }
+
   main .contenedor_platos {
     height: 41.05rem;
   }
