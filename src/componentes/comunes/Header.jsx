@@ -107,7 +107,7 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
         }`}
       >
         <h6 className="mb-0 text-center d-flex align-items-center gap-4 justify-content-center">
-          <span className="slider">ENVÍOS GRATIS</span>
+          <span className="slider">ENVÍOS LAS 24H</span>
         </h6>
       </div>
       <nav
