@@ -24,7 +24,7 @@ const Nosotros = () => {
     {
       nombre: "Aixa",
       github: "https://github.com/AixaFilsinger",
-      edad: 22,
+      edad: 24,
       imagen: "https://i.postimg.cc/Bnnq4BYR/aixa.jpg",
     },
     {
@@ -93,6 +93,11 @@ const Nosotros = () => {
           </div>
           <h4
             className={`titulo_abrir position-absolute ${tarjeta && "d-none"}`}
+            style={{ cursor: "pointer" }}
+            onClick={(e) => {
+              e.stopPropagation();
+              setTarjeta(!tarjeta);
+            }}
           >
             ABRIR
           </h4>
