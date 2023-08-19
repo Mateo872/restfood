@@ -6,7 +6,7 @@ import Footer from "./componentes/comunes/Footer";
 import Inicio from "./componentes/Inicio";
 import DetalleProducto from "./componentes/DetalleProducto";
 import InicioSesion from "./componentes/InicioSesion";
-import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import RutasProtegidas from "./componentes/rutas/RutasProtegidas";
 import RutasAdministrador from "./componentes/rutas/RutasAdministrador";
 import ContenedorCarrito from "./componentes/ContenedorCarrito";
@@ -19,7 +19,7 @@ function App() {
     JSON.parse(sessionStorage.getItem("usuario")) || {};
   const [usuarioLogueado, setUsuarioLogeado] = useState(usuarioSessionStorage);
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Header
         usuarioLogueado={usuarioLogueado}
         setUsuarioLogeado={setUsuarioLogeado}
@@ -68,7 +68,7 @@ function App() {
         <Route path="*" element={<Error404 />} />
       </Routes>
       <Footer />
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 export default App;
