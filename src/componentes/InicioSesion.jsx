@@ -218,7 +218,17 @@ const InicioSesion = () => {
       {!editar && (
         <h1
           className="text-center text-white"
-          style={{ fontFamily: "Reenie Beanie, cursive" }}
+          style={{
+            fontFamily: "Reenie Beanie, cursive",
+            marginTop:
+              window.innerWidth > 1400 &&
+              location.pathname === "/usuario/registrar"
+                ? "5rem"
+                : window.innerWidth > 1400 &&
+                  location.pathname === "/usuario/iniciar"
+                ? "10rem"
+                : "",
+          }}
         >
           {ubicacion.pathname === "/usuario/iniciar" && !editar
             ? "Inicio"

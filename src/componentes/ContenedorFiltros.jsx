@@ -424,17 +424,14 @@ const ContenedorFiltros = ({
               </div>
             </div>
           </div>
-          <div className="botones_filtro d-flex gap-2">
-            <button
-              className="boton_secundario w-100"
-              onClick={resetearFiltros}
-            >
-              Borrar todo
-            </button>
-            <button className="boton_primario w-100" onClick={aplicarFiltros}>
-              Aplicar
-            </button>
-          </div>
+        </div>
+        <div className="botones_filtro d-flex gap-2">
+          <button className="boton_secundario w-100" onClick={resetearFiltros}>
+            Borrar todo
+          </button>
+          <button className="boton_primario w-100" onClick={aplicarFiltros}>
+            Aplicar
+          </button>
         </div>
       </div>
     </div>

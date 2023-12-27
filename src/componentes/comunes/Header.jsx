@@ -56,7 +56,7 @@ const Header = () => {
           },
         }).then(() => {
           sessionStorage.removeItem("usuario");
-          // setUsuarioLogeado({});
+          window.location.reload();
           navegacion("/");
         });
       }
@@ -153,15 +153,6 @@ const Header = () => {
               >
                 Productos
               </a>
-            </li>
-            <li
-              className={`${
-                ubicacion.pathname === "/restfood/nosotros" && "d-none"
-              }`}
-            >
-              <Link to={"/restfood/nosotros"} className="menu_link">
-                Nosotros
-              </Link>
             </li>
             <li>
               <a href="#footer" className="menu_link">

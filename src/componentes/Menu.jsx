@@ -25,7 +25,7 @@ const Menu = () => {
     favoritos: [],
     descuento: [],
   });
-  const productosPorPagina = 6;
+  const productosPorPagina = window.innerWidth >= 1400 ? 8 : 6;
   const productosState = useSelector((state) => state.productos.productos);
   const usuariosState = useSelector((state) => state.usuarios.usuario);
 
