@@ -155,7 +155,7 @@ header nav .menu_link:hover::after {
 main .contenedor_platos {
   width: 100%;
   height: 20rem;
-  background-image: url("./complementos/imagenes/imagenHero.png");
+  background-image: url("./complementos/imagenes/imagenHero.webp");
   background-size: cover;
   background-attachment: fixed;
   background-position: 50% 50%;
@@ -487,7 +487,7 @@ li ul nav .MuiButtonBase-root.MuiPaginationItem-root.MuiPaginationItem-sizeSmall
 /* Menu  */
 .menu-contenedor {
   width: 100%;
-  background-image: url(/src/complementos/imagenes/img-menu-background.png);
+  background-image: url("./src/complementos/imagenes/img-menu-background.webp");
   background-size: cover;
   background-position: 50% 50%;
   position: relative;
@@ -2233,7 +2233,7 @@ td .usuario_activo:hover {
 .contenedor_EditarCrear {
   min-height: 100vh;
   width: 100%;
-  background-image: url("./complementos/imagenes/fondoEditarCrear.png");
+  background-image: url("./complementos/imagenes/fondoEditarCrear.webp");
   background-size: cover;
   background-position: 50% 50%;
   position: relative;
@@ -2246,7 +2246,7 @@ div:where(.swal2-icon).swal2-question.swal2-icon-show {
 }
 
 .contenedor_IniciarRegistro {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, .7)), url("./complementos/imagenes/366291.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, .7)), url("./complementos/imagenes/366291.webp");
   background-size: cover;
   background-position: 50% 50%;
   padding: 6rem 0;
@@ -2302,7 +2302,7 @@ textarea {
 
 @media all and (min-width: 320px) {
   .fondo {
-    background-image: url("./complementos/imagenes/mujerComiendo.jpg");
+    background-image: url("./complementos/imagenes/mujerComiendo.webp");
     background-size: cover;
     background-position: center;
     padding-bottom: 6rem;

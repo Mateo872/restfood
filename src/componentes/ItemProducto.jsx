@@ -64,6 +64,7 @@ const ItemProducto = ({
     <Card className="card_producto text-center">
       <Card.Img
         variant="top"
+        loading="lazy"
         className="cardImg"
         src={platos.imagen ? platos.imagen : "https://placehold.co/200x200"}
         alt={platos.nombre}

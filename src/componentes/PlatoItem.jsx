@@ -27,6 +27,7 @@ const PlatoItem = ({ platosFiltrados }) => {
             <div className="buscador plato_imagen">
               <img
                 className="buscador w-100 h-100"
+                loading="lazy"
                 src={plato.imagen}
                 alt={plato.nombre}
               />

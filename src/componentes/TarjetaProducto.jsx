@@ -17,6 +17,7 @@ const TarjetaProducto = ({
             <Card key={producto._id} className="card-body my-3 mt-5 mb-5">
               <Card.Img
                 variant="top"
+                loading="lazy"
                 src={producto.imagen}
                 className="img-tarjeta-producto"
                 style={{ border: "6px solid #c7a17a" }}
