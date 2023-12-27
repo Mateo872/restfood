@@ -16,13 +16,14 @@ Además, cuenta con un sistema de administrador protegido con usuario y contrase
 -   Registra nuevos usuarios y visualiza la lista de usuarios y pedidos pendientes.
 -   Administra los pedidos, marcándolos como entregados o eliminándolos cuando sea necesario.
 
-## Características Tecnologicas utilizadas
+## Tecnologías utilizadas
 
 -   React.js es una biblioteca de JavaScript de código abierto que se utiliza para construir interfaces de usuario interactivas y dinámicas. En RestFood, React se utiliza para crear la interfaz de usuario y gestionar los componentes reactivos que permiten a los usuarios interactuar con la aplicación de forma rápida y eficiente.
 -   React Hook Form. Permite manejar fácilmente la validación y el seguimiento de los datos ingresados por el usuario en los formularios.
 -   React.js para construir la interfaz de usuario interactiva.
 -   React Bootstrap es una biblioteca de componentes que combina el poder de Bootstrap con las capacidades de React. Proporciona un conjunto de componentes preestilizados y listos para usar, lo que facilita la creación de interfaces de usuario consistentes y atractivas.
 -   SweetAlert2 es una biblioteca de alertas personalizadas para mejorar la interacción con el usuario. Permite mostrar alertas, confirmaciones y mensajes de éxito de una manera más elegante y amigable que las alertas estándar del navegador.
+-   Redux y Redux Toolkit: Para el manejo del estado global en la aplicación, simplificando el desarrollo del store y la gestión de acciones y reducers.
 -   Estilos propios de CSS para el diseño y la presentación visual.
 
 ## Requisitos previos
@@ -53,12 +54,9 @@ Sigue estos pasos para configurar el proyecto en tu entorno local:
 
 ## Desarrolladores 🖥️
 
--   [Aixa Filsinger](https://github.com/AixaFilsinger)
 -   [Mateo Bellini ](https://github.com/Mateo872)
--   [Tadeo Muñoz ](https://github.com/teoMunoz99)
 -   [Mario Chavez ](https://github.com/Mario-Chavez)
--   [Juan Toranzo ](https://github.com/juantoranzos)
 
-## ¡Visita nuestro sitio Aqui!
+## ¡Visitá nuestro sitio aquí!
 
 [RestFood](https://restfood-gamma.vercel.app/)
