@@ -1,41 +1,32 @@
 import { useEffect, useRef, useState } from "react";
 import { BiMenu } from "react-icons/bi";
-import { BsHandbag, BsX, BsFillPencilFill } from "react-icons/bs";
+import { BsHandbag, BsX } from "react-icons/bs";
 import { Link, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { obtenerUsuario } from "../ayudas/consultas";
+import { useDispatch, useSelector } from "react-redux";
+import { agregarUsuario } from "../../features/usuarios/usuarioSlice";
 
-const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
-  const navegacion = useNavigate();
+const Header = () => {
   const menuCapaRef = useRef(null);
   const menuRef = useRef(null);
-  const ubicacion = useLocation();
   const [scroll, setScroll] = useState(false);
-  const [badge, setBadge] = useState(0);
-  const usuario = JSON.parse(sessionStorage.getItem("usuario")) || null;
-  const [usuarioID, setUsuarioID] = useState(null);
+  const usuarioState = useSelector((state) => state.usuarios.usuario);
+  const cargaState = useSelector((state) => state.carga.carga);
+  const usuarioLS = JSON.parse(sessionStorage.getItem("usuario")) || null;
+  const badge = usuarioState?.carrito?.length;
+  const ubicacion = useLocation();
+  const navegacion = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (usuario && usuario._id) {
-      obtenerUsuario(usuario._id).then((res) => {
-        setUsuarioID(res);
+    if (usuarioLS) {
+      obtenerUsuario(usuarioLS._id).then((res) => {
+        dispatch(agregarUsuario(res));
       });
     }
-  }, [usuario]);
-
-  useEffect(() => {
-    if (usuarioID) {
-      const cantidadTotalProductos =
-        usuarioID.rol === "usuario" &&
-        usuarioID.carrito.length > 0 &&
-        usuarioID.carrito?.reduce(
-          (total, producto) => total + producto.cantidad,
-          0
-        );
-      setBadge(cantidadTotalProductos);
-    }
-  }, [usuario]);
+  }, [cargaState]);
 
   const salir = () => {
     Swal.fire({
@@ -44,9 +35,9 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
         <a href="/usuario/iniciar" class="contenedor_editar position-absolute d-flex justify-content-center align-items-center">
           <i class="bi bi-pencil"></i>
         </a>
-        <img class="w-100 h-100" src="${usuarioID?.imagen}" alt="${usuarioID?.nombre}" />
+        <img class="w-100 h-100" src="${usuarioState?.imagen}" alt="${usuarioState?.nombre}" />
         </div>
-        <h2 class="titulo-dialogo mt-3">${usuarioID?.nombre}</h2>
+        <h2 class="titulo-dialogo mt-3">${usuarioState?.nombre}</h2>
         <p class="texto-dialogo mb-0">¿Deseas cerrar sesión?</p>
       `,
       showCancelButton: true,
@@ -65,7 +56,7 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
           },
         }).then(() => {
           sessionStorage.removeItem("usuario");
-          setUsuarioLogeado({});
+          // setUsuarioLogeado({});
           navegacion("/");
         });
       }
@@ -177,9 +168,9 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
                 Contacto
               </a>
             </li>
-            {usuarioLogueado.email ? (
+            {usuarioState.email ? (
               <>
-                {usuarioLogueado.rol === "administrador" ? (
+                {usuarioState.rol === "administrador" ? (
                   <li className="d-flex d-md-none flex-column justify-content-end align-items-center gap-1 usuario_log">
                     <Link
                       to={"/administrador"}
@@ -199,7 +190,7 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
                           color: "#fff",
                         }}
                       >
-                        {usuarioID?.nombre}
+                        {usuarioState?.nombre}
                       </p>
                       <div
                         style={{
@@ -212,8 +203,8 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
                       >
                         <img
                           className="w-100 h-100"
-                          src={usuarioID?.imagen}
-                          alt={usuarioID?.nombre}
+                          src={usuarioState?.imagen}
+                          alt={usuarioState?.nombre}
                           style={{
                             objectFit: "cover",
                             backgroundPosition: "center",
@@ -230,8 +221,8 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
                       className="menu_link link_admin p-0 position-relative order-1"
                     >
                       <BsHandbag />
-                      {usuarioID?.rol === "usuario" &&
-                      usuarioID?.carrito.length > 0 ? (
+                      {usuarioState?.rol === "usuario" &&
+                      usuarioState?.carrito.length > 0 ? (
                         <div className="contenedor_badge d-flex justify-content-center align-items-center position-absolute">
                           <span>{badge}</span>
                         </div>
@@ -251,7 +242,7 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
                           color: "#fff",
                         }}
                       >
-                        {usuarioID?.nombre}
+                        {usuarioState?.nombre}
                       </p>
                       <div
                         style={{
@@ -264,8 +255,8 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
                       >
                         <img
                           className="w-100 h-100"
-                          src={usuarioID?.imagen}
-                          alt={usuarioID?.nombre}
+                          src={usuarioState?.imagen}
+                          alt={usuarioState?.nombre}
                           style={{
                             objectFit: "cover",
                             backgroundPosition: "center",
@@ -295,9 +286,9 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
           </ul>
         </div>
         <BiMenu onClick={menuVisible} className="d-md-none" />
-        {usuarioLogueado.email ? (
+        {usuarioState.email ? (
           <>
-            {usuarioLogueado.rol === "administrador" ? (
+            {usuarioState.rol === "administrador" ? (
               <li className="d-none d-md-flex justify-content-end align-items-center gap-1 usuario_log">
                 <Link
                   to={"/administrador"}
@@ -317,7 +308,7 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
                       color: "#fff",
                     }}
                   >
-                    | {usuarioID?.nombre}
+                    | {usuarioState?.nombre}
                   </p>
                   <div
                     style={{
@@ -329,8 +320,8 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
                   >
                     <img
                       className="w-100 h-100"
-                      src={usuarioID?.imagen}
-                      alt={usuarioID?.nombre}
+                      src={usuarioState?.imagen}
+                      alt={usuarioState?.nombre}
                       style={{
                         objectFit: "cover",
                         backgroundPosition: "center",
@@ -346,8 +337,8 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
                   className="carrito_item position-relative"
                 >
                   <BsHandbag />
-                  {usuarioID?.rol === "usuario" &&
-                    usuarioID?.carrito.length > 0 && (
+                  {usuarioState?.rol === "usuario" &&
+                    usuarioState?.carrito.length > 0 && (
                       <div className="contenedor_badge d-flex justify-content-center align-items-center position-absolute">
                         <span>{badge}</span>
                       </div>
@@ -365,7 +356,7 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
                       color: "#fff",
                     }}
                   >
-                    | {usuarioID?.nombre}
+                    | {usuarioState?.nombre}
                   </p>
                   <div
                     style={{
@@ -377,8 +368,8 @@ const Header = ({ usuarioLogueado, setUsuarioLogeado }) => {
                   >
                     <img
                       className="w-100 h-100"
-                      src={usuarioID?.imagen}
-                      alt={usuarioID?.nombre}
+                      src={usuarioState?.imagen}
+                      alt={usuarioState?.nombre}
                       style={{
                         objectFit: "cover",
                         backgroundPosition: "center",

@@ -2,21 +2,17 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { GoBookmark, GoBookmarkFill } from "react-icons/go";
 import { BsTruck } from "react-icons/bs";
-import {
-  agregarCarrito,
-  agregarFavoritos,
-  editarPlato,
-  obtenerPlato,
-  obtenerUsuario,
-} from "./ayudas/consultas";
+import { editarPlato, editarUsuario } from "./ayudas/consultas";
 import { useForm } from "react-hook-form";
 import ClipLoader from "react-spinners/ClipLoader";
 import Error404 from "./Error404";
 import Swal from "sweetalert2";
+import { useDispatch, useSelector } from "react-redux";
+import { editarUsuario as editarUsuarioState } from "../features/usuarios/usuarioSlice";
+import { editarProducto } from "../features/productos/productosSlice";
 
 const DetalleProducto = () => {
   const { id } = useParams();
-  const [plato, setPlato] = useState(null);
   const [postal, setPostal] = useState(false);
   const [mostrarSpinner, setMostrarSpinner] = useState(false);
   const [mostrarSpinnerPostal, setMostrarSpinnerPostal] = useState(false);
@@ -24,9 +20,11 @@ const DetalleProducto = () => {
   const [error, setError] = useState(false);
   const [formEnviado, setFormEnviado] = useState(null);
   const [costoEnvio, setCostoEnvio] = useState(0);
-  const [usuarioID, setUsuarioID] = useState(null);
-  const usuario = JSON.parse(sessionStorage.getItem("usuario")) || null;
   const [stockOriginal, setStockOriginal] = useState(0);
+  const usuarioState = useSelector((state) => state.usuarios.usuario);
+  const productosState = useSelector((state) => state.productos.productos);
+  const plato = productosState.filter((prod) => prod._id === id);
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -36,41 +34,22 @@ const DetalleProducto = () => {
   } = useForm();
 
   useEffect(() => {
-    obtenerPlato(id)
-      .then((respuesta) => {
-        if (respuesta.mensaje !== "Error al buscar el plato") {
-          setMostrarSpinner(true);
-          setTimeout(() => {
-            setPlato(respuesta);
-            setStockOriginal(respuesta.stock || 0);
-            setMostrarSpinner(false);
-          }, 500);
-        } else {
-          setMostrarSpinner(false);
-          setTimeout(() => {
-            setError(true);
-          }, 500);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
+    if (plato) {
+      setMostrarSpinner(true);
+      setTimeout(() => {
+        setStockOriginal(plato[0]?.stock || 0);
         setMostrarSpinner(false);
-        setTimeout(() => {
-          setError(true);
-        }, 500);
-      });
-  }, [id]);
-
-  useEffect(() => {
-    if (usuario && usuario._id) {
-      obtenerUsuario(usuario._id).then((res) => {
-        setUsuarioID(res);
-      });
+      }, 500);
+    } else {
+      setMostrarSpinner(false);
+      setTimeout(() => {
+        setError(true);
+      }, 500);
     }
-  }, [id, usuarioID]);
+  }, [productosState]);
 
   const manejoSesion = async () => {
-    if (usuarioID?.rol !== "administrador") {
+    if (usuarioState?.rol !== "administrador") {
       await Swal.fire({
         title: "Inicia sesión para agregar productos al carrito",
         icon: "warning",
@@ -88,16 +67,35 @@ const DetalleProducto = () => {
     return;
   };
 
-  const manejoFav = async () => {
-    const existe = usuario.favoritos?.find((fav) => fav === plato._id);
+  const manejoFav = () => {
+    const existe = usuarioState?.favoritos?.includes(id);
     try {
       if (!existe) {
-        await agregarFavoritos(usuario._id, [plato._id]);
-      } else {
-        const nuevosFavoritos = usuario.favoritos.filter(
-          (fav) => fav !== plato._id
+        const usuarioEditado = {
+          ...usuarioState,
+          favoritos: [...usuarioState?.favoritos, id],
+        };
+        editarUsuario(usuarioEditado, usuarioState._id);
+        dispatch(
+          editarUsuarioState({
+            ...usuarioEditado,
+          })
         );
-        await agregarFavoritos(usuario._id, nuevosFavoritos);
+      } else {
+        const favoritos = usuarioState?.favoritos?.filter(
+          (fav) => fav !== plato[0]?._id
+        );
+        const usuarioEditado = {
+          ...usuarioState,
+          favoritos,
+        };
+        editarUsuario(usuarioEditado, usuarioState._id);
+        dispatch(
+          editarUsuarioState({
+            ...usuarioState,
+            favoritos,
+          })
+        );
       }
     } catch (error) {
       console.log(error);
@@ -110,7 +108,7 @@ const DetalleProducto = () => {
   };
 
   const obtenerPrecioConTamanio = () => {
-    let precioInicial = plato.precio;
+    let precioInicial = plato[0]?.precio;
 
     if (tamanio === "Mediano") {
       return Math.ceil(precioInicial * 1.2);
@@ -121,11 +119,12 @@ const DetalleProducto = () => {
     return precioInicial;
   };
 
-  const actualizarStock = async (cantidad) => {
+  const actualizarStock = (cantidad) => {
     try {
       const nuevoStock = stockOriginal - cantidad;
       if (nuevoStock >= 0) {
-        await editarPlato({ ...plato, stock: nuevoStock }, plato._id);
+        editarPlato({ ...plato, stock: nuevoStock }, plato[0]?._id);
+        dispatch(editarProducto({ ...plato, stock: nuevoStock }));
         setStockOriginal(nuevoStock);
       }
     } catch (error) {
@@ -149,12 +148,12 @@ const DetalleProducto = () => {
         if (cantidadSeleccionada > 0) {
           if (cantidadSeleccionada <= stockOriginal) {
             data = {
-              _id: plato._id,
-              nombre: plato.nombre,
+              _id: plato[0]?._id,
+              nombre: plato[0]?.nombre,
               precio: obtenerPrecioConTamanio(),
               cantidad: cantidadSeleccionada,
               costoEnvio,
-              imagen: plato.imagen,
+              imagen: plato[0]?.imagen,
             };
             Swal.fire({
               title: "¿Querés agregar este producto al carrito?",
@@ -170,7 +169,17 @@ const DetalleProducto = () => {
                 setPostal(false);
                 setCostoEnvio(0);
                 setFormEnviado(false);
-                agregarCarrito(usuarioID._id, plato._id, data);
+                const usuarioEditado = {
+                  ...usuarioState,
+                  carrito: [...usuarioState?.carrito, data],
+                };
+                editarUsuario(usuarioEditado, usuarioState._id);
+                dispatch(
+                  editarUsuarioState({
+                    ...usuarioState,
+                    carrito: [...usuarioState?.carrito, data],
+                  })
+                );
                 reset();
               } else {
                 setTamanio("Chico");
@@ -212,15 +221,15 @@ const DetalleProducto = () => {
           >
             <ClipLoader size={45} />
           </div>
-        ) : plato ? (
+        ) : plato.length > 0 ? (
           <>
             <div className="d-flex gap-1 paginacion">
               <Link to={"/"}>INICIO /</Link>
               <span className="paginacion_detalle">
-                {plato.categoria?.toUpperCase()} /
+                {plato[0]?.categoria?.toUpperCase()} /
               </span>
               <span className="paginacion_detalle-color">
-                {plato.nombre?.toUpperCase()}
+                {plato[0]?.nombre?.toUpperCase()}
               </span>
             </div>
             <p className="stock mb-0">
@@ -230,30 +239,33 @@ const DetalleProducto = () => {
               <div
                 className="contenedor_imagen-detalle"
                 style={{
-                  backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${plato.imagen})`,
+                  backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${plato[0]?.imagen})`,
                 }}
               ></div>
-              {usuarioID && usuarioID.rol !== "administrador" && (
-                <div onClick={manejoFav}>
-                  {usuarioID &&
-                  usuarioID.favoritos.length > 0 &&
-                  usuarioID.favoritos?.find((fav) => fav === plato._id) ? (
-                    <GoBookmarkFill className="bookmark position-absolute" />
-                  ) : (
-                    <GoBookmark className="bookmark position-absolute" />
-                  )}
-                </div>
-              )}
+              {usuarioState?.nombre?.length > 0 &&
+                usuarioState?.rol !== "administrador" && (
+                  <div onClick={manejoFav}>
+                    {usuarioState?.nombre?.length > 0 &&
+                    usuarioState?.favoritos?.length > 0 &&
+                    usuarioState?.favoritos?.includes(id) ? (
+                      <GoBookmarkFill className="bookmark position-absolute" />
+                    ) : (
+                      <GoBookmark className="bookmark position-absolute" />
+                    )}
+                  </div>
+                )}
               <form
                 onSubmit={handleSubmit(manejoEnvio)}
                 className="contenedor_caracteristicas-detalle d-flex flex-column justify-content-lg-between"
               >
-                <h2 className="titulo_producto-detalle mt-0">{plato.nombre}</h2>
+                <h2 className="titulo_producto-detalle mt-0">
+                  {plato[0]?.nombre}
+                </h2>
                 <h2 className="titulo_precio-detalle mt-0">
                   ${obtenerPrecioConTamanio()}
                 </h2>
                 <p className="descripcion_detalle mb-0" title="">
-                  {plato.descripcion}
+                  {plato[0]?.descripcion}
                 </p>
                 <h4 className="titulo_tamaño">Tamaño</h4>
                 <div className="d-flex flex-column flex-md-row gap-2 align-items-center">
@@ -290,14 +302,14 @@ const DetalleProducto = () => {
                   placeholder="0"
                   disabled={
                     mostrarSpinnerPostal ||
-                    !usuarioID ||
-                    usuarioID?.rol === "administrador"
+                    !usuarioState ||
+                    usuarioState?.rol === "administrador"
                   }
                   style={{
                     opacity:
                       mostrarSpinnerPostal ||
-                      !usuarioID ||
-                      (usuarioID?.rol === "administrador" && ".2"),
+                      !usuarioState ||
+                      (usuarioState?.rol === "administrador" && ".2"),
                   }}
                   {...register("cantidad", {
                     required: "La cantidad es obligatoria",
@@ -311,8 +323,8 @@ const DetalleProducto = () => {
                     },
                   })}
                 />
-                {!usuarioID ||
-                  (usuarioID?.rol !== "administrador" && (
+                {!usuarioState ||
+                  (usuarioState?.rol !== "administrador" && (
                     <div className="text-danger w-75">
                       {errors.cantidad?.message}
                     </div>
@@ -330,14 +342,14 @@ const DetalleProducto = () => {
                       placeholder="A2919"
                       disabled={
                         mostrarSpinnerPostal ||
-                        !usuarioID ||
-                        usuarioID?.rol === "administrador"
+                        !usuarioState ||
+                        usuarioState?.rol === "administrador"
                       }
                       style={{
                         opacity:
                           mostrarSpinnerPostal ||
-                          !usuarioID ||
-                          (usuarioID?.rol === "administrador" && ".2"),
+                          !usuarioState ||
+                          (usuarioState?.rol === "administrador" && ".2"),
                       }}
                       {...register("codigoPostal", {
                         required: "El código postal es obligatorio",
@@ -354,11 +366,11 @@ const DetalleProducto = () => {
                       </div>
                     ) : (
                       <button
-                        type={!usuarioID ? "button" : "submit"}
+                        type={!usuarioState ? "button" : "submit"}
                         className="boton_calcular"
                         onClick={
-                          !usuarioID?.carrito ||
-                          usuarioID?.rol === "administrador"
+                          !usuarioState?.carrito ||
+                          usuarioState?.rol === "administrador"
                             ? manejoSesion
                             : null
                         }
@@ -372,8 +384,8 @@ const DetalleProducto = () => {
                     Tu envío es de ${costoEnvio}
                   </div>
                 )}
-                {!usuarioID ||
-                  (usuarioID?.rol !== "administrador" && (
+                {!usuarioState ||
+                  (usuarioState?.rol !== "administrador" && (
                     <div className="text-danger w-75">
                       {errors.codigoPostal?.message}
                     </div>

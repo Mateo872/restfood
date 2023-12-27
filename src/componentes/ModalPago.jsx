@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { BsCheck, BsChevronRight, BsHandbag, BsXLg } from "react-icons/bs";
 import ClipLoader from "react-spinners/ClipLoader";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
-import { agregarPedidos, obtenerUsuario } from "./ayudas/consultas";
+import { editarUsuario } from "./ayudas/consultas";
+import { editarUsuario as editarUsuarioState } from "../features/usuarios/usuarioSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const ModalPago = ({ setMostrarModal, totalCarrito, costoEnvio }) => {
   const [mostrarDire, setMostrarDire] = useState(false);
@@ -11,21 +13,14 @@ const ModalPago = ({ setMostrarModal, totalCarrito, costoEnvio }) => {
   const [pago, setPago] = useState(false);
   const [mostrarSpinner, setMostrarSpinner] = useState(false);
   const [datos, setDatos] = useState({});
-  const [usuarioID, setUsuarioID] = useState(null);
-  const usuario = JSON.parse(sessionStorage.getItem("usuario")) || null;
+  const usuarioState = useSelector((state) => state.usuarios.usuario);
+  const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
-  useEffect(() => {
-    if (usuario && usuario._id) {
-      obtenerUsuario(usuario._id).then((res) => {
-        setUsuarioID(res);
-      });
-    }
-  }, []);
 
   const validarVencimiento = (valor) => {
     const [mes, anio] = valor.split("/");
@@ -72,18 +67,35 @@ const ModalPago = ({ setMostrarModal, totalCarrito, costoEnvio }) => {
       cerrarModal();
       setPago(!pago);
       spinner();
-      agregarPedidos(usuario._id, {
+
+      const nuevosPedidos = {
         ...datos,
         total: totalCarrito,
-        nombresProductos: usuarioID.carrito.map((prod) => prod.nombre),
-        email: usuarioID.email,
+        nombresProductos: usuarioState?.carrito.map((prod) => prod.nombre),
+        email: usuarioState?.email,
         estado: "Pendiente",
         fecha: new Date().toLocaleDateString(),
-        envio: usuarioID.carrito.map((prod) => prod.costoEnvio),
+        envio: usuarioState?.carrito.map((prod) => prod.costoEnvio),
         id: Number(new Date().getTime()),
-      });
+      };
+
+      const usuarioEditado = {
+        ...usuarioState,
+        carrito: [],
+        pedidos: nuevosPedidos,
+      };
+
+      editarUsuario(usuarioEditado, usuarioState._id);
+      dispatch(
+        editarUsuarioState({
+          ...usuarioState,
+          carrito: [],
+          pedidos: nuevosPedidos,
+        })
+      );
     }
   };
+
   const guardarDatos = (e) => {
     const { name, value } = e.target;
     setDatos((prevData) => ({
@@ -199,7 +211,7 @@ const ModalPago = ({ setMostrarModal, totalCarrito, costoEnvio }) => {
                   minLength="5"
                   maxLength="100"
                   required
-                  value={usuario.email}
+                  value={usuarioState?.email}
                   {...register("email", {
                     required: "El email es obligatorio",
                     pattern: {

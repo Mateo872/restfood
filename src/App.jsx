@@ -10,41 +10,38 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import RutasProtegidas from "./componentes/rutas/RutasProtegidas";
 import RutasAdministrador from "./componentes/rutas/RutasAdministrador";
 import ContenedorCarrito from "./componentes/ContenedorCarrito";
-import Nosotros from "./componentes/Nosotros";
 import Error404 from "./componentes/Error404";
-import { useState } from "react";
+import { useEffect } from "react";
+import { obtenerPlatos } from "./componentes/ayudas/consultas";
+import { useDispatch, useSelector } from "react-redux";
+import { productos } from "./features/productos/productosSlice";
 
 function App() {
-  const usuarioSessionStorage =
-    JSON.parse(sessionStorage.getItem("usuario")) || {};
-  const [usuarioLogueado, setUsuarioLogeado] = useState(usuarioSessionStorage);
+  const actualizar = useSelector((state) => state.actualizar.actualizar);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const fetchProductos = async () => {
+      try {
+        const respuesta = await obtenerPlatos();
+        dispatch(productos(respuesta));
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchProductos();
+  }, [actualizar]);
+
   return (
     <BrowserRouter>
-      <Header
-        usuarioLogueado={usuarioLogueado}
-        setUsuarioLogeado={setUsuarioLogeado}
-      />
+      <Header />
       <Routes>
         <Route exact path="/" element={<Inicio />}></Route>
-        <Route
-          exact
-          path="/usuario/iniciar"
-          element={
-            <InicioSesion
-              setUsuarioLogeado={setUsuarioLogeado}
-              usuarioLogueado={usuarioLogueado}
-            />
-          }
-        ></Route>
+        <Route exact path="/usuario/iniciar" element={<InicioSesion />}></Route>
         <Route
           exact
           path="/usuario/registrar"
-          element={
-            <InicioSesion
-              setUsuarioLogeado={setUsuarioLogeado}
-              usuarioLogueado={usuarioLogueado}
-            />
-          }
+          element={<InicioSesion />}
         ></Route>
         <Route
           exact
@@ -64,7 +61,6 @@ function App() {
           path="/usuario/carrito"
           element={<ContenedorCarrito />}
         ></Route>
-        <Route path="/restfood/nosotros" element={<Nosotros />} />
         <Route path="*" element={<Error404 />} />
       </Routes>
       <Footer />

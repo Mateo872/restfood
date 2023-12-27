@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import TarjetaProducto from "./TarjetaProducto";
-import { obtenerPlatos, obtenerUsuario } from "./ayudas/consultas";
 import Paginacion from "./Paginacion";
 import { BsSliders } from "react-icons/bs";
 import ContenedorFiltros from "./ContenedorFiltros";
 import ClipLoader from "react-spinners/ClipLoader";
+import { useSelector } from "react-redux";
 
 const Menu = () => {
   const [busqueda, setBusqueda] = useState("");
@@ -26,28 +26,20 @@ const Menu = () => {
     descuento: [],
   });
   const productosPorPagina = 6;
-  const usuario = JSON.parse(sessionStorage.getItem("usuario")) || null;
-  const [usuarioID, setUsuarioID] = useState(null);
+  const productosState = useSelector((state) => state.productos.productos);
+  const usuariosState = useSelector((state) => state.usuarios.usuario);
 
   useEffect(() => {
-    obtenerPlatos().then((res) => {
-      setProductos(res);
-      const preciosProductosFiltrados = res.map((producto) => producto.precio);
-      const minPrecio = Math.min(...preciosProductosFiltrados);
-      const maxPrecio = Math.max(...preciosProductosFiltrados);
+    setProductos(productosState);
+    const preciosProductosFiltrados = productosState.map(
+      (producto) => producto.precio
+    );
+    const minPrecio = Math.min(...preciosProductosFiltrados);
+    const maxPrecio = Math.max(...preciosProductosFiltrados);
 
-      setPrecioMinimo(minPrecio);
-      setPrecioMaximo(maxPrecio);
-    });
-  }, []);
-
-  useEffect(() => {
-    if (usuario && usuario._id) {
-      obtenerUsuario(usuario._id).then((res) => {
-        setUsuarioID(res);
-      });
-    }
-  }, []);
+    setPrecioMinimo(minPrecio);
+    setPrecioMaximo(maxPrecio);
+  }, [productosState]);
 
   const manejarScroll = () => {
     if (window.scrollY <= 500) {
@@ -134,7 +126,8 @@ const Menu = () => {
     if (filtros.favoritos.includes("favoritos")) {
       productosFiltrados = productosFiltrados.filter(
         (producto) =>
-          usuarioID && usuarioID.favoritos.find((fav) => fav == producto._id)
+          usuariosState.nombre.length > 0 &&
+          usuariosState.favoritos.find((fav) => fav == producto._id)
       );
       if (filtros.favoritos.length === 0) {
         setTextoVacio("No tenés productos favoritos");
@@ -142,7 +135,8 @@ const Menu = () => {
     } else if (filtros.favoritos.includes("noFavoritos")) {
       productosFiltrados = productosFiltrados.filter(
         (producto) =>
-          !usuarioID || !usuarioID.favoritos.find((fav) => fav === producto._id)
+          !usuariosState ||
+          !usuariosState.favoritos.find((fav) => fav === producto._id)
       );
     }
 

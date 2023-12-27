@@ -1,19 +1,9 @@
 import { Link } from "react-router-dom";
 import { BsFillHeartFill } from "react-icons/bs";
-import { useEffect, useState } from "react";
-import { obtenerUsuario } from "./ayudas/consultas";
+import { useSelector } from "react-redux";
 
 const PlatoItem = ({ platosFiltrados }) => {
-  const usuario = JSON.parse(sessionStorage.getItem("usuario")) || null;
-  const [usuarioID, setUsuarioID] = useState(null);
-
-  useEffect(() => {
-    if (usuario && usuario._id) {
-      obtenerUsuario(usuario._id).then((res) => {
-        setUsuarioID(res);
-      });
-    }
-  }, []);
+  const usuarioState = useSelector((state) => state.usuarios.usuario);
 
   return (
     <>
@@ -26,8 +16,8 @@ const PlatoItem = ({ platosFiltrados }) => {
           <div className="buscador d-flex align-items-center gap-2 position-relative">
             <div
               className={`contenedor_favoritos-buscador ${
-                usuarioID &&
-                usuarioID.favoritos.find((fav) => fav === plato._id)
+                usuarioState?.nombre.length > 0 &&
+                usuarioState?.favoritos.find((fav) => fav === plato._id)
                   ? "d-flex"
                   : "d-none"
               } justify-content-center align-items-center position-absolute`}

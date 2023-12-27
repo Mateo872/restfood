@@ -1,23 +1,13 @@
-import { useEffect, useState } from "react";
 import { BsTrash } from "react-icons/bs";
 import Swal from "sweetalert2";
-import {
-  actualizarStockProducto,
-  editarUsuario,
-  obtenerUsuario,
-} from "./ayudas/consultas";
+import { editarPlato, editarUsuario } from "./ayudas/consultas";
+import { useDispatch, useSelector } from "react-redux";
+import { editarProducto } from "../features/productos/productosSlice";
+import { editarUsuario as editarUsuarioState } from "../features/usuarios/usuarioSlice";
 
 const CarritoItem = ({ producto }) => {
-  const [usuarioID, setUsuarioID] = useState(null);
-  const usuario = JSON.parse(sessionStorage.getItem("usuario")) || null;
-
-  useEffect(() => {
-    if (usuario && usuario._id) {
-      obtenerUsuario(usuario._id).then((res) => {
-        setUsuarioID(res);
-      });
-    }
-  }, [usuarioID]);
+  const usuarioState = useSelector((state) => state.usuarios.usuario);
+  const dispatch = useDispatch();
 
   const eliminarProducto = () => {
     Swal.fire({
@@ -29,7 +19,7 @@ const CarritoItem = ({ producto }) => {
       cancelButtonText: "Cancelar",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const carritoActualizado = usuarioID?.carrito.filter(
+        const carritoActualizado = usuarioState?.carrito.filter(
           (prod) => prod._id !== producto._id || prod.precio !== producto.precio
         );
 
@@ -38,15 +28,21 @@ const CarritoItem = ({ producto }) => {
           "El producto se eliminó correctamente",
           "success"
         ).then(async () => {
-          await actualizarStockProducto(producto._id, producto.cantidad);
+          editarPlato({ ...producto, stock: producto.cantidad }, producto?._id);
+          dispatch(editarProducto({ ...producto, stock: producto.cantidad }));
 
           const usuarioActualizado = {
-            ...usuarioID,
+            ...usuarioState,
             carrito: carritoActualizado,
           };
 
-          setUsuarioID(usuarioActualizado);
-          await editarUsuario(usuarioActualizado, usuarioID._id);
+          editarUsuario(usuarioActualizado, usuarioState._id);
+          dispatch(
+            editarUsuarioState({
+              ...usuarioState,
+              carrito: [],
+            })
+          );
         });
       }
     });

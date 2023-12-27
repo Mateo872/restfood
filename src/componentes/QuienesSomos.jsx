@@ -1,4 +1,3 @@
-import React from "react";
 import comida from "../complementos/imagenes/comida-quienes-somos.png";
 import salon from "../complementos/imagenes/salon-quienes-somos.png";
 
