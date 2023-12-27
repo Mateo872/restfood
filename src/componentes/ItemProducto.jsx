@@ -1,17 +1,20 @@
-import React from "react";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
-import { borrarPlato, obtenerPlatos } from "./ayudas/consultas";
+import { borrarPlato } from "./ayudas/consultas";
 import Swal from "sweetalert2";
+import { useDispatch, useSelector } from "react-redux";
+import { setActualizar } from "../features/actualizar/actualizarSlice";
 
 const ItemProducto = ({
   platos,
   seleccion,
   setSeleccionados,
   seleccionados,
-  setPlatos,
   setInput,
 }) => {
+  const actualizar = useSelector((state) => state.actualizar.actualizar);
+  const dispatch = useDispatch();
+
   const manejoSeleccion = () => {
     const existe = seleccionados.find((selec) => selec === platos._id);
 
@@ -41,7 +44,7 @@ const ItemProducto = ({
               "success"
             ).then((result) => {
               if (result.isConfirmed) {
-                obtenerPlatos().then((res) => setPlatos(res));
+                dispatch(setActualizar(!actualizar));
                 setInput("");
               }
             });
@@ -62,7 +65,7 @@ const ItemProducto = ({
       <Card.Img
         variant="top"
         className="cardImg"
-        src={platos?.imagen}
+        src={platos.imagen ? platos.imagen : "https://placehold.co/200x200"}
         alt={platos.nombre}
       />
       <Card.Title className="titulo_producto">{platos.nombre}</Card.Title>

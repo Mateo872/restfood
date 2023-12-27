@@ -3,48 +3,41 @@ import CarritoItem from "./CarritoItem";
 import ModalPago from "./ModalPago";
 import Error404 from "../componentes/Error404";
 import Swal from "sweetalert2";
-import {
-  actualizarStockProducto,
-  editarUsuario,
-  obtenerUsuario,
-} from "./ayudas/consultas";
+import { editarPlato, editarUsuario } from "./ayudas/consultas";
 import { Link } from "react-router-dom";
 import { GiShoppingBag } from "react-icons/gi";
 import ClipLoader from "react-spinners/ClipLoader";
+import { useDispatch, useSelector } from "react-redux";
+import { editarProducto } from "../features/productos/productosSlice";
+import { editarUsuario as editarUsuarioState } from "../features/usuarios/usuarioSlice";
 
 const ContenedorCarrito = () => {
   const [mostrarModal, setMostrarModal] = useState(false);
-  const [usuarioID, setUsuarioID] = useState(null);
-  const usuario = JSON.parse(sessionStorage.getItem("usuario")) || null;
   const [mostrarSpinner, setMostrarSpinner] = useState(true);
   const [mostrarCarrito, setMostrarCarrito] = useState(false);
+  const usuarioState = useSelector((state) => state.usuarios.usuario);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (usuario && usuario._id) {
-      obtenerUsuario(usuario._id)
-        .then((res) => {
-          setUsuarioID(res);
-        })
-        .finally(() => {
-          setMostrarSpinner(false);
-          setTimeout(() => {
-            setMostrarCarrito(true);
-          }, 300);
-        });
+    if (usuarioState?._id) {
+      setMostrarSpinner(false);
+      setTimeout(() => {
+        setMostrarCarrito(true);
+      }, 300);
     } else {
       setMostrarSpinner(false);
       setTimeout(() => {
         setMostrarCarrito(true);
       }, 300);
     }
-  }, [usuario]);
+  }, [usuarioState]);
 
   let totalCarrito = 0;
-  if (usuarioID) {
+  if (usuarioState) {
     totalCarrito =
-      usuarioID.rol === "usuario" &&
-      usuarioID.carrito.length > 0 &&
-      usuarioID?.carrito?.reduce(
+      usuarioState?.rol === "usuario" &&
+      usuarioState?.carrito.length > 0 &&
+      usuarioState?.carrito?.reduce(
         (total, producto) =>
           total + producto.precio * producto.cantidad + producto.costoEnvio,
         0
@@ -53,11 +46,11 @@ const ContenedorCarrito = () => {
 
   let costoEnvio = 0;
 
-  if (usuarioID) {
+  if (usuarioState) {
     costoEnvio =
-      usuarioID.rol === "usuario" &&
-      usuarioID.carrito.length > 0 &&
-      usuarioID?.carrito?.reduce(
+      usuarioState?.rol === "usuario" &&
+      usuarioState?.carrito.length > 0 &&
+      usuarioState?.carrito?.reduce(
         (total, producto) => total + producto.costoEnvio,
         0
       );
@@ -73,13 +66,14 @@ const ContenedorCarrito = () => {
       cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
-        const carritoActualizado = usuarioID?.carrito || [];
-
-        carritoActualizado.forEach(async (producto) => {
-          await actualizarStockProducto(producto._id, producto.cantidad);
+        const carritoActualizado = usuarioState?.carrito || [];
+        carritoActualizado.forEach((producto) => {
+          editarPlato({ ...producto, stock: producto.cantidad }, producto?._id);
+          dispatch(editarProducto({ ...producto, stock: producto.cantidad }));
         });
-        const usuarioActualizado = {
-          ...usuarioID,
+
+        const usuarioEditado = {
+          ...usuarioState,
           carrito: [],
         };
 
@@ -87,10 +81,15 @@ const ContenedorCarrito = () => {
           "Carrito vaciado",
           "El carrito se vació correctamente",
           "success"
-        ).then(async (result) => {
+        ).then((result) => {
           if (result.isConfirmed) {
-            await editarUsuario(usuarioActualizado, usuarioID._id);
-            setUsuarioID(usuarioActualizado);
+            editarUsuario(usuarioEditado, usuarioState._id);
+            dispatch(
+              editarUsuarioState({
+                ...usuarioState,
+                carrito: [],
+              })
+            );
           }
         });
       }
@@ -105,11 +104,12 @@ const ContenedorCarrito = () => {
         }`}
       >
         {mostrarCarrito ? (
-          usuario?.carrito && usuario?.rol === "usuario" ? (
+          usuarioState?.carrito && usuarioState?.rol === "usuario" ? (
             <>
-              {usuarioID && usuarioID?.carrito?.length > 0 && (
-                <h1 className="titulo_carrito">Carrito</h1>
-              )}
+              {usuarioState.nombre.length > 0 &&
+                usuarioState?.carrito?.length > 0 && (
+                  <h1 className="titulo_carrito">Carrito</h1>
+                )}
               <div className="d-flex flex-column gap-3">
                 {mostrarSpinner ? (
                   <div className="d-flex justify-content-center align-items-center vh-100">
@@ -119,12 +119,13 @@ const ContenedorCarrito = () => {
                       size={35}
                     />
                   </div>
-                ) : usuarioID && usuarioID?.carrito?.length > 0 ? (
-                  usuarioID?.carrito.map((producto, index) => (
+                ) : usuarioState.nombre.length > 0 &&
+                  usuarioState?.carrito?.length > 0 ? (
+                  usuarioState?.carrito.map((producto, index) => (
                     <CarritoItem
                       key={index}
                       producto={producto}
-                      usuarioID={usuarioID}
+                      usuarioState={usuarioState}
                     />
                   ))
                 ) : (
@@ -137,24 +138,25 @@ const ContenedorCarrito = () => {
                   </div>
                 )}
               </div>
-              {usuarioID && usuarioID?.carrito?.length > 0 && (
-                <div className="contenedor_botones w-100 d-flex justify-content-between mt-3">
-                  <button className="boton_vaciar" onClick={vaciarCarrito}>
-                    Vaciar carrito
-                  </button>
-                  <div className="d-flex">
-                    <h5 className="mb-0">
-                      Total: $<span>{totalCarrito.toLocaleString()}</span>
-                    </h5>
-                    <button
-                      className="boton_comprar"
-                      onClick={() => setMostrarModal(!mostrarModal)}
-                    >
-                      Comprar
+              {usuarioState.nombre.length > 0 &&
+                usuarioState?.carrito?.length > 0 && (
+                  <div className="contenedor_botones w-100 d-flex justify-content-between mt-3">
+                    <button className="boton_vaciar" onClick={vaciarCarrito}>
+                      Vaciar carrito
                     </button>
+                    <div className="d-flex">
+                      <h5 className="mb-0">
+                        Total: $<span>{totalCarrito.toLocaleString()}</span>
+                      </h5>
+                      <button
+                        className="boton_comprar"
+                        onClick={() => setMostrarModal(!mostrarModal)}
+                      >
+                        Comprar
+                      </button>
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
               {mostrarModal ? (
                 <div
                   className="modal_overlay d-flex justify-content-center align-items-center vh-100 w-100"
@@ -186,7 +188,7 @@ const ContenedorCarrito = () => {
                 <></>
               )}
             </>
-          ) : usuarioID?.rol === "administrador" ? (
+          ) : usuarioState?.rol === "administrador" ? (
             <Error404 />
           ) : (
             <Error404 />

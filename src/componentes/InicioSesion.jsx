@@ -11,12 +11,17 @@ import {
 } from "./ayudas/consultas";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { agregarUsuario } from "../features/usuarios/usuarioSlice";
+import { setCarga } from "../features/carga/cargaSlice";
 
-const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
-  const [usuarioID, setUsuarioID] = useState(null);
-  const navegacion = useNavigate();
-  const ubicacion = useLocation();
+const InicioSesion = () => {
   const [editar, setEditar] = useState(false);
+  const usuarioState = useSelector((state) => state.usuarios.usuario);
+  const cargaState = useSelector((state) => state.carga.carga);
+  const ubicacion = useLocation();
+  const navegacion = useNavigate();
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -28,29 +33,28 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
   } = useForm();
 
   useEffect(() => {
-    if (usuarioLogueado && usuarioLogueado._id) {
-      obtenerUsuario(usuarioLogueado._id).then((res) => {
-        setUsuarioID(res);
-      });
-    }
-  }, [usuarioID]);
-
-  useEffect(() => {
-    if (ubicacion.pathname === "/usuario/iniciar" && usuarioID && !editar) {
-      setValue("nombre", usuarioID.nombre);
-      setValue("email", usuarioID.email);
-      setValue("imagen", usuarioID.imagen);
-      setValue("contrasenia", usuarioID.contrasenia);
+    if (
+      ubicacion.pathname === "/usuario/iniciar" &&
+      usuarioState.nombre.length > 0 &&
+      !editar
+    ) {
+      setValue("nombre", usuarioState.nombre);
+      setValue("email", usuarioState.email);
+      setValue("imagen", usuarioState.imagen);
+      setValue("contrasenia", usuarioState.contrasenia);
       setEditar(true);
-    } else if (ubicacion.pathname === "/usuario/registrar" && usuarioID) {
+    } else if (
+      ubicacion.pathname === "/usuario/registrar" &&
+      usuarioState.nombre.length > 0
+    ) {
       navegacion("/");
     }
-  }, [usuarioID]);
+  }, [usuarioState]);
 
   const manejoEnvio = async (usuarioRegistrado) => {
     if (
       ubicacion.pathname === "/usuario/iniciar" &&
-      usuarioLogueado &&
+      usuarioState.nombre.length > 0 &&
       editar
     ) {
       setEditar(true);
@@ -59,11 +63,11 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
         imagen: getValues("imagen"),
         nombre: getValues("nombre"),
         contrasenia: getValues("contrasenia"),
-        rol: usuarioID.rol,
-        carrito: usuarioID.carrito,
-        pedidos: usuarioID.pedidos,
-        favoritos: usuarioID.favoritos,
-        estado: usuarioID.estado,
+        rol: usuarioState.rol,
+        carrito: usuarioState.carrito,
+        pedidos: usuarioState.pedidos,
+        favoritos: usuarioState.favoritos,
+        estado: usuarioState.estado,
       };
 
       Swal.fire(
@@ -72,16 +76,17 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
         "success"
       ).then(async (res) => {
         if (res.isConfirmed) {
-          await editarUsuario(usuarioActualizado, usuarioID._id);
+          await editarUsuario(usuarioActualizado, usuarioState._id);
+          sessionStorage.setItem("usuario", JSON.stringify(usuarioState));
+          dispatch(agregarUsuario(usuarioState));
+          dispatch(setCarga(!cargaState));
           navegacion("/");
-          sessionStorage.setItem("usuario", JSON.stringify(usuarioID));
-          setUsuarioLogeado(usuarioID);
         }
       });
     } else {
       if (
-        (ubicacion.pathname === "/usuario/iniciar" && !usuarioID) ||
-        (usuarioID && editar === false)
+        (ubicacion.pathname === "/usuario/iniciar" && !usuarioState) ||
+        (usuarioState && editar === false)
       ) {
         iniciarSesion(usuarioRegistrado).then((respuesta) => {
           obtenerUsuario(respuesta._id).then((res) => {
@@ -96,12 +101,21 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
                     "success"
                   ).then((res) => {
                     if (res.isConfirmed) {
+                      const body = {
+                        _id: respuesta._id,
+                        nombre: respuesta.nombre,
+                        email: respuesta.email,
+                        imagen: respuesta.imagen,
+                        estado: respuesta.estado,
+                        rol: respuesta.rol,
+                        pedidos: respuesta.pedidos,
+                        favoritos: respuesta.favoritos,
+                        carrito: respuesta.carrito,
+                      };
+                      sessionStorage.setItem("usuario", JSON.stringify(body));
+                      dispatch(agregarUsuario(body));
+                      dispatch(setCarga(!cargaState));
                       navegacion("/administrador");
-                      sessionStorage.setItem(
-                        "usuario",
-                        JSON.stringify(respuesta)
-                      );
-                      setUsuarioLogeado(respuesta);
                     }
                   });
                 } else if (respuesta.estado !== "suspendido") {
@@ -111,12 +125,21 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
                     "success"
                   ).then((res) => {
                     if (res.isConfirmed) {
+                      const body = {
+                        _id: respuesta._id,
+                        nombre: respuesta.nombre,
+                        email: respuesta.email,
+                        imagen: respuesta.imagen,
+                        estado: respuesta.estado,
+                        rol: respuesta.rol,
+                        pedidos: respuesta.pedidos,
+                        favoritos: respuesta.favoritos,
+                        carrito: respuesta.carrito,
+                      };
+                      sessionStorage.setItem("usuario", JSON.stringify(body));
+                      dispatch(agregarUsuario(body));
+                      dispatch(setCarga(!cargaState));
                       navegacion("/");
-                      sessionStorage.setItem(
-                        "usuario",
-                        JSON.stringify(respuesta)
-                      );
-                      setUsuarioLogeado(respuesta);
                     }
                   });
                 } else {
@@ -133,7 +156,7 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
       } else {
         if (
           ubicacion.pathname === "/usuario/registrar" &&
-          usuarioID === null &&
+          usuarioState === null &&
           !editar
         ) {
           const nuevoUsuario = {
@@ -207,7 +230,7 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
           className="text-center text-white mt-lg-5"
           style={{ fontSize: "2rem", fontFamily: "Poppins, sans-serif" }}
         >
-          Hola, {usuarioID.nombre}
+          Hola, {usuarioState.nombre}
         </h2>
       )}
       <Form className="formCrearEditar" onSubmit={handleSubmit(manejoEnvio)}>
@@ -215,11 +238,12 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
           <div
             className="contenedor_imagen-editar mb-3"
             style={{
-              backgroundImage: `url(${usuarioID.imagen})`,
+              backgroundImage: `url(${usuarioState.imagen})`,
             }}
           ></div>
         )}
-        {((ubicacion.pathname === "/usuario/iniciar" && usuarioID) ||
+        {((ubicacion.pathname === "/usuario/iniciar" &&
+          usuarioState.nombre.length > 0) ||
           ubicacion.pathname === "/usuario/registrar") && (
           <Form.Group className="mb-3">
             <label className="text-white mb-1">Nombre</label>
@@ -263,7 +287,8 @@ const InicioSesion = ({ setUsuarioLogeado, usuarioLogueado }) => {
             {errors.email?.message}
           </Form.Text>
         </Form.Group>
-        {((ubicacion.pathname === "/usuario/iniciar" && usuarioID) ||
+        {((ubicacion.pathname === "/usuario/iniciar" &&
+          usuarioState.nombre.length > 0) ||
           ubicacion.pathname === "/usuario/registrar") && (
           <Form.Group className="mb-3">
             <label className="text-white mb-1">Imagen</label>

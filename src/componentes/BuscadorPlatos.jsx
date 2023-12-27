@@ -1,19 +1,15 @@
 import { BsSearch } from "react-icons/bs";
 import ContenedorPlato from "./ContenedorPlato";
 import { useEffect, useState } from "react";
-import { obtenerPlatos } from "./ayudas/consultas";
+import { useSelector } from "react-redux";
 
 const BuscadorPlatos = () => {
   const [input, setInput] = useState("");
-  const [platos, setPlatos] = useState([]);
   const [mostrarSlider, setMostrarSlider] = useState(false);
   const [mostrarSpinner, setMostrarSpinner] = useState(false);
+  const productosState = useSelector((state) => state.productos.productos);
 
   useEffect(() => {
-    obtenerPlatos().then((res) => {
-      setPlatos(res);
-    });
-
     document.addEventListener("click", manejoClick);
   }, []);
 
@@ -37,7 +33,7 @@ const BuscadorPlatos = () => {
     }, 1000);
   };
 
-  const platosFiltrados = platos.filter((plato) =>
+  const platosFiltrados = productosState.filter((plato) =>
     plato.nombre.toLowerCase().includes(input.toLowerCase())
   );
 

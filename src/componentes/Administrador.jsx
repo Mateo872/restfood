@@ -4,48 +4,53 @@ import ItemUsuario from "./ItemUsuario";
 import ItemPedidos from "./ItemPedidos";
 import { Link } from "react-router-dom";
 import {
-  actualizarPedidosUsuario,
   borrarPlatos,
-  obtenerPlatos,
+  editarUsuario,
   obtenerUsuarios,
 } from "./ayudas/consultas";
 import ClipLoader from "react-spinners/ClipLoader";
 import Swal from "sweetalert2";
+import { useDispatch, useSelector } from "react-redux";
+import { usuarios } from "../features/usuarios/usuarioSlice";
+import { editarUsuario as editarUsuarioState } from "../features/usuarios/usuarioSlice";
+import { setActualizar as setActualizarState } from "../features/actualizar/actualizarSlice";
 
 const Administrador = () => {
   const [input, setInput] = useState("");
-  const [platos, setPlatos] = useState([]);
   const [seleccion, setSeleccion] = useState(false);
   const [seleccionados, setSeleccionados] = useState([]);
-  const [usuarios, setUsuarios] = useState([]);
   const [dataPedidos, setDataPedidos] = useState([]);
   const [spinner, setSpinner] = useState(false);
-
-  useEffect(() => {
-    obtenerPlatos().then((res) => {
-      setPlatos(res);
-    });
-  }, []);
+  const [actualizar, setActualizar] = useState(false);
+  const usuariosState = useSelector((state) => state.usuarios.usuarios);
+  const productosState = useSelector((state) => state.productos.productos);
+  const actualizarState = useSelector((state) => state.actualizar.actualizar);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const todosPedidos = [];
 
-    usuarios.forEach((usuario) => {
+    usuariosState?.forEach((usuario) => {
       if (usuario.pedidos && usuario.pedidos.length > 0) {
         todosPedidos.push(...usuario.pedidos);
       }
     });
 
     setDataPedidos(todosPedidos);
-  }, [usuarios]);
+  }, [usuariosState]);
+
+  const fetchUsuarios = async () => {
+    try {
+      const respuesta = await obtenerUsuarios();
+      dispatch(usuarios(respuesta));
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
-    if (usuarios) {
-      obtenerUsuarios().then((res) => {
-        setUsuarios(res);
-      });
-    }
-  }, [usuarios]);
+    fetchUsuarios();
+  }, [actualizar]);
 
   const eliminarProductos = () => {
     if (seleccionados.length > 0) {
@@ -67,7 +72,7 @@ const Administrador = () => {
                   "success"
                 ).then((result) => {
                   if (result.isConfirmed) {
-                    obtenerPlatos().then((res) => setPlatos(res));
+                    dispatch(setActualizarState(!actualizarState));
                     setInput("");
                   }
                 });
@@ -106,7 +111,7 @@ const Administrador = () => {
     }, 400);
   };
 
-  const platosFiltrados = platos.filter((producto) =>
+  const platosFiltrados = productosState.filter((producto) =>
     producto.nombre.toLowerCase().includes(input.toLowerCase())
   );
 
@@ -128,7 +133,17 @@ const Administrador = () => {
           setDataPedidos(pedidosActualizados);
 
           for (const usuario of usuarios) {
-            await actualizarPedidosUsuario(usuario._id, []);
+            const usuarioEditado = {
+              ...usuario,
+              pedidos: [],
+            };
+            editarUsuario(usuarioEditado, usuario._id);
+            dispatch(
+              editarUsuarioState({
+                ...usuario,
+                pedidos: [],
+              })
+            );
           }
 
           Swal.fire(
@@ -218,7 +233,6 @@ const Administrador = () => {
                 <ItemProducto
                   key={plato._id}
                   platos={plato}
-                  setPlatos={setPlatos}
                   setInput={setInput}
                   seleccion={seleccion}
                   seleccionados={seleccionados}
@@ -244,7 +258,11 @@ const Administrador = () => {
                   <th className="py-2">Eliminar</th>
                 </tr>
               </thead>
-              <ItemUsuario usuarios={usuarios} setUsuarios={setUsuarios} />
+              <ItemUsuario
+                usuarios={usuariosState}
+                setActualizar={setActualizar}
+                actualizar={actualizar}
+              />
             </table>
           </div>
         </article>
@@ -274,7 +292,7 @@ const Administrador = () => {
                   </tr>
                 </thead>
                 <ItemPedidos
-                  usuarios={usuarios}
+                  usuarios={usuariosState}
                   dataPedidos={dataPedidos}
                   setDataPedidos={setDataPedidos}
                 />

@@ -1,69 +1,65 @@
 import { BsLockFill, BsPause, BsX } from "react-icons/bs";
-import {
-  eliminarUsuario,
-  modificarEstadoUsuario,
-  obtenerUsuarios,
-} from "./ayudas/consultas";
+import { editarUsuario, eliminarUsuario } from "./ayudas/consultas";
+import { useDispatch } from "react-redux";
+import { usuarios as usuariosState } from "../features/usuarios/usuarioSlice";
 import Swal from "sweetalert2";
 
-const ItemUsuario = ({ usuarios, setUsuarios }) => {
+const ItemUsuario = ({ usuarios, setActualizar, actualizar }) => {
   const admin = usuarios.filter((item) => item.rol === "administrador");
   const usuarioNormal = usuarios.filter((item) => item.rol !== "administrador");
-
+  const dispatch = useDispatch();
   const usuariosOrdenados = [...admin, ...usuarioNormal];
 
   const manejoSuspenso = async (id) => {
     const usuario = usuarios.find((item) => item._id === id);
-    Swal.fire({
-      title: `¿Estás seguro de ${
-        usuarios.find((usuario) => usuario._id === id).estado === "suspendido"
-          ? "habilitar"
-          : "suspender"
-      } el usuario?`,
-      text: `Se ${
-        usuarios.find((usuario) => usuario._id === id).estado === "suspendido"
-          ? "habilitará"
-          : "suspenderá"
-      } el usuario '${usuario.nombre}'.`,
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonText:
-        usuarios.find((usuario) => usuario._id === id).estado === "suspendido"
-          ? "Habilitar"
-          : "Suspender",
-      cancelButtonText: "Cancelar",
-    }).then(async (result) => {
+
+    try {
+      const result = await Swal.fire({
+        title: `¿Estás seguro de ${
+          usuario.estado === "suspendido" ? "habilitar" : "suspender"
+        } el usuario?`,
+        text: `Se ${
+          usuario.estado === "suspendido" ? "habilitará" : "suspenderá"
+        } el usuario '${usuario.nombre}'.`,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText:
+          usuario.estado === "suspendido" ? "Habilitar" : "Suspender",
+        cancelButtonText: "Cancelar",
+      });
+
       if (result.isConfirmed) {
-        try {
-          if (
-            usuarios.find((usuario) => usuario._id === id).estado ===
-            "suspendido"
-          ) {
-            Swal.fire(
-              `Usuario habilitado`,
-              `El usuario ${usuario.nombre} fue habilitado.`,
-              "success"
-            );
-            await modificarEstadoUsuario(id, "activo");
-          } else {
-            Swal.fire(
-              `Usuario suspendido`,
-              `El usuario ${usuario.nombre} fue suspendido.`,
-              "success"
-            );
-            await modificarEstadoUsuario(id, "suspendido");
-          }
-        } catch (error) {
-          console.log(error);
-          Swal.fire({
-            title: "Error",
-            text: "Ocurrió un error al cambiar el estado del usuario.",
-            icon: "error",
-            confirmButtonText: "Aceptar",
-          });
-        }
+        const usuarioEditado = {
+          ...usuario,
+          estado: usuario.estado === "suspendido" ? "activo" : "suspendido",
+        };
+
+        await editarUsuario(usuarioEditado, id);
+
+        const nuevosUsuarios = usuarios.map((usuario) =>
+          usuario._id === id ? usuarioEditado : usuario
+        );
+
+        dispatch(usuariosState(nuevosUsuarios));
+
+        const mensaje =
+          usuario.estado === "suspendido"
+            ? `Usuario habilitado: ${usuario.nombre}`
+            : `Usuario suspendido: ${usuario.nombre}`;
+
+        Swal.fire("Éxito", mensaje, "success");
+
+        setActualizar(!actualizar);
       }
-    });
+    } catch (error) {
+      console.log(error);
+      Swal.fire({
+        title: "Error",
+        text: "Ocurrió un error al cambiar el estado del usuario.",
+        icon: "error",
+        confirmButtonText: "Aceptar",
+      });
+    }
   };
 
   const manejoEliminarUsuario = (id) => {
@@ -82,7 +78,7 @@ const ItemUsuario = ({ usuarios, setUsuarios }) => {
       showCancelButton: true,
       confirmButtonText: "Eliminar",
       cancelButtonText: "Cancelar",
-    }).then(async (result) => {
+    }).then((result) => {
       if (result.isConfirmed) {
         try {
           Swal.fire(
@@ -90,10 +86,11 @@ const ItemUsuario = ({ usuarios, setUsuarios }) => {
             `El usuario ${usuario.nombre} fue eliminado.`,
             "success"
           );
-          await eliminarUsuario(id);
-          obtenerUsuarios().then((data) => {
-            setUsuarios(data);
-          });
+          eliminarUsuario(id);
+          const nuevosUsuarios = usuarios.filter(
+            (usuario) => usuario._id !== id
+          );
+          dispatch(usuariosState(nuevosUsuarios));
         } catch (error) {
           console.log(error);
           Swal.fire({

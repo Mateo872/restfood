@@ -1,18 +1,18 @@
 import Form from "react-bootstrap/Form";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router";
-import {
-  crearPlato,
-  editarPlato,
-  obtenerPlato,
-  obtenerPlatos,
-} from "./ayudas/consultas";
-import { useEffect, useState } from "react";
+import { crearPlato, editarPlato } from "./ayudas/consultas";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setActualizar } from "../features/actualizar/actualizarSlice";
 import Swal from "sweetalert2";
+
 const CrearEditarProducto = () => {
-  const navegacion = useNavigate();
   const { id } = useParams();
-  const [platos, setPlatos] = useState([]);
+  const productosState = useSelector((state) => state.productos.productos);
+  const actualizar = useSelector((state) => state.actualizar.actualizar);
+  const navegacion = useNavigate();
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -24,29 +24,27 @@ const CrearEditarProducto = () => {
 
   useEffect(() => {
     if (id) {
-      obtenerPlato(id).then((respuesta) => {
-        setValue("imagen", respuesta.imagen);
-        setValue("nombre", respuesta.nombre);
-        setValue("precio", respuesta.precio);
-        setValue("descripcion", respuesta.descripcion);
-        setValue("stock", respuesta.stock);
-        setValue("categoria", respuesta.categoria);
-      });
-      obtenerPlatos().then((respuesta) => {
-        setPlatos(respuesta);
-      });
+      const plato = productosState.find((prod) => prod._id === id);
+      setValue("imagen", plato.imagen);
+      setValue("nombre", plato.nombre);
+      setValue("precio", plato.precio);
+      setValue("descripcion", plato.descripcion);
+      setValue("stock", plato.stock);
+      setValue("categoria", plato.categoria);
     }
   }, []);
 
   const verificarNombrePlato = (nombre) => {
-    return platos.some((plato) => plato.nombre === nombre);
+    return productosState.some((plato) => plato.nombre === nombre);
   };
 
   const onSubmit = (plato) => {
     if (id) {
       const nombreExiste = verificarNombrePlato(plato.nombre);
+
       editarPlato(plato, id).then((respuesta) => {
         if (respuesta.status === 200) {
+          dispatch(setActualizar(!actualizar));
           Swal.fire(
             "Producto modificado",
             `El producto ${plato.nombre} fue modificado con éxito.`,
@@ -75,6 +73,7 @@ const CrearEditarProducto = () => {
     } else {
       crearPlato(plato).then((respuesta) => {
         if (respuesta.status === 201) {
+          dispatch(setActualizar(!actualizar));
           Swal.fire({
             title: "Producto creado",
             text: `El producto ${plato.nombre} fue creado con éxito.`,

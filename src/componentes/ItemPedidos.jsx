@@ -1,15 +1,9 @@
-import { useState, useEffect } from "react";
 import { BsCheck, BsClockHistory } from "react-icons/bs";
 import Swal from "sweetalert2";
-import { actualizarPedidosUsuario } from "./ayudas/consultas";
+import { editarUsuario } from "./ayudas/consultas";
+import { editarUsuario as editarUsuarioState } from "../features/usuarios/usuarioSlice";
 
 const ItemPedidos = ({ usuarios, dataPedidos, setDataPedidos }) => {
-  const [usuariosDB, setUsuariosDB] = useState([]);
-
-  useEffect(() => {
-    setUsuariosDB(usuarios);
-  }, [usuarios]);
-
   const manejoPedido = (id) => {
     const pedido = dataPedidos.find((item) => item.id === id);
     const pedidoIndex = dataPedidos.findIndex((item) => item.id === id);
@@ -29,12 +23,15 @@ const ItemPedidos = ({ usuarios, dataPedidos, setDataPedidos }) => {
       if (result.isConfirmed) {
         try {
           const dataPedidosActualizado = [...dataPedidos];
-          dataPedidosActualizado[pedidoIndex].estado = "Realizado";
+          dataPedidosActualizado[pedidoIndex] = {
+            ...dataPedidosActualizado[pedidoIndex],
+            estado: "Realizado",
+          };
 
           setDataPedidos(dataPedidosActualizado);
 
           const usuarioEmail = pedido.email;
-          const usuarioEncontrado = usuariosDB.find(
+          const usuarioEncontrado = usuarios.find(
             (usuario) => usuario.email === usuarioEmail
           );
 
@@ -44,7 +41,18 @@ const ItemPedidos = ({ usuarios, dataPedidos, setDataPedidos }) => {
 
           const usuarioID = usuarioEncontrado._id;
 
-          await actualizarPedidosUsuario(usuarioID, dataPedidosActualizado);
+          const usuarioEditado = {
+            ...usuarioEncontrado,
+            pedidos: dataPedidosActualizado,
+          };
+
+          editarUsuario(usuarioEditado, usuarioID);
+
+          dispatch(
+            editarUsuarioState({
+              ...usuarioEditado,
+            })
+          );
 
           Swal.fire(
             "Pedido realizado",
@@ -63,6 +71,7 @@ const ItemPedidos = ({ usuarios, dataPedidos, setDataPedidos }) => {
       }
     });
   };
+
   const eliminarPedido = (idPedido) => {
     Swal.fire({
       title: "¿Estás seguro de eliminar el pedido?",
@@ -86,7 +95,7 @@ const ItemPedidos = ({ usuarios, dataPedidos, setDataPedidos }) => {
           );
           setDataPedidos(pedidosActualizados);
 
-          const usuarioEncontrado = usuariosDB.find(
+          const usuarioEncontrado = usuarios.find(
             (usuario) => usuario.email === pedidoAEliminar.email
           );
 
@@ -94,10 +103,12 @@ const ItemPedidos = ({ usuarios, dataPedidos, setDataPedidos }) => {
             throw new Error("Usuario no encontrado.");
           }
 
-          await actualizarPedidosUsuario(
-            usuarioEncontrado._id,
-            pedidosActualizados
-          );
+          const usuarioEditado = {
+            ...usuarioEncontrado,
+            pedidos: pedidosActualizados,
+          };
+
+          editarUsuario(usuarioEditado, usuarioEncontrado._id);
 
           Swal.fire(
             "Pedido eliminado",
