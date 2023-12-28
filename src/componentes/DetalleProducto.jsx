@@ -8,7 +8,10 @@ import ClipLoader from "react-spinners/ClipLoader";
 import Error404 from "./Error404";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
-import { editarUsuario as editarUsuarioState } from "../features/usuarios/usuarioSlice";
+import {
+  agregarUsuario,
+  editarUsuario as editarUsuarioState,
+} from "../features/usuarios/usuarioSlice";
 import { editarProducto } from "../features/productos/productosSlice";
 
 const DetalleProducto = () => {
@@ -24,6 +27,7 @@ const DetalleProducto = () => {
   const usuarioState = useSelector((state) => state.usuarios.usuario);
   const productosState = useSelector((state) => state.productos.productos);
   const plato = productosState.filter((prod) => prod._id === id);
+  const [isFavorite, setIsFavorite] = useState(false);
   const dispatch = useDispatch();
 
   const {
@@ -48,6 +52,11 @@ const DetalleProducto = () => {
     }
   }, [productosState]);
 
+  useEffect(() => {
+    setIsFavorite(usuarioState?.favoritos?.includes(plato?.[0]?._id));
+    dispatch(agregarUsuario(usuarioState));
+  }, [usuarioState, plato?.[0]]);
+
   const manejoSesion = async () => {
     if (usuarioState?.rol !== "administrador") {
       await Swal.fire({
@@ -69,6 +78,7 @@ const DetalleProducto = () => {
 
   const manejoFav = () => {
     const existe = usuarioState?.favoritos?.includes(id);
+
     try {
       if (!existe) {
         const usuarioEditado = {
@@ -81,6 +91,7 @@ const DetalleProducto = () => {
             ...usuarioEditado,
           })
         );
+        setIsFavorite(!isFavorite);
       } else {
         const favoritos = usuarioState?.favoritos?.filter(
           (fav) => fav !== plato[0]?._id
@@ -96,6 +107,7 @@ const DetalleProducto = () => {
             favoritos,
           })
         );
+        setIsFavorite(!isFavorite);
       }
     } catch (error) {
       console.log(error);
@@ -235,25 +247,24 @@ const DetalleProducto = () => {
             <p className="stock mb-0">
               Stock - <span>{stockOriginal}</span>
             </p>
-            <div className="contenedor_imagen-carac d-flex flex-column flex-md-row gap-4 position-relative">
+            <div className="contenedor_imagen-carac d-flex flex-column flex-md-row gap-4">
               <div
-                className="contenedor_imagen-detalle"
+                className="contenedor_imagen-detalle position-relative"
                 style={{
                   backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${plato[0]?.imagen})`,
                 }}
-              ></div>
-              {usuarioState?.nombre?.length > 0 &&
-                usuarioState?.rol !== "administrador" && (
-                  <div onClick={manejoFav}>
-                    {usuarioState?.nombre?.length > 0 &&
-                    usuarioState?.favoritos?.length > 0 &&
-                    usuarioState?.favoritos?.includes(id) ? (
-                      <GoBookmarkFill className="bookmark position-absolute" />
-                    ) : (
-                      <GoBookmark className="bookmark position-absolute" />
-                    )}
-                  </div>
-                )}
+              >
+                {usuarioState?.nombre?.length > 0 &&
+                  usuarioState?.rol !== "administrador" && (
+                    <div onClick={manejoFav}>
+                      {isFavorite ? (
+                        <GoBookmarkFill className="bookmark position-absolute" />
+                      ) : (
+                        <GoBookmark className="bookmark position-absolute" />
+                      )}
+                    </div>
+                  )}
+              </div>
               <form
                 onSubmit={handleSubmit(manejoEnvio)}
                 className="contenedor_caracteristicas-detalle d-flex flex-column justify-content-lg-between"

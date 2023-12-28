@@ -85,8 +85,9 @@ const InicioSesion = () => {
       });
     } else {
       if (
-        (ubicacion.pathname === "/usuario/iniciar" && !usuarioState) ||
-        (usuarioState && editar === false)
+        (ubicacion.pathname === "/usuario/iniciar" &&
+          usuarioState.nombre.length === 0) ||
+        (usuarioState.nombre.length > 0 && editar === false)
       ) {
         iniciarSesion(usuarioRegistrado).then((respuesta) => {
           obtenerUsuario(respuesta._id).then((res) => {
@@ -156,7 +157,7 @@ const InicioSesion = () => {
       } else {
         if (
           ubicacion.pathname === "/usuario/registrar" &&
-          usuarioState === null &&
+          usuarioState.nombre.length === 0 &&
           !editar
         ) {
           const nuevoUsuario = {
