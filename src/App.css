@@ -412,7 +412,6 @@ footer h3 {
   font-size: 1.1rem;
 }
 
-/* TarjetaProductos  */
 .img-tarjeta-producto {
   max-width: 12rem;
   height: 12rem;
@@ -484,10 +483,9 @@ li ul nav .MuiButtonBase-root.MuiPaginationItem-root.MuiPaginationItem-sizeSmall
   border-radius: .3rem;
 }
 
-/* Menu  */
 .menu-contenedor {
   width: 100%;
-  background-image: url("./src/complementos/imagenes/img-menu-background.png");
+  background-image: url(./src/complementos/imagenes/img-menu-background.webp);
   background-size: cover;
   background-position: 50% 50%;
   position: relative;
@@ -496,6 +494,10 @@ li ul nav .MuiButtonBase-root.MuiPaginationItem-root.MuiPaginationItem-sizeSmall
 
 .container-menu-card {
   margin-top: 8rem;
+}
+
+.css-19d20mt.Mui-selected {
+  background-color: var(--color-primario);
 }
 
 .boton-menu {
