@@ -15,7 +15,6 @@ const Header = () => {
   const usuarioState = useSelector((state) => state.usuarios.usuario);
   const cargaState = useSelector((state) => state.carga.carga);
   const usuarioLS = JSON.parse(sessionStorage.getItem("usuario")) || null;
-  const badge = usuarioState?.carrito?.length;
   const ubicacion = useLocation();
   const navegacion = useNavigate();
   const dispatch = useDispatch();
@@ -215,7 +214,7 @@ const Header = () => {
                       {usuarioState?.rol === "usuario" &&
                       usuarioState?.carrito.length > 0 ? (
                         <div className="contenedor_badge d-flex justify-content-center align-items-center position-absolute">
-                          <span>{badge}</span>
+                          <span>{usuarioState?.carrito.length}</span>
                         </div>
                       ) : (
                         <></>
@@ -331,7 +330,7 @@ const Header = () => {
                   {usuarioState?.rol === "usuario" &&
                     usuarioState?.carrito.length > 0 && (
                       <div className="contenedor_badge d-flex justify-content-center align-items-center position-absolute">
-                        <span>{badge}</span>
+                        <span>{usuarioState?.carrito.length}</span>
                       </div>
                     )}
                 </Link>

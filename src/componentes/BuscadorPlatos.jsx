@@ -33,8 +33,8 @@ const BuscadorPlatos = () => {
     }, 1000);
   };
 
-  const platosFiltrados = productosState.filter((plato) =>
-    plato.nombre.toLowerCase().includes(input.toLowerCase())
+  const platosFiltrados = productosState?.filter((plato) =>
+    plato?.nombre?.toLowerCase().includes(input.toLowerCase())
   );
 
   return (

@@ -13,6 +13,8 @@ import {
   editarUsuario as editarUsuarioState,
 } from "../features/usuarios/usuarioSlice";
 import { editarProducto } from "../features/productos/productosSlice";
+import { setCarga } from "../features/carga/cargaSlice";
+import { setActualizar } from "../features/actualizar/actualizarSlice";
 
 const DetalleProducto = () => {
   const { id } = useParams();
@@ -27,7 +29,7 @@ const DetalleProducto = () => {
   const usuarioState = useSelector((state) => state.usuarios.usuario);
   const productosState = useSelector((state) => state.productos.productos);
   const plato = productosState.filter((prod) => prod._id === id);
-  const [isFavorite, setIsFavorite] = useState(false);
+  const [favoritos, setFavoritos] = useState(false);
   const dispatch = useDispatch();
 
   const {
@@ -53,7 +55,7 @@ const DetalleProducto = () => {
   }, [productosState]);
 
   useEffect(() => {
-    setIsFavorite(usuarioState?.favoritos?.includes(plato?.[0]?._id));
+    setFavoritos(usuarioState?.favoritos?.includes(plato?.[0]?._id));
     dispatch(agregarUsuario(usuarioState));
   }, [usuarioState, plato?.[0]]);
 
@@ -91,7 +93,7 @@ const DetalleProducto = () => {
             ...usuarioEditado,
           })
         );
-        setIsFavorite(!isFavorite);
+        setFavoritos(!favoritos);
       } else {
         const favoritos = usuarioState?.favoritos?.filter(
           (fav) => fav !== plato[0]?._id
@@ -107,7 +109,7 @@ const DetalleProducto = () => {
             favoritos,
           })
         );
-        setIsFavorite(!isFavorite);
+        setFavoritos(!favoritos);
       }
     } catch (error) {
       console.log(error);
@@ -185,13 +187,12 @@ const DetalleProducto = () => {
                   ...usuarioState,
                   carrito: [...usuarioState?.carrito, data],
                 };
-                editarUsuario(usuarioEditado, usuarioState._id);
                 dispatch(
                   editarUsuarioState({
-                    ...usuarioState,
-                    carrito: [...usuarioState?.carrito, data],
+                    usuarioEditado,
                   })
                 );
+                editarUsuario(usuarioEditado, usuarioState._id);
                 reset();
               } else {
                 setTamanio("Chico");
@@ -257,7 +258,7 @@ const DetalleProducto = () => {
                 {usuarioState?.nombre?.length > 0 &&
                   usuarioState?.rol !== "administrador" && (
                     <div onClick={manejoFav}>
-                      {isFavorite ? (
+                      {favoritos ? (
                         <GoBookmarkFill className="bookmark position-absolute" />
                       ) : (
                         <GoBookmark className="bookmark position-absolute" />

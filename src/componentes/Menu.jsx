@@ -171,7 +171,11 @@ const Menu = () => {
   return (
     <>
       <div className="menuConteiner"></div>
-      <section className="menu-contenedor" id="productos">
+      <section
+        className="menu-contenedor"
+        id="productos"
+        style={{ backgroundImage: "./src/complementos/imagenes/imgMenu.jpeg" }}
+      >
         <Container className="menu-contenedor-body">
           <h2 className="text-white text-center menu-titulo mb-5">Menu</h2>
           <div className="d-flex flex-column flex-md-row flex-lg-row justify-content-between align-items-center">

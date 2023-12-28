@@ -155,7 +155,7 @@ header nav .menu_link:hover::after {
 main .contenedor_platos {
   width: 100%;
   height: 20rem;
-  background-image: url("./complementos/imagenes/imagenHero.webp");
+  background-image: url("./complementos/imagenes/imagenHero.png");
   background-size: cover;
   background-attachment: fixed;
   background-position: 50% 50%;
@@ -485,7 +485,7 @@ li ul nav .MuiButtonBase-root.MuiPaginationItem-root.MuiPaginationItem-sizeSmall
 
 .menu-contenedor {
   width: 100%;
-  background-image: url("./src/complementos/imagenes/imgMenu.jpeg");
+  background-image: url("https://i.postimg.cc/15WhCPXL/imgMenu.jpg");
   background-size: cover;
   background-position: 50% 50%;
   position: relative;
@@ -1019,6 +1019,7 @@ td .usuario_activo:hover {
 article .bookmark {
   top: 1rem;
   right: 1rem;
+  font-size: 2rem;
 }
 
 @media (min-width: 767px) {

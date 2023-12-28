@@ -33,7 +33,8 @@ const ContenedorCarrito = () => {
   }, [usuarioState]);
 
   let totalCarrito = 0;
-  if (usuarioState) {
+
+  if (usuarioState.nombre.length > 0) {
     totalCarrito =
       usuarioState?.rol === "usuario" &&
       usuarioState?.carrito.length > 0 &&
@@ -46,7 +47,7 @@ const ContenedorCarrito = () => {
 
   let costoEnvio = 0;
 
-  if (usuarioState) {
+  if (usuarioState.nombre.length > 0) {
     costoEnvio =
       usuarioState?.rol === "usuario" &&
       usuarioState?.carrito.length > 0 &&
@@ -67,6 +68,7 @@ const ContenedorCarrito = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         const carritoActualizado = usuarioState?.carrito || [];
+
         carritoActualizado.forEach((producto) => {
           editarPlato({ ...producto, stock: producto.cantidad }, producto?._id);
           dispatch(editarProducto({ ...producto, stock: producto.cantidad }));
@@ -86,8 +88,7 @@ const ContenedorCarrito = () => {
             editarUsuario(usuarioEditado, usuarioState._id);
             dispatch(
               editarUsuarioState({
-                ...usuarioState,
-                carrito: [],
+                usuarioEditado,
               })
             );
           }
