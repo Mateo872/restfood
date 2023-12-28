@@ -59,4 +59,4 @@ Sigue estos pasos para configurar el proyecto en tu entorno local:
 
 ## ¡Visitá nuestro sitio aquí!
 
-[RestFood](https://restfood-gamma.vercel.app/)
+[RestFood](restfood-delta.vercel.app/)
