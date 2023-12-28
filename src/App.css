@@ -485,7 +485,7 @@ li ul nav .MuiButtonBase-root.MuiPaginationItem-root.MuiPaginationItem-sizeSmall
 
 .menu-contenedor {
   width: 100%;
-  background-image: url(./src/complementos/imagenes/img-menu-background.webp);
+  background-image: url("./src/complementos/imagenes/imgMenu.jpeg");
   background-size: cover;
   background-position: 50% 50%;
   position: relative;
