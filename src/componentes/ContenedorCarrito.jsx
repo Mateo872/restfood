@@ -34,7 +34,7 @@ const ContenedorCarrito = () => {
 
   let totalCarrito = 0;
 
-  if (usuarioState.nombre.length > 0) {
+  if (usuarioState?.nombre?.length > 0) {
     totalCarrito =
       usuarioState?.rol === "usuario" &&
       usuarioState?.carrito.length > 0 &&
@@ -47,7 +47,7 @@ const ContenedorCarrito = () => {
 
   let costoEnvio = 0;
 
-  if (usuarioState.nombre.length > 0) {
+  if (usuarioState?.nombre?.length > 0) {
     costoEnvio =
       usuarioState?.rol === "usuario" &&
       usuarioState?.carrito.length > 0 &&
@@ -85,12 +85,8 @@ const ContenedorCarrito = () => {
           "success"
         ).then((result) => {
           if (result.isConfirmed) {
-            editarUsuario(usuarioEditado, usuarioState._id);
-            dispatch(
-              editarUsuarioState({
-                usuarioEditado,
-              })
-            );
+            editarUsuario(usuarioEditado, usuarioState?._id);
+            dispatch(editarUsuarioState(usuarioEditado));
           }
         });
       }
@@ -107,7 +103,7 @@ const ContenedorCarrito = () => {
         {mostrarCarrito ? (
           usuarioState?.carrito && usuarioState?.rol === "usuario" ? (
             <>
-              {usuarioState.nombre.length > 0 &&
+              {usuarioState?.nombre?.length > 0 &&
                 usuarioState?.carrito?.length > 0 && (
                   <h1 className="titulo_carrito">Carrito</h1>
                 )}
@@ -120,7 +116,7 @@ const ContenedorCarrito = () => {
                       size={35}
                     />
                   </div>
-                ) : usuarioState.nombre.length > 0 &&
+                ) : usuarioState?.nombre?.length > 0 &&
                   usuarioState?.carrito?.length > 0 ? (
                   usuarioState?.carrito.map((producto, index) => (
                     <CarritoItem
@@ -139,7 +135,7 @@ const ContenedorCarrito = () => {
                   </div>
                 )}
               </div>
-              {usuarioState.nombre.length > 0 &&
+              {usuarioState?.nombre?.length > 0 &&
                 usuarioState?.carrito?.length > 0 && (
                   <div className="contenedor_botones w-100 d-flex justify-content-between mt-3">
                     <button className="boton_vaciar" onClick={vaciarCarrito}>

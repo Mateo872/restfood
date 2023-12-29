@@ -21,7 +21,6 @@ export const usuarioSlice = createSlice({
   reducers: {
     usuarios: (estado, accion) => {
       estado.usuarios = accion.payload;
-      // estado.usuarios.push(accion.payload);
     },
     agregarUsuario: (estado, accion) => {
       estado.usuario = accion.payload;
@@ -40,9 +39,7 @@ export const usuarioSlice = createSlice({
         carrito,
       } = accion.payload;
 
-      const usuarioEncontrado = estado.usuarios.find(
-        (usuario) => usuario._id === _id
-      );
+      const usuarioEncontrado = estado.usuario;
 
       if (usuarioEncontrado) {
         usuarioEncontrado.nombre = nombre;

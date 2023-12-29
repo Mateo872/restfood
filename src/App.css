@@ -157,7 +157,6 @@ main .contenedor_platos {
   height: 20rem;
   background-image: url("./complementos/imagenes/imagenHero.png");
   background-size: cover;
-  background-attachment: fixed;
   background-position: 50% 50%;
 }
 
@@ -1500,6 +1499,7 @@ article .bookmark {
 
   main .contenedor_platos {
     height: 41.05rem;
+    background-attachment: fixed;
   }
 
   main .contenedor_platos article {
@@ -2304,6 +2304,48 @@ textarea {
   color: var(--color-primario);
   transition: .3s;
   cursor: pointer;
+}
+
+@media(min-width:362px) and (max-width:400px) {
+  .contenedor_editar {
+    right: 6rem;
+  }
+}
+
+@media(min-width:400px) and (max-width:430px) {
+  .contenedor_editar {
+    right: 7rem;
+  }
+}
+
+@media(min-width:430px) and (max-width:453px) {
+  .contenedor_editar {
+    right: 8rem;
+  }
+}
+
+@media(min-width:453px) and (max-width:490px) {
+  .contenedor_editar {
+    right: 9rem;
+  }
+}
+
+@media(min-width:490px) and (max-width:520px) {
+  .contenedor_editar {
+    right: 10rem;
+  }
+}
+
+@media(min-width:490px) and (max-width:520px) {
+  .contenedor_editar {
+    right: 10rem;
+  }
+}
+
+@media(min-width:520px) and (max-width:767px) {
+  .contenedor_editar {
+    right: 11rem;
+  }
 }
 
 @media all and (min-width: 320px) {

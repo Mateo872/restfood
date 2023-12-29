@@ -13,8 +13,6 @@ import {
   editarUsuario as editarUsuarioState,
 } from "../features/usuarios/usuarioSlice";
 import { editarProducto } from "../features/productos/productosSlice";
-import { setCarga } from "../features/carga/cargaSlice";
-import { setActualizar } from "../features/actualizar/actualizarSlice";
 
 const DetalleProducto = () => {
   const { id } = useParams();
@@ -57,7 +55,7 @@ const DetalleProducto = () => {
   useEffect(() => {
     setFavoritos(usuarioState?.favoritos?.includes(plato?.[0]?._id));
     dispatch(agregarUsuario(usuarioState));
-  }, [usuarioState, plato?.[0]]);
+  }, [usuarioState.favoritos, plato?.[0]]);
 
   const manejoSesion = async () => {
     if (usuarioState?.rol !== "administrador") {
@@ -79,40 +77,33 @@ const DetalleProducto = () => {
   };
 
   const manejoFav = () => {
-    const existe = usuarioState?.favoritos?.includes(id);
+    if (id) {
+      const existe = usuarioState?.favoritos?.includes(id);
 
-    try {
-      if (!existe) {
-        const usuarioEditado = {
-          ...usuarioState,
-          favoritos: [...usuarioState?.favoritos, id],
-        };
-        editarUsuario(usuarioEditado, usuarioState._id);
-        dispatch(
-          editarUsuarioState({
-            ...usuarioEditado,
-          })
-        );
-        setFavoritos(!favoritos);
-      } else {
-        const favoritos = usuarioState?.favoritos?.filter(
-          (fav) => fav !== plato[0]?._id
-        );
-        const usuarioEditado = {
-          ...usuarioState,
-          favoritos,
-        };
-        editarUsuario(usuarioEditado, usuarioState._id);
-        dispatch(
-          editarUsuarioState({
+      try {
+        if (!existe) {
+          const usuarioEditado = {
+            ...usuarioState,
+            favoritos: [...usuarioState?.favoritos, id],
+          };
+          editarUsuario(usuarioEditado, usuarioState._id);
+          dispatch(editarUsuarioState(usuarioEditado));
+          setFavoritos(!favoritos);
+        } else {
+          const favoritos = usuarioState?.favoritos?.filter(
+            (fav) => fav !== plato[0]?._id
+          );
+          const usuarioEditado = {
             ...usuarioState,
             favoritos,
-          })
-        );
-        setFavoritos(!favoritos);
+          };
+          editarUsuario(usuarioEditado, usuarioState._id);
+          dispatch(editarUsuarioState(usuarioEditado));
+          setFavoritos(!favoritos);
+        }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
     }
   };
 
@@ -184,15 +175,19 @@ const DetalleProducto = () => {
                 setCostoEnvio(0);
                 setFormEnviado(false);
                 const usuarioEditado = {
-                  ...usuarioState,
+                  _id: usuarioState._id,
+                  nombre: usuarioState.nombre,
+                  email: usuarioState.email,
+                  contrasenia: usuarioState.contrasenia,
+                  imagen: usuarioState.imagen,
+                  estado: usuarioState.estado,
+                  rol: usuarioState.rol,
+                  pedidos: usuarioState.pedidos,
+                  favoritos: usuarioState.favoritos,
                   carrito: [...usuarioState?.carrito, data],
                 };
-                dispatch(
-                  editarUsuarioState({
-                    usuarioEditado,
-                  })
-                );
                 editarUsuario(usuarioEditado, usuarioState._id);
+                dispatch(editarUsuarioState(usuarioEditado));
                 reset();
               } else {
                 setTamanio("Chico");

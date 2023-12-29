@@ -31,10 +31,10 @@ const Header = () => {
     Swal.fire({
       html: `
         <div class="imagen-contenedor-swal mt-3">
+        <img class="w-100 h-100 position-relative" src="${usuarioState?.imagen}" alt="${usuarioState?.nombre}" />
         <a href="/usuario/iniciar" class="contenedor_editar position-absolute d-flex justify-content-center align-items-center">
           <i class="bi bi-pencil"></i>
         </a>
-        <img class="w-100 h-100" src="${usuarioState?.imagen}" alt="${usuarioState?.nombre}" />
         </div>
         <h2 class="titulo-dialogo mt-3">${usuarioState?.nombre}</h2>
         <p class="texto-dialogo mb-0">¿Deseas cerrar sesión?</p>
@@ -56,7 +56,7 @@ const Header = () => {
         }).then(() => {
           sessionStorage.removeItem("usuario");
           window.location.reload();
-          navegacion("/");
+          window.location.href = "/";
         });
       }
     });
