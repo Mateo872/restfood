@@ -1,28 +1,33 @@
-import { useEffect, useRef, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { BiMenu } from "react-icons/bi";
 import { BsHandbag, BsX } from "react-icons/bs";
 import { Link, useLocation } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
 import { obtenerUsuario } from "../ayudas/consultas";
 import { useDispatch, useSelector } from "react-redux";
 import { agregarUsuario } from "../../features/usuarios/usuarioSlice";
+import { CargaState, UsuariosState } from "../../types/types";
+import Swal from "sweetalert2";
 
 const Header = () => {
-  const menuCapaRef = useRef(null);
-  const menuRef = useRef(null);
+  const menuCapaRef = useRef<HTMLDivElement>(null);
+  const menuRef = useRef<HTMLUListElement>(null);
   const [scroll, setScroll] = useState(false);
-  const usuarioState = useSelector((state) => state.usuarios.usuario);
-  const cargaState = useSelector((state) => state.carga.carga);
-  const usuarioLS = JSON.parse(sessionStorage.getItem("usuario")) || null;
+  const usuarioState = useSelector(
+    (state: UsuariosState) => state.usuarios.usuario
+  );
+  const cargaState = useSelector((state: CargaState) => state.carga.carga);
+  const usuarioLSString = sessionStorage.getItem("usuario");
+  const usuarioLS = usuarioLSString ? JSON.parse(usuarioLSString) : null;
+
   const ubicacion = useLocation();
-  const navegacion = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (usuarioLS) {
       obtenerUsuario(usuarioLS._id).then((res) => {
-        dispatch(agregarUsuario(res));
+        if (res?._id) {
+          dispatch(agregarUsuario(res));
+        }
       });
     }
   }, [cargaState]);
@@ -75,17 +80,21 @@ const Header = () => {
   }, []);
 
   const menuVisible = () => {
-    menuCapaRef.current.classList.add("menu_capa-visible");
-    menuRef.current.classList.add("ul-visible");
+    if (menuCapaRef.current && menuRef.current) {
+      menuCapaRef.current.classList.add("menu_capa-visible");
+      menuRef.current.classList.add("ul-visible");
+    }
   };
 
-  const menuOculto = (e) => {
-    if (
-      e.target.classList.contains("menu_capa") ||
-      e.target.classList.contains("menu_link")
-    ) {
-      menuCapaRef.current.classList.remove("menu_capa-visible");
-      menuRef.current.classList.remove("ul-visible");
+  const menuOculto = (e: ChangeEvent<HTMLInputElement>) => {
+    if (menuCapaRef.current && menuRef.current) {
+      if (
+        e.target.classList.contains("menu_capa") ||
+        e.target.classList.contains("menu_link")
+      ) {
+        menuCapaRef.current.classList.remove("menu_capa-visible");
+        menuRef.current.classList.remove("ul-visible");
+      }
     }
   };
 
@@ -128,7 +137,7 @@ const Header = () => {
         <div
           className="menu_capa"
           ref={menuCapaRef}
-          onClick={(e) => menuOculto(e)}
+          onClick={(e: any) => menuOculto(e)}
         >
           <ul
             className="d-flex flex-column flex-md-row align-items-center justify-content-center gap-4"
@@ -137,8 +146,10 @@ const Header = () => {
             <div
               className="icono_cerrar d-md-none"
               onClick={() => {
-                menuCapaRef.current.classList.remove("menu_capa-visible");
-                menuRef.current.classList.remove("ul-visible");
+                if (menuCapaRef.current && menuRef.current) {
+                  menuCapaRef.current.classList.remove("menu_capa-visible");
+                  menuRef.current.classList.remove("ul-visible");
+                }
               }}
             >
               <BsX />

@@ -4,6 +4,16 @@ import { borrarPlato } from "./ayudas/consultas";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 import { setActualizar } from "../features/actualizar/actualizarSlice";
+import { ActualizarState, Producto } from "../types/types";
+import { Dispatch, SetStateAction } from "react";
+
+interface Props {
+  platos: Producto;
+  seleccion: boolean;
+  setSeleccionados: Dispatch<SetStateAction<string[]>>;
+  seleccionados: string[];
+  setInput: Dispatch<SetStateAction<string>>;
+}
 
 const ItemProducto = ({
   platos,
@@ -11,17 +21,21 @@ const ItemProducto = ({
   setSeleccionados,
   seleccionados,
   setInput,
-}) => {
-  const actualizar = useSelector((state) => state.actualizar.actualizar);
+}: Props) => {
+  const actualizar = useSelector(
+    (state: ActualizarState) => state.actualizar.actualizar
+  );
   const dispatch = useDispatch();
 
   const manejoSeleccion = () => {
-    const existe = seleccionados.find((selec) => selec === platos._id);
+    const existe = seleccionados.find((selec: string) => selec === platos._id);
 
     if (!existe) {
       setSeleccionados([...seleccionados, platos._id]);
     } else {
-      const existe = seleccionados.filter((selec) => selec !== platos._id);
+      const existe = seleccionados.filter(
+        (selec: string) => selec !== platos._id
+      );
       setSeleccionados(existe);
     }
   };
@@ -37,7 +51,7 @@ const ItemProducto = ({
     }).then((result) => {
       if (result.isConfirmed) {
         borrarPlato(platos._id).then((res) => {
-          if (res.status === 200) {
+          if (res && res.status === 200) {
             Swal.fire(
               "Producto eliminado con éxito!",
               `El producto ${platos.nombre} fue eliminado.`,
@@ -94,7 +108,7 @@ const ItemProducto = ({
           onClick={manejoSeleccion}
         >
           {seleccionados.length > 0 &&
-          seleccionados.find((selec) => selec === platos._id)
+          seleccionados.find((selec: string) => selec === platos._id)
             ? "Cancelar"
             : "Seleccionar"}
         </button>

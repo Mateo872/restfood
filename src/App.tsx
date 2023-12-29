@@ -15,16 +15,19 @@ import { useEffect } from "react";
 import { obtenerPlatos } from "./componentes/ayudas/consultas";
 import { useDispatch, useSelector } from "react-redux";
 import { productos } from "./features/productos/productosSlice";
+import { ActualizarState, Producto } from "./types/types";
 
 function App() {
-  const actualizar = useSelector((state) => state.actualizar.actualizar);
+  const actualizar = useSelector(
+    (state: ActualizarState) => state.actualizar.actualizar
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchProductos = async () => {
       try {
-        const respuesta = await obtenerPlatos();
-        dispatch(productos(respuesta));
+        const respuesta: Producto[] | undefined = await obtenerPlatos();
+        respuesta && dispatch(productos(respuesta));
       } catch (error) {
         console.error(error);
       }
@@ -36,15 +39,10 @@ function App() {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route exact path="/" element={<Inicio />}></Route>
-        <Route exact path="/usuario/iniciar" element={<InicioSesion />}></Route>
+        <Route path="/" element={<Inicio />}></Route>
+        <Route path="/usuario/iniciar" element={<InicioSesion />}></Route>
+        <Route path="/usuario/registrar" element={<InicioSesion />}></Route>
         <Route
-          exact
-          path="/usuario/registrar"
-          element={<InicioSesion />}
-        ></Route>
-        <Route
-          exact
           path="/producto/detalle/:id"
           element={<DetalleProducto />}
         ></Route>
@@ -56,11 +54,7 @@ function App() {
             </RutasProtegidas>
           }
         ></Route>
-        <Route
-          exact
-          path="/usuario/carrito"
-          element={<ContenedorCarrito />}
-        ></Route>
+        <Route path="/usuario/carrito" element={<ContenedorCarrito />}></Route>
         <Route path="*" element={<Error404 />} />
       </Routes>
       <Footer />

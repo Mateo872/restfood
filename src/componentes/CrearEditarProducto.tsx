@@ -6,11 +6,28 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setActualizar } from "../features/actualizar/actualizarSlice";
 import Swal from "sweetalert2";
+import { ActualizarState, Producto, ProductosState } from "../types/types";
+
+interface FormValues {
+  _id: string;
+  imagen: string;
+  nombre: string;
+  precio: number;
+  descripcion: string;
+  categoria: string | number;
+  stock: string | number;
+  cantidad: string;
+  descuento: boolean;
+}
 
 const CrearEditarProducto = () => {
   const { id } = useParams();
-  const productosState = useSelector((state) => state.productos.productos);
-  const actualizar = useSelector((state) => state.actualizar.actualizar);
+  const productosState = useSelector(
+    (state: ProductosState) => state.productos.productos
+  );
+  const actualizar = useSelector(
+    (state: ActualizarState) => state.actualizar.actualizar
+  );
   const navegacion = useNavigate();
   const dispatch = useDispatch();
 
@@ -20,34 +37,36 @@ const CrearEditarProducto = () => {
     formState: { errors },
     reset,
     setValue,
-  } = useForm();
+  } = useForm<FormValues>();
 
   useEffect(() => {
     if (id) {
       const plato = productosState.find((prod) => prod._id === id);
-      setValue("imagen", plato.imagen);
-      setValue("nombre", plato.nombre);
-      setValue("precio", plato.precio);
-      setValue("descripcion", plato.descripcion);
-      setValue("stock", plato.stock);
-      setValue("categoria", plato.categoria);
+      if (plato) {
+        setValue("imagen", plato?.imagen);
+        setValue("nombre", plato?.nombre);
+        setValue("precio", plato?.precio);
+        setValue("descripcion", plato?.descripcion);
+        setValue("stock", plato?.stock);
+        setValue("categoria", plato?.categoria);
+      }
     }
   }, []);
 
-  const verificarNombrePlato = (nombre) => {
-    return productosState.some((plato) => plato.nombre === nombre);
+  const verificarNombrePlato = (nombre: string) => {
+    return productosState.some((plato) => plato?.nombre === nombre);
   };
 
-  const onSubmit = (plato) => {
+  const onSubmit = (plato: Producto) => {
     if (id) {
-      const nombreExiste = verificarNombrePlato(plato.nombre);
+      const nombreExiste = verificarNombrePlato(plato?.nombre);
 
       editarPlato(plato, id).then((respuesta) => {
-        if (respuesta.status === 200) {
+        if (respuesta && respuesta.status === 200) {
           dispatch(setActualizar(!actualizar));
           Swal.fire(
             "Producto modificado",
-            `El producto ${plato.nombre} fue modificado con éxito.`,
+            `El producto ${plato?.nombre} fue modificado con éxito.`,
             "success"
           ).then((res) => {
             if (res.isConfirmed) {
@@ -72,11 +91,11 @@ const CrearEditarProducto = () => {
       });
     } else {
       crearPlato(plato).then((respuesta) => {
-        if (respuesta.status === 201) {
+        if (respuesta && respuesta.status === 201) {
           dispatch(setActualizar(!actualizar));
           Swal.fire({
             title: "Producto creado",
-            text: `El producto ${plato.nombre} fue creado con éxito.`,
+            text: `El producto ${plato?.nombre} fue creado con éxito.`,
             icon: "success",
             confirmButtonText: "Ir al administrador",
             cancelButtonText: "Seguir creando",
@@ -88,7 +107,7 @@ const CrearEditarProducto = () => {
           });
           reset();
         } else {
-          if (respuesta.status === 400) {
+          if (respuesta && respuesta.status === 400) {
             Swal.fire(
               "Error",
               `El plato ya existe, Introduzca un plato diferente.`,
@@ -188,9 +207,8 @@ const CrearEditarProducto = () => {
           <label className="text-white mb-1">Descripción</label>
           <div className="text-center">
             <textarea
-              name="descripcion"
               id="descripcion"
-              rows="3"
+              rows={3}
               placeholder="Descripción del producto"
               className="input_CrearEditarpd"
               {...register("descripcion", {
@@ -217,7 +235,6 @@ const CrearEditarProducto = () => {
           <label className="text-white mb-1">Categoría</label>
           <div className="text-center">
             <select
-              name="selecCategoria"
               id="selec_Categoria"
               className="input_CrearEditarpd"
               {...register("categoria", {

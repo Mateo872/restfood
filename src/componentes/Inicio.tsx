@@ -1,4 +1,3 @@
-import React from "react";
 import BuscadorPlatos from "./BuscadorPlatos";
 import QuienesSomos from "./QuienesSomos";
 import Menu from "./Menu";

@@ -1,7 +1,13 @@
+import { Producto } from "../types/types";
 import PlatoItem from "./PlatoItem";
 import ClipLoader from "react-spinners/ClipLoader";
 
-const ContenedorPlato = ({ platosFiltrados, mostrarSpinner }) => {
+interface Props {
+  platosFiltrados: Producto[];
+  mostrarSpinner: boolean;
+}
+
+const ContenedorPlato = ({ platosFiltrados, mostrarSpinner }: Props) => {
   return (
     <div
       className={`contenedor_slider position-absolute buscador ${

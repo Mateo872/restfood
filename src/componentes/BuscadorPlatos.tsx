@@ -1,26 +1,30 @@
 import { BsSearch } from "react-icons/bs";
 import ContenedorPlato from "./ContenedorPlato";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { ProductosState } from "../types/types";
 
 const BuscadorPlatos = () => {
   const [input, setInput] = useState("");
   const [mostrarSlider, setMostrarSlider] = useState(false);
   const [mostrarSpinner, setMostrarSpinner] = useState(false);
-  const productosState = useSelector((state) => state.productos.productos);
+  const productosState = useSelector(
+    (state: ProductosState) => state.productos.productos
+  );
 
   useEffect(() => {
     document.addEventListener("click", manejoClick);
   }, []);
 
-  const manejoClick = (e) => {
-    if (!e.target.classList.contains("buscador")) {
+  const manejoClick = (e: MouseEvent) => {
+    const target = e.target as HTMLElement;
+    if (target && !target.classList.contains("buscador")) {
       setMostrarSlider(false);
       setInput("");
     }
   };
 
-  const manejoBuscador = (e) => {
+  const manejoBuscador = (e: ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
     spinner();
     setMostrarSlider(true);
