@@ -13,6 +13,12 @@ import {
   editarUsuario as editarUsuarioState,
 } from "../features/usuarios/usuarioSlice";
 import { editarProducto } from "../features/productos/productosSlice";
+import { Carrito, ProductosState, UsuariosState } from "../types/types";
+
+interface FormValues extends Carrito {
+  codigoPostal: number;
+  cantidad: string;
+}
 
 const DetalleProducto = () => {
   const { id } = useParams();
@@ -21,11 +27,15 @@ const DetalleProducto = () => {
   const [mostrarSpinnerPostal, setMostrarSpinnerPostal] = useState(false);
   const [tamanio, setTamanio] = useState("Chico");
   const [error, setError] = useState(false);
-  const [formEnviado, setFormEnviado] = useState(null);
+  const [formEnviado, setFormEnviado] = useState<boolean | null>(null);
   const [costoEnvio, setCostoEnvio] = useState(0);
   const [stockOriginal, setStockOriginal] = useState(0);
-  const usuarioState = useSelector((state) => state.usuarios.usuario);
-  const productosState = useSelector((state) => state.productos.productos);
+  const usuarioState = useSelector(
+    (state: UsuariosState) => state.usuarios.usuario
+  );
+  const productosState = useSelector(
+    (state: ProductosState) => state.productos.productos
+  );
   const plato = productosState.filter((prod) => prod._id === id);
   const [favoritos, setFavoritos] = useState(false);
   const dispatch = useDispatch();
@@ -35,13 +45,13 @@ const DetalleProducto = () => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm();
+  } = useForm<FormValues>();
 
   useEffect(() => {
     if (plato) {
       setMostrarSpinner(true);
       setTimeout(() => {
-        setStockOriginal(plato[0]?.stock || 0);
+        setStockOriginal(Number(plato[0]?.stock || 0));
         setMostrarSpinner(false);
       }, 500);
     } else {
@@ -107,9 +117,11 @@ const DetalleProducto = () => {
     }
   };
 
-  const manejoTamanio = (e) => {
-    const nuevoTamanio = e.target.textContent;
-    setTamanio(nuevoTamanio);
+  const manejoTamanio = (e: React.MouseEvent<HTMLParagraphElement>) => {
+    const nuevoTamanio = e.currentTarget.textContent;
+    if (nuevoTamanio) {
+      setTamanio(nuevoTamanio);
+    }
   };
 
   const obtenerPrecioConTamanio = () => {
@@ -124,7 +136,7 @@ const DetalleProducto = () => {
     return precioInicial;
   };
 
-  const actualizarStock = (cantidad) => {
+  const actualizarStock = (cantidad: number) => {
     try {
       const nuevoStock = stockOriginal - cantidad;
       if (nuevoStock >= 0) {
@@ -137,7 +149,7 @@ const DetalleProducto = () => {
     }
   };
 
-  const manejoEnvio = async (data) => {
+  const manejoEnvio = async (data: Carrito) => {
     try {
       if (!formEnviado && !mostrarSpinnerPostal) {
         setMostrarSpinnerPostal(true);
@@ -156,7 +168,7 @@ const DetalleProducto = () => {
               _id: plato[0]?._id,
               nombre: plato[0]?.nombre,
               precio: obtenerPrecioConTamanio(),
-              cantidad: cantidadSeleccionada,
+              cantidad: cantidadSeleccionada.toString(),
               costoEnvio,
               imagen: plato[0]?.imagen,
             };
@@ -234,7 +246,9 @@ const DetalleProducto = () => {
             <div className="d-flex gap-1 paginacion">
               <Link to={"/"}>INICIO /</Link>
               <span className="paginacion_detalle">
-                {plato[0]?.categoria?.toUpperCase()} /
+                {typeof plato[0]?.categoria === "string" &&
+                  plato[0]?.categoria?.toUpperCase()}
+                /
               </span>
               <span className="paginacion_detalle-color">
                 {plato[0]?.nombre?.toUpperCase()}
@@ -316,7 +330,9 @@ const DetalleProducto = () => {
                     opacity:
                       mostrarSpinnerPostal ||
                       !usuarioState ||
-                      (usuarioState?.rol === "administrador" && ".2"),
+                      usuarioState?.rol === "administrador"
+                        ? ".2"
+                        : "",
                   }}
                   {...register("cantidad", {
                     required: "La cantidad es obligatoria",
@@ -356,7 +372,9 @@ const DetalleProducto = () => {
                         opacity:
                           mostrarSpinnerPostal ||
                           !usuarioState ||
-                          (usuarioState?.rol === "administrador" && ".2"),
+                          usuarioState?.rol === "administrador"
+                            ? ".2"
+                            : "",
                       }}
                       {...register("codigoPostal", {
                         required: "El código postal es obligatorio",
@@ -379,7 +397,7 @@ const DetalleProducto = () => {
                           !usuarioState?.carrito ||
                           usuarioState?.rol === "administrador"
                             ? manejoSesion
-                            : null
+                            : () => null
                         }
                       >
                         Calcular

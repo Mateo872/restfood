@@ -4,9 +4,22 @@ import { editarPlato, editarUsuario } from "./ayudas/consultas";
 import { useDispatch, useSelector } from "react-redux";
 import { editarProducto } from "../features/productos/productosSlice";
 import { editarUsuario as editarUsuarioState } from "../features/usuarios/usuarioSlice";
+import { UsuariosState } from "../types/types";
 
-const CarritoItem = ({ producto }) => {
-  const usuarioState = useSelector((state) => state.usuarios.usuario);
+type CarritoItemProps = {
+  producto: {
+    _id: string;
+    nombre: string;
+    imagen: string;
+    precio: number;
+    cantidad: string | number;
+  };
+};
+
+const CarritoItem = ({ producto }: CarritoItemProps) => {
+  const usuarioState = useSelector(
+    (state: UsuariosState) => state.usuarios.usuario
+  );
   const dispatch = useDispatch();
 
   const eliminarProducto = () => {
@@ -71,7 +84,7 @@ const CarritoItem = ({ producto }) => {
       </div>
       <div className="carrito_caracteristicas d-flex flex-column">
         <h6 className="title">Subtotal</h6>
-        <h6 className="subtitle mb-0">${precio * cantidad}</h6>
+        <h6 className="subtitle mb-0">${+precio * +cantidad}</h6>
       </div>
       <BsTrash onClick={eliminarProducto} />
     </div>

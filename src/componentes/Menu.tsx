@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import TarjetaProducto from "./TarjetaProducto";
 import Paginacion from "./Paginacion";
@@ -6,18 +6,28 @@ import { BsSliders } from "react-icons/bs";
 import ContenedorFiltros from "./ContenedorFiltros";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useSelector } from "react-redux";
+import { Producto, ProductosState, UsuariosState } from "../types/types";
+
+export interface PropsFiltros {
+  categorias: (string | number)[];
+  precio: (string | number)[];
+  ordenar: string[];
+  stock: (number | string)[];
+  favoritos: string[];
+  descuento: (string | number)[];
+}
 
 const Menu = () => {
   const [busqueda, setBusqueda] = useState("");
-  const [productos, setProductos] = useState([]);
+  const [productos, setProductos] = useState<Producto[]>([]);
   const [paginaActual, setPaginaActual] = useState(1);
-  const [mostrarFiltro, setMostrarFiltro] = useState(null);
+  const [mostrarFiltro, setMostrarFiltro] = useState<boolean | null>(null);
   const [precioMinimo, setPrecioMinimo] = useState(0);
   const [precioMaximo, setPrecioMaximo] = useState(0);
   const [titulo, setTitulo] = useState("Todos los productos");
   const [textoVacio, setTextoVacio] = useState("No hay productos disponibles");
   const [spinner, setSpinner] = useState(false);
-  const [filtros, setFiltros] = useState({
+  const [filtros, setFiltros] = useState<PropsFiltros>({
     categorias: [],
     precio: [],
     ordenar: [],
@@ -26,8 +36,12 @@ const Menu = () => {
     descuento: [],
   });
   const productosPorPagina = window.innerWidth >= 1400 ? 8 : 6;
-  const productosState = useSelector((state) => state.productos.productos);
-  const usuariosState = useSelector((state) => state.usuarios.usuario);
+  const productosState = useSelector(
+    (state: ProductosState) => state.productos.productos
+  );
+  const usuariosState = useSelector(
+    (state: UsuariosState) => state.usuarios.usuario
+  );
 
   useEffect(() => {
     setProductos(productosState);
@@ -51,7 +65,7 @@ const Menu = () => {
     window.addEventListener("scroll", manejarScroll);
   }, []);
 
-  const manejoBuscador = (e) => {
+  const manejoBuscador = (e: ChangeEvent<HTMLInputElement>) => {
     setBusqueda(e.target.value);
     setSpinner(true);
     setTimeout(() => {
@@ -60,7 +74,7 @@ const Menu = () => {
     setPaginaActual(1);
   };
 
-  const actualizarTitulo = (nuevoTitulo) => {
+  const actualizarTitulo = (nuevoTitulo: string) => {
     setTitulo(nuevoTitulo);
   };
 
@@ -70,6 +84,7 @@ const Menu = () => {
 
   const filtrarProductos = () => {
     let productosFiltrados = [...productos];
+
     if (busqueda.trim() !== "") {
       productosFiltrados = productosFiltrados.filter((producto) =>
         producto.nombre.toLowerCase().includes(busqueda.toLowerCase())
@@ -118,8 +133,8 @@ const Menu = () => {
     if (filtros.stock.length > 0) {
       productosFiltrados = productosFiltrados.filter((producto) =>
         filtros.stock.includes("stock")
-          ? producto.stock > 0
-          : producto.stock === 0
+          ? +producto.stock > 0
+          : +producto.stock === 0
       );
     }
 

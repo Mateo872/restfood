@@ -3,17 +3,21 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
+type FormValues = {
+  email: string;
+};
+
 const Footer = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm();
+  } = useForm<FormValues>();
 
   const [enviandoEmail, setEnviandoEmail] = useState(false);
 
-  const envio = (data) => {
+  const envio = () => {
     setEnviandoEmail(true);
     setTimeout(() => {
       setEnviandoEmail(false);
@@ -80,9 +84,9 @@ const Footer = () => {
                     type="email"
                     className="form-control w-100"
                     placeholder="Ingrese el correo electrónico"
-                    id="user_email"
+                    id="email"
                     required
-                    {...register("user_email", {
+                    {...register("email", {
                       required: "El email es obligatorio",
                       pattern: {
                         value:

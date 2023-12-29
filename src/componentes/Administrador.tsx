@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import ItemProducto from "./ItemProducto";
 import ItemUsuario from "./ItemUsuario";
 import ItemPedidos from "./ItemPedidos";
@@ -14,21 +14,37 @@ import { useDispatch, useSelector } from "react-redux";
 import { usuarios } from "../features/usuarios/usuarioSlice";
 import { editarUsuario as editarUsuarioState } from "../features/usuarios/usuarioSlice";
 import { setActualizar as setActualizarState } from "../features/actualizar/actualizarSlice";
+import {
+  ActualizarState,
+  Pedidos,
+  ProductosState,
+  Usuario,
+} from "../types/types";
+
+interface Props {
+  usuarios: {
+    usuarios: Usuario[];
+  };
+}
 
 const Administrador = () => {
   const [input, setInput] = useState("");
   const [seleccion, setSeleccion] = useState(false);
-  const [seleccionados, setSeleccionados] = useState([]);
-  const [dataPedidos, setDataPedidos] = useState([]);
+  const [seleccionados, setSeleccionados] = useState<string[]>([]);
+  const [dataPedidos, setDataPedidos] = useState<Pedidos[]>([]);
   const [spinner, setSpinner] = useState(false);
   const [actualizar, setActualizar] = useState(false);
-  const usuariosState = useSelector((state) => state.usuarios.usuarios);
-  const productosState = useSelector((state) => state.productos.productos);
-  const actualizarState = useSelector((state) => state.actualizar.actualizar);
+  const usuariosState = useSelector((state: Props) => state.usuarios.usuarios);
+  const productosState = useSelector(
+    (state: ProductosState) => state.productos.productos
+  );
+  const actualizarState = useSelector(
+    (state: ActualizarState) => state.actualizar.actualizar
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const todosPedidos = [];
+    const todosPedidos: Pedidos[] = [];
 
     usuariosState?.forEach((usuario) => {
       if (usuario.pedidos && usuario.pedidos.length > 0) {
@@ -41,8 +57,8 @@ const Administrador = () => {
 
   const fetchUsuarios = async () => {
     try {
-      const respuesta = await obtenerUsuarios();
-      dispatch(usuarios(respuesta));
+      const respuesta: Usuario[] | undefined = await obtenerUsuarios();
+      respuesta && dispatch(usuarios(respuesta));
     } catch (error) {
       console.error(error);
     }
@@ -65,7 +81,7 @@ const Administrador = () => {
         if (result.isConfirmed) {
           borrarPlatos(seleccionados)
             .then((respuestas) => {
-              if (respuestas.every((res) => res.status === 200)) {
+              if (respuestas && respuestas.every((res) => res.status === 200)) {
                 Swal.fire(
                   "Productos eliminados con éxito!",
                   "Los productos fueron eliminados.",
@@ -103,7 +119,7 @@ const Administrador = () => {
     }
   };
 
-  const manejoBuscador = (e) => {
+  const manejoBuscador = (e: ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
     setSpinner(true);
     setTimeout(() => {
@@ -138,12 +154,7 @@ const Administrador = () => {
               pedidos: [],
             };
             editarUsuario(usuarioEditado, usuario._id);
-            dispatch(
-              editarUsuarioState({
-                ...usuario,
-                pedidos: [],
-              })
-            );
+            dispatch(editarUsuarioState(usuarioEditado));
           }
 
           Swal.fire(
@@ -221,7 +232,8 @@ const Administrador = () => {
                 platosFiltrados.length < 3 && platosFiltrados.length !== 0
                   ? "center"
                   : "space-between",
-              height: platosFiltrados.length < 6 ? "auto" : spinner && "4rem",
+              height:
+                platosFiltrados.length < 6 ? "auto" : spinner ? "4rem" : "",
             }}
           >
             {spinner ? (

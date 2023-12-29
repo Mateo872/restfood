@@ -1,9 +1,16 @@
 import { Link } from "react-router-dom";
 import { BsFillHeartFill } from "react-icons/bs";
 import { useSelector } from "react-redux";
+import { Producto, UsuariosState } from "../types/types";
 
-const PlatoItem = ({ platosFiltrados }) => {
-  const usuarioState = useSelector((state) => state.usuarios.usuario);
+interface Props {
+  platosFiltrados: Producto[];
+}
+
+const PlatoItem = ({ platosFiltrados }: Props) => {
+  const usuarioState = useSelector(
+    (state: UsuariosState) => state.usuarios.usuario
+  );
 
   return (
     <>

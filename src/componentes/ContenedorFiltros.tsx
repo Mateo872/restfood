@@ -1,4 +1,17 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
+import { PropsFiltros } from "./Menu";
+
+interface Props {
+  mostrarFiltro: boolean | null;
+  setMostrarFiltro: (arg: boolean) => void;
+  filtros: PropsFiltros;
+  setFiltros: (filtros: PropsFiltros) => void;
+  precioMinimo: number;
+  precioMaximo: number;
+  setPaginaActual: (pag: number) => void;
+  actualizarTitulo: (titulo: string) => void;
+  setBusqueda: (busqueda: string) => void;
+}
 
 const ContenedorFiltros = ({
   mostrarFiltro,
@@ -10,19 +23,20 @@ const ContenedorFiltros = ({
   setPaginaActual,
   actualizarTitulo,
   setBusqueda,
-}) => {
-  const [ordenarActivo, setOrdenarActivo] = useState(null);
-  const [precio, setPrecio] = useState(null);
-  const [favoritos, setFavoritos] = useState(null);
-  const [descuento, setDescuento] = useState(null);
-  const [filtrosSeleccionados, setFiltrosSeleccionados] = useState({
-    categorias: [],
-    precio: [],
-    ordenar: [],
-    stock: [],
-    favoritos: [],
-    descuento: [],
-  });
+}: Props) => {
+  const [ordenarActivo, setOrdenarActivo] = useState<string | null>(null);
+  const [precio, setPrecio] = useState<string | null>(null);
+  const [favoritos, setFavoritos] = useState<string | null>(null);
+  const [descuento, setDescuento] = useState<string | null>(null);
+  const [filtrosSeleccionados, setFiltrosSeleccionados] =
+    useState<PropsFiltros>({
+      categorias: [],
+      precio: [],
+      ordenar: [],
+      stock: [],
+      favoritos: [],
+      descuento: [],
+    });
 
   const todosLosFiltrosDesactivados = () => {
     return (
@@ -35,7 +49,7 @@ const ContenedorFiltros = ({
     );
   };
 
-  const manejoCategorias = (e) => {
+  const manejoCategorias = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = e.target;
 
     if (checked) {
@@ -53,7 +67,7 @@ const ContenedorFiltros = ({
     }
   };
 
-  const manejarPrecio = (e) => {
+  const manejarPrecio = (e: ChangeEvent<HTMLInputElement>) => {
     const { name } = e.target;
     if (precio === name) {
       setPrecio(null);
@@ -70,7 +84,7 @@ const ContenedorFiltros = ({
     }
   };
 
-  const manejarOrdenar = (e) => {
+  const manejarOrdenar = (e: ChangeEvent<HTMLInputElement>) => {
     const { name } = e.target;
     if (ordenarActivo === name) {
       setOrdenarActivo(null);
@@ -87,7 +101,7 @@ const ContenedorFiltros = ({
     }
   };
 
-  const manejarStock = (e) => {
+  const manejarStock = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = e.target;
     if (checked) {
       setFiltrosSeleccionados({
@@ -102,7 +116,7 @@ const ContenedorFiltros = ({
     }
   };
 
-  const manejarFavoritos = (e) => {
+  const manejarFavoritos = (e: ChangeEvent<HTMLInputElement>) => {
     const { name } = e.target;
     if (favoritos === name) {
       setFavoritos(null);
@@ -119,7 +133,7 @@ const ContenedorFiltros = ({
     }
   };
 
-  const manejarDescuento = (e) => {
+  const manejarDescuento = (e: ChangeEvent<HTMLInputElement>) => {
     const { name } = e.target;
     if (descuento === name) {
       setDescuento(null);
@@ -167,7 +181,7 @@ const ContenedorFiltros = ({
     setMostrarFiltro(!mostrarFiltro);
   };
 
-  const convertirCamelCase = (texto) => {
+  const convertirCamelCase = (texto: string) => {
     return texto
       .replace(/([a-z])([A-Z])/g, "$1 $2")
       .replace(/\b([A-Z]+)([A-Z])([a-z])/, "$1 $2$3")
@@ -186,11 +200,11 @@ const ContenedorFiltros = ({
         actualizarTitulo("Todos los productos");
       } else if (filtrosSeleccionados.categorias.length === 1) {
         actualizarTitulo(
-          convertirCamelCase(filtrosSeleccionados.categorias[0])
+          convertirCamelCase(filtrosSeleccionados.categorias[0].toString())
         );
       } else {
         const categoriasUnidas = filtrosSeleccionados.categorias
-          .map((categoria) => convertirCamelCase(categoria))
+          .map((categoria) => convertirCamelCase(categoria.toString()))
           .join(", ");
         actualizarTitulo(categoriasUnidas);
       }
@@ -212,7 +226,7 @@ const ContenedorFiltros = ({
       className="filtro_overlay vw-100 vh-100 d-flex align-items-end"
       style={{ visibility: mostrarFiltro ? "visible" : "hidden" }}
       onClick={(e) =>
-        e.target.className.includes("filtro_overlay") &&
+        (e.target as HTMLElement).className.includes("filtro_overlay") &&
         setMostrarFiltro(!mostrarFiltro)
       }
     >

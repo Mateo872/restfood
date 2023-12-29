@@ -14,11 +14,14 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { agregarUsuario } from "../features/usuarios/usuarioSlice";
 import { setCarga } from "../features/carga/cargaSlice";
+import { CargaState, Usuario, UsuariosState } from "../types/types";
 
 const InicioSesion = () => {
   const [editar, setEditar] = useState(false);
-  const usuarioState = useSelector((state) => state.usuarios.usuario);
-  const cargaState = useSelector((state) => state.carga.carga);
+  const usuarioState = useSelector(
+    (state: UsuariosState) => state.usuarios.usuario
+  );
+  const cargaState = useSelector((state: CargaState) => state.carga.carga);
   const ubicacion = useLocation();
   const navegacion = useNavigate();
   const dispatch = useDispatch();
@@ -30,7 +33,7 @@ const InicioSesion = () => {
     setValue,
     getValues,
     reset,
-  } = useForm();
+  } = useForm<Usuario>();
 
   useEffect(() => {
     if (
@@ -51,7 +54,7 @@ const InicioSesion = () => {
     }
   }, [usuarioState]);
 
-  const manejoEnvio = async (usuarioRegistrado) => {
+  const manejoEnvio = async (usuarioRegistrado: Usuario) => {
     if (
       ubicacion.pathname === "/usuario/iniciar" &&
       usuarioState.nombre.length > 0 &&
@@ -90,69 +93,71 @@ const InicioSesion = () => {
         (usuarioState.nombre.length > 0 && editar === false)
       ) {
         iniciarSesion(usuarioRegistrado).then((respuesta) => {
-          obtenerUsuario(respuesta._id).then((res) => {
-            if (res.contrasenia !== usuarioRegistrado.contrasenia) {
-              Swal.fire("Error", "Email o contraseña incorrecta", "error");
-            } else {
-              if (respuesta.status === 200) {
-                if (respuesta.rol === "administrador") {
-                  Swal.fire(
-                    `Bienvenido, ${respuesta.nombre}`,
-                    "Has iniciado sesión correctamente como administrador",
-                    "success"
-                  ).then((res) => {
-                    if (res.isConfirmed) {
-                      const body = {
-                        _id: respuesta._id,
-                        nombre: respuesta.nombre,
-                        email: respuesta.email,
-                        imagen: respuesta.imagen,
-                        estado: respuesta.estado,
-                        rol: respuesta.rol,
-                        pedidos: respuesta.pedidos,
-                        favoritos: respuesta.favoritos,
-                        carrito: respuesta.carrito,
-                      };
-                      sessionStorage.setItem("usuario", JSON.stringify(body));
-                      dispatch(agregarUsuario(body));
-                      dispatch(setCarga(!cargaState));
-                      navegacion("/administrador");
-                    }
-                  });
-                } else if (respuesta.estado !== "suspendido") {
-                  Swal.fire(
-                    `Bienvenido, ${respuesta.nombre}`,
-                    "Has iniciado sesión correctamente",
-                    "success"
-                  ).then((res) => {
-                    if (res.isConfirmed) {
-                      const body = {
-                        _id: respuesta._id,
-                        nombre: respuesta.nombre,
-                        email: respuesta.email,
-                        imagen: respuesta.imagen,
-                        estado: respuesta.estado,
-                        rol: respuesta.rol,
-                        pedidos: respuesta.pedidos,
-                        favoritos: respuesta.favoritos,
-                        carrito: respuesta.carrito,
-                      };
-                      sessionStorage.setItem("usuario", JSON.stringify(body));
-                      dispatch(agregarUsuario(body));
-                      dispatch(setCarga(!cargaState));
-                      navegacion("/");
-                    }
-                  });
-                } else {
-                  Swal.fire(
-                    `Usuario suspendido`,
-                    "El usuario se encuentra suspendido",
-                    "error"
-                  );
+          if (respuesta) {
+            obtenerUsuario(respuesta._id).then((res) => {
+              if (res && res.contrasenia !== usuarioRegistrado.contrasenia) {
+                Swal.fire("Error", "Email o contraseña incorrecta", "error");
+              } else {
+                if (respuesta.status === 200) {
+                  if (respuesta.rol === "administrador") {
+                    Swal.fire(
+                      `Bienvenido, ${respuesta.nombre}`,
+                      "Has iniciado sesión correctamente como administrador",
+                      "success"
+                    ).then((res) => {
+                      if (res.isConfirmed) {
+                        const body = {
+                          _id: respuesta._id,
+                          nombre: respuesta.nombre,
+                          email: respuesta.email,
+                          imagen: respuesta.imagen,
+                          estado: respuesta.estado,
+                          rol: respuesta.rol,
+                          pedidos: respuesta.pedidos,
+                          favoritos: respuesta.favoritos,
+                          carrito: respuesta.carrito,
+                        };
+                        sessionStorage.setItem("usuario", JSON.stringify(body));
+                        dispatch(agregarUsuario(body));
+                        dispatch(setCarga(!cargaState));
+                        navegacion("/administrador");
+                      }
+                    });
+                  } else if (respuesta.estado !== "suspendido") {
+                    Swal.fire(
+                      `Bienvenido, ${respuesta.nombre}`,
+                      "Has iniciado sesión correctamente",
+                      "success"
+                    ).then((res) => {
+                      if (res.isConfirmed) {
+                        const body = {
+                          _id: respuesta._id,
+                          nombre: respuesta.nombre,
+                          email: respuesta.email,
+                          imagen: respuesta.imagen,
+                          estado: respuesta.estado,
+                          rol: respuesta.rol,
+                          pedidos: respuesta.pedidos,
+                          favoritos: respuesta.favoritos,
+                          carrito: respuesta.carrito,
+                        };
+                        sessionStorage.setItem("usuario", JSON.stringify(body));
+                        dispatch(agregarUsuario(body));
+                        dispatch(setCarga(!cargaState));
+                        navegacion("/");
+                      }
+                    });
+                  } else {
+                    Swal.fire(
+                      `Usuario suspendido`,
+                      "El usuario se encuentra suspendido",
+                      "error"
+                    );
+                  }
                 }
               }
-            }
-          });
+            });
+          }
         });
       } else {
         if (
@@ -173,7 +178,7 @@ const InicioSesion = () => {
           };
           const usuarios = await obtenerUsuarios();
 
-          const emailExiste = usuarios.some(
+          const emailExiste = usuarios?.some(
             (usuario) => usuario.email === nuevoUsuario.email
           );
 
@@ -185,7 +190,7 @@ const InicioSesion = () => {
             );
           } else {
             registro(nuevoUsuario).then((respuesta) => {
-              if (respuesta.status === 201) {
+              if (respuesta && respuesta.status === 201) {
                 Swal.fire(
                   "Usuario creado",
                   `El usuario ${nuevoUsuario.nombre} fue creado con éxito!`,

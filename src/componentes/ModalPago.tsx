@@ -2,27 +2,45 @@ import { useState } from "react";
 import { BsCheck, BsChevronRight, BsHandbag, BsXLg } from "react-icons/bs";
 import ClipLoader from "react-spinners/ClipLoader";
 import Swal from "sweetalert2";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { editarUsuario } from "./ayudas/consultas";
 import { editarUsuario as editarUsuarioState } from "../features/usuarios/usuarioSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { Usuario, UsuariosState } from "../types/types";
 
-const ModalPago = ({ setMostrarModal, totalCarrito, costoEnvio }) => {
+interface Props {
+  setMostrarModal: (arg: boolean) => void;
+  totalCarrito: number;
+  costoEnvio: number;
+}
+
+interface FormValues {
+  email: string;
+  tarjeta: string;
+  vencimiento: string;
+  seguridad: string;
+  dni: string;
+  domicilio: string;
+}
+
+const ModalPago = ({ setMostrarModal, totalCarrito, costoEnvio }: Props) => {
   const [mostrarDire, setMostrarDire] = useState(false);
   const [mostrarConfirmarPago, setMostrarConfirmarPago] = useState(false);
   const [pago, setPago] = useState(false);
   const [mostrarSpinner, setMostrarSpinner] = useState(false);
   const [datos, setDatos] = useState({});
-  const usuarioState = useSelector((state) => state.usuarios.usuario);
+  const usuarioState = useSelector(
+    (state: UsuariosState) => state.usuarios.usuario
+  );
   const dispatch = useDispatch();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<FormValues>();
 
-  const validarVencimiento = (valor) => {
+  const validarVencimiento = (valor: string) => {
     const [mes, anio] = valor.split("/");
     const mesVencimiento = parseInt(mes, 10);
     const anioVencimiento = parseInt(anio, 10);
@@ -54,8 +72,8 @@ const ModalPago = ({ setMostrarModal, totalCarrito, costoEnvio }) => {
     }, 2000);
   };
 
-  const envio = async (data, e) => {
-    const boton = e.nativeEvent.submitter.name;
+  const envio: SubmitHandler<FormValues> = async (data, e) => {
+    const boton = (e as any).nativeEvent.submitter?.name;
 
     if (boton === "boton_dire") {
       spinner();
@@ -79,29 +97,15 @@ const ModalPago = ({ setMostrarModal, totalCarrito, costoEnvio }) => {
         id: Number(new Date().getTime()),
       };
 
-      const usuarioEditado = {
+      const usuarioEditado: Partial<Usuario> = {
         ...usuarioState,
         carrito: [],
         pedidos: nuevosPedidos,
       };
 
       editarUsuario(usuarioEditado, usuarioState._id);
-      dispatch(
-        editarUsuarioState({
-          ...usuarioState,
-          carrito: [],
-          pedidos: nuevosPedidos,
-        })
-      );
+      dispatch(editarUsuarioState(usuarioEditado));
     }
-  };
-
-  const guardarDatos = (e) => {
-    const { name, value } = e.target;
-    setDatos((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
   };
 
   return (
@@ -208,8 +212,8 @@ const ModalPago = ({ setMostrarModal, totalCarrito, costoEnvio }) => {
                   className="form-control"
                   id="email"
                   placeholder="usuario@gmail.com"
-                  minLength="5"
-                  maxLength="100"
+                  minLength={5}
+                  maxLength={100}
                   required
                   value={usuarioState?.email}
                   {...register("email", {
@@ -246,8 +250,8 @@ const ModalPago = ({ setMostrarModal, totalCarrito, costoEnvio }) => {
                   className="form-control"
                   id="tarjeta"
                   placeholder="1234 1234 1234 1234"
-                  minLength="19"
-                  maxLength="19"
+                  minLength={19}
+                  maxLength={19}
                   required
                   {...register("tarjeta", {
                     required: "La tarjeta es obligatoria",
@@ -283,8 +287,8 @@ const ModalPago = ({ setMostrarModal, totalCarrito, costoEnvio }) => {
                     className="form-control"
                     id="vencimiento"
                     placeholder="12/2026"
-                    minLength="7"
-                    maxLength="7"
+                    minLength={7}
+                    maxLength={7}
                     required
                     {...register("vencimiento", {
                       required: "La fecha de vencimiento es obligatoria",
@@ -323,8 +327,8 @@ const ModalPago = ({ setMostrarModal, totalCarrito, costoEnvio }) => {
                     className="form-control"
                     id="codigoSeguridad"
                     placeholder="444"
-                    minLength="3"
-                    maxLength="3"
+                    minLength={3}
+                    maxLength={3}
                     required
                     {...register("seguridad", {
                       required: "El código de seguridad es obligatorio",
@@ -361,8 +365,8 @@ const ModalPago = ({ setMostrarModal, totalCarrito, costoEnvio }) => {
                   className="form-control"
                   id="dniTarjeta"
                   placeholder="44021006"
-                  minLength="7"
-                  maxLength="8"
+                  minLength={7}
+                  maxLength={8}
                   required
                   {...register("dni", {
                     required: "El DNI es obligatorio",
@@ -407,12 +411,11 @@ const ModalPago = ({ setMostrarModal, totalCarrito, costoEnvio }) => {
                     type="text"
                     className="form-control"
                     id="domicilio"
-                    name="domicilio"
                     placeholder="San Juan 295"
-                    minLength="2"
-                    maxLength="100"
+                    minLength={2}
+                    maxLength={100}
                     required
-                    onChange={guardarDatos}
+                    // onChange={guardarDatos}
                     {...register("domicilio", {
                       required: "El domicilio es obligatorio",
                       pattern: {
@@ -422,6 +425,13 @@ const ModalPago = ({ setMostrarModal, totalCarrito, costoEnvio }) => {
                       },
                       minLength: 2,
                       maxLength: 100,
+                      onChange: (e) => {
+                        const { name, value } = e.target;
+                        setDatos((prevData) => ({
+                          ...prevData,
+                          [name]: value,
+                        }));
+                      },
                     })}
                   />
                   <div className="text-danger">{errors.domicilio?.message}</div>
@@ -460,7 +470,7 @@ const ModalPago = ({ setMostrarModal, totalCarrito, costoEnvio }) => {
               <hr className="m-0 mt-3" />
               <div className="d-flex justify-content-between">
                 <h5>Subtotal</h5>
-                <h6>${parseInt(totalCarrito).toLocaleString()}</h6>
+                <h6>${totalCarrito.toLocaleString()}</h6>
               </div>
               <div className="d-flex justify-content-between">
                 <h5>Costo de envío</h5>
@@ -468,7 +478,7 @@ const ModalPago = ({ setMostrarModal, totalCarrito, costoEnvio }) => {
               </div>
               <div className="d-flex justify-content-between">
                 <h5>Total</h5>
-                <h6>${parseInt(totalCarrito + costoEnvio)}</h6>
+                <h6>${totalCarrito + costoEnvio}</h6>
               </div>
               <hr className="m-0" />
             </div>

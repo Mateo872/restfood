@@ -2,13 +2,22 @@ import { Card } from "react-bootstrap";
 import { BsPlusCircleFill, BsFillHeartFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { Producto, UsuariosState } from "../types/types";
+
+interface Props {
+  platosFiltrados: Producto[];
+  productosPaginaActual: Producto[];
+  productoSinStock: Producto[];
+}
 
 const TarjetaProducto = ({
   platosFiltrados,
   productosPaginaActual,
   productoSinStock,
-}) => {
-  const usuarioState = useSelector((state) => state.usuarios.usuario);
+}: Props) => {
+  const usuarioState = useSelector(
+    (state: UsuariosState) => state.usuarios.usuario
+  );
 
   return (
     <>

@@ -8,30 +8,31 @@ Además, cuenta con un sistema de administrador protegido con usuario y contrase
 
 ## Características
 
--   Explora un amplio menú de platos y bebidas.
--   Utiliza el buscador para encontrar productos por nombre o categoría.
--   Filtra los productos según su precio y categoría.
--   Agrega elementos al carrito de compra y realiza compras seguras con métodos de pago con tarjeta.
--   Sistema de administrador con login seguro para gestionar usuarios y pedidos
--   Registra nuevos usuarios y visualiza la lista de usuarios y pedidos pendientes.
--   Administra los pedidos, marcándolos como entregados o eliminándolos cuando sea necesario.
+- Explora un amplio menú de platos y bebidas.
+- Utiliza el buscador para encontrar productos por nombre o categoría.
+- Filtra los productos según su precio y categoría.
+- Agrega elementos al carrito de compra y realiza compras seguras con métodos de pago con tarjeta.
+- Sistema de administrador con login seguro para gestionar usuarios y pedidos
+- Registra nuevos usuarios y visualiza la lista de usuarios y pedidos pendientes.
+- Administra los pedidos, marcándolos como entregados o eliminándolos cuando sea necesario.
 
-## Tecnologías utilizadas
+## ⚙ Tecnologías utilizadas
 
--   React.js es una biblioteca de JavaScript de código abierto que se utiliza para construir interfaces de usuario interactivas y dinámicas. En RestFood, React se utiliza para crear la interfaz de usuario y gestionar los componentes reactivos que permiten a los usuarios interactuar con la aplicación de forma rápida y eficiente.
--   React Hook Form. Permite manejar fácilmente la validación y el seguimiento de los datos ingresados por el usuario en los formularios.
--   React.js para construir la interfaz de usuario interactiva.
--   React Bootstrap es una biblioteca de componentes que combina el poder de Bootstrap con las capacidades de React. Proporciona un conjunto de componentes preestilizados y listos para usar, lo que facilita la creación de interfaces de usuario consistentes y atractivas.
--   SweetAlert2 es una biblioteca de alertas personalizadas para mejorar la interacción con el usuario. Permite mostrar alertas, confirmaciones y mensajes de éxito de una manera más elegante y amigable que las alertas estándar del navegador.
--   Redux y Redux Toolkit: Para el manejo del estado global en la aplicación, simplificando el desarrollo del store y la gestión de acciones y reducers.
--   Estilos propios de CSS para el diseño y la presentación visual.
+- React.js es una biblioteca de JavaScript de código abierto que se utiliza para construir interfaces de usuario interactivas y dinámicas. En RestFood, React se utiliza para crear la interfaz de usuario y gestionar los componentes reactivos que permiten a los usuarios interactuar con la aplicación de forma rápida y eficiente.
+- TypeScript: TypeScript es un superset de JavaScript que agrega tipado estático a la sintaxis de JavaScript. En el contexto de RestFood, TypeScript se integra con React.js para mejorar la robustez y la escalabilidad del código, facilitando el mantenimiento y la detección temprana de errores.
+- React Hook Form. Permite manejar fácilmente la validación y el seguimiento de los datos ingresados por el usuario en los formularios.
+- React.js para construir la interfaz de usuario interactiva.
+- React Bootstrap es una biblioteca de componentes que combina el poder de Bootstrap con las capacidades de React. Proporciona un conjunto de componentes preestilizados y listos para usar, lo que facilita la creación de interfaces de usuario consistentes y atractivas.
+- SweetAlert2 es una biblioteca de alertas personalizadas para mejorar la interacción con el usuario. Permite mostrar alertas, confirmaciones y mensajes de éxito de una manera más elegante y amigable que las alertas estándar del navegador.
+- Redux y Redux Toolkit: Para el manejo del estado global en la aplicación, simplificando el desarrollo del store y la gestión de acciones y reducers.
+- Estilos propios de CSS para el diseño y la presentación visual.
 
 ## Requisitos previos
 
 Asegúrate de tener instalado lo siguiente en tu sistema:
 
--   Node.js: https://nodejs.org (versión recomendada: LTS)
--   NPM: Viene incluido con Node.js, pero se recomienda verificar si está actualizado ejecutando `npm install -g npm`
+- Node.js: https://nodejs.org (versión recomendada: LTS)
+- NPM: Viene incluido con Node.js, pero se recomienda verificar si está actualizado ejecutando `npm install -g npm`
 
 ## Configuración inicial
 
@@ -41,21 +42,10 @@ Sigue estos pasos para configurar el proyecto en tu entorno local:
 2. Navega al directorio del proyecto: `cd restfood`
 3. Instala las dependencias del proyecto: `npm install`
 
-## Contribución
-
-¡Gracias por considerar contribuir a RestFood! Si deseas colaborar con el proyecto, sigue estos pasos:
-
-1. Haz un fork del repositorio.
-2. Crea una nueva rama para tus cambios: `git checkout -b feature/nueva-funcionalidad`.
-3. Realiza tus modificaciones y guarda los cambios.
-4. Realiza un commit con un mensaje descriptivo: `git commit -m "Agregar nueva funcionalidad"`.
-5. Envía tus cambios al repositorio remoto: `git push origin feature/nueva-funcionalidad`.
-6. Abre una solicitud de extracción en GitHub y describe tus cambios detalladamente.
-
 ## Desarrolladores 🖥️
 
--   [Mateo Bellini ](https://github.com/Mateo872)
--   [Mario Chavez ](https://github.com/Mario-Chavez)
+- [Mateo Bellini ](https://github.com/Mateo872)
+- [Mario Chavez ](https://github.com/Mario-Chavez)
 
 ## ¡Visitá nuestro sitio aquí!
 
